@@ -1,0 +1,33 @@
+{
+  "heading":{
+    "headerText":"Save With Our Bundle",
+    "headerBoard":"Packages",
+    "text":"Launch multiple contests and pay a discounted bundle price"
+  },
+  "itemsContestType":[
+    {
+      "src": ["Company-Names","Logos"],
+      "name":"Name + Logo",
+      "text":"Get the essentials needed to establish your brand together and save",
+      "contestTo": ["name","logo"]
+    },
+    {
+      "src": ["Company-Names","Taglines"],
+      "name":"Name + Tagline",
+      "text":"Communicate your vision with the perfect Name/Tagline combo.",
+      "contestTo": ["name","tagline"]
+    },
+    {
+      "src": ["Logos","Taglines"],
+      "name":"Logo + Tagline",
+      "text":"Description for Logo + Tagline will come here",
+      "contestTo": ["logo","tagline"]
+    },
+    {
+      "src": ["Company-Names","Logos","Taglines"],
+      "name":"Name + Logo + Tagline",
+      "text":"Establish your entire brand identity and save with this bundle.",
+      "contestTo": ["name","tagline","logo"]
+    }
+  ]
+}

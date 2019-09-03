@@ -1,0 +1,139 @@
+%buttons
+  padding: 15px 10px
+  font-size: 15px
+  font-weight: 500
+
+.main
+  font-family: Arial, sans-serif
+  font-size: 14px
+  line-height: 1.42857143
+  color: #333
+  box-sizing: border-box
+
+  .bannerHome
+    background-size: cover
+    width: 100%
+    display: flex
+
+    .container
+      width: 1170px
+      padding-right: 15px
+      padding-left: 15px
+      margin-right: auto
+      margin-left: auto
+      margin-bottom: 30px
+      box-sizing: border-box
+
+      .bannerContent
+        min-height: 1px
+        padding-right: 15px
+        padding-left: 15px
+        margin-top: 100px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        ul
+          width: 100%
+          display: flex
+          flex-direction: row
+          justify-content: center
+          margin-bottom: 20px
+          padding: 0
+          .liOr
+            padding: 0 20px
+          .startContest
+              a
+                @extend %buttons
+                background: #28d2d0
+                color: #fff
+                &:hover
+                  background-color: #48C1C2
+          .exploreNames
+              a
+                @extend %buttons
+                color: #333333
+                text-transform: none
+                &:hover
+                  background-color: white
+                  color: #28d2d0
+        p
+          font-weight: 400
+          padding: 0 15px
+          font-size: 18px
+          margin: 5px 30px 40px
+          text-align: center
+          letter-spacing: 0.01vw
+
+        .loadingBar
+          flex-wrap: wrap
+          padding: .2em 0
+          font-size: 36px
+          font-family: inherit
+          font-weight: 500
+          line-height: 1.1
+          color: inherit
+
+          .wordsWrapper
+            overflow: hidden
+            vertical-align: top
+            font-weight: 900
+            position: relative
+            text-align: left
+            &:after
+              top: 41px
+              animation-iteration-count: infinite
+              animation-name: loader
+              animation-duration: 4s
+              content: ''
+              position: absolute
+              left: 5px
+              height: 3px
+              background: #28d2d0
+              border-radius: 3px
+          b
+            opacity: 1
+            top: 0
+            font-size: 36px
+            font-weight: 700
+            line-height: 1.1
+
+@keyframes loader
+  0%
+    width: 0
+  100%
+    width: 100%
+
+@media only screen and (max-width: 795px)
+  .main
+    .bannerHome
+      .container
+        padding: 0
+        .bannerContent
+          margin: 0
+          margin-top: 50px
+          .loadingBar
+            text-align: center
+            font-size: 30px
+          ul
+            flex-direction: column
+            align-items: center
+            li
+              margin: 15px 0
+            .exploreNames
+              a
+                font-weight: 400
+                padding-left: 18vw
+                padding-right: 18vw
+            .startContest
+              a
+                font-weight: 400
+                padding-left: 21vw
+                padding-right: 21vw
+
+
+
+
+
+

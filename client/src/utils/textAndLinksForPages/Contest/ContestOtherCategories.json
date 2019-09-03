@@ -1,0 +1,33 @@
+{
+  "heading":{
+    "headerText":"Other",
+    "headerBoard":"Categories",
+    "text":"Additional ways to build your brand"
+  },
+  "itemsContestType":[
+    {
+      "src":["Signage"],
+      "name":"Signage",
+      "text":"Get noticed with a high-quality a sign, billboard, or banner",
+      "contestTo":["startcontest"]
+    },
+    {
+      "src":["Clothing"],
+      "name":"Clothing",
+      "text":"Get dozens of T-shirt cover designs based upon your branding from our creatives",
+      "contestTo":["startcontest"]
+    },
+    {
+      "src":["Email-Newsletter-Design"],
+      "name":"Email Template",
+      "text":"Get dozens of beautifully designed email templates for your email marketing campaigns from our branding experts",
+      "contestTo":["startcontest"]
+    },
+    {
+      "src":["Product-Feedback-Research"],
+      "name":"Product Feedback & Research",
+      "text":"Get feedback, ideas, research report for your product, business idea or industry. You can get early product advice from creatives across the world before launching your product to general audience. ",
+      "contestTo":["startcontest"]
+    }
+  ]
+}

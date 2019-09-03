@@ -1,0 +1,74 @@
+%carouselIcon
+  font: normal normal normal 28px FontAwesome
+  text-rendering: auto
+  color: #666
+  text-align: center
+  text-shadow: 0 1px 2px rgba(0,0,0,.6)
+
+.container
+  display: flex
+  margin-bottom: 20px
+
+  .carouselIconPrev
+    @extend %carouselIcon
+    margin-right: 12vw
+  .carouselIconNext
+    @extend %carouselIcon
+    margin-left: 12vw
+  .carousel
+    display: flex
+    flex-direction: row
+    .item
+      background-size: contain
+      background-repeat: no-repeat
+      width: 30vw
+      max-width: 330px
+      max-height: 330px
+      height: 30vw
+      margin: 25px
+
+
+
+@media only screen and (max-width: 1150px)
+  .container
+    .carousel
+      .item
+        margin: 5px
+    .carouselIconPrev
+      color: white
+      margin-right: 7vw
+    .carouselIconNext
+      color: white
+      margin-left: 7vw
+
+//@media only screen and (max-width: 900px)
+//  .container
+//    width: min-content
+//    .carousel
+//      .item
+//        width: 50vw
+//        height: 50vw
+//      div:last-child
+//        display: none
+//    .carouselIconPrev
+//      color: #333333
+//      margin-right: 16vw
+//    .carouselIconNext
+//      color: #333333
+//      margin-left: 16vw
+//
+//@media only screen and (max-width: 725px)
+//  .container
+//    width: min-content
+//    .carousel
+//      .item
+//        width: 50vw
+//        height: 50vw
+//      div:last-child
+//        display: none
+//    .carouselIconPrev
+//      color: #333333
+//      margin-right: 16vw
+//    .carouselIconNext
+//      color: #333333
+//      margin-left: 16vw

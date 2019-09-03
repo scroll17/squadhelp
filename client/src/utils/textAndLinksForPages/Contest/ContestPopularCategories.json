@@ -1,0 +1,27 @@
+{
+  "heading":{
+    "headerText":"Our Most Popular",
+    "headerBoard":"Categories",
+    "text":"Pick from our most popular categories, launch a contest and begin receiving submissions right away"
+  },
+  "itemsContestType":[
+    {
+      "src":["Company-Names"],
+      "name":"Name",
+      "text":"Get up and running with the perfect name. ",
+      "contestTo":["name"]
+    },
+    {
+      "src":["Logos"],
+      "name":"Logo",
+      "text":"Kickstart your venture with a unique, memorable logo ",
+      "contestTo":["logo"]
+    },
+    {
+      "src":["Taglines"],
+      "name":"Tagline or Slogan",
+      "text":"Connect deeply with your target audience with an on-target tagline ",
+      "contestTo":["tagline"]
+    }
+  ]
+}

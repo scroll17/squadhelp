@@ -1,0 +1,28 @@
+{
+  "step1":{
+    "src": "https://www.squadhelp.com/assets/nimages/home_images/1-compressed.gif",
+    "title": "Step 1: Launch a Naming Contest",
+    "steps": [
+      "Start your project right with our proven Naming Brief template",
+      "We’ll walk you through exactly what you need to share about your project in order to get an awesome Name"
+    ]
+  },
+  "step2":{
+    "src": "https://www.squadhelp.com/assets/nimages/home_images/2-compressed-new.gif",
+    "title": "Step 2: Ideas start pouring in within minutes",
+    "steps":[
+      "100s of naming experts start submitting name ideas",
+      "Names automatically checked for URL availability",
+      "Instantly screened for Trademark conflicts"
+    ]
+  },
+  "step3":{
+    "src": "https://www.squadhelp.com/assets/nimages/home_images/3-compressed.gif",
+    "title": "Step 3. Rate Entries & Brainstorm with Creatives",
+    "steps":[
+      "Provide instant feedback on Names",
+      "Send private feedback or public messages to all creatives",
+      "The more entries you rate - the submissions get better and better"
+    ]
+  }
+}

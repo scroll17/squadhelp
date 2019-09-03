@@ -1,0 +1,32 @@
+[
+  {
+    "page":"select",
+    "caption":"Select contest type",
+    "title":"start a contest",
+    "description":"Launching a contest on Squadhelp is very simple. Select the type of contest you would like to launch from the list below. Provide a detailed brief and select a pricing package. Begin receiving submissions instantly!"
+  },
+  {
+    "page":"name",
+    "caption":"Name",
+    "title":"company name",
+    "description":"Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for"
+  },
+  {
+    "page":"logo",
+    "caption":"Logo",
+    "title":"logo",
+    "description":"Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for"
+  },
+  {
+    "page":"tagline",
+    "caption":"Tagline",
+    "title":"tagline",
+    "description":"Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for"
+  },
+  {
+    "page":"banks",
+    "caption":"Banks",
+    "title":"banks",
+    "description":"Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for"
+  }
+]

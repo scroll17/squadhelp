@@ -1,0 +1,55 @@
+.dropZone
+  margin: 0 0 10px 0
+  background: #eee
+  padding: 10px
+
+  display: flex
+  flex-direction: row
+  align-items: center
+
+  font-family: Arial, "sans-serif"
+
+  .selected
+    max-width: 200px
+    border-radius: 0 4px 4px 0
+
+    border: 1px
+    background: #eee
+
+    font-size: 14px
+
+    padding: 5px 12px
+    color: #8d8d8d
+    cursor: default
+    line-height: normal
+
+    display: flex
+    flex-direction: column
+
+
+
+  .label
+    display: flex
+    justify-content: center
+
+    cursor: pointer
+
+    border-radius: 4px
+
+    background: #fff
+    padding: 20px
+
+    text-align: center
+    margin: 0
+    font-size: 14px
+    font-weight: normal
+    width: 200px
+    &:hover
+      background: #ccffff
+
+@media only screen and (max-width: 515px)
+  .dropZone
+    flex-direction: column
+    align-items: flex-start
+    .selected
+      margin-top: 10px

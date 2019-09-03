@@ -1,0 +1,56 @@
+.row
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-family: Arial, "sans-serif"
+
+  .rowInputs
+    display: flex
+    flex-direction: row
+
+  .errorContainer
+    margin-bottom: 15px
+    border: 1px solid #b72522
+    width: 95%
+    text-align: center
+    .textError
+      font-size: 14px
+      color: #fff
+      padding: 5px 15px
+
+  .fieldContainer
+    display: flex
+    position: relative
+    max-width: 278px
+    box-sizing: border-box
+    padding: 0 14px 1.15rem
+
+    input
+      color: #9CA8B7
+      margin: 0
+      width: 100%
+      box-sizing: border-box
+      font-size: 16px
+      height: auto
+      padding: 21px 23px
+      border: 2px solid white
+      border-radius: 4px
+
+@media only screen and (max-width: 710px)
+  .row
+    .fieldContainer
+      max-width: 100%
+    .rowInputs
+      width: 100%
+      flex-direction: column
+
+@media only screen and (max-width: 550px)
+  .row
+    .fieldContainer
+      input
+        padding: 15px 15px
+
+@media only screen and (max-width: 475px)
+  .row
+    .errorContainer
+      width: 92%

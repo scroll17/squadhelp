@@ -1,0 +1,76 @@
+.clearFix
+  max-width: 740px
+  display: flex
+  flex-direction: column
+  font-family: Arial, "sans-serif"
+
+  .formGroup
+    margin: 15px 0 0 0
+    max-width: 800px
+    display: flex
+    flex-direction: column
+
+    .error
+      margin: 5px 0 0 5px
+      color: red
+      font-size: 16px
+
+    input
+      height: 35px
+      &:focus
+        border: 2px solid #2791e5
+
+    .input
+      height: 48px
+      border: 2px solid #d0d0d0
+      box-shadow: none
+      padding: 0 8px
+      margin-bottom: 15px
+      font-size: 16px
+      border-radius: 4px
+
+    div
+      font-size: 16px
+
+    .span
+      margin-bottom: 10px
+      color: #908e8e
+      font-style: italic
+      font-size: 15px
+
+
+    .label
+      font-size: 19px
+      color: #585859
+      font-weight: 700
+      margin-top: 12px
+
+      max-width: 800px
+      margin-bottom: 5px
+
+    .textarea
+      height: 150px
+      border: 2px solid #d0d0d0
+      box-shadow: none
+      padding: 0 8px
+      margin-bottom: 15px
+      font-size: 18px
+      max-width: 800px
+      line-height: 1.42857143
+      color: #555
+      background-color: #fff
+      background-image: none
+      border-radius: 4px
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+      box-sizing: border-box
+      &:focus
+        border: 2px solid #2791e5
+
+
+@media only screen and (max-width: 825px)
+  .clearFix
+    .formGroup
+      .label
+        font-size: 16px
+      .textarea
+        font-size: 16px

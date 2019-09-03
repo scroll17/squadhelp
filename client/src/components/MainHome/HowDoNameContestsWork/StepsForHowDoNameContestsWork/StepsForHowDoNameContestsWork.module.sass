@@ -1,0 +1,97 @@
+.StepsForHowDoNameContestsWork
+  padding-bottom: 25px
+  font-family: Arial, "sans-serif"
+  display: flex
+  .container
+    width: 1270px
+    padding-right: 15px
+    padding-left: 15px
+    margin-right: auto
+    margin-left: auto
+    .row
+      display: flex
+      flex-direction: column
+      align-items: center
+      margin-top: 30px
+      min-height: 1px
+      padding-right: 15px
+      padding-left: 15px
+
+      .title
+        h2
+          font-size: 30px
+          margin-top: 20px
+          margin-bottom: 10px
+          font-weight: 500
+          line-height: 1.1
+
+      .blockWithInformation
+        display: flex
+        flex-direction: row
+        .gif
+          width: 45%
+          height: 50%
+          background-size: cover
+        .box
+          width: 50%
+          padding: 10px 15px
+          margin-top: 90px
+          margin-bottom: 30px
+          h4
+            font-size: 22px
+            margin-top: 10px
+            margin-bottom: 10px
+          ul
+            list-style: none
+            margin: 25px 0 0
+            li
+              padding-bottom: 10px
+              font-weight: 400
+              font-size: 18px
+              display: flex
+              flex-direction: row
+              i
+                margin-right: 10px
+                color: #28d2d0
+              span
+                line-height: 1.42857143
+                font-weight: 400
+                font-size: 18px
+      .informationReverse
+        flex-direction: row-reverse
+
+
+@media only screen and (max-width: 970px)
+  .StepsForHowDoNameContestsWork
+    .container
+      .row
+        .title
+          text-align: center
+        .blockWithInformation
+          display: flex
+          flex-direction: column
+          align-items: center
+          .gif
+            width: 90vw
+            height: auto
+          .box
+            text-align: center
+            width: 100%
+            ul
+              display: flex
+              flex-direction: column
+              justify-content: center
+              align-items: center
+              li
+                i
+                  margin-right: 5px
+        .informationReverse
+          flex-direction: column-reverse
+
+@media only screen and (max-width: 750px)
+  .StepsForHowDoNameContestsWork
+    .container
+      padding: 0
+      .row
+        .blockWithInformation
+          flex-direction: column-reverse

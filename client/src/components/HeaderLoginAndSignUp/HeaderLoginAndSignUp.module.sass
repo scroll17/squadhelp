@@ -1,0 +1,41 @@
+.header
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  margin-top: 26px
+  padding: 0 49px 0 45px
+  box-sizing: border-box
+
+  .logo
+    margin-top: 6px
+    background:
+      image: url("https://www.squadhelp.com/img/logo.png")
+      position: center
+      repeat: no-repeat
+      size: contain
+    min-width: 162px
+    height: 51px
+
+  .loginBottom
+    font-family: Gotham SSm A, Gotham SSm B, Halvetica, sans-serif
+    border-radius: 20px
+    padding-right: 1em
+    a
+      padding: 10px 15px
+      color: white
+      background: #3ea9f5
+      border: 1px solid rgba(255,255,255,0.77)
+      -webkit-border-radius: 4px
+      -moz-border-radius: 4px
+      border-radius: 4px
+      font-size: 18px
+      font-weight: 600
+      line-height: 22px
+      -webkit-font-smoothing: antialiased
+      text-decoration: none
+
+@media only screen and (max-width: 500px)
+  .header
+    .logo
+      margin-right: 10px

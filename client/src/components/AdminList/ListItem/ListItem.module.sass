@@ -1,0 +1,59 @@
+%circle
+  border-radius: 100%
+  width: 28px
+  height: 28px
+  margin: 22px 17px 22px 0
+  font-family: Arial, sans-serif
+
+.listItem
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  height: 72px
+  background-color: #FFFFFF
+  border-top: #E6EAEE 1px solid
+
+  i
+    color: white
+    padding: 6px
+  .active
+    @extend %circle
+    background-color: #48C1C2
+  .passive
+    @extend %circle
+    background-color: #DBE0E6
+
+  .avatarAndData
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .avatar
+      width: 48px
+      height: 48px
+      background-size: cover
+      border-radius: 30px
+      margin: 0 16px
+      background-image: url("http://odpk.org.ua/wp-content/uploads/2017/05/NoPhoto_icon-user-default.jpg")
+
+  .name
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    .listItemRole
+      margin-top: 5px
+      font-size: 12px
+
+    .listItemName
+      color: #0B3157
+      font-family: Arial, sans-serif
+      font-size: 15px
+      font-weight: 400
+      letter-spacing: -0.3px
+      line-height: 19px
+
+
+
+
+

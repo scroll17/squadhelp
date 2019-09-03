@@ -1,0 +1,113 @@
+%steps
+  padding: 20px 45px
+  display: block
+  color: #fff
+  font-weight: 700
+  text-transform: uppercase
+  text-align: center
+
+
+.stepsForm
+  padding-top: 40px
+  background: #f8f8f8
+
+  font-family: Arial, "sans-serif"
+
+  display: flex
+  flex-direction: column
+
+  .container
+    max-width: 1170px
+    margin: 0 37vw 0 auto
+    padding-right: 30px
+    padding-left: 30px
+
+    .row
+      font-size: 14px
+      line-height: 1.42857143
+      display: flex
+      justify-content: flex-start
+
+      .blockFields
+        width: 740px
+        min-height: 1px
+
+
+  .nextSteps
+    margin-top: 40px
+    background: #fff
+    padding: 30px 0
+    border-top: 1px solid #eee
+
+    .containerSteps
+      padding-right: 15px
+      padding-left: 15px
+      width: 100%
+
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: space-evenly
+
+      .stepsNavigation
+        min-height: 1px
+        padding-right: 15px
+        padding-left: 15px
+
+        display: flex
+        flex-direction: row
+        .divBack
+          cursor: pointer
+          background: #888
+          font-size: 15px
+          line-height: 21px
+          width: 140px
+          @extend %steps
+
+        button
+          outline: 0
+
+          background: #f3875d
+          width: 275px
+          height: 60px
+          border-radius: 10px
+          font-size: 19px
+          margin: 0 15px
+          @extend %steps
+          padding: 15px 45px
+
+      .stepsText
+        p
+          line-height: 25px
+          font-size: 17px
+
+@media only screen and (max-width: 1170px)
+  .stepsForm
+      .container
+        margin: 0 15px
+        padding: 0
+        display: flex
+        justify-content: flex-start
+        .row
+          width: 100%
+
+@media only screen and (max-width: 825px)
+  .stepsForm
+    padding-top: 20px
+    .nextSteps
+      .containerSteps
+        .stepsNavigation
+          width: 100%
+          justify-content: space-between
+          align-items: center
+          .divBack
+            flex-shrink: 1
+            padding: 9px 0
+            height: 41px
+          button
+            flex-shrink: 2
+            height: 41px
+            padding: 9px 0
+            border-radius: 0
+        .stepsText
+          display: none

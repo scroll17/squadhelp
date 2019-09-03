@@ -1,0 +1,72 @@
+.footerHome
+  background: #232828
+  padding: 40px 0 25px
+  font-family: Arial, sans-serif
+  display: flex
+
+
+
+  .container
+    width: 1170px
+    padding-right: 15px
+    padding-left: 15px
+    margin-right: auto
+    margin-left: auto
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+    .footerInformation
+      display: flex
+      flex-direction: row
+      span
+        padding: 10px 0 10px 30px
+        margin: 0 0 5px 33px
+        border-left: 1px solid #3d4141
+        font-size: 16px
+        color: #666868
+
+    .socialNetworks
+      ul
+        display: flex
+        flex-direction: row
+        li
+          margin: 0 10px
+          width: 40px
+          height: 40px
+          border: 1px solid white
+          border-radius: 25px
+          text-align: center
+          i
+            margin: 7px 0
+            color: white
+            width: 20px
+            height: 20px
+            &:hover
+              color: #f27e51
+
+@media only screen and (max-width: 750px)
+  .footerHome
+    .container
+      flex-direction: column-reverse
+      justify-content: center
+      align-items: center
+      .footerInformation
+        margin: 30px 10vw 0 0
+        width: 100%
+        flex-direction: row-reverse
+        justify-content: space-between
+        span
+          border: none
+
+@media only screen and (max-width: 480px)
+  .footerHome
+    .container
+      .footerInformation
+        margin: 0
+        flex-wrap: wrap
+        justify-content: center
+        img
+          margin: 15px
+        span
+          margin: 0

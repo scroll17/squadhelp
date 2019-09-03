@@ -1,0 +1,110 @@
+%span
+  font-size: 22px
+  line-height: 1.42857143
+  font-weight: 400
+
+.container
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  font-family: Arial, "sans-serif"
+  box-sizing: border-box
+
+  .paymentForm
+    display: flex
+    flex-direction: column
+
+    form
+      margin-top: 20px
+
+      .expiryAndCvc
+        display: flex
+        flex-direction: row
+        input:last-child
+          width: 55%
+          margin-left: 20px
+
+
+      input
+        margin: 10px 0
+        border: 1px solid #ccc
+        border-radius: 6px
+        box-shadow: none
+        font-size: 20px
+        outline: none
+        padding: 10px
+        transition: all .4s
+        width: 100%
+        &:focus
+          border: 2px solid #2791e5
+
+
+  .orderSummary
+    margin-top: 5px
+    padding: 40px 60px
+    width: 50vw
+
+    height: auto
+    max-height: 350px
+
+    display: flex
+    flex-direction: column
+
+    .orderTotal
+      width: 100%
+      font-weight: 400
+
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+
+      .costOfContest
+        display: flex
+        flex-direction: column
+        width: 100%
+
+        margin: 15px 0
+
+        border-top: 3px solid #28d2d0
+        border-bottom: 3px solid #28d2d0
+
+        .contestPrice
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          align-items: center
+
+          padding: 20px 10px
+
+          span
+            text-transform: capitalize
+            margin: 5px 0
+            @extend %span
+
+
+      .total
+        display: flex
+        justify-content: space-between
+
+        span
+          @extend %span
+
+
+    .order
+      font-size: 22px
+      line-height: 1.42857143
+      margin-bottom: 5px
+
+@media only screen and (max-width: 850px)
+  .container
+    flex-direction: column
+    align-items: center
+    .paymentForm
+      margin: 0 20px
+    .orderSummary
+      min-width: 290px
+      width: 70vw
+      padding: 0
+      height: 280px
+
+      margin-bottom: 30px

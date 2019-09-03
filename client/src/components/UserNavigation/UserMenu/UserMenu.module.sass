@@ -1,0 +1,105 @@
+%font
+  font: normal normal normal 14px/1 FontAwesome
+  font-size: inherit
+
+.userMenu
+  min-height: 1px
+  padding-right: 15px
+  padding-left: 15px
+  display: flex
+  flex-direction: row
+  justify-content: center
+
+  .row
+    border-left: 1px solid #cacaca
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+    box-sizing: border-box
+
+    .informUser
+      display: flex
+      flex-direction: row
+      justify-content: center
+      align-items: center
+      color: #718888
+      padding: 0 15px
+      font-weight: 400
+      font-size: 13.5px
+      border-right: 1px solid #ebebeb
+      cursor: pointer
+      i
+        margin-left: 5px
+        @extend %font
+
+    .message
+      color: #718888
+      padding: 0 25px 0 15px
+      font-weight: 500
+      text-transform: uppercase
+      font-size: 13.5px
+      border-right: 1px solid #ebebeb
+
+    .iconUser
+      background-image: url("https://www.squadhelp.com/images/user_image/thumb/Ava-avatar.jpg")
+      background-size: cover
+      width: 20px
+      height: 20px
+      border-radius: 50%
+      margin-right: 5px
+e
+
+
+.dropdownMenu
+  position: absolute
+  display: block
+
+  float: left
+  top: 38px
+
+  min-width: 160px
+  padding: 5px 0
+  margin: 2px 0 0
+
+  font-size: 14px
+  text-align: left
+  list-style: none
+
+  background-color: #fff
+  background-clip: padding-box
+  border: 1px solid #ccc
+  border-top: none
+  border-radius: 0
+  box-shadow: 0 6px 12px rgba(0,0,0,.175)
+  box-sizing: border-box
+
+  z-index: 2
+  a, span
+    cursor: pointer
+    box-sizing: border-box
+    border: 0
+    white-space: nowrap
+    text-decoration: none
+    background-color: transparent
+    font-weight: 500
+    font-size: 14px
+    color: #718888
+    line-height: 30px
+    li
+      padding: 0 15px
+      &:hover
+        background-color: #F5F5F5
+        color: black
+
+@media only screen and (max-width: 750px)
+  .dropdownMenu
+    top: 48px
+    right: 10px
+
+    background: #eee
+
+
+
+
