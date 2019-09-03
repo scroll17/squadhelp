@@ -3,6 +3,7 @@ import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
     isOpen: false,
+    isSearchUsers: false,
     error: null,
 };
 
@@ -11,8 +12,21 @@ export default function (state = initialState, action) {
         case ACTION.CLOSE_OR_OPEN_CHAT: {
             return {
                 ...state,
-                isOpen: !state.isOpen,
+                isOpen: action.isOpen,
                 error: null
+            }
+        }
+        case ACTION.SEARCH_USERS: {
+            return {
+                ...state,
+                isSearchUsers: action.isSearchUsers,
+                error: null
+            }
+        }
+        case ACTION.CHAT_ERROR: {
+            return {
+                ...state,
+                error: action.error,
             }
         }
         default: {

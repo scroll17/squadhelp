@@ -3,7 +3,9 @@ import io from 'socket.io-client';
 import { SOCKET_EVENTS } from "../../constants";
 import { baseURL } from "../baseURL";
 
-const socket = io(baseURL);
+export const socket = io(baseURL, {
+    autoConnect: false
+});
 
 
 /*

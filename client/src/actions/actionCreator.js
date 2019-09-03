@@ -54,9 +54,15 @@ export const getPriceOfContests = () => ({
 
 
 // ----- CHAT -----
-export const closeOrOpenChat = () => ({
-  type: ACTION.CLOSE_OR_OPEN_CHAT,
+export const closeOrOpenConnection = (isOpen) => ({
+  type: ACTION.CLOSE_OR_OPEN_CONNECTION,
+  isOpen
 });
+export const setSearchUsers = (isSearchUsers) => ({
+  type: ACTION.SEARCH_USERS,
+  isSearchUsers
+});
+
 
 
 

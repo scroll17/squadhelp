@@ -10,23 +10,20 @@
     "mongoPassword": "password",
     "mongoName": "chat-dev",
 
-    "dialect": "postgres",
-    "operatorsAliases": "Op"
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "password",
     "database": "todo-test",
     "host": "db-dev",
-    "dialect": "postgres",
-    "operatorsAliases": "Op"
+    "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "password",
     "database": "todo-prod",
     "host": "db-dev",
-    "dialect": "postgres",
-    "operatorsAliases": "Op"
+    "dialect": "postgres"
   }
 }

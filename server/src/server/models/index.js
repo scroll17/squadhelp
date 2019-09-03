@@ -9,7 +9,31 @@ const fs = require('fs'),
   config = require(configPath)[ env ],
   db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $eq: Op.eq,
+  $ne: Op.ne,
+  $gte: Op.gte,
+  $gt: Op.gt,
+  $lte: Op.lte,
+  $lt: Op.lt,
+  $not: Op.not,
+  $in: Op.in,
+  $notIn: Op.notIn,
+  $is: Op.is,
+  $like: Op.like,
+  $notLike: Op.notLike,
+  $iLike: Op.iLike,
+  $notILike: Op.notILike,
+};
+
+const sequelize = new Sequelize(config.database, config.username, config.password,
+    {
+      operatorsAliases,
+      dialect: config.dialect,
+      host: config.host
+    }
+);
 
 fs
   .readdirSync(__dirname)

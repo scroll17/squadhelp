@@ -3,14 +3,20 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './Chat.module.sass'
 
+
+
+import Header from "./Header/Header";
+
+
+
+
 import { Field, reduxForm } from 'redux-form';
 
 //import { toast } from 'react-toastify';
 
 import { cloneDeep } from 'lodash'
 
-import io from 'socket.io-client';
-const socket = io('http://192.168.0.107:3000');
+import { socket } from "../../api/socket/chatController";
 
 const renderNewMessage = (messages) => {
     return messages.map( (message, index) => {
@@ -74,11 +80,7 @@ let ChatPage = (props) => {
         return reset()
     };
 
-    const findUsers = (e) => {
-        const value = e.target.value;
 
-        socket.emit('find users', { data: value });
-    };
 
     useEffect(() => {
         socket.on('finded user', users => {
@@ -99,20 +101,14 @@ let ChatPage = (props) => {
     return (
         <>
             <div className={style.chatContainer}>
-                <div className={style.findUsers}>
+
                     <Field name={'users'}
-                           component={'input'}
+                           component={Header}
                            type={'text'}
                            placeholder="Search"
-                           onChange={findUsers}
+                           resetField={resetSection}
                     />
-                    <div onClick={() => {
-                        resetSection('users');
-                        return setUsers(null)
-                    }}>
-                        <i className="far fa-times-circle" />
-                    </div>
-                </div>
+
                 {users && showFindedUsers(users)}
                 {
                     !users &&

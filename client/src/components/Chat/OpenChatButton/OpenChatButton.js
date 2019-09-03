@@ -2,13 +2,14 @@ import React from 'react';
 import style from './OpenChatButton.module.sass'
 
 import connect from "react-redux/es/connect/connect";
-import {closeOrOpenChat} from "../../../actions/actionCreator";
+
+import { closeOrOpenConnection } from "../../../actions/actionCreator";
 
 function OpenChatButton(props){
-    const { chatIsOpen } = props;
+    const { chatIsOpen, closeOrOpenConnection } = props;
 
     return(
-        <div className={style.OpenChatButton} onClick={props.closeOrOpenChat}>
+        <div className={style.OpenChatButton} onClick={() => closeOrOpenConnection(chatIsOpen)}>
             { chatIsOpen ?
                 <i className="fas fa-times" />
                 :
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => ({
     chatIsOpen: state.chatReducers.isOpen,
 });
 const mapDispatchToProps = dispatch => ({
-    closeOrOpenChat: () => dispatch(closeOrOpenChat()),
+    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(OpenChatButton);
 

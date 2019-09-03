@@ -21,6 +21,10 @@ import {
     priceOfContestToStore
 } from './contestSaga'
 
+import {
+    closeOrOpenConnectionSaga
+} from './chatSaga'
+
 function* rootSaga() {
     yield takeLatest(ACTION.LOGIN_USER, loginUserSaga);
     yield takeLatest(ACTION.CREATE_USER, createUserSaga);
@@ -41,6 +45,8 @@ function* rootSaga() {
     yield takeLatest(ACTION.WRITE_FORM_DATA_TO_STORE, writeFormDataToStore);
 
     yield takeLatest(ACTION.GET_PRICE_OF_CONTEST, priceOfContestToStore);
+
+    yield takeLatest(ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
 }
 
 export default rootSaga;
