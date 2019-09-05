@@ -14,7 +14,7 @@ import {
     prevContestStage,
     nextContestStage,
     getPriceOfContests
-} from "../../../actions/actionCreator";
+} from "../../../actions/actionCreators/contestActionCreator"
 
 import { last, isEmpty, omit } from 'lodash';
 

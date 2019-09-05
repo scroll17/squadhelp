@@ -3,47 +3,67 @@ import style from './Header.module.sass'
 
 import connect from "react-redux/es/connect/connect";
 
-import { setSearchUsers } from "../../../actions/actionCreator";
-import {socket} from "../../../api/socket/chatController";
+import { isEqual } from 'lodash'
+
+import { setSearchUsers, closeConversation } from "../../../actions/actionCreators/chatActionCreator";
+import { leaveTheRoom } from "../../../api/socket/chatController";
+import {STAGE_OF_CHAT} from "../../../constants/chatConst";
 
 function Header(props){
-    const { resetField, isSearchUsers, setSearchUsers, ...input } = props;
+    const { stageNow, openConversation, resetField } = props;
+    const { setSearchUsers, closeConversation } = props;
 
-    const findUsers = (e) => {
-        const value = e.target.value;
-        socket.emit('find users', { data: value });
+    const clickOnSearchButton = () => {
+        if(isEqual(stageNow, STAGE_OF_CHAT.SEARCH_USERS)){
+            setSearchUsers(STAGE_OF_CHAT.BEGIN)
+        }else {
+            setSearchUsers()
+        }
+        return resetField()
+    };
+
+    const clickToCloseConversation = () => {
+        leaveTheRoom()
+        return closeConversation()
     };
 
     return(
-        <div className={style.findUsers}>
             <div className={style.navBar}>
-                <div className={style.company}>
-                    <i className="fab fa-telegram" />
-                    <span className={style.companyName}>Telegram</span>
-                </div>
-                <div className={style.tools}>
-                    <i className="fas fa-search" onClick={() => setSearchUsers(!isSearchUsers)}/>
-                    <i className="fas fa-bars" />
-                </div>
+                {
+                    isEqual(stageNow, STAGE_OF_CHAT.CONVERSATION) ?
+                        <>
+                            <div className={style.closeConversation} onClick={clickToCloseConversation}>
+                                <i className="fas fa-chevron-left" />
+                                <span>{openConversation.title}</span>
+                            </div>
+                            <div className={style.toolsConversation}>
+                                <i className="fas fa-ellipsis-v" />
+                                <div className={style.iconConversation} />
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className={style.company}>
+                                <i className="fab fa-telegram" />
+                                <span className={style.companyName}>Telegram</span>
+                            </div>
+                            <div className={style.tools}>
+                                <i className="fas fa-search" onClick={clickOnSearchButton}/>
+                                <i className="fas fa-bars" />
+                            </div>
+                        </>
+                }
             </div>
-            {isSearchUsers &&
-                <div className={style.searchContainer}>
-                    <div className={style.search}>
-                        <i className="fas fa-search" />
-                        <input {...input} onChange={findUsers} />
-                        <i className="far fa-times-circle" />
-                    </div>
-                </div>
-            }
-        </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isSearchUsers: state.chatReducers.isSearchUsers,
+    stageNow: state.chatReducers.stageNow,
+    openConversation: state.chatReducers.openConversation,
 });
 const mapDispatchToProps = dispatch => ({
-    setSearchUsers: (isSearch) => dispatch(setSearchUsers(isSearch)),
+    closeConversation: () => dispatch(closeConversation()),
+    setSearchUsers: (toNextStage) => dispatch(setSearchUsers(toNextStage)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

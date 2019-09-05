@@ -1,5 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+
+import ACTION from '../actions/actionTypes/actionsTypes';
+import CHAT_ACTION from '../actions/actionTypes/chatActionsTypes';
 
 import {
     loginUserSaga,
@@ -22,7 +24,8 @@ import {
 } from './contestSaga'
 
 import {
-    closeOrOpenConnectionSaga
+    closeOrOpenConnectionSaga,
+    addNewMessageSaga
 } from './chatSaga'
 
 function* rootSaga() {
@@ -46,7 +49,9 @@ function* rootSaga() {
 
     yield takeLatest(ACTION.GET_PRICE_OF_CONTEST, priceOfContestToStore);
 
-    yield takeLatest(ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
+
+    yield takeLatest(CHAT_ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
+    yield takeLatest(CHAT_ACTION.ADD_NEW_MESSAGE, addNewMessageSaga);
 }
 
 export default rootSaga;

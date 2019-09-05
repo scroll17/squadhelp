@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import connect from "react-redux/es/connect/connect";
 
-import { getUser } from "../../actions/actionCreator";
+import { getUser } from "../../actions/actionCreators/userActionCreator";
 
 import { TOKEN } from '../../constants'
 

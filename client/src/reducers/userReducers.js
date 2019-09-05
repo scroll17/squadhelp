@@ -1,4 +1,4 @@
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionTypes/actionsTypes';
 
 const initialState = {
   isFetching: null,

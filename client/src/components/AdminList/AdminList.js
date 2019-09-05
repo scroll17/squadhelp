@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ListTo from './ListTo/ListTo';
 import ListItem from './ListItem/ListItem';
 
-import { getAllUser, banUserById } from "../../actions/actionCreator";
+import { getAllUser, banUserById } from "../../actions/actionCreators/adminActionCreator";
 
 import { isEmpty } from 'lodash';
 

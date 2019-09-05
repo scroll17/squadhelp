@@ -1,46 +1,70 @@
 .chatContainer
+  font-family: Arial, "sans-serif"
+
   width: 400px
   height: 520px
-  background-color: aquamarine
+  background-color: #FFFFFF
+
+  border: 2px solid #5682A3
+  border-radius: 5px
 
   position: fixed
 
   top: 35vh
-  right: 0
+  right: 10vw
 
-  margin-right: 50px
+  overflow: auto
 
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
+  .currentConversation
+    width: 100%
+    height: auto
+
+    display: flex
+    flex-direction: column
+    justify-content: space-between
 
 
 
-  .allMessage
-    width: 90%
-    height: 80%
-    background-color: white
+  .conversationForm
+    padding: 12px 10px
+    width: 100%
+    height: 54px
+    box-sizing: border-box
 
-    .messageContainer
+    position: sticky
+    top: 100%
+
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+    background-color: #FFFFFF
+
+    .sendMessage
+      user-select: none
+      background-color: transparent
+      border: 0
+      padding: 0
+      margin: 0 5px 0 10px
+      font-size: 20px
+
+    .inputMessage
+      background-color: #F2F2F2
+      width: 100%
+      padding: 5px
+
       display: flex
-      flex-direction: row
-      align-items: center
+      justify-content: space-between
 
-      margin: 10px
+      i
+        font-size: 20px
+        cursor: pointer
+        &:hover
+          color: #28d2d1
 
-      .message
-        margin-left: 5px
-        display: flex
-        flex-direction: column
+      input
+        width: 100%
+        background-color: #F2F2F2
+        border: 0
 
-      .iconUses
-        background-image: url(https://www.squadhelp.com/images/user_image/thumb/Ava-avatar.jpg)
-        background-size: cover
-        width: 20px
-        height: 20px
-        border-radius: 50%
 
-  form
-    margin: 20px 0
-    align-self: center

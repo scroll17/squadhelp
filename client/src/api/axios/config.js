@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ACTION from '../../actions/actiontsTypes';
+import ACTION from '../../actions/actionTypes/actionsTypes';
 
 import { toast } from 'react-toastify';
 import toastifyErrorMessage from '../../utils/toastifyErrorMessage'

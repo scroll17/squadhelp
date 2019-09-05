@@ -1,4 +1,4 @@
-import ACTION from "../actions/actiontsTypes";
+import ACTION from "../actions/actionTypes/actionsTypes";
 import {put, call, select} from 'redux-saga/effects';
 
 import history from "../boot/browserHistory";

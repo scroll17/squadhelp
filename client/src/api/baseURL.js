@@ -1,6 +1,6 @@
 const HOST= {
   LOCALHOST: 'localhost',
-  MY_IP: '192.168.0.106'
+  MY_IP: '192.168.0.102'
 };
 
 export const baseURL = `http://${HOST.MY_IP}:3000`;

@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './LoginForm.module.sass';
 
-import { getUserResponse } from "../../../actions/actionCreator";
+import { getUserResponse } from "../../../actions/actionCreators/userActionCreator";
 import { isEqual } from 'lodash'
 
 import {ERROR, FORM} from "../../../constants";

@@ -1,4 +1,4 @@
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionTypes/actionsTypes';
 
 const restoreValues = (item) => {
     return JSON.parse(sessionStorage.getItem(item))

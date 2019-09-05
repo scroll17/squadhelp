@@ -3,7 +3,7 @@ import style from './OpenChatButton.module.sass'
 
 import connect from "react-redux/es/connect/connect";
 
-import { closeOrOpenConnection } from "../../../actions/actionCreator";
+import { closeOrOpenConnection } from "../../../actions/actionCreators/chatActionCreator";
 
 function OpenChatButton(props){
     const { chatIsOpen, closeOrOpenConnection } = props;

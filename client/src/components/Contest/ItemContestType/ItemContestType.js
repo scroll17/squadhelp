@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './ItemContestType.module.sass';
 
-import { addToContestQueue } from "../../../actions/actionCreator";
+import { addToContestQueue } from "../../../actions/actionCreators/contestActionCreator";
 
 import { HEX_COLOR } from "../../../constants";
 

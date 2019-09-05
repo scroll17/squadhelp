@@ -5,12 +5,12 @@ const Conversation = new mongoose.Schema(
     {
         participants: [
             {
-                type: Number,
+                type: [Number],
             }
         ],
         messages: [
             {
-                type: ObjectId, ref: 'Messages'
+                type: ObjectId, ref: 'Message'
             }
         ],
     },

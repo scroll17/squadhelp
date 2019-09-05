@@ -7,7 +7,7 @@ import style from "./SignUpPage.module.sass";
 import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
 import SignUpForm from "../../components/Forms/SignupForm/SignupForm";
 
-import { createUser } from "../../actions/actionCreator";
+import { createUser } from "../../actions/actionCreators/userActionCreator";
 
 class SignUpPage extends Component{
     toSignUpUser = values => {

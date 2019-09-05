@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 
-import { getUser } from "../../actions/actionCreator";
+import { getUser } from "../../actions/actionCreators/userActionCreator";
 import { isEmpty } from 'lodash';
 
 import { URL } from '../../api/baseURL'

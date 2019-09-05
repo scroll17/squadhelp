@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 import style from './UserMenu.module.sass';
 
-import { userLogout } from "../../../actions/actionCreator";
+import { userLogout } from "../../../actions/actionCreators/userActionCreator";
 
 import { URL } from '../../../api/baseURL'
 import { ROLE, DISPLAY, VIEW } from '../../../constants'

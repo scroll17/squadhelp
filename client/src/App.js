@@ -8,7 +8,7 @@ import history from "./boot/browserHistory";
 import MainHomePage from './pages/MainHomePage/MainHomePage';
 import LoginPages from './pages/LoginPages/LoginPages';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
-import AdminListPage from './pages/AdminListPage/AdminListPage';
+import AdminPage from './pages/AdminPage/AdminPage';
 import ContestPage from './pages/ContestPage/ContestPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage'
 
@@ -52,7 +52,7 @@ class App extends Component{
 
                         <Route path={URL.DASHBOARD} component={DashboardPage} />
 
-                        <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminListPage} />
+                        <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminPage} />
 
                         <Route component={ NotFoundPage } />
                     </Switch>

@@ -10,7 +10,7 @@ import schema from '../../validation/yupShema';
 import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
 import LoginForm from "../../components/Forms/LoginForm/LoginForm";
 
-import { loginUser } from "../../actions/actionCreator";
+import { loginUser } from "../../actions/actionCreators/userActionCreator";
 
 function LoginPage(props){
 

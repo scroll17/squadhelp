@@ -1,4 +1,4 @@
-import ACTION from "../actions/actiontsTypes";
+import ACTION from "../actions/actionTypes/actionsTypes";
 import {createContest, getPriceOfContests} from "../api/rest/restContoller";
 
 import { put, call, select } from 'redux-saga/effects';

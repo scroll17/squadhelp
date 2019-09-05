@@ -1,144 +1,95 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from './Chat.module.sass'
 
 
-
 import Header from "./Header/Header";
+import UserSearch from "./UserSearch/UserSearch";
+import ConversationList from "./ConversationList/ConversationList";
+import CurrentConversation from "./CurrentConversation/CurrentConversation";
 
-
-
+import { isEqual } from 'lodash'
+import { STAGE_OF_CHAT } from "../../constants/chatConst";
 
 import { Field, reduxForm } from 'redux-form';
 
-//import { toast } from 'react-toastify';
 
-import { cloneDeep } from 'lodash'
+import { sendMessage } from "../../api/socket/chatController";
+import { CHAT_FIELDS, FORM } from "../../constants";
+import { addNewMessage } from "../../actions/actionCreators/chatActionCreator";
 
-import { socket } from "../../api/socket/chatController";
 
-const renderNewMessage = (messages) => {
-    return messages.map( (message, index) => {
-        const { text, fullName} = message;
-        return(
-            <div className={style.messageContainer} key={index}>
-                <div className={style.iconUses} />
-                <div className={style.message}>
-                    <span>{fullName}</span>
-                    <span>{text}</span>
-                </div>
-            </div>
-        )
-    })
-};
 
 let ChatPage = (props) => {
-    const [message, pushMessage] = useState([{
-        id: '3',
-        text: 'Hey !',
-        fullName: 'Adnre Poltava'
-    }]);
+    const { handleSubmit, submitting, reset, resetSection} = props;
+    const { stageNow, user } = props;
 
-    const [users, setUsers] = useState(null);
-
-    const { handleSubmit, submitting, reset, resetSection, user} = props;
-
-
-    useEffect(() => {
-        socket.on('connected', (msg) => console.log('msg : ', msg.text));
-
-        /*        socket.on('connect_error', err => {
-                    toast.error('socket error', {
-                        position: toast.POSITION.TOP_RIGHT
-                    });
-                    console.log('Socket err:', err);
-                })*/
-    });
-
-    useEffect(() => {
-        socket.on('new message', (msg) => {
-            const newMessages = cloneDeep(message);
-            newMessages.push(msg);
-
-            pushMessage(newMessages)
-        });
-    });
 
     const submit = (values) =>{
-        console.log('submit', values);
-
         if(values.message){
-            socket.emit('msg', {
-                date: Date.now(),
-                id: user.id,
-                fullName: `${user.firstName} ${user.lastName}`,
-                text: values.message
-            });
+            const message = {
+                time: Date.now(),
+                ownerId: user.id,
+                content: values.message
+            };
+
+            sendMessage(message);
+            props.addNewMessage(message);
+
+            return reset()
         }
-
-        return reset()
     };
 
-
-
-    useEffect(() => {
-        socket.on('finded user', users => {
-            setUsers(users)
-        })
-    });
-
-    const showFindedUsers = (users) => {
-        return users.map( user => {
-            return(
-                <div key={user.id}>
-                    {user.firstName}{user.lastName}
-                </div>
-            )
-        })
-    };
 
     return (
         <>
             <div className={style.chatContainer}>
 
-                    <Field name={'users'}
-                           component={Header}
-                           type={'text'}
-                           placeholder="Search"
-                           resetField={resetSection}
-                    />
+                <Header resetField={() => resetSection(CHAT_FIELDS.FIND)}/>
 
-                {users && showFindedUsers(users)}
-                {
-                    !users &&
-                    <div className={style.allMessage}>
-                        {renderNewMessage(message)}
+                { isEqual(stageNow,STAGE_OF_CHAT.SEARCH_USERS) &&
+                    <UserSearch fieldName={CHAT_FIELDS.FIND} resetField={resetSection}/>
+                }
+                { isEqual(stageNow,STAGE_OF_CHAT.BEGIN) &&
+                    <ConversationList />
+                }
+                { isEqual(stageNow,STAGE_OF_CHAT.CONVERSATION) &&
+                    <div className={style.currentConversation}>
+                        <CurrentConversation />
+
+                        <form onSubmit={handleSubmit(submit)} className={style.conversationForm}>
+                            <div className={style.inputMessage}>
+                                <Field name={CHAT_FIELDS.MESSAGE}
+                                       component={'input'}
+                                       type={'text'}
+                                       placeholder="Write a message..."
+                                />
+                                <i className="far fa-grin-alt" />
+                            </div>
+                            <button type="submit" disabled={submitting} className={style.sendMessage}>
+                                <i className="fas fa-paper-plane" />
+                            </button>
+                        </form>
                     </div>
                 }
-                <form onSubmit={handleSubmit(submit)}>
-                    <Field name={'message'}
-                           component={'input'}
-                           type={'text'}
-                           placeholder="Write a message..."
-                    />
-                    <button type="submit" disabled={submitting}>
-                        <i className="fas fa-paper-plane" />
-                    </button>
-                </form>
-            </div></>
+
+            </div>
+        </>
     )
 };
 
 ChatPage = reduxForm ({
-    form: 'chat',
+    form: FORM.CHAT,
 })(ChatPage);
 
 const mapStateToProps = (state) => ({
     user: state.userReducers.user,
+    foundUsers: state.chatReducers.foundUsers,
+    stageNow: state.chatReducers.stageNow,
 });
 const mapDispatchToProps = dispatch => ({
-    clearField: field => dispatch('chat', field, ''),
+    addNewMessage: (message) => dispatch(addNewMessage(message)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);
 

@@ -18,7 +18,7 @@ const ROLE = {
     BUYER: "buyer",
     CREATIVE: "creative",
 };
-const ROLES = ['buyer','creative','admin'];
+const ROLES = ["admin", "buyer", "creative"];
 
 const TOKEN = {
   ACCESS: "accessToken",
@@ -126,6 +126,33 @@ const ERROR_MESSAGE = {
     YOUR_BANNED: 'Your banned !'
 };
 
+const SOCKET_EVENTS = {
+    ON: {
+        CONNECTION: 'connection',
+        DISCONNECT: 'disconnect',
+
+        USER_CONNECTED: 'user connected',
+
+        FIND_USERS: 'find users',
+        START_A_CONVERSATION: "start a conversation",
+
+        JOIN_TO_ROOM: 'join to room',
+        LEAVE_THE_ROOM: "leave the room",
+
+        NEW_MESSAGE: 'new message',
+    },
+    EMIT: {
+        FOUND_USERS: 'found users',
+
+        JOIN_TO_ROOM: 'join to room',
+
+        SHOW_CONVERSATION: 'show conversations',
+
+        NEW_MESSAGE: 'new message',
+    }
+
+};
+
 module.exports = {
     PORT,
 
@@ -137,8 +164,8 @@ module.exports = {
     EXPIRES_IN_REFRESH,
     TOKEN,
 
-    ROLES,
     ROLE,
+    ROLES,
 
     URL,
 
@@ -152,5 +179,7 @@ module.exports = {
     ERROR_MESSAGE,
 
     SQUAD_HELP_BANK_CARD,
+
+    SOCKET_EVENTS,
 };
 

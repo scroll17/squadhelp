@@ -1,0 +1,60 @@
+.messages
+  height: calc(520px - 105px)
+  overflow: auto
+
+  display: flex
+  flex-direction: column
+
+  .message
+    align-self: flex-end
+
+    position: relative
+
+    padding-left: 80px
+    float: right
+
+    font-size: 15px
+    margin: 8px 0 8px
+
+    max-width: 100%
+
+
+    .timeContainer
+      box-sizing: border-box
+      position: absolute
+
+      width: 80px
+      left: 0
+      bottom: 5px
+
+      text-align: right
+      padding-right: 4px
+
+      float: none
+      white-space: nowrap
+
+      .time
+        display: block
+
+        font-size: 10px
+        line-height: 12px
+        color: #adadad
+
+        margin-bottom: 3px
+        box-sizing: border-box
+
+    .messageContent
+      margin: 0 7px
+
+      background-color: #e4ecf2
+      padding: 7px 10px
+      border-radius: 3px
+
+      box-sizing: border-box
+      overflow: hidden
+
+      .content
+        word-wrap: break-word
+        white-space: pre-wrap
+        line-height: 140%
+

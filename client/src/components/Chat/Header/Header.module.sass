@@ -2,67 +2,70 @@
   color: #FFFFFF
   font-size: 30px
 
-.findUsers
-  height: auto
+.navBar
+  height: 46px
   width: 100%
-  background-color: #2b8ada
-  font-family: Arial, "sans-serif"
+  background-color: #5682A3
 
+  position: sticky
+  top: 0
+
+  padding: 0 15px
   display: flex
-  flex-direction: column
+  flex-direction: row
 
-  .searchContainer
-    height: 45px
-    background-color: #FFFFFF
+  justify-content: space-between
+  align-items: center
+  .tools
+    i:first-child
+      margin: 0 15px
+    i
+      cursor: pointer
+      @extend %i
+      &:hover
+        color: #28d2d1
 
-    z-index: 1
-    padding: 8px 5px
+  .company
+    cursor: pointer
+    padding: 8px 0
 
-    .search
-      display: flex
-      justify-content: space-between
-      align-items: center
-
-      width: 100%
-      background-color: #F2F2F2
-
-      border-radius: 3px
-      padding: 3px
-      i
-        font-size: 22px
-        margin: 0 5px
-        color: #C9C9C9
-        &:last-child:hover
-          cursor: pointer
-          color: #28d2d1
-      input
-        background-color: #F2F2F2
-        width: 100%
-        border: 0
+    display: flex
+    align-items: center
+    i
+      @extend %i
+      margin-right: 10px
+    .companyName
+      color: #ffffff
 
 
-  .navBar
-    margin: 0 15px
+  .closeConversation
+    cursor: pointer
+    color: #FFFFFF
+    font-size: 18px
+    font-weight: bold
+    &:hover
+      color: #28d2d1
+    i
+      font-size: 18px
+      margin-right: 5px
+
+  .toolsConversation
+    cursor: pointer
+
     display: flex
     flex-direction: row
-
-    justify-content: space-between
     align-items: center
-    .tools
-      i:first-child
-        margin: 0 15px
-      i
-        cursor: pointer
-        @extend %i
 
-    .company
-      padding: 8px 0
+    i
+      font-size: 30px
+      color: #d0d0d0
+      &:hover
+        color: #28d2d1
 
-      display: flex
-      align-items: center
-      i
-        @extend %i
-        margin-right: 10px
-      .companyName
-        color: #ffffff
-
+    .iconConversation
+      background-image: url(https://www.squadhelp.com/images/user_image/thumb/Ava-avatar.jpg)
+      background-size: cover
+      width: 36px
+      height: 36px
+      border-radius: 50%
+      margin-left: 20px
