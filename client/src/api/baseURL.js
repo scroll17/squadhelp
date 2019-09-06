@@ -1,9 +1,10 @@
 const HOST= {
   LOCALHOST: 'localhost',
-  MY_IP: '192.168.0.102'
+  MY_IP_102: '192.168.0.102',
+  MY_IP_107: '192.168.0.107'
 };
 
-export const baseURL = `http://${HOST.MY_IP}:3000`;
+export const baseURL = `http://${HOST.MY_IP_107}:3000`;
 
 export const restURL = `${baseURL}/api`;
 
