@@ -1,0 +1,36 @@
+.searchContainer
+  height: 45px
+  background-color: #FFFFFF
+
+  padding: 8px 5px
+  .foundUsers
+    display: flex
+    flex-direction: column
+
+    li:not(:first-child)
+      border-top: 1px solid #eee
+
+  .search
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    margin-bottom: 5px
+    padding: 3px
+
+    width: 100%
+    background-color: #F2F2F2
+
+    border: 1px solid #8d8d8d
+    border-radius: 3px
+    i
+      font-size: 22px
+      margin: 0 5px
+      color: #C9C9C9
+      &:last-child:hover
+        cursor: pointer
+        color: #28d2d1
+    input
+      background-color: #F2F2F2
+      width: 100%
+      border: 0

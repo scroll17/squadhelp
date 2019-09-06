@@ -5,7 +5,7 @@ import style from './Chat.module.sass'
 
 
 import Header from "./Header/Header";
-import UserSearch from "./UserSearch/UserSearch";
+import UserSearch from "./FindUsers/FindUsers";
 import ConversationList from "./ConversationList/ConversationList";
 import CurrentConversation from "./CurrentConversation/CurrentConversation";
 
@@ -48,7 +48,7 @@ let ChatPage = (props) => {
 
                 <Header resetField={() => resetSection(CHAT_FIELDS.FIND)}/>
 
-                { isEqual(stageNow,STAGE_OF_CHAT.SEARCH_USERS) &&
+                { isEqual(stageNow,STAGE_OF_CHAT.FIND_USERS) &&
                     <UserSearch fieldName={CHAT_FIELDS.FIND} resetField={resetSection}/>
                 }
                 { isEqual(stageNow,STAGE_OF_CHAT.BEGIN) &&

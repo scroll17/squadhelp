@@ -1,0 +1,96 @@
+import CHAT_ACTION from '../../actions/actionTypes/chatActionsTypes';
+import { STAGE_OF_CHAT } from "../../constants/chatConst";
+
+const initialState = {
+    // conversations: [],
+    // openConversation: null,
+
+    messages: [],
+    //foundUsers: [],
+
+    stageNow: STAGE_OF_CHAT.BEGIN,
+    isOpen: false,
+    error: null,
+};
+
+export default function (state = initialState, action) {
+    switch (action.type) {
+        case CHAT_ACTION.CLOSE_OR_OPEN_CHAT: {
+            return {
+                ...state,
+                isOpen: action.isOpen,
+                error: null
+            }
+        }
+        case CHAT_ACTION.TO_FIND_USERS_STAGE: {
+            return {
+                ...state,
+                stageNow: STAGE_OF_CHAT.FIND_USERS,
+                error: null
+            }
+        }
+        case CHAT_ACTION.TO_NEXT_CHAT_STAGE: {
+            return {
+                ...state,
+                stageNow: action.nextStage,
+                error: null
+            }
+        }
+//----------------------------------------------------------
+
+
+/*
+        case CHAT_ACTION.OPEN_CONVERSATION: {
+            return {
+                ...state,
+                stageNow: STAGE_OF_CHAT.CONVERSATION,
+                openConversation: action.conversation,
+                foundUsers: null,
+                error: null
+            }
+        }
+        case CHAT_ACTION.CLOSE_CONVERSATION: {
+            return {
+                ...state,
+                stageNow: STAGE_OF_CHAT.BEGIN,
+                openConversation: null,
+                messages: [],
+                error: null
+            }
+        }*/
+
+//----------------------------------------------------------
+
+/*        case CHAT_ACTION.NEW_MESSAGE: {
+            return {
+                ...state,
+                messages: action.messages,
+                error: null
+            }
+        }*/
+
+//----------------------------------------------------------
+
+        case CHAT_ACTION.CHAT_ERROR: {
+            return {
+                ...state,
+                error: action.error,
+            }
+        }
+
+//----------------------------------------------------------
+
+/*        case CHAT_ACTION.CLEAR_STORE:{
+            return initialState
+        }*/
+
+//----------------------------------------------------------
+
+
+        default: {
+            return state;
+        }
+    }
+}
+
+

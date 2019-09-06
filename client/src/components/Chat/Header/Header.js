@@ -5,26 +5,26 @@ import connect from "react-redux/es/connect/connect";
 
 import { isEqual } from 'lodash'
 
-import { setSearchUsers, closeConversation } from "../../../actions/actionCreators/chatActionCreator";
+import { startLookingUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
-import {STAGE_OF_CHAT} from "../../../constants/chatConst";
+import { STAGE_OF_CHAT } from "../../../constants/chatConst";
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;
-    const { setSearchUsers, closeConversation } = props;
+    const { startLookingUsers, closeConversation, closeStageFindUsers } = props;
 
-    const clickOnSearchButton = () => {
-        if(isEqual(stageNow, STAGE_OF_CHAT.SEARCH_USERS)){
-            setSearchUsers(STAGE_OF_CHAT.BEGIN)
+    const toFindUsers = () => {
+        if(isEqual(stageNow, STAGE_OF_CHAT.FIND_USERS)){
+            closeStageFindUsers(STAGE_OF_CHAT.BEGIN);
+            resetField()
         }else {
-            setSearchUsers()
+            startLookingUsers();
         }
-        return resetField()
     };
 
     const clickToCloseConversation = () => {
-        leaveTheRoom()
-        return closeConversation()
+        leaveTheRoom();
+        closeConversation()
     };
 
     return(
@@ -48,7 +48,7 @@ function Header(props){
                                 <span className={style.companyName}>Telegram</span>
                             </div>
                             <div className={style.tools}>
-                                <i className="fas fa-search" onClick={clickOnSearchButton}/>
+                                <i className="fas fa-search" onClick={toFindUsers}/>
                                 <i className="fas fa-bars" />
                             </div>
                         </>
@@ -59,11 +59,12 @@ function Header(props){
 
 const mapStateToProps = (state) => ({
     stageNow: state.chatReducers.stageNow,
-    openConversation: state.chatReducers.openConversation,
+    openConversation: state.chatConversationsReducer.openConversation,
 });
 const mapDispatchToProps = dispatch => ({
     closeConversation: () => dispatch(closeConversation()),
-    setSearchUsers: (toNextStage) => dispatch(setSearchUsers(toNextStage)),
+    startLookingUsers: () => dispatch(startLookingUsers()),
+    closeStageFindUsers: (nextStage) => dispatch(closeStageFindUsers(nextStage)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

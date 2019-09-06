@@ -25,6 +25,15 @@ export function* closeOrOpenConnectionSaga({isOpen}) {
     }
 }
 
+export function* closeStageFindUsersSaga({nextStage}) {
+    try {
+        yield put({type: CHAT_ACTION.TO_NEXT_CHAT_STAGE, nextStage});
+        yield put({type: CHAT_ACTION.CLEAR_FOUND_USERS});
+    } catch (e) {
+        yield put({type: CHAT_ACTION.CHAT_ERROR, error: e})
+    }
+}
+
 export function* addNewMessageSaga({message}) {
     try {
         const {chatReducers: { messages: oldMessages }} = yield select();

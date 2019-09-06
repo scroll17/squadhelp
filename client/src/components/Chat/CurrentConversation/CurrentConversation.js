@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useEffect, useRef }  from 'react';
 import style from './CurrentConversation.module.sass'
 
 import connect from "react-redux/es/connect/connect";
@@ -7,6 +7,11 @@ import { isEqual } from 'lodash'
 
 function ConversationList(props){
     const { messages, user } = props;
+    const messageContainer = useRef(null);
+
+    useEffect( () => {
+        messageContainer.current.scrollTop =  messageContainer.current.scrollHeight
+    });
 
     const styleForParticipants = {
         messageStyle: {
@@ -44,7 +49,7 @@ function ConversationList(props){
     };
 
     return(
-        <div className={style.messages}>
+        <div className={style.messages} ref={messageContainer}>
             {showMessages(messages)}
         </div>
     )

@@ -134,7 +134,7 @@ const SOCKET_EVENTS = {
         USER_CONNECTED: 'user connected',
 
         FIND_USERS: 'find users',
-        START_A_CONVERSATION: "start a conversation",
+        START_CONVERSATION: "start conversation",
 
         JOIN_TO_ROOM: 'join to room',
         LEAVE_THE_ROOM: "leave the room",
@@ -142,6 +142,8 @@ const SOCKET_EVENTS = {
         NEW_MESSAGE: 'new message',
     },
     EMIT: {
+        OLD_MESSAGE: 'load old message',
+
         FOUND_USERS: 'found users',
 
         JOIN_TO_ROOM: 'join to room',

@@ -25,6 +25,9 @@ import {
 
 import {
     closeOrOpenConnectionSaga,
+    closeStageFindUsersSaga,
+
+
     addNewMessageSaga
 } from './chatSaga'
 
@@ -51,6 +54,9 @@ function* rootSaga() {
 
 
     yield takeLatest(CHAT_ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
+    yield takeLatest(CHAT_ACTION.TO_CLOSE_FIND_USERS_STAGE, closeStageFindUsersSaga);
+
+
     yield takeLatest(CHAT_ACTION.ADD_NEW_MESSAGE, addNewMessageSaga);
 }
 

@@ -37,14 +37,14 @@ let ConversationList = (props) => {
     };
     return(
         <ul className={style.currentConversation}>
-            {showListConversations(conversations)}
+            {conversations && showListConversations(conversations)}
         </ul>
     )
 };
 
 const mapStateToProps = (state) => ({
     user: state.userReducers.user,
-    conversations: state.chatReducers.conversations,
+    conversations: state.chatConversationsReducer.conversations,
 });
 const mapDispatchToProps = dispatch => ({
     openConversation: (conversationId) => dispatch(openConversation(conversationId)),
