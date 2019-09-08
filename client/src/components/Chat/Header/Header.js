@@ -5,20 +5,20 @@ import connect from "react-redux/es/connect/connect";
 
 import { isEqual } from 'lodash'
 
-import { startLookingUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
+import { startFindUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
 import { STAGE_OF_CHAT } from "../../../constants/chatConst";
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;
-    const { startLookingUsers, closeConversation, closeStageFindUsers } = props;
+    const { startFindUsers, closeConversation, closeStageFindUsers } = props;
 
     const toFindUsers = () => {
         if(isEqual(stageNow, STAGE_OF_CHAT.FIND_USERS)){
             closeStageFindUsers(STAGE_OF_CHAT.BEGIN);
             resetField()
         }else {
-            startLookingUsers();
+            startFindUsers();
         }
     };
 
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = dispatch => ({
     closeConversation: () => dispatch(closeConversation()),
-    startLookingUsers: () => dispatch(startLookingUsers()),
+    startFindUsers: () => dispatch(startFindUsers()),
     closeStageFindUsers: (nextStage) => dispatch(closeStageFindUsers(nextStage)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

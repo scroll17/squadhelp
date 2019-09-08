@@ -5,56 +5,22 @@
   display: flex
   flex-direction: column
 
-  .message
-    align-self: flex-end
+  .isTyping
+    font-size: 14px
+    font-weight: lighter
+    color: #222
 
-    position: relative
+    margin: 5px 0 5px 10px
 
-    padding-left: 80px
-    float: right
+  .noMessages
+    height: 100%
 
-    font-size: 15px
-    margin: 8px 0 8px
+    color: #999
+    line-height: 18px
+    font-size: 16px
 
-    max-width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
 
-
-    .timeContainer
-      box-sizing: border-box
-      position: absolute
-
-      width: 80px
-      left: 0
-      bottom: 5px
-
-      text-align: right
-      padding-right: 4px
-
-      float: none
-      white-space: nowrap
-
-      .time
-        display: block
-
-        font-size: 10px
-        line-height: 12px
-        color: #adadad
-
-        margin-bottom: 3px
-        box-sizing: border-box
-
-    .messageContent
-      margin: 0 7px
-
-      background-color: #e4ecf2
-      padding: 7px 10px
-      border-radius: 3px
-
-      box-sizing: border-box
-      overflow: hidden
-
-      .content
-        word-wrap: break-word
-        white-space: pre-wrap
-        line-height: 140%
 

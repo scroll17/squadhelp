@@ -3,6 +3,7 @@ import CHAT_ACTION from '../../actions/actionTypes/chatActionsTypes';
 const initialState = {
     conversations: [],
     openConversation: null,
+    participantIsTyping: false
 };
 
 export default function (state = initialState, action) {
@@ -13,21 +14,28 @@ export default function (state = initialState, action) {
                 conversations: action.conservations,
             }
         }
-
+        case CHAT_ACTION.PARTICIPANT_IS_TYPING: {
+            return {
+                ...state,
+                participantIsTyping: true,
+            }
+        }
+        case CHAT_ACTION.PARTICIPANT_STOP_TYPING: {
+            return {
+                ...state,
+                participantIsTyping: false,
+            }
+        }
         case CHAT_ACTION.OPEN_CONVERSATION: {
             return {
                 ...state,
-                //stageNow: STAGE_OF_CHAT.CONVERSATION,
                 openConversation: action.conversation,
-                //foundUsers: [],
             }
         }
         case CHAT_ACTION.CLOSE_CONVERSATION: {
             return {
                 ...state,
-                //stageNow: STAGE_OF_CHAT.BEGIN,
                 openConversation: null,
-                //messages: [],
             }
         }
         default: {

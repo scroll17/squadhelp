@@ -27,8 +27,10 @@ import {
     closeOrOpenConnectionSaga,
     closeStageFindUsersSaga,
 
+    openConversationSaga,
+    closeConversationSaga,
 
-    addNewMessageSaga
+    newMessageSaga
 } from './chatSaga'
 
 function* rootSaga() {
@@ -56,8 +58,10 @@ function* rootSaga() {
     yield takeLatest(CHAT_ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
     yield takeLatest(CHAT_ACTION.TO_CLOSE_FIND_USERS_STAGE, closeStageFindUsersSaga);
 
+    yield takeLatest(CHAT_ACTION.OPEN_CONVERSATION, openConversationSaga);
+    yield takeLatest(CHAT_ACTION.CLOSE_CONVERSATION, closeConversationSaga);
 
-    yield takeLatest(CHAT_ACTION.ADD_NEW_MESSAGE, addNewMessageSaga);
+    yield takeLatest(CHAT_ACTION.NEW_MESSAGE, newMessageSaga);
 }
 
 export default rootSaga;

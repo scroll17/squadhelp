@@ -26,9 +26,11 @@ const SOCKET_EVENTS = {
 
     NEW_MESSAGE: 'new message',
 
-    OLD_MESSAGE: 'load old message',
-};
+    OLD_MESSAGES: 'load old messages',
 
+    USER_STARTS_TYPING: 'user starts typing',
+    USER_STOP_TYPING: 'user stop typing',
+};
 
 
 
@@ -37,34 +39,40 @@ socket.on(SOCKET_EVENTS.SHOW_CONVERSATIONS, conservations => STORE.dispatch({
     type: CHAT_ACTIONS.SHOW_CONVERSATIONS,
     conservations
 }));
-// =
 
-export const findUsers = (displayName) => socket.emit(SOCKET_EVENTS.FIND_USERS, displayName);
-socket.on(SOCKET_EVENTS.FOUND_USERS, users => STORE.dispatch({
-    type: CHAT_ACTIONS.FOUND_USERS,
-    users
+export const sendMessage = (content) => socket.emit(SOCKET_EVENTS.NEW_MESSAGE, content);
+socket.on(SOCKET_EVENTS.NEW_MESSAGE, message => STORE.dispatch({
+    type: CHAT_ACTIONS.NEW_MESSAGE,
+    message
 }));
-// +
 
-export const startConversation = (id) => socket.emit(SOCKET_EVENTS.START_CONVERSATION, id);
 export const joinToRoom = (roomId) => socket.emit(SOCKET_EVENTS.JOIN_TO_ROOM, roomId);
 socket.on(SOCKET_EVENTS.JOIN_TO_ROOM, conversation => STORE.dispatch({
     type: CHAT_ACTIONS.OPEN_CONVERSATION,
     conversation
 }));
 
-
-export const leaveTheRoom = () => socket.emit(SOCKET_EVENTS.LEAVE_THE_ROOM);
-
-export const sendMessage = (content) => socket.emit(SOCKET_EVENTS.NEW_MESSAGE, content);
-socket.on(SOCKET_EVENTS.NEW_MESSAGE, message => STORE.dispatch({
-    type: CHAT_ACTIONS.ADD_NEW_MESSAGE,
-    message
-}));
-
-socket.on(SOCKET_EVENTS.OLD_MESSAGE, messages => STORE.dispatch({
-    type: CHAT_ACTIONS.NEW_MESSAGE,
+socket.on(SOCKET_EVENTS.OLD_MESSAGES, messages => STORE.dispatch({
+    type: CHAT_ACTIONS.ADD_MESSAGES,
     messages
 }));
+export const leaveTheRoom = () => socket.emit(SOCKET_EVENTS.LEAVE_THE_ROOM);
 
 
+export const startConversation = (id) => socket.emit(SOCKET_EVENTS.START_CONVERSATION, id);
+
+export const findUsers = (displayName) => socket.emit(SOCKET_EVENTS.FIND_USERS, displayName);
+socket.on(SOCKET_EVENTS.FOUND_USERS, users => STORE.dispatch({
+    type: CHAT_ACTIONS.FOUND_USERS,
+    users
+}));
+
+export const userStartsTyping = () => socket.emit(SOCKET_EVENTS.USER_STARTS_TYPING);
+socket.on(SOCKET_EVENTS.USER_STARTS_TYPING, () => STORE.dispatch({
+    type: CHAT_ACTIONS.PARTICIPANT_IS_TYPING,
+}));
+
+export const userStopTyping = () => socket.emit(SOCKET_EVENTS.USER_STOP_TYPING);
+socket.on(SOCKET_EVENTS.USER_STOP_TYPING, () => STORE.dispatch({
+    type: CHAT_ACTIONS.PARTICIPANT_STOP_TYPING,
+}));

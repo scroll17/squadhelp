@@ -5,8 +5,9 @@ import {startConversation} from "../../../../api/socket/chatController";
 
 function User(props) {
     const {id, displayName, role} = props;
+
     return (
-        <li className={style.user} key={id} onClick={() => startConversation(id)}>
+        <li className={style.user} key={id} onClick={() => startConversation({id, displayName})}>
             <div className={style.iconUser}/>
             <div className={style.userInformation}>
                 <span className={style.userName}>{displayName}</span>

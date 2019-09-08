@@ -1,7 +1,8 @@
 const { Message, Conversation } = require('../../server/mongoModels/index');
-const { User } = require('../../server/models/index');
 
 const { SOCKET_EVENTS: { ON, EMIT } } = require('../../server/utils/consts');
+
+const findParticipant = require('../middlewares/findParticipant');
 
 module.exports = (socket, userData) => socket.on( ON.USER_CONNECTED, async user => {
     userData
@@ -45,20 +46,13 @@ module.exports = (socket, userData) => socket.on( ON.USER_CONNECTED, async user 
             }},
     ]);
 
-
     for(let i = 0; i < foundConversation.length; i++){
-        const user = await User.findByPk(foundConversation[i].participant, {
-            attributes: {
-                exclude: ['firstName','lastName','password','role','isBanned','createdAt','updatedAt']
-            },
-            raw: true
-        });
+        const user = await findParticipant(foundConversation[i].participant);
         foundConversation[i]['title'] = user.displayName;
     }
-
 
     socket.emit( EMIT.SHOW_CONVERSATION, foundConversation);
 });
 
-
+// {$cond: { lastMessageId:  { $exists: true, $not: {$size: 0} } }
 //lastMessageId: { $arrayElemAt: [ "$participants", -1 ] },

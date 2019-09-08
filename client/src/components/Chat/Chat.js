@@ -15,13 +15,13 @@ import { STAGE_OF_CHAT } from "../../constants/chatConst";
 import { Field, reduxForm } from 'redux-form';
 
 
-import { sendMessage } from "../../api/socket/chatController";
+import { sendMessage, userStartsTyping, userStopTyping } from "../../api/socket/chatController";
 import { CHAT_FIELDS, FORM } from "../../constants";
-import { addNewMessage } from "../../actions/actionCreators/chatActionCreator";
-
 
 
 let ChatPage = (props) => {
+    let typingTimer;
+
     const { handleSubmit, submitting, reset, resetSection} = props;
     const { stageNow, user } = props;
 
@@ -35,12 +35,19 @@ let ChatPage = (props) => {
             };
 
             sendMessage(message);
-            props.addNewMessage(message);
-
             return reset()
         }
     };
 
+    const keyUp = () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => userStopTyping(), 3000)
+    };
+
+    const keyDown = () => {
+        userStartsTyping();
+        clearTimeout(typingTimer);
+    };
 
     return (
         <>
@@ -64,6 +71,9 @@ let ChatPage = (props) => {
                                        component={'input'}
                                        type={'text'}
                                        placeholder="Write a message..."
+
+                                       onKeyUp={keyUp}
+                                       onKeyDown={keyDown}
                                 />
                                 <i className="far fa-grin-alt" />
                             </div>
@@ -88,9 +98,7 @@ const mapStateToProps = (state) => ({
     foundUsers: state.chatReducers.foundUsers,
     stageNow: state.chatReducers.stageNow,
 });
-const mapDispatchToProps = dispatch => ({
-    addNewMessage: (message) => dispatch(addNewMessage(message)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);
+
+export default connect(mapStateToProps)(ChatPage);
 
 

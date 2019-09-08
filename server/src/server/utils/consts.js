@@ -140,9 +140,12 @@ const SOCKET_EVENTS = {
         LEAVE_THE_ROOM: "leave the room",
 
         NEW_MESSAGE: 'new message',
+
+        USER_STARTS_TYPING: 'user starts typing',
+        USER_STOP_TYPING: 'user stop typing',
     },
     EMIT: {
-        OLD_MESSAGE: 'load old message',
+        OLD_MESSAGES: 'load old messages',
 
         FOUND_USERS: 'found users',
 
@@ -151,6 +154,9 @@ const SOCKET_EVENTS = {
         SHOW_CONVERSATION: 'show conversations',
 
         NEW_MESSAGE: 'new message',
+
+        USER_STARTS_TYPING: 'user starts typing',
+        USER_STOP_TYPING: 'user stop typing',
     }
 
 };

@@ -2,12 +2,6 @@ import CHAT_ACTION from '../../actions/actionTypes/chatActionsTypes';
 import { STAGE_OF_CHAT } from "../../constants/chatConst";
 
 const initialState = {
-    // conversations: [],
-    // openConversation: null,
-
-    messages: [],
-    //foundUsers: [],
-
     stageNow: STAGE_OF_CHAT.BEGIN,
     isOpen: false,
     error: null,
@@ -36,40 +30,7 @@ export default function (state = initialState, action) {
                 error: null
             }
         }
-//----------------------------------------------------------
 
-
-/*
-        case CHAT_ACTION.OPEN_CONVERSATION: {
-            return {
-                ...state,
-                stageNow: STAGE_OF_CHAT.CONVERSATION,
-                openConversation: action.conversation,
-                foundUsers: null,
-                error: null
-            }
-        }
-        case CHAT_ACTION.CLOSE_CONVERSATION: {
-            return {
-                ...state,
-                stageNow: STAGE_OF_CHAT.BEGIN,
-                openConversation: null,
-                messages: [],
-                error: null
-            }
-        }*/
-
-//----------------------------------------------------------
-
-/*        case CHAT_ACTION.NEW_MESSAGE: {
-            return {
-                ...state,
-                messages: action.messages,
-                error: null
-            }
-        }*/
-
-//----------------------------------------------------------
 
         case CHAT_ACTION.CHAT_ERROR: {
             return {
