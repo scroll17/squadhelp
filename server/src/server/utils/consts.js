@@ -133,33 +133,37 @@ const SOCKET_EVENTS = {
 
         USER_CONNECTED: 'user connected',
 
-        FIND_USERS: 'find users',
+        NEW_MESSAGE: 'new message',
+
         START_CONVERSATION: "start conversation",
 
         JOIN_TO_ROOM: 'join to room',
         LEAVE_THE_ROOM: "leave the room",
 
-        NEW_MESSAGE: 'new message',
+        USER_STARTS_TYPING: 'user starts typing',
+        USER_STOP_TYPING: 'user stop typing',
+
+        FIND_USERS: 'find users',
+    },
+    EMIT: {
+        SHOW_CONVERSATION: 'show conversations',
+        NEW_CONVERSATION_SAVE: "save new conversation",
 
         USER_STARTS_TYPING: 'user starts typing',
         USER_STOP_TYPING: 'user stop typing',
-    },
-    EMIT: {
-        OLD_MESSAGES: 'load old messages',
-
-        FOUND_USERS: 'found users',
 
         JOIN_TO_ROOM: 'join to room',
 
-        SHOW_CONVERSATION: 'show conversations',
-
+        OLD_MESSAGES: 'load old messages',
         NEW_MESSAGE: 'new message',
 
-        USER_STARTS_TYPING: 'user starts typing',
-        USER_STOP_TYPING: 'user stop typing',
+        FOUND_USERS: 'found users',
     }
 
 };
+
+
+const USER_SOCKET_DATA = new Map();
 
 module.exports = {
     PORT,
@@ -189,5 +193,7 @@ module.exports = {
     SQUAD_HELP_BANK_CARD,
 
     SOCKET_EVENTS,
+
+    USER_SOCKET_DATA,
 };
 

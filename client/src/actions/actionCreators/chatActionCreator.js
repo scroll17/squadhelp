@@ -12,13 +12,19 @@ export const closeStageFindUsers = (nextStage) => ({
     nextStage
 });
 
+export const addNewMessage = (message) => ({
+    type: CHAT_ACTION.NEW_MESSAGE,
+    message
+});
+
 
 export const openConversation = (conversation) => ({
     type: CHAT_ACTION.OPEN_CONVERSATION,
     conversation
 });
-export const closeConversation = () => ({
+export const closeConversation = (openConversation) => ({
     type: CHAT_ACTION.CLOSE_CONVERSATION,
+    openConversation
 });
 
 

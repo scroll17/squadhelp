@@ -22,9 +22,9 @@ function Header(props){
         }
     };
 
-    const clickToCloseConversation = () => {
+    const toCloseConversation = () => {
         leaveTheRoom();
-        closeConversation()
+        closeConversation(openConversation)
     };
 
     return(
@@ -32,12 +32,12 @@ function Header(props){
                 {
                     isEqual(stageNow, STAGE_OF_CHAT.CONVERSATION) ?
                         <>
-                            <div className={style.closeConversation} onClick={clickToCloseConversation}>
+                            <div className={style.closeConversation} onClick={() => toCloseConversation(openConversation)}>
                                 <i className="fas fa-chevron-left" />
                                 <span>{openConversation.title}</span>
                             </div>
                             <div className={style.toolsConversation}>
-                                <i className="fas fa-ellipsis-v" />
+                               {/* <i className="fas fa-ellipsis-v" />*/}
                                 <div className={style.iconConversation} />
                             </div>
                         </>
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => ({
     openConversation: state.chatConversationsReducer.openConversation,
 });
 const mapDispatchToProps = dispatch => ({
-    closeConversation: () => dispatch(closeConversation()),
+    closeConversation: (openConversation) => dispatch(closeConversation(openConversation)),
     startFindUsers: () => dispatch(startFindUsers()),
     closeStageFindUsers: (nextStage) => dispatch(closeStageFindUsers(nextStage)),
 });

@@ -5,6 +5,8 @@ import connect from "react-redux/es/connect/connect";
 
 import {isEqual} from 'lodash'
 
+import timeConversion from "../../../../utils/timeConversion";
+
 function Messages(props) {
     const { message, user } = props;
 
@@ -33,7 +35,7 @@ function Messages(props) {
     return (
         <div className={style.message} key={message.time} style={participantsMessage && messageStyle}>
             <div className={style.timeContainer} style={participantsMessage && timeContainer}>
-                <span className={style.time}>1:20 AM</span>
+                <span className={style.time}>{timeConversion(message.time, 'conversation')}</span>
             </div>
             <div className={style.messageContent} style={participantsMessage && messageContent}>
                 <span className={style.content}>{message.content}</span>

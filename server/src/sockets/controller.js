@@ -1,66 +1,48 @@
-
-
-const db = require('../server/models');
-
-
-const { SOCKET_EVENTS: { ON, EMIT } } = require('../server/utils/consts');
-
-
-
 const findUsersEvent = require('./eventHandllers/findUsersEvent');
 const userConnectedEvent = require('./eventHandllers/userConnectedEvent');
 const startConversationEvent = require('./eventHandllers/startConversationEvent');
 
 const newMessageEvent = require('./eventHandllers/newMessageEvent');
 const joinToRoomEvent = require('./eventHandllers/joinToRoomEvent');
-
-module.exports = io => {
-
-    const userData = new Map();
+const leaveTheRoomEvent = require('./eventHandllers/leaveTheRoomEvent');
 
 
-    io.on(ON.CONNECTION,  (socket) => {
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData, CONNECTED_CLIENTS } = require('../server/utils/consts');
+
+module.exports = async io => {
 
 
-        userConnectedEvent(socket, userData);
+    try{
+        io.on(ON.CONNECTION,  (socket) => {
 
-        findUsersEvent(socket, userData);
-        startConversationEvent(socket, userData);
+            userConnectedEvent(io, socket);
 
-        newMessageEvent(io, socket, userData);
+            findUsersEvent(socket);
 
-        joinToRoomEvent(socket, userData);
+            startConversationEvent(socket);
 
-        socket.on(ON.LEAVE_THE_ROOM, () => {
+            newMessageEvent(socket);
 
-            if(userData.has('newConversation')){
-                console.log(' --- DELETE newConversation ---', userData.get('newConversation'));
-                userData.delete('newConversation');
-            }
+            joinToRoomEvent(io, socket);
 
-            socket.leave(userData.get('roomId'), () => {
-                console.log('user leave room', socket.rooms)
+            leaveTheRoomEvent(socket);
+
+
+            socket.on(ON.USER_STARTS_TYPING, (id) => {
+                socket.to(userData.get('roomId')).emit(EMIT.USER_STARTS_TYPING, id)
             });
-            userData.delete('roomId')
+
+            socket.on(ON.USER_STOP_TYPING, () => {
+                socket.to(userData.get('roomId')).emit(EMIT.USER_STOP_TYPING)
+            });
+
+            socket.on(ON.DISCONNECT, reason => {
+                console.info('user disconnect:', reason)
+            })
         });
-
-
-        socket.on(ON.USER_STARTS_TYPING, () => {
-            console.log(' --------- USER TYPING ---------');
-            socket.to(userData.get('roomId')).emit(EMIT.USER_STARTS_TYPING)
-        });
-
-        socket.on(ON.USER_STOP_TYPING, () => {
-            console.log(' --------- USER STOP TYPING ---------');
-            socket.to(userData.get('roomId')).emit(EMIT.USER_STOP_TYPING)
-        });
-
-
-
-        socket.on(ON.DISCONNECT, reason => {
-            console.info('user disconnect:', reason)
-        })
-    });
+    }catch (e) {
+        console.log(e)
+    }
 };
 
 

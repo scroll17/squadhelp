@@ -18,6 +18,16 @@ function FindUsers(props){
         }
     };
 
+    const showFoundUsers = (foundUsers) => {
+        return foundUsers.map( user => (
+            <User
+                {...user}
+                key={user.id}
+                clickToResetField={() => resetField(fieldName)}
+            />
+        ))
+    };
+
     return(
             <div className={style.searchContainer}>
                 <div className={style.search}>
@@ -31,9 +41,7 @@ function FindUsers(props){
                 </div>
                 {foundUsers &&
                     <ul className={style.foundUsers}>
-                        { foundUsers.map( user => (
-                            <User {...user} key={user.id}/>
-                        )) }
+                        {showFoundUsers(foundUsers)}
                     </ul>
                 }
             </div>

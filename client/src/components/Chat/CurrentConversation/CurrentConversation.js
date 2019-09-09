@@ -5,16 +5,26 @@ import connect from "react-redux/es/connect/connect";
 
 import Conversation from "./Messages/Messages";
 
-import { isEmpty } from 'lodash'
+import { isEmpty, isEqual } from 'lodash'
 
 function ConversationList(props){
-    const { messages, participantIsTyping, openConversation } = props;
+    const { messages, participantTyping, openConversation } = props;
     const messageContainer = useRef(null);
 
     useEffect( () => {
         messageContainer.current.scrollTop =  messageContainer.current.scrollHeight
     });
 
+
+    const participantStartTyping = () => {
+        if(participantTyping && isEqual(openConversation.participantId, participantTyping)){
+            return(
+                <div className={style.isTyping}>
+                    {openConversation.title} typing...
+                </div>
+            )
+        }
+    };
 
     return(
         <div className={style.messages} ref={messageContainer}>
@@ -25,7 +35,7 @@ function ConversationList(props){
                 :
                 messages.map( message => <Conversation message={message} key={message.time}/>)
             }
-            {participantIsTyping && <span className={style.isTyping}>{openConversation.title} typing...</span>}
+            {participantStartTyping()}
         </div>
     )
 }
@@ -33,7 +43,7 @@ function ConversationList(props){
 const mapStateToProps = (state) => ({
     messages: state.chatMessagesReducer.messages,
     openConversation: state.chatConversationsReducer.openConversation,
-    participantIsTyping: state.chatConversationsReducer.participantIsTyping,
+    participantTyping: state.chatConversationsReducer.participantTyping,
 });
 export default connect(mapStateToProps)(ConversationList);
 

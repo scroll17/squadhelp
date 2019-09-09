@@ -24,7 +24,6 @@ function UserNavigationSmartphone(props){
         }
     };
 
-
     useEffect(() => {
         window.addEventListener('click', onClickOutsideHandler);
         return () => window.removeEventListener('click', onClickOutsideHandler);

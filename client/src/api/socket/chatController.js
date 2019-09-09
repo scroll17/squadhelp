@@ -20,12 +20,12 @@ const SOCKET_EVENTS = {
     FOUND_USERS: 'found users',
 
     START_CONVERSATION: "start conversation",
+    NEW_CONVERSATION_SAVE: "save new conversation",
 
     JOIN_TO_ROOM: 'join to room',
     LEAVE_THE_ROOM: "leave the room",
 
     NEW_MESSAGE: 'new message',
-
     OLD_MESSAGES: 'load old messages',
 
     USER_STARTS_TYPING: 'user starts typing',
@@ -35,9 +35,9 @@ const SOCKET_EVENTS = {
 
 
 export const userConnected = (user) => socket.emit(SOCKET_EVENTS.USER_CONNECTED, user);
-socket.on(SOCKET_EVENTS.SHOW_CONVERSATIONS, conservations => STORE.dispatch({
+socket.on(SOCKET_EVENTS.SHOW_CONVERSATIONS, conversations => STORE.dispatch({
     type: CHAT_ACTIONS.SHOW_CONVERSATIONS,
-    conservations
+    conversations
 }));
 
 export const sendMessage = (content) => socket.emit(SOCKET_EVENTS.NEW_MESSAGE, content);
@@ -59,7 +59,11 @@ socket.on(SOCKET_EVENTS.OLD_MESSAGES, messages => STORE.dispatch({
 export const leaveTheRoom = () => socket.emit(SOCKET_EVENTS.LEAVE_THE_ROOM);
 
 
-export const startConversation = (id) => socket.emit(SOCKET_EVENTS.START_CONVERSATION, id);
+export const startConversation = (data) => socket.emit(SOCKET_EVENTS.START_CONVERSATION, data);
+socket.on(SOCKET_EVENTS.NEW_CONVERSATION_SAVE, () => STORE.dispatch({
+    type: CHAT_ACTIONS.ADD_NEW_CONVERSATION,
+}));
+
 
 export const findUsers = (displayName) => socket.emit(SOCKET_EVENTS.FIND_USERS, displayName);
 socket.on(SOCKET_EVENTS.FOUND_USERS, users => STORE.dispatch({
@@ -67,9 +71,10 @@ socket.on(SOCKET_EVENTS.FOUND_USERS, users => STORE.dispatch({
     users
 }));
 
-export const userStartsTyping = () => socket.emit(SOCKET_EVENTS.USER_STARTS_TYPING);
-socket.on(SOCKET_EVENTS.USER_STARTS_TYPING, () => STORE.dispatch({
-    type: CHAT_ACTIONS.PARTICIPANT_IS_TYPING,
+export const userStartsTyping = (id) => socket.emit(SOCKET_EVENTS.USER_STARTS_TYPING, id);
+socket.on(SOCKET_EVENTS.USER_STARTS_TYPING, (participantId) => STORE.dispatch({
+    type: CHAT_ACTIONS.PARTICIPANT_START_TYPING,
+    participantId
 }));
 
 export const userStopTyping = () => socket.emit(SOCKET_EVENTS.USER_STOP_TYPING);

@@ -30,6 +30,8 @@ import {
     openConversationSaga,
     closeConversationSaga,
 
+    addNewConversationSaga,
+
     newMessageSaga
 } from './chatSaga'
 
@@ -62,6 +64,7 @@ function* rootSaga() {
     yield takeLatest(CHAT_ACTION.CLOSE_CONVERSATION, closeConversationSaga);
 
     yield takeLatest(CHAT_ACTION.NEW_MESSAGE, newMessageSaga);
+    yield takeLatest(CHAT_ACTION.ADD_NEW_CONVERSATION, addNewConversationSaga);
 }
 
 export default rootSaga;

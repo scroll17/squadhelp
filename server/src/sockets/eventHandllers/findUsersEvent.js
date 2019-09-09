@@ -1,11 +1,11 @@
-const db = require('../../server/models');
 const { User } = require('../../server/models/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, ROLE, ROLES } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, ROLE, ROLES, USER_SOCKET_DATA: userData } = require('../../server/utils/consts');
 
 const isEqual = require('lodash/isEqual');
 
-module.exports = (socket, userData) => socket.on(ON.FIND_USERS, async ({data}) => {
+
+module.exports = (socket) => socket.on(ON.FIND_USERS, async ({data}) => {
 
     const findForAdmin = isEqual(userData.get('role'), ROLE.ADMIN);
 
@@ -20,7 +20,7 @@ module.exports = (socket, userData) => socket.on(ON.FIND_USERS, async ({data}) =
             role: findForAdmin ? [...ROLES] : { $not: ROLE.ADMIN }
         },
 
-        limit: 10,
+        //limit: 10,
         raw: true,
 
         attributes: {

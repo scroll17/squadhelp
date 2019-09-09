@@ -7,4 +7,4 @@ module.exports = (id) => {
         },
         raw: true
     });
-}
+};

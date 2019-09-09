@@ -3,39 +3,39 @@ import style from './Conversation.module.sass'
 
 import connect from "react-redux/es/connect/connect";
 
-import {isEqual} from "lodash";
+import timeConversion from "../../../../utils/timeConversion";
 
 import {openConversation} from "../../../../actions/actionCreators/chatActionCreator";
 
 import {joinToRoom} from "../../../../api/socket/chatController";
+import LastMessage from "../LastMessage/LastMessage";
 
 let Conversation = (props) => {
-    const { user, conversation } = props;
-    const {title, _id, lastMessage: {time, content, ownerId} } = conversation;
+    const {title, _id, lastMessage } = props.conversation;
 
     const openConversation = (conversation) => {
         props.openConversation(conversation);
         return joinToRoom(conversation._id)
     };
 
-    const isYouMessage = isEqual(ownerId, user.id);
     return (
-        <li className={style.conversation} key={_id} onClick={() => openConversation({title, _id})}>
+        <li className={style.conversation}
+            key={_id}
+            onClick={() => openConversation({title, _id, participantId: lastMessage.ownerId})}
+        >
             <div className={style.icon}/>
             <div className={style.conversationName}>
                 <span className={style.title}>{title}</span>
-                <span className={style.message}>
-                            {isYouMessage && <span className={style.youMessage}>You:</span>}
-                    {content}
-                        </span>
+                <LastMessage message={lastMessage}/>
             </div>
-            <div className={style.date}>10:00 AM</div>
+            <div className={style.date}>
+                {timeConversion(lastMessage.time)}
+            </div>
         </li>
     )
 };
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
 });
 const mapDispatchToProps = dispatch => ({
     openConversation: (conversationId) => dispatch(openConversation(conversationId)),
