@@ -1,13 +1,35 @@
 import React from 'react';
+import { Route, Switch } from "react-router-dom";
+import connect from "react-redux/es/connect/connect";
+import style from './Dashboard.module.sass'
 
-import Banner from "./Banner/Banner";
+import MyContests  from './MyContests/MyContests'
 
-function Dashboard() {
+import SideMenu from "./SideMenu/SideMenu";
+
+import Header from "./Header/Header";
+import {URL} from "../../api/baseURL";
+
+function Dashboard(props) {
     return (
-        <div>
-            <Banner />
+        <div className={style.dashboard}>
 
+            <SideMenu />
+
+            <div className={style.content}
+                 style={props.sideMenuIsOpen ? {marginLeft: "250px"} : null}
+            >
+                <Header />
+
+                <Switch>
+                    <Route component={ MyContests } />
+                </Switch>
+
+            </div>
         </div>
     )
 }
-export default Dashboard;
+const mapStateToProps = (state) => ({
+    sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
+});
+export default connect(mapStateToProps)(Dashboard);

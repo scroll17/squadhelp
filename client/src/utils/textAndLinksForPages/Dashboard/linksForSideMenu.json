@@ -1,0 +1,22 @@
+[
+  {
+    "title": " Dashboards ",
+    "class": "fas fa-tachometer-alt",
+    "to": "/dashboard"
+  },
+  {
+    "title": " Contests ",
+    "class": "fas fa-dice-six",
+    "to": "/contests"
+  },
+  {
+    "title": " My Entries ",
+    "class": "fas fa-copy",
+    "to": "/entries"
+  },
+  {
+    "title": " My Account ",
+    "class": "fas fa-briefcase",
+    "to": "/myaccount"
+  }
+]

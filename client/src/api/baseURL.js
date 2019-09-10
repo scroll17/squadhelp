@@ -25,6 +25,7 @@ export const URL = {
 
 
   // CONTEST
+  CONTESTS: '/contests',
   CONTEST_TYPE: "/contesttype",
   NAME_IDEAS: "/Name-Ideas",
 
@@ -34,8 +35,6 @@ export const URL = {
   ADMIN_PANEL: "/adminpanel",
   DASHBOARD: "/dashboard",
   MY_ACCOUNT: "/myaccount",
-  MESSAGE: "/messages",
-  AFFILIATE_DASHBOARD: "/affiliate-dashboard"
 };
 
 export const SEARCH = {

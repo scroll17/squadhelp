@@ -8,8 +8,11 @@ import { userLogout } from "../../../actions/actionCreators/userActionCreator";
 
 import { URL } from '../../../api/baseURL'
 import { ROLE, DISPLAY, VIEW } from '../../../constants'
+import {closeOrOpenConnection} from "../../../actions/actionCreators/chatActionCreator";
 
 function UserNavigationSmartphone(props){
+    const { closeOrOpenConnection } = props;
+
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
     const toggleContainer = useRef(null);
 
@@ -51,17 +54,20 @@ function UserNavigationSmartphone(props){
                     <ul className={style.dropdownMenu} >
                         <Link to={URL.DASHBOARD}><li> View Dashboard </li></Link>
                         <Link to={URL.MY_ACCOUNT}><li> My Account </li></Link>
-                        <Link to={URL.MESSAGE}><li> Messages </li></Link>
-                        <Link to={URL.AFFILIATE_DASHBOARD}> <li> Affiliate Dashboard </li></Link>
+                        <span onClick={() => closeOrOpenConnection(props.chatIsOpen)}>
+                            <li> Messages </li>
+                        </span>
                         {adminPanel}
-                        <span  onClick={props.clickToLogout}><li>Logout</li></span>
+                        <span onClick={props.clickToLogout}><li>Logout</li></span>
                     </ul>
                 }
 
                 { props.view === VIEW.DESKTOP &&
-                    <Link to={URL.MESSAGE} className={style.message} >
-                        <i className="far fa-envelope" />
-                    </Link>
+                    <span onClick={() => closeOrOpenConnection(props.chatIsOpen)}
+                          className={style.message}
+                    >
+                             <i className="far fa-envelope" />
+                    </span>
                 }
             </div>
         </div>
@@ -69,10 +75,12 @@ function UserNavigationSmartphone(props){
 }
 
 const mapStateToProps = (state) => ({
+    chatIsOpen: state.chatReducers.isOpen,
     user: state.userReducers.user
 });
 const mapDispatchToProps = dispatch => ({
     clickToLogout: () => dispatch(userLogout()),
+    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserNavigationSmartphone);
 

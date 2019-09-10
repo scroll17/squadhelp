@@ -30,8 +30,6 @@ export default function (state = initialState, action) {
                 error: null
             }
         }
-
-
         case CHAT_ACTION.CHAT_ERROR: {
             return {
                 ...state,

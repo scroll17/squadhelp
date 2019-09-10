@@ -45,11 +45,11 @@ function Header(props){
                         <>
                             <div className={style.company}>
                                 <i className="fab fa-telegram" />
-                                <span className={style.companyName}>Telegram</span>
+                                javascript: void(0);                                <span className={style.companyName}>Telegram</span>
                             </div>
                             <div className={style.tools}>
                                 <i className="fas fa-search" onClick={toFindUsers}/>
-                                <i className="fas fa-bars" />
+                                <i className="fas fa-sign-out-alt" />
                             </div>
                         </>
                 }

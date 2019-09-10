@@ -8,9 +8,11 @@ import textForMarketplaceDomainsHome from './MainHome/textAndLinksForMarketplace
 import textAndLinksForHowDoNameContestsWork from './MainHome/textAndLinksForHowDoNameContestsWork'
 import LinksForHowItWorksHome from './MainHome/LinksForHowItWorksHome'
 
-import textForForHeaderNavigation from './textForForHeaderNavigation'
+import textForForHeaderNavigation from './Navigation/textForForHeaderNavigation'
 
-import DataForTheContestForm from './Contest/Forms/DataForTheContestForm.json'
+import dataForTheContestForm from './Contest/Forms/dataForTheContestForm.json'
+
+import linksForSideMenu from './Dashboard/linksForSideMenu'
 
 export {
     textForMarketplaceDomainsHome,
@@ -24,5 +26,7 @@ export {
     textForStartContestSteps,
     ContestBundlePackages,
 
-    DataForTheContestForm,
+    dataForTheContestForm,
+
+    linksForSideMenu,
 };

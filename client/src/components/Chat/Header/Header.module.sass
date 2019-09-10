@@ -19,8 +19,6 @@
   .tools
     i:last-child
       display: none
-    //i:first-child
-    //  margin: 0 15px
     i
       cursor: pointer
       @extend %i
@@ -71,3 +69,14 @@
       height: 36px
       border-radius: 50%
       margin-left: 20px
+
+
+@media only screen and (max-width: 795px)
+  .navBar
+    .tools
+      display: flex
+      flex-direction: row
+      i:last-child
+        display: block
+      i:first-child
+        margin: 0 15px

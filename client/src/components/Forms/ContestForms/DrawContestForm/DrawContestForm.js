@@ -7,7 +7,7 @@ import style from './DrawContestForm.module.sass';
 
 import ContestFields from '../ContestFields/ContestFields'
 
-import { DataForTheContestForm } from '../../../../utils/textAndLinksForPages/textAndLinksForPages'
+import { dataForTheContestForm } from '../../../../utils/textAndLinksForPages/textAndLinksForPages'
 
 
 import { TYPE_FIELD } from "../../../../constants";
@@ -34,7 +34,7 @@ let DrawContestForm = (props) => {
         return <Field
                       {...fieldData}
                       key={fieldData.name}
-                      dataSelect={DataForTheContestForm[TYPE_FIELD.SELECT]}
+                      dataSelect={dataForTheContestForm[TYPE_FIELD.SELECT]}
                       funcForValidate={validation}
                       validate={
                           fieldData.isRequired  ? validation : null
@@ -59,7 +59,7 @@ let DrawContestForm = (props) => {
         <div className={style.clearFix}>
             <form onSubmit={handleSubmit}>
                 {
-                    renderFields(DataForTheContestForm['fields'])
+                    renderFields(dataForTheContestForm['fields'])
                 }
             </form>
         </div>

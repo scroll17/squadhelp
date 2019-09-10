@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
 import connect from "react-redux/es/connect/connect";
 
-import { getUser } from "../../actions/actionCreators/userActionCreator";
+import {getUser} from "../../actions/actionCreators/userActionCreator";
 
-import { TOKEN } from '../../constants'
+import {TOKEN} from '../../constants'
 
-class UserLoader extends Component{
-    componentDidMount() {
-        if (!this.props.user && localStorage.getItem(TOKEN.ACCESS_TOKEN)) {
-            return this.props.getUser();
+function UserLoader(props) {
+    useEffect(() => {
+        if (!props.user && localStorage.getItem(TOKEN.ACCESS_TOKEN)) {
+            props.getUser();
         }
-    }
+    });
 
-    render(){
-        return(
-            <> {this.props.children} </>
-        )
-    }
+    return (
+        <> {props.children} </>
+    )
 }
 
 const mapStateToProps = (state) => ({
