@@ -1,6 +1,6 @@
 const { Conversation, Message } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
 
 module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content, time}) => {
 

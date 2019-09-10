@@ -1,6 +1,6 @@
 const { Conversation } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
 
 const findParticipant = require('../middlewares/findParticipant');
 
@@ -44,6 +44,7 @@ module.exports = (io, socket) => socket.on( ON.USER_CONNECTED, async user => {
                     conversationId: 0
                 }
             }},
+        {$sort: {lastMessage: -1}}
     ]);
 
     for(let i = 0; i < foundConversation.length; i++){

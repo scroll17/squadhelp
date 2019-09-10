@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
   SERVER_ERROR: { NOT_FOUND }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class NotFoundError extends ApplicationError {
   constructor(message) {

@@ -1,6 +1,6 @@
 const { verifyToken } = require('./checkJwtTokens');
 
-const { TOKEN } = require("../../utils/consts");
+const { TOKEN } = require("../../constants");
 
 module.exports = async (req, res, next) => {
     const { refreshToken } = req.body;

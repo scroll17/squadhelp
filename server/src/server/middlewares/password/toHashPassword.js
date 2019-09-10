@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { SALT_ROUNDS } = require("../../utils/consts");
+const { SALT_ROUNDS } = require("../../constants");
 
 module.exports = async (req, res, next) => {
     const { body } = req;

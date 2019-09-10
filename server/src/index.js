@@ -8,7 +8,7 @@ const errorHandlerBcrypt  = require("./server/errorHandlers/errorHandlerBcrypt")
 const errorHandlerMulter  = require("./server/errorHandlers/errorHandlerMulter");
 
 const router = require("./server/router/index");
-const { PORT } = require("./server/utils/consts");
+const { PORT } = require("./server/constants");
 const cors = require('cors');
 
 const app = express();

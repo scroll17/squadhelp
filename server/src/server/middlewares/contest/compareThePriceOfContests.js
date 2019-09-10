@@ -1,5 +1,5 @@
 const { BadRequest } = require('../../errors/errors');
-const { CONTEST_PRICE } = require('../../utils/consts');
+const { CONTEST_PRICE } = require('../../constants');
 
 module.exports = (req, res, next) => {
     const { contests } = req.body;

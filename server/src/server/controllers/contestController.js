@@ -1,17 +1,16 @@
 const uuidv1 = require('uuid/v1');
 
 const error = require("../errors/errors");
-const {HTTP_CODE : { SUCCESS }} = require('../utils/consts');
+const {
+    HTTP_CODE : { SUCCESS },
+    ABILITY: { SUBJECT, ACTIONS },
+    CONTEST_PRICE,
+} = require('../constants');
 
 const { Contests } = require('../models');
 
-const { CONTEST_PRICE } = require('../utils/consts');
 
 const convertMapToObject = require('../utils/convertMapToObject');
-
-const {
-    ABILITY: { SUBJECT, ACTIONS },
-} = require("../utils/consts");
 
 
 module.exports.createContest = async (req, res, next) => {

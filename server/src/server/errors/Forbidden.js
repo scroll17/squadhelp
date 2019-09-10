@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
     SERVER_ERROR: { FORBIDDEN }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class ForbiddenError extends ApplicationError {
     constructor(message) {

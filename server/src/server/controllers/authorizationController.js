@@ -4,7 +4,7 @@ const { User, RefreshToken } = require('../models');
 const {
     TOKEN,
     HTTP_CODE: { SUCCESS }
-} = require("../utils/consts");
+} = require("../constants");
 
 const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 

@@ -13,7 +13,7 @@ const {
 const parseContestFormData = require('../middlewares/contest/parseContestFormData');
 const compareThePriceOfContests = require('../middlewares/contest/compareThePriceOfContests');
 
-const { URL: { API } } = require('../utils/consts');
+const { URL: { API } } = require('../constants');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

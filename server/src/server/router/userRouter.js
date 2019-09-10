@@ -7,7 +7,7 @@ const {
 
 const findUserById  = require('../middlewares/user/findUserById');
 
-const { URL: { API } } = require('../utils/consts');
+const { URL: { API } } = require('../constants');
 
 
 const router = express.Router();

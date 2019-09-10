@@ -1,4 +1,4 @@
-const { CONTEST_TYPE } = require('../utils/consts');
+const { CONTEST_TYPE } = require('../constants');
 
 module.exports = (sequelize, DataTypes) => {
     const Contests = sequelize.define('Contests', {

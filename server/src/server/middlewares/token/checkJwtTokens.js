@@ -1,4 +1,4 @@
-const { ACCESS_SECRET, REFRESH_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH, TOKEN } = require("../../utils/consts");
+const { ACCESS_SECRET, REFRESH_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH, TOKEN } = require("../../constants");
 const checkJwtTokens = require('jsonwebtoken');
 const util = require('util');
 

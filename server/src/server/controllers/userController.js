@@ -3,7 +3,7 @@ const { User } = require('../models');
 
 const {
     ABILITY: { SUBJECT, ACTIONS },
-} = require("../utils/consts");
+} = require("../constants");
 
 
 module.exports.getAllUsers = async (req, res, next) => {

@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
     SERVER_ERROR: { BAD_REQUEST }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class BadRequest extends ApplicationError {
     constructor(message) {

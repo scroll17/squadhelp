@@ -1,4 +1,4 @@
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData } = require('../../server/constants');
 
 const foundMessage = require('../middlewares/findMessage');
 

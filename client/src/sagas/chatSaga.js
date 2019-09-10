@@ -6,9 +6,11 @@ import socket from "../api/socket/chatController";
 import { put, select } from 'redux-saga/effects';
 import { omit, cloneDeep, isEqual, last } from 'lodash'
 
-import { STAGE_OF_CHAT } from '../constants/chatConst'
+import { STAGE_OF_CHAT } from '../constants/chat'
 
 import { joinToRoom } from "../api/socket/chatController";
+
+//import sortByDate from "../utils/sortByDate";
 
 export function* closeOrOpenConnectionSaga({isOpen}) {
     try {
@@ -42,18 +44,6 @@ export function* closeStageFindUsersSaga({nextStage}) {
 
 export function* openConversationSaga() {
     try {
-        // const {chatConversationsReducer: { conversations: oldConversations, openConversation }} = yield select();
-        //
-        // const newConversations = cloneDeep(oldConversations);
-        // newConversations.forEach( conversation => {
-        //     if(isEqual(conversation._id, openConversation._id)){
-        //         if(conversation.notRead){
-        //             delete conversation.notRead
-        //         }
-        //     }
-        // });
-        // yield put({type: CHAT_ACTION.SHOW_CONVERSATIONS, conversations: newConversations});
-
         yield put({type: CHAT_ACTION.TO_NEXT_CHAT_STAGE, nextStage: STAGE_OF_CHAT.CONVERSATION});
         yield put({type: CHAT_ACTION.CLEAR_FOUND_USERS});
     } catch (e) {
@@ -71,6 +61,8 @@ export function* closeConversationSaga({openConversation}) {
                 conversation['lastMessage'] = last(messages);
             }
         });
+
+        //sortByDate(newConversations);
 
         yield put({type: CHAT_ACTION.SHOW_CONVERSATIONS, conversations: newConversations});
         yield put({type: CHAT_ACTION.TO_NEXT_CHAT_STAGE, nextStage: STAGE_OF_CHAT.BEGIN});
@@ -115,6 +107,8 @@ export function* newMessageSaga({message}) {
                     conversation['lastMessage'] = { ...message, notRead: true};
                 }
             });
+
+            //sortByDate(newConversations);
 
             yield put({type: CHAT_ACTION.SHOW_CONVERSATIONS, conversations: newConversations});
         }

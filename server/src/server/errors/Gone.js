@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
     SERVER_ERROR: { REMOVED }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class GoneError extends ApplicationError {
     constructor(message) {

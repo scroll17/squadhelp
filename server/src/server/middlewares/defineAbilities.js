@@ -1,7 +1,7 @@
 const abilyti = require('../casl/index');
 const { verifyToken } = require('./token/checkJwtTokens');
 
-const { TOKEN } = require("../utils/consts");
+const { TOKEN } = require('../constants');
 
 module.exports = async (req, res, next) => {
     try{

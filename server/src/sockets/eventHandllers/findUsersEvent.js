@@ -1,6 +1,6 @@
 const { User } = require('../../server/models/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, ROLE, ROLES, USER_SOCKET_DATA: userData } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, ROLE, ROLES, USER_SOCKET_DATA: userData } = require('../../server/constants');
 
 const isEqual = require('lodash/isEqual');
 

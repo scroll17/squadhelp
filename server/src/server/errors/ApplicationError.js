@@ -1,6 +1,6 @@
 const { HTTP_CODE : {
   SERVER_ERROR: { INTERNAL_SERVER_ERROR }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class ApplicationError extends Error{
     constructor(message, status) {

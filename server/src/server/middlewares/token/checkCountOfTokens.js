@@ -1,5 +1,5 @@
 const { RefreshToken } = require('../../models');
-const { TOKEN: MAX_NUMBER_OF_REFRESH_TOKEN } = require('../../utils/consts');
+const { TOKEN: MAX_NUMBER_OF_REFRESH_TOKEN } = require('../../constants');
 
 module.exports = async (req, res, next) => {
     const { user } = req.body;

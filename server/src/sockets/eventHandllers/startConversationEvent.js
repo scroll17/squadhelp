@@ -1,6 +1,6 @@
 const { Conversation } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
 
 const { isEmpty, first } = require('lodash');
 

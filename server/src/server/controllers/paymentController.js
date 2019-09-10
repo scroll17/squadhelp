@@ -4,7 +4,7 @@ const { Bank } = require('../models');
 const db = require('../models');
 const Op = db.sequelize.Op;
 
-const { SQUAD_HELP_BANK_CARD } = require('../utils/consts');
+const { SQUAD_HELP_BANK_CARD } = require('../constants');
 
 module.exports.paymentOfContests = async (req, res, next) => {
     //const

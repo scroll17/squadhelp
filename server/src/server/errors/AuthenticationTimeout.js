@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
     SERVER_ERROR: { AUTHENTICATION_TIMEOUT }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class AuthenticationTimeout extends ApplicationError {
     constructor(message) {

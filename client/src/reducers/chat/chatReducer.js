@@ -1,5 +1,5 @@
 import CHAT_ACTION from '../../actions/actionTypes/chatActionsTypes';
-import { STAGE_OF_CHAT } from "../../constants/chatConst";
+import { STAGE_OF_CHAT } from "../../constants/chat";
 
 const initialState = {
     stageNow: STAGE_OF_CHAT.BEGIN,

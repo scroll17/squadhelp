@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 const { HTTP_CODE : {
     SERVER_ERROR: { UNAUTHORIZED }
-}} = require('../utils/consts');
+}} = require('../constants');
 
 class Unauthorized extends ApplicationError {
     constructor(message) {

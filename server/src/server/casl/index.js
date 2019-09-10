@@ -3,7 +3,7 @@
 
 const { AbilityBuilder, Ability } = require('@casl/ability');
 
-const { ROLE, ABILITY: {SUBJECT, ACTIONS} } = require('../utils/consts');
+const { ROLE, ABILITY: {SUBJECT, ACTIONS} } = require('../constants');
 
 module.exports.defineAbilitiesFor = (role, user) => {
     const { rules, can, cannot } = AbilityBuilder.extract();

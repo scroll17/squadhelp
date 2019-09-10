@@ -7,7 +7,7 @@ import { isEqual } from 'lodash'
 
 import { startFindUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
-import { STAGE_OF_CHAT } from "../../../constants/chatConst";
+import { STAGE_OF_CHAT } from "../../../constants/chat";
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;

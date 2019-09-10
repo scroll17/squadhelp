@@ -4,7 +4,7 @@ const {
     paymentOfContests,
 } = require('../controllers/paymentController');
 
-const { URL: { API }, ROLE } = require('../utils/consts');
+const { URL: { API }, ROLE } = require('../constants');
 
 const router = express.Router();
 

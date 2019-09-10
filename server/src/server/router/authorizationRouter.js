@@ -19,7 +19,7 @@ const {
     logoutUser
 } = require('../controllers/authorizationController');
 
-const { URL: { API } } = require('../utils/consts');
+const { URL: { API } } = require('../constants');
 
 
 const router = express.Router();

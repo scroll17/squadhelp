@@ -10,7 +10,7 @@ import ConversationList from "./ConversationList/ConversationList";
 import CurrentConversation from "./CurrentConversation/CurrentConversation";
 
 import { isEqual } from 'lodash'
-import { STAGE_OF_CHAT } from "../../constants/chatConst";
+import { STAGE_OF_CHAT } from "../../constants/chat";
 
 import { Field, reduxForm } from 'redux-form';
 

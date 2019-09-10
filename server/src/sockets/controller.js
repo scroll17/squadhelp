@@ -7,7 +7,7 @@ const joinToRoomEvent = require('./eventHandllers/joinToRoomEvent');
 const leaveTheRoomEvent = require('./eventHandllers/leaveTheRoomEvent');
 
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData, CONNECTED_CLIENTS } = require('../server/utils/consts');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData } = require('../server/constants');
 
 module.exports = async io => {
 

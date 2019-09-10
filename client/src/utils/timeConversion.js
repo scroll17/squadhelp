@@ -3,18 +3,18 @@ import moment from 'moment'
 const momentTime = (time) => moment( new Date(time), 'day months MM YYYY HH:mm:ss');
 
 export default (time, aPlace) => {
-    const momentTime = momentTime(time);
+    const newTime = momentTime(time);
 
-    const MM_DD = momentTime.format('MM/DD');
+    const MM_DD = newTime.format('MM/DD');
 
     const diff = moment().diff(
-        momentTime.format('YYYY-MM-DD'), 'd'
+        newTime.format('YYYY-MM-DD'), 'd'
     );
 
 
-    const hoursToday = momentTime.format('h:mm A');
+    const hoursToday = newTime.format('h:mm A');
     const dayAgo = moment(MM_DD, 'MM/DD').toNow();
-    const daysPassed = momentTime.format('DD MMM');
+    const daysPassed = newTime.format('DD MMM');
 
 
     if(aPlace === 'conversation'){

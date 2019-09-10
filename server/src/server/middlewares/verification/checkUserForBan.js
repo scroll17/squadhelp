@@ -1,5 +1,5 @@
 const { Forbidden } = require("../../errors/errors");
-const { ERROR_MESSAGE } = require('../../utils/consts');
+const { ERROR_MESSAGE } = require('../../constants');
 
 module.exports = (req,res,next) => {
     const { isBanned } = req.body.user;
