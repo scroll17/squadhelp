@@ -2,6 +2,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 import ACTION from '../actions/actionTypes/actionsTypes';
 import CHAT_ACTION from '../actions/actionTypes/chatActionsTypes';
+import DASHBOARD_ACTION from '../actions/actionTypes/dashboardActionTypes';
 
 import {
     loginUserSaga,
@@ -35,6 +36,10 @@ import {
     newMessageSaga
 } from './chatSaga'
 
+import {
+    getUserContestsSaga
+} from './dashboardSaga'
+
 function* rootSaga() {
     yield takeLatest(ACTION.LOGIN_USER, loginUserSaga);
     yield takeLatest(ACTION.CREATE_USER, createUserSaga);
@@ -65,6 +70,9 @@ function* rootSaga() {
 
     yield takeLatest(CHAT_ACTION.NEW_MESSAGE, newMessageSaga);
     yield takeLatest(CHAT_ACTION.ADD_NEW_CONVERSATION, addNewConversationSaga);
+
+
+    yield takeLatest(DASHBOARD_ACTION.GET_USER_CONTESTS, getUserContestsSaga);
 }
 
 export default rootSaga;

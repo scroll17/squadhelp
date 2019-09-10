@@ -4,7 +4,7 @@ import ACTION from '../../actions/actionTypes/actionsTypes';
 import { toast } from 'react-toastify';
 import toastifyErrorMessage from '../../utils/toastifyErrorMessage'
 
-import { refreshToken } from '../rest/restContoller'
+import { refreshToken } from '../rest/userContoller'
 
 import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../constants';
 

@@ -1,5 +1,5 @@
 import ACTION from "../actions/actionTypes/actionsTypes";
-import {createContest, getPriceOfContests} from "../api/rest/restContoller";
+import {createContest, getPriceOfContests} from "../api/rest/contestController";
 
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";

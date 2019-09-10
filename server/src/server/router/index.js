@@ -4,8 +4,8 @@ const bearerToken = require('express-bearer-token');
 const defineAbilities = require('../middlewares/defineAbilities');
 
 
-import authorizationRouter from './authorizationRouter';
 import userRouter from './userRouter';
+import adminRouter from './adminRouter';
 import contestRouter from './contestRouter';
 import paymentRouter from './paymentRouter';
 
@@ -16,12 +16,9 @@ router.use(bearerToken());
 router.use(defineAbilities);
 
 
-router.use(
-    authorizationRouter,
-    userRouter,
-    contestRouter,
-    paymentRouter
-);
+router.use('/user', userRouter);
+router.use('/admin', adminRouter);
+router.use('/contest', contestRouter);
 
 
 module.exports = router;

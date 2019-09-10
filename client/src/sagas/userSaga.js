@@ -9,10 +9,11 @@ import {
     loginUser,
     createUser,
     userLogout,
-    getUser,
-    getAllUser,
-    banUserById,
-} from '../api/rest/restContoller';
+    getUser
+} from '../api/rest/userContoller';
+
+import { getAllUser, banUserById } from '../api/rest/adminController';
+
 import {TOKEN} from "../constants";
 import {URL} from "../api/baseURL";
 

@@ -9,28 +9,27 @@ module.exports.defineAbilitiesFor = (role, user) => {
     const { rules, can, cannot } = AbilityBuilder.extract();
 
     switch (role) {
-        case null:{
-            can(ACTIONS.CREATE, SUBJECT.USER);
-            break;
-        }
         case ROLE.ADMIN: {
             can(ACTIONS.CRUD, SUBJECT.USER);
             can(ACTIONS.READ, SUBJECT.ALL);
+            can(ACTIONS.READ, SUBJECT.CONTEST);
             cannot(ACTIONS.UPDATE, SUBJECT.USER, { role: ROLE.ADMIN }).because('Admin lox');
             break;
         }
         case ROLE.BUYER:{
             can(ACTIONS.READ, SUBJECT.USER);
-            cannot(ACTIONS.READ, SUBJECT.USER, {isBanned: true}).because('You lox, Zabanen !');
+            can(ACTIONS.READ, SUBJECT.CONTEST, { userId: user.id});
+            cannot(ACTIONS.READ, SUBJECT.USER, { isBanned: true }).because('You lox, Zabanen !');
             break;
         }
         case ROLE.CREATIVE:{
             can(ACTIONS.READ, SUBJECT.USER);
-            cannot(ACTIONS.READ, SUBJECT.USER,  {isBanned: true}).because('You lox, Zabanen !');
+            cannot(ACTIONS.READ, SUBJECT.USER,  { isBanned: true }).because('You lox, Zabanen !');
             break;
         }
+        case null:
         default:
-            console.log('------- default -------');
+            can(ACTIONS.CREATE, SUBJECT.USER);
     }
 
 

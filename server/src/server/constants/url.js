@@ -9,6 +9,7 @@ export const URL = {
         REFRESH: '/refresh',
 
         CONTEST: '/contest',
+        USER_CONTESTS: '/contests',
         CONTEST_PRICE: '/contest/price',
 
         PAYMENT: '/payment'

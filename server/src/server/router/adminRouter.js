@@ -1,0 +1,24 @@
+const express = require('express');
+
+const {
+    getAllUsers,
+    updateUserById
+} = require('../controllers/adminController');
+
+const findUserById  = require('../middlewares/user/findUserById');
+
+const { URL: { API } } = require('../constants');
+
+
+const router = express.Router();
+
+router.get(API.ALL_USER,
+    getAllUsers
+);
+
+router.put(API.USER_ID,
+    findUserById('params'),
+    updateUserById,
+);
+
+module.exports = router;

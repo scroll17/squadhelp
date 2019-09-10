@@ -1,53 +1,113 @@
 const error = require("../errors/errors");
-const { User } = require('../models');
+const { User, RefreshToken, Contests } = require('../models');
 
 const {
-    ABILITY: { SUBJECT, ACTIONS },
+    TOKEN,
+    HTTP_CODE: { SUCCESS },
+    ABILITY: { ACTIONS }
 } = require("../constants");
 
+const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 
-module.exports.getAllUsers = async (req, res, next) => {
+module.exports.createUser = async (req, res, next) => {
+    const { body } = req;
     try{
-        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ALL);                      // CASL
+        /*req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);               // CASL*/
 
-        const users = await User.findAll({
-            raw: true,
-            rejectOnEmpty: true,
-            attributes: {
-                exclude: ['password','updatedAt', 'createdAt']
+        const [user, created] = await User.findOrCreate({
+            where: {email: body.email},
+            defaults: {
+                firstName: body.firstName,
+                lastName: body.lastName,
+                displayName: body.displayName,
+                email: body.email,
+                role: body.role,
+                password: body.hashPassword
             },
-            order: [['email', 'ASC'], ['id', 'ASC']]
         });
-        res.send(users);
 
-    }catch (err) {
-        next(new error.NotFound(err.name))
+        if (!created){
+            return next(new error.BadRequest());
+        }
+
+        req.body.user = user;
+        next()
+    }catch (err){
+        next(err)
     }
 };
 
-module.exports.updateUserById = async (req, res, next) => {
-    const { id } = req.params;
-    const { isBanned, user } = req.body;
+module.exports.loginUser = async (req,res,next) => {
+    const { user, tokenPair } = req.body;
+    try{
 
-    try {
-        if(req.ability.cannot(ACTIONS.UPDATE, user)){
-            return next(new error.Forbidden());
-        }
-        //req.ability.throwUnlessCan('update', user);                                     // CASL
-
-        const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
-            where: { id },
-            fields: ['isBanned'],
-            returning: true,
-            plain: true,
+        await RefreshToken.create({
+            userId: user.id,
+            tokenString: tokenPair.refreshToken
         });
 
-        if(numberOfUpdatedRows <= 0){
-            return next(new error.NotFound());
-        }
-
-        return res.send(updateUser);
-    } catch (err) {
+        return res.send({
+            user,
+            tokenPair,
+        });
+    }catch (err) {
         next(err);
+    }
+};
+
+module.exports.logoutUser = async (req,res,next) => {
+    const { refreshToken } = req.body;
+    try{
+        await RefreshToken.destroy({
+            where: {
+                tokenString: refreshToken
+            }
+        });
+
+        res.status(SUCCESS.OK.CODE).send('Your logout !');
+    }catch (err) {
+        next(err);
+    }
+};
+
+
+
+module.exports.giveAccessUser = async (req,res,next) => {
+    try{
+        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const user = await User.findOne({
+            where: {email: decoded.email},
+            attributes: {
+                exclude: ['password','updatedAt', 'createdAt']
+            }
+        });
+
+        req.ability.throwUnlessCan(ACTIONS.READ, user);
+
+        return res.send(user);
+    }catch (err) {
+        next(err)
+    }
+};
+
+
+module.exports.getUserContests = async (req,res,next) => {
+    try{
+        req.ability.throwUnlessCan(ACTIONS.READ, 'Conversation');
+
+        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const user = await Contests.findAll({
+            where: {
+                userId: decoded.id
+            },
+            raw: true,
+            rejectOnEmpty: true,
+            order: [['updatedAt', 'ASC']]
+
+        });
+
+        return res.send(user);
+    }catch (err) {
+        next(err)
     }
 };

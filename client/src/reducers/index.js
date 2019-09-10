@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import userReducers from './userReducer';
+import userReducers from './user/userReducer';
 
 import contestReducers from './contest/contestReducers';
 

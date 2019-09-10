@@ -6,18 +6,20 @@ const HOST= {
 
 export const baseURL = `http://${HOST.MY_IP_107}:3000`;
 
-export const restURL = `${baseURL}/api`;
+export const userURL = `${baseURL}/user`;
+export const adminURL = `${baseURL}/admin`;
+export const contestURL = `${baseURL}/contest`;
 
 
 export const URL = {
   // API USER
-  USER: '/user',
   LOGIN: '/login',
   LOGOUT: "/logout",
   AUTHORIZE: '/authorize',
   ALL_USER: "/alluser",
   SIGN_UP: "/signup",
   REFRESH: "/refresh",
+  USER_CONTESTS: '/contests',
 
   // API CONTEST
   CONTEST: '/contest',

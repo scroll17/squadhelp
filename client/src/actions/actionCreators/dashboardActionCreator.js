@@ -5,5 +5,7 @@ export const closeOrOpenSideMenu = (isOpen) => ({
     isOpen
 });
 
-
+export const getUserContestsMenu = () => ({
+    type: DASHBOARD_ACTION.GET_USER_CONTESTS
+});
 
