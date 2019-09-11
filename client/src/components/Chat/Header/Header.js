@@ -45,7 +45,7 @@ function Header(props){
                         <>
                             <div className={style.company}>
                                 <i className="fab fa-telegram" />
-                                javascript: void(0);                                <span className={style.companyName}>Telegram</span>
+                                <span className={style.companyName}>Telegram</span>
                             </div>
                             <div className={style.tools}>
                                 <i className="fas fa-search" onClick={toFindUsers}/>

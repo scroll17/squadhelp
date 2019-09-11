@@ -10,27 +10,13 @@ import { URL } from '../../../api/baseURL'
 import { ROLE, DISPLAY, VIEW } from '../../../constants'
 import {closeOrOpenConnection} from "../../../actions/actionCreators/chatActionCreator";
 
+import { useMissClick } from '../../Hooks/useMissClick'
+
 function UserNavigationSmartphone(props){
     const { closeOrOpenConnection } = props;
 
-    const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
     const toggleContainer = useRef(null);
-
-    const toOpenMenu = () => {
-        const nextDisplayStyle = displayStyle === DISPLAY.NONE ? DISPLAY.BLOCK : DISPLAY.NONE;
-        setDisplayStyle(nextDisplayStyle);
-    };
-
-    const onClickOutsideHandler = (event) => {
-        if (displayStyle === DISPLAY.BLOCK && !toggleContainer.current.contains(event.target)) {
-            setDisplayStyle(DISPLAY.NONE)
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('click', onClickOutsideHandler);
-        return () => window.removeEventListener('click', onClickOutsideHandler);
-    });
+    const [displayStyle, toOpenMenu] = useMissClick(toggleContainer);
 
 
     const adminPanel = props.user.role === ROLE.ADMIN ?

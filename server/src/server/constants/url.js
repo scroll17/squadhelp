@@ -1,4 +1,4 @@
-export const URL = {
+const URL = {
     API: {
         AUTHORIZE: '/authorize',
         SIGNUP: '/signup',
@@ -14,4 +14,7 @@ export const URL = {
 
         PAYMENT: '/payment'
     },
+};
+module.exports = {
+    URL
 };

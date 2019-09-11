@@ -1,10 +1,17 @@
-import { ACCESS_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH, REFRESH_SECRET, TOKEN } from './tokens'
-import { URL } from './url'
-import { HTTP_CODE } from "./http";
-import { SOCKET_EVENTS, USER_SOCKET_DATA } from './socket'
-import { ROLES, ROLE } from './role'
-import { CONTEST_PRICE, CONTEST_TYPE} from './contest'
-import { ABILITY } from "./ability";
+const {
+    ACCESS_SECRET,
+    EXPIRES_IN_ACCESS,
+    EXPIRES_IN_REFRESH,
+    REFRESH_SECRET,
+    TOKEN
+}= require('./tokens');
+
+const { URL } = require('./url') ;
+const { HTTP_CODE } = require("./http");
+const { SOCKET_EVENTS, USER_SOCKET_DATA } = require('./socket');
+const { ROLES, ROLE } = require('./role');
+const { CONTEST_PRICE, CONTEST_TYPE} = require('./contest');
+const { ABILITY } = require("./ability");
 
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 8;
@@ -19,21 +26,20 @@ const ERROR_MESSAGE = {
     YOUR_BANNED: 'Your banned !'
 };
 
-
 module.exports = {
     PORT,
+    SALT_ROUNDS,
+    ERROR_MESSAGE,
+    SQUAD_HELP_BANK_CARD,
 
     ACCESS_SECRET,
     EXPIRES_IN_ACCESS,
     EXPIRES_IN_REFRESH,
     REFRESH_SECRET,
     TOKEN,
-    SALT_ROUNDS,
-
 
     URL,
     HTTP_CODE,
-    ERROR_MESSAGE,
 
     SOCKET_EVENTS,
     USER_SOCKET_DATA,
@@ -44,6 +50,4 @@ module.exports = {
 
     CONTEST_PRICE,
     CONTEST_TYPE,
-    SQUAD_HELP_BANK_CARD,
-
-}
+};

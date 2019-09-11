@@ -1,4 +1,4 @@
-export const HTTP_CODE = {
+const HTTP_CODE = {
     SUCCESS: {
         OK: {
             CODE: 200,
@@ -47,4 +47,7 @@ export const HTTP_CODE = {
             TEXT: 'AuthenticationTimeout'
         }
     }
+};
+module.exports = {
+    HTTP_CODE
 };

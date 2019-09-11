@@ -1,4 +1,4 @@
-export const SOCKET_EVENTS = {
+const SOCKET_EVENTS = {
     ON: {
         CONNECTION: 'connection',
         DISCONNECT: 'disconnect',
@@ -33,5 +33,9 @@ export const SOCKET_EVENTS = {
     }
 
 };
+const USER_SOCKET_DATA = new Map();
 
-export const USER_SOCKET_DATA = new Map();
+module.exports = {
+    SOCKET_EVENTS,
+    USER_SOCKET_DATA
+};

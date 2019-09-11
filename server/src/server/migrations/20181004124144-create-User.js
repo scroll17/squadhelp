@@ -1,5 +1,5 @@
 'use strict';
-const { ROLES } = require('../constants');
+const { ROLES } = require('../constants/index');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {

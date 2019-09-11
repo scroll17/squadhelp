@@ -33,7 +33,7 @@ module.exports.updateUserById = async (req, res, next) => {
         if(req.ability.cannot(ACTIONS.UPDATE, user)){
             return next(new error.Forbidden());
         }
-        //req.ability.throwUnlessCan('update', user);                                     // CASL
+        //req.ability.js.throwUnlessCan('update', user);                                     // CASL
 
         const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
             where: { id },

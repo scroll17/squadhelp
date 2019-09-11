@@ -1,6 +1,11 @@
-export const ROLE = {
+const ROLE = {
     ADMIN: "admin",
     BUYER: "buyer",
     CREATIVE: "creative",
 };
-export const ROLES = ["admin", "buyer", "creative"];
+const ROLES = ["admin", "buyer", "creative"];
+
+module.exports = {
+    ROLE,
+    ROLES
+};

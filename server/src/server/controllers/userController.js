@@ -12,7 +12,7 @@ const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
     try{
-        /*req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);               // CASL*/
+        /*req.ability.js.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);               // CASL*/
 
         const [user, created] = await User.findOrCreate({
             where: {email: body.email},
