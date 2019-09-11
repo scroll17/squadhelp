@@ -20,7 +20,7 @@ function Contest(props) {
             >
                 <Link
                     onClick={() => props.getContestById(id)}
-                    to={historyLocationTo(URL.CONTESTS, `/${id}`)}
+                    to={historyLocationTo([URL.CONTESTS, `${id}`], URL.DASHBOARD)}
                     className={style.title}
                 >
                     {title}

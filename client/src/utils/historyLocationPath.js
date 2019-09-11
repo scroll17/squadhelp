@@ -1,20 +1,18 @@
 import history from "../boot/browserHistory";
-import { last, isEqual, compact } from 'lodash';
+import { last, isEqual } from 'lodash';
 
-export default (...links) => {
-    let url = compact(history.location.pathname.split('/'));
+export default (links, customUrl) => {
+    let url =  (customUrl || history.location.pathname).split('/');
 
     links.forEach( (nextLink) => {
         const lastLink = last(url);
+        const newLink = nextLink.replace(/\//, '');
 
-        if(!isEqual(`/${lastLink}`, nextLink)){
-            url.push(nextLink)
+        if(!isEqual(lastLink, newLink)){
+            url.push(newLink)
         }
-    }, url);
+    });
 
-
-    console.log('url', url);
-    console.log('url', url.join('/'));
-
-    return url.join('')
+    console.log(url.join('/'));
+    return url.join('/')
 };

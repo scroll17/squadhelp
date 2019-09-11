@@ -7,12 +7,13 @@ import style from './Menu.module.sass'
 import { URL } from "../../../../api/baseURL";
 import { isEqual } from 'lodash'
 
+import historyLocationPath from "../../../../utils/historyLocationPath";
+
 function Menu(props) {
     const { sideMenuIsOpen, links} = props;
 
     return links.map( link => {
         let content;
-        const linkTo = isEqual(link.to, URL.DASHBOARD) ? URL.DASHBOARD : `${URL.DASHBOARD}${link.to}`;
 
         if(sideMenuIsOpen){
             content = (
@@ -26,7 +27,7 @@ function Menu(props) {
         }
 
         return(
-            <Link to={linkTo} className={style.link} key={link.to}>
+            <Link to={historyLocationPath([link.to], URL.DASHBOARD)} className={style.link} key={link.to}>
                 {content}
             </Link>
         )
