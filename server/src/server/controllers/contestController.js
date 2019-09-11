@@ -33,7 +33,7 @@ module.exports.createContest = async (req, res, next) => {
     }
 };
 
-module.exports.sendPriceToContests =  (req, res, next) => {
+module.exports.getPriceToContests =  (req, res, next) => {
     const price = convertMapToObject(CONTEST_PRICE);        //Object.fromEntries(CONTEST_PRICE.entries());
 
     if(price){

@@ -30,6 +30,7 @@ class AdminList extends Component {
                     name={`${user.firstName} ${user.lastName}`}
                     status={user.isBanned}
                     role={user.role}
+                    userAvatar={user.avatar}
                     id={user.id}
                     clickToItem={this.clickToBan}
                     key={user.email}

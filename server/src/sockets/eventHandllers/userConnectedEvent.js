@@ -51,9 +51,12 @@ module.exports = (io, socket) => socket.on( ON.USER_CONNECTED, async user => {
         const user = await findParticipant(foundConversation[i].participant);
 
         foundConversation[i]['title'] = user.displayName;
+        foundConversation[i]['avatar'] = user.avatar;
 
         socket.join(foundConversation[i]._id);
     }
+
+    console.log('foundConversation', foundConversation);
 
     socket.emit( EMIT.SHOW_CONVERSATION, foundConversation);
 });

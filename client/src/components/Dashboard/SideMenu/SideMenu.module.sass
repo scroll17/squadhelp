@@ -8,7 +8,11 @@
   background: linear-gradient(135deg,#8f75da 0,#727cf5 60%)
   transition: all .3s ease-out
 
+  overflow: hidden
+  height: 100vh
   padding-top: 15px
+
+  box-sizing: border-box
 
 .sideMenuOpen
   width: 250px
@@ -16,7 +20,7 @@
   @extend %menu
 
 .sideMenu
-  position: absolute
+  position: fixed
   width: 70px
   @extend %menu
 

@@ -18,7 +18,6 @@ module.exports.defineAbilitiesFor = (role, user) => {
         }
         case ROLE.BUYER:{
             can(ACTIONS.READ, SUBJECT.USER);
-            can(ACTIONS.READ, SUBJECT.CONTEST, { userId: user.id});
             cannot(ACTIONS.READ, SUBJECT.USER, { isBanned: true }).because('You lox, Zabanen !');
             break;
         }
@@ -30,6 +29,7 @@ module.exports.defineAbilitiesFor = (role, user) => {
         case null:
         default:
             can(ACTIONS.CREATE, SUBJECT.USER);
+            cannot(ACTIONS.READ, SUBJECT.CONTEST);
     }
 
 

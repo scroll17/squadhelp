@@ -7,6 +7,8 @@ const defineAbilities = require('../middlewares/defineAbilities');
 import userRouter from './userRouter';
 import adminRouter from './adminRouter';
 import contestRouter from './contestRouter';
+import dashboardRouter from './dashboardRouter';
+
 import paymentRouter from './paymentRouter';
 
 
@@ -19,6 +21,7 @@ router.use(defineAbilities);
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/contest', contestRouter);
+router.use('/dashboard', dashboardRouter);
 
 
 module.exports = router;

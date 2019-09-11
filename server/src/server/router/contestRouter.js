@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const {
  createContest,
- sendPriceToContests,
+ getPriceToContests,
  paymentOfContests,
 } = require('../controllers/contestController');
 
@@ -37,7 +37,7 @@ router.post(API.CONTEST,
 );
 
 router.get(API.CONTEST_PRICE,
-    sendPriceToContests,
+    getPriceToContests,
 );
 
 module.exports = router;

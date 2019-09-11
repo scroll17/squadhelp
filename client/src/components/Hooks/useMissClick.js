@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {DISPLAY} from "../../constants";
 
 export function useMissClick(props) {
-    const { current } = props;
+    const { current, customFunction } = props;
 
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
 
@@ -13,15 +13,15 @@ export function useMissClick(props) {
     };
 
     const onClickOutsideHandler = (event) => {
-        console.log(props);
         if (displayStyle === DISPLAY.BLOCK && !current.contains(event.target)) {
             setDisplayStyle(DISPLAY.NONE)
         }
     };
 
     useEffect(() => {
-        window.addEventListener('click', onClickOutsideHandler);
-        return () => window.removeEventListener('click', onClickOutsideHandler);
+        const onClick = customFunction ? customFunction : onClickOutsideHandler;
+        window.addEventListener('click', onClick);
+        return () => window.removeEventListener('click', onClick);
     });
 
 

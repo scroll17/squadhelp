@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import connect from "react-redux/es/connect/connect";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import { URL } from "../../../api/baseURL";
 
 import { linksForSideMenu } from '../../../utils/textAndLinksForPages/textAndLinksForPages'
 
-function SideMenu(props) {
+const SideMenu = props => {
     const { sideMenuIsOpen } = props;
 
     const classForSideMenu = sideMenuIsOpen ? style.sideMenuOpen : style.sideMenu;
@@ -20,7 +20,9 @@ function SideMenu(props) {
         "https://www.squadhelp.com/img/SquadHelpSquareWhiteTransparentSmall.png";
 
     return (
-        <div className={classForSideMenu}>
+        <div
+            className={classForSideMenu}
+        >
             <Link to={URL.HOME} className={style.companyIcon}>
                 <img src={companyImage} alt={''}/>
             </Link>
@@ -29,7 +31,8 @@ function SideMenu(props) {
             </ul>
         </div>
     )
-}
+};
+
 const mapStateToProps = (state) => ({
     sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
 });

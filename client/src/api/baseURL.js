@@ -4,15 +4,17 @@ const HOST= {
   MY_IP_107: '192.168.0.107'
 };
 
-export const baseURL = `http://${HOST.MY_IP_105}:3000`;
+export const baseURL = `http://${HOST.MY_IP_107}:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;
 export const contestURL = `${baseURL}/contest`;
+export const dashboardURL = `${baseURL}/dashboard`;
 
 
 export const URL = {
   // API USER
+  USER: '/user',
   LOGIN: '/login',
   LOGOUT: "/logout",
   AUTHORIZE: '/authorize',
@@ -28,7 +30,8 @@ export const URL = {
 
   // CONTEST
   CONTESTS: '/contests',
-  CONTEST_TYPE: "/contesttype",
+  MY_CONTESTS: "/my-contests",
+  CONTEST_TYPE: "/contest-type",
   NAME_IDEAS: "/Name-Ideas",
 
   // USER
@@ -36,7 +39,7 @@ export const URL = {
   NOT_FOUND: "/notfound",
   ADMIN_PANEL: "/adminpanel",
   DASHBOARD: "/dashboard",
-  MY_ACCOUNT: "/myaccount",
+  MY_ACCOUNT: "/my-account",
 };
 
 export const SEARCH = {

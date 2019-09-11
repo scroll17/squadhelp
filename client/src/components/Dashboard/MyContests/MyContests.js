@@ -1,29 +1,43 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import StatusOfContest from "./StatusOfContest/StatusOfContest";
-import ContestsInDraft from "./ContestsInDraft/ContestsInDraft";
+import Contest from "../Contest/Contest";
 
-import { getUserContestsMenu } from "../../../actions/actionCreators/dashboardActionCreator";
+import { getUserContests } from "../../../actions/actionCreators/dashboardActionCreator";
+import style from "./MyContests.module.sass";
 
+import { size } from 'lodash'
 
 function MyContests(props) {
+    const { myContests } = props;
 
     useEffect(() => {
-        props.getUserContestsMenu()
-    });
+        props.getUserContests()
+    }, []);
+
+    const showMyContests = contests => {
+        return contests.map(contest => <Contest {...contest} key={contest.id}/>)
+    };
 
     return (
-        <div>
-            <StatusOfContest />
-            <ContestsInDraft />
+        <div className={style.container}>
+            <StatusOfContest count={size(myContests)}/>
+            <div className={style.myContests}>
+                <div className={style.title}>my contests</div>
+                <div className={style.listBox}>
+                    {showMyContests(myContests)}
+                </div>
+            </div>
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    myContests: state.dashboardContestsReducer.myContests
+});
 const mapDispatchToProps = dispatch => ({
-    getUserContestsMenu: () => dispatch(getUserContestsMenu()),
+    getUserContests: () => dispatch(getUserContests()),
 });
 export default connect( mapStateToProps, mapDispatchToProps )(MyContests);
 

@@ -46,6 +46,11 @@ module.exports = {
                     isIn: [[...ROLES]],
                 }
             },
+            avatar: {
+                type: Sequelize.STRING,
+                defaultValue: "default.jpg",
+                allowNull: false,
+            },
             isBanned: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,

@@ -10,9 +10,6 @@ import { isEmpty } from "lodash";
 let ConversationList = (props) => {
     const { conversations } = props;
 
-    const sortConversation = () => {
-
-    };
 
     const showConversation = (conversations) => {
         if(isEmpty(conversations)){

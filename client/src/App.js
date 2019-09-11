@@ -50,9 +50,19 @@ class App extends Component{
 
                         <Route path={URL.CONTEST_TYPE} component={ContestPage} />
 
-                        <Route path={URL.DASHBOARD} component={DashboardPage} />
+                        <PrivateRoute
+                            requireRole={Object.values(ROLE)}
+                            path={URL.DASHBOARD}
+                            component={DashboardPage}
+                            redirectTo={URL.LOGIN}
+                        />
 
-                        <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminPage} />
+                        <PrivateRoute
+                            requireRole={[ROLE.ADMIN]}
+                            path={URL.ADMIN_PANEL}
+                            component={AdminPage}
+                            redirectTo={URL.NOT_FOUND}
+                        />
 
                         <Route component={ NotFoundPage } />
                     </Switch>

@@ -8,7 +8,9 @@ const findMessage = require('../middlewares/findMessage');
 
 module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
 
-    const {id: participantId, displayName: title} = data;
+    const {id: participantId, displayName: title, avatar: userAvatar} = data;
+
+    console.log('  ------- DATA ------', data);
 
     const foundConversation = await Conversation.aggregate([
         {$match: {
@@ -24,8 +26,9 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
 
     if(isEmpty(foundConversation)){
         const conversation = new Conversation({
-            participants: [participantId, userData.get('id')]
+            participants: [participantId, userData.get('id')],
         });
+
 
         userData.set('newConversation', conversation);
         userData.set('roomId', conversation._id);
@@ -42,5 +45,5 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
     const newRoom = userData.get('roomId');
 
     socket.join(newRoom);
-    socket.emit(EMIT.JOIN_TO_ROOM, { _id: newRoom, title})
+    socket.emit(EMIT.JOIN_TO_ROOM, { _id: newRoom, title, avatar: userAvatar})
 });

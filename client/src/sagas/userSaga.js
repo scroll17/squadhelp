@@ -31,7 +31,6 @@ export function* loginUserSaga({user}) {
 
         //console.log(document.referrer);
         yield historyPushOrBack(history, call, URL.HOME);
-
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }

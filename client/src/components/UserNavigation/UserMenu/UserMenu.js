@@ -1,8 +1,10 @@
-import React , { useState, useEffect, useRef } from 'react';
+import React , { useRef } from 'react';
 import connect from "react-redux/es/connect/connect";
 import {Link} from "react-router-dom";
 
 import style from './UserMenu.module.sass';
+
+import Avatar from "../../Avatart/Avatar";
 
 import { userLogout } from "../../../actions/actionCreators/userActionCreator";
 
@@ -31,7 +33,7 @@ function UserNavigationSmartphone(props){
                          onClick={toOpenMenu}
                          ref={toggleContainer}
                     >
-                        <div className={style.iconUser} />
+                        <Avatar customStyle={{marginRight: "5px"}} />
                         { props.view === VIEW.DESKTOP && `Hi, ${props.user.firstName}` }
                         <i className="fas fa-angle-down" />
                     </div>

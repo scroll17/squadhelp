@@ -1,4 +1,5 @@
 import config from '../boot/config';
+import { baseURL } from "../api/baseURL";
 
 import { CHAT_FIELDS, STAGE_OF_CHAT } from './chat'
 import { CONTEST, FORM, TYPE_FIELD } from './form'
@@ -25,6 +26,8 @@ const HEX_COLOR = {
   WHITE_SMOKE: "#f5f5f5",
 };
 
+const USER_AVATAR = `${baseURL}/images/user/avatar/`;
+
 
 export  {
     STORE,
@@ -40,4 +43,5 @@ export  {
     TYPE_FIELD,
     CHAT_FIELDS,
     STAGE_OF_CHAT,
+    USER_AVATAR,
 }

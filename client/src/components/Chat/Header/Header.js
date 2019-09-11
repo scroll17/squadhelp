@@ -3,11 +3,14 @@ import style from './Header.module.sass'
 
 import connect from "react-redux/es/connect/connect";
 
+import Avatar from "../../Avatart/Avatar";
+
 import { isEqual } from 'lodash'
 
 import { startFindUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
 import { STAGE_OF_CHAT } from "../../../constants/chat";
+
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;
@@ -37,8 +40,11 @@ function Header(props){
                                 <span>{openConversation.title}</span>
                             </div>
                             <div className={style.toolsConversation}>
-                               {/* <i className="fas fa-ellipsis-v" />*/}
-                                <div className={style.iconConversation} />
+                                <Avatar
+                                    size={36}
+                                    customAvatar={openConversation.avatar}
+                                    customStyle={{marginRight: "20px"}}
+                                />
                             </div>
                         </>
                         :

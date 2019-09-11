@@ -9,6 +9,7 @@ const URL = {
         REFRESH: '/refresh',
 
         CONTEST: '/contest',
+        CONTESTS: '/contests',
         USER_CONTESTS: '/contests',
         CONTEST_PRICE: '/contest/price',
 

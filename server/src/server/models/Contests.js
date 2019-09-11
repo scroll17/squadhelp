@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE',
             allowNull: false,
         },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id'
+            },
+        },
         contestType: {
             type: DataTypes.STRING,
             allowNull: false,

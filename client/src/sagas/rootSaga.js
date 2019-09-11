@@ -37,7 +37,8 @@ import {
 } from './chatSaga'
 
 import {
-    getUserContestsSaga
+    getUserContestsSaga,
+    getContestByIdSaga
 } from './dashboardSaga'
 
 function* rootSaga() {
@@ -73,6 +74,7 @@ function* rootSaga() {
 
 
     yield takeLatest(DASHBOARD_ACTION.GET_USER_CONTESTS, getUserContestsSaga);
+    yield takeLatest(DASHBOARD_ACTION.GET_CONTEST_BY_ID, getContestByIdSaga);
 }
 
 export default rootSaga;

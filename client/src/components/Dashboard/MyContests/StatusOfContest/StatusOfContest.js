@@ -13,7 +13,7 @@ function StatusOfContest(props) {
                     <i className="fas fa-lightbulb" />
                 </div>
                 <div className={style.contestInformation}>
-                    <h3 className={style.count}>0</h3>
+                    <h3 className={style.count}>{props.count}</h3>
                     <span className={style.text}>Launched Contests</span>
                     <Link to={URL.CONTEST_TYPE} className={style.link}>
                         Launch Contest

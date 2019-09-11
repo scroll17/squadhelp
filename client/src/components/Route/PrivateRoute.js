@@ -8,20 +8,22 @@ import { isEmpty } from 'lodash';
 import { URL } from '../../api/baseURL'
 
 class PrivateRoute extends Component{
+
     renderPage(){
-        const { user, isFetching, requireRole, path, component} = this.props;
-        if ((user.role !== requireRole) && isFetching === false){
-            return <Redirect to={URL.NOT_FOUND} />;
+        const { user, isFetching, requireRole, redirectTo, path, component} = this.props;
+
+        if ((!requireRole.includes(user.role)) && isFetching === false){
+            return <Redirect to={redirectTo} />;
         }
         return( <Route path={path} component={component}/> )
     }
 
     render(){
-        const { user } = this.props;
+        const { user, redirectTo } = this.props;
         return(
             <>
                 { user && this.renderPage() }
-                { isEmpty(localStorage) && <Redirect to={URL.NOT_FOUND} /> }
+                { isEmpty(localStorage) && <Redirect to={redirectTo} /> }
             </>
         )
     }

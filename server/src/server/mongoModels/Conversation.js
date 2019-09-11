@@ -12,7 +12,7 @@ const Conversation = new mongoose.Schema(
             {
                 type: ObjectId, ref: 'Message'
             }
-        ],
+        ]
     },
     {
         autoIndex: true,

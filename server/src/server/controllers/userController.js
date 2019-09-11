@@ -9,6 +9,8 @@ const {
 
 const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 
+const { isEmpty } = require('lodash');
+
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
     try{
@@ -22,6 +24,7 @@ module.exports.createUser = async (req, res, next) => {
                 displayName: body.displayName,
                 email: body.email,
                 role: body.role,
+                avatar: body.avatar,
                 password: body.hashPassword
             },
         });
@@ -93,20 +96,16 @@ module.exports.giveAccessUser = async (req,res,next) => {
 
 module.exports.getUserContests = async (req,res,next) => {
     try{
-        req.ability.throwUnlessCan(ACTIONS.READ, 'Conversation');
-
         const decoded = await verifyToken(req.token, TOKEN.ACCESS);
-        const user = await Contests.findAll({
+        const contests = await Contests.findAll({
             where: {
                 userId: decoded.id
             },
             raw: true,
-            rejectOnEmpty: true,
-            order: [['updatedAt', 'ASC']]
-
+            order: [['id', 'DESC']]
         });
 
-        return res.send(user);
+        return res.send(contests);
     }catch (err) {
         next(err)
     }
