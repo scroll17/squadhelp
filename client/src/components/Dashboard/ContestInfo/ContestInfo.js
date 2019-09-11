@@ -24,8 +24,7 @@ function ContestInfo(props) {
 
     return (
         <div className={style.contestInfo}>
-            {console.log('/contests/5')}
-            xgxgdfzxgdxfgsdgfsdfgsdfgsfgsgsfgsdfgsdgsdg
+            {history.location.pathname}
         </div>
     )
 }

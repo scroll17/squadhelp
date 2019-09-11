@@ -13,6 +13,5 @@ export default (links, customUrl) => {
         }
     });
 
-    console.log(url.join('/'));
     return url.join('/')
 };

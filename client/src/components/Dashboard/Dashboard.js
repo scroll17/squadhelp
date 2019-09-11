@@ -28,21 +28,26 @@ function Dashboard(props) {
             <div className={style.content} style={styleForOpenMenu}>
                 <Header/>
 
+                    <Switch>
 
-
-                        <Route exact path={`${URL.DASHBOARD}${URL.CONTESTS}/:id`}
-                               render={props => <ContestInfo {...props}/>}
+                        <Route
+                            exact
+                            path={historyLocationPath([URL.CONTESTS, ':id'], URL.DASHBOARD)}
+                            render={props => <ContestInfo {...props}/>}
                         />
 
-                        <Route exact path={`${URL.DASHBOARD}${URL.MY_CONTESTS}`}
+                        <Route
+                            exact
+                            path={historyLocationPath([URL.MY_CONTESTS], URL.DASHBOARD)}
+                            //path={`${URL.DASHBOARD}${URL.MY_CONTESTS}`}
                             render={props => {
-                                console.log('path', `${URL.DASHBOARD}${URL.MY_CONTESTS}`);
+                                console.log('render MyContests', historyLocationPath([URL.MY_CONTESTS], URL.DASHBOARD));
                                 return <MyContests {...props}/>
                             }}
-                               //component={ MyContests }
+                            //component={ MyContests }
                         />
 
-
+                    </Switch>
 
 
             </div>
