@@ -4,6 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import style from './Header.module.sass'
 
 import { closeOrOpenSideMenu } from "../../../actions/actionCreators/dashboardActionCreator";
+import Avatar from "../../Avatart/Avatar";
 
 const Header = props => {
     const { user, sideMenuIsOpen } = props;
@@ -16,7 +17,7 @@ const Header = props => {
                 <i className="fas fa-list-ul"/>
             </div>
             <div className={style.userMenu}>
-                <img className={style.userIcon} src={"https://www.squadhelp.com/assets/nimages/compressed/anonumous-min.png"} alt={''}/>
+                <Avatar size={32} customStyle={{marginRight: "10px"}} />
                 {user && <span>{user.firstName}</span>}
             </div>
         </div>

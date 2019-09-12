@@ -4,8 +4,8 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './Contest.module.sass'
 
-import { URL } from "../../../api/baseURL";
-import historyLocationTo from "../../../utils/historyLocationPath";
+import { URL, SEARCH } from "../../../api/baseURL";
+import historyLocationSearch from "../../../utils/history/historyLocationSearch";
 
 import { getContestById } from "../../../actions/actionCreators/dashboardActionCreator";
 
@@ -20,7 +20,10 @@ function Contest(props) {
             >
                 <Link
                     onClick={() => props.getContestById(id)}
-                    to={historyLocationTo([URL.CONTESTS, `${id}`], URL.DASHBOARD)}
+                    to={historyLocationSearch(
+                        [[SEARCH.ID, id]],
+                        `${URL.DASHBOARD}${URL.CONTEST}`
+                    )}
                     className={style.title}
                 >
                     {title}
@@ -36,9 +39,7 @@ function Contest(props) {
                     }
                 </p>
 
-                <p className={style.typeOfVenture}>
-                   {whatVentureDoes}
-                </p>
+                <p className={style.typeOfVenture}>{whatVentureDoes}</p>
 
                 <ul className={style.statusInfo}>
                     <li className={style.prize}>

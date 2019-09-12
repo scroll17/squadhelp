@@ -1,10 +1,12 @@
 import ACTION from "../actions/actionTypes/actionsTypes";
-import {createContest, getPriceOfContests} from "../api/rest/contestController";
+import {createContest, getPriceOfContests, payContests} from "../api/rest/contestController";
 
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
 import { reset } from 'redux-form';
+
+import { toast } from 'react-toastify';
 
 import { CONTEST } from "../constants";
 
@@ -14,6 +16,21 @@ import {URL} from "../api/baseURL";
 export function* createContestSaga({formData}) {
     try {
         const { contestReducers: { contestNow, contestFormData, priceOfContest } } = yield select();
+
+
+        if(_.isEmpty(formData)){
+            return toast.error("Check bank card", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }else{
+            const dataOfPayContests = {
+                ...formData,
+                contests: Object.keys(priceOfContest)
+            };
+            yield payContests(dataOfPayContests);
+        }
+
+
 
         const contestFormDataToSend = _.cloneDeep(contestFormData);
         const finalDataToSend = new FormData();
@@ -70,6 +87,7 @@ export function* createContestSaga({formData}) {
 
         yield put({type: ACTION.STAGE_CONTEST, contestNow: [CONTEST.SELECT], contestQueue:[]});
         yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: {}});
+        yield put({type: ACTION.WRITE_PRICE_OF_CONTEST, priceOfContest: {}});
 
         yield call(history.push, URL.HOME);
     } catch (e) {
@@ -77,9 +95,8 @@ export function* createContestSaga({formData}) {
     }
 }
 
+
 export function* nextContestStageSaga({formData}) {
-
-
     try {
         let {contestReducers: {contestNow, contestQueue }} = yield select();
 

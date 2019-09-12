@@ -3,7 +3,7 @@ import { put, select } from 'redux-saga/effects';
 import { getUserContests } from "../api/rest/userContoller";
 import { getContestById } from "../api/rest/dashboardController";
 
-import { isEqual } from 'lodash'
+import { isEqual, isEmpty } from 'lodash'
 
 export function* getUserContestsSaga() {
     try {
@@ -22,18 +22,18 @@ export function* getContestByIdSaga({id}) {
         let contestInStore;
         if(openContest && isEqual(id, openContest.id)){
             contestInStore = openContest
+        }else{
+            myContests.forEach( contest => {
+                if(isEqual(id, contest.id)){
+                    contestInStore = contest
+                }
+            });
         }
-        myContests.forEach( contest => {
-            if(contest.id){
-                contestInStore = contest
-            }
-        });
 
         if(contestInStore){
             yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: contestInStore});
         }else{
             const { data } = yield getContestById(id);
-
             yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: data});
         }
     } catch (e) {

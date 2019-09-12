@@ -22,6 +22,7 @@ router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/contest', contestRouter);
 router.use('/dashboard', dashboardRouter);
+router.use('/payment', paymentRouter);
 
 
 module.exports = router;

@@ -19,7 +19,7 @@ import {
 
 
 let BankForm = (props) => {
-    const {handleSubmit, priceOfContest , fields, number, name, expiry, cvc } = props;
+    const {handleSubmit, priceOfContest , fields, number, expiry, cvc } = props;
     const contestForms = tail(props.contestNow);
 
     const focused = (fields) => {
@@ -78,7 +78,7 @@ let BankForm = (props) => {
             <div className={style.paymentForm}>
                 <Cards
                     number={number || ''}
-                    name={name || ''}
+                    name={' '}
                     expiry={expiry || ''}
                     cvc={cvc || ''}
                     focused={focused(fields)}
@@ -91,12 +91,6 @@ let BankForm = (props) => {
                            placeholder="Card Number"
                            normalize={formatCreditCardNumber}
                     />
-                    <Field name="name"
-                           component="input"
-                           type="text"
-                           placeholder="Name"
-                    />
-
 
                     <div className={style.expiryAndCvc}>
                         <Field name="expiry"
@@ -132,14 +126,14 @@ const mapStateToProps = state => {
     const priceOfContest = state.contestReducers.priceOfContest;
     const contestNow = state.contestReducers.contestNow;
 
-    const {number, name, expiry, cvc} = selector(state, 'number','name','expiry','cvc');
+    const {number, expiry, cvc} = selector(state, 'number','name','expiry','cvc');
     return {
         fields,
 
         priceOfContest,
         contestNow,
 
-        number, name, expiry, cvc
+        number, expiry, cvc
     }
 };
 export default connect(mapStateToProps)(BankForm);

@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 
 import {isEqual} from 'lodash'
 
-import timeConversion from "../../../../utils/timeConversion";
+import timeConversion from "../../../../utils/moment/timeConversion";
 
 function Messages(props) {
     const { message, user } = props;

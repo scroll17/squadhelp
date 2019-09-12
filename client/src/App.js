@@ -50,12 +50,14 @@ class App extends Component{
 
                         <Route path={URL.CONTEST_TYPE} component={ContestPage} />
 
+
                         <PrivateRoute
                             requireRole={Object.values(ROLE)}
                             path={URL.DASHBOARD}
-                            component={DashboardPage}
+                            render={props => <DashboardPage {...props}/>}
                             redirectTo={URL.LOGIN}
                         />
+
 
                         <PrivateRoute
                             requireRole={[ROLE.ADMIN]}

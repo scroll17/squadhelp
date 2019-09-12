@@ -10,7 +10,7 @@ const SubmitButton = (props) => {
     const formNow = last(contestNow);
 
     return (
-        <button type="submit" onClick={() => dispatch(submit(formNow))}>
+        <button type="submit" onClick={() => dispatch(submit(formNow))} >
             {isEmpty(contestQueue) ? "Play now" : "next"}
         </button>
     )

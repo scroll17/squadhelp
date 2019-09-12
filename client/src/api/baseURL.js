@@ -4,12 +4,13 @@ const HOST= {
   MY_IP_107: '192.168.0.107'
 };
 
-export const baseURL = `http://${HOST.MY_IP_105}:3000`;
+export const baseURL = `http://${HOST.MY_IP_107}:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;
 export const contestURL = `${baseURL}/contest`;
 export const dashboardURL = `${baseURL}/dashboard`;
+export const paymentURL = `${baseURL}/payment`;
 
 
 export const URL = {
@@ -43,5 +44,6 @@ export const URL = {
 };
 
 export const SEARCH = {
-  TYPE: '?type='
+  TYPE: '?type=',
+  ID: '?id='
 };

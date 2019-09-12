@@ -17,7 +17,7 @@ import { getAllUser, banUserById } from '../api/rest/adminController';
 import {TOKEN} from "../constants";
 import {URL} from "../api/baseURL";
 
-import historyPushOrBack from '../utils/historyPushOrBack';
+import historyPushOrBack from '../utils/history/historyPushOrBack';
 
 
 //----- USER -----

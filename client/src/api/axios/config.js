@@ -2,7 +2,7 @@ import axios from 'axios';
 import ACTION from '../../actions/actionTypes/actionsTypes';
 
 import { toast } from 'react-toastify';
-import toastifyErrorMessage from '../../utils/toastifyErrorMessage'
+import toastifyErrorMessage from '../../utils/toastify/toastifyErrorMessage'
 
 import { refreshToken } from '../rest/userContoller'
 

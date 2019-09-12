@@ -20,6 +20,7 @@ function Avatar(props){
 
     return (
         <div
+            icon={'avatar'}
             className={style.avatar}
             style={{
                 backgroundImage: image(),

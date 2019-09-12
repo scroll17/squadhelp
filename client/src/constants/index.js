@@ -28,6 +28,9 @@ const HEX_COLOR = {
 
 const USER_AVATAR = `${baseURL}/images/user/avatar/`;
 
+const REACT_ROUTER_TYPE = {
+    LINK: 'Link'
+};
 
 export  {
     STORE,
@@ -44,4 +47,5 @@ export  {
     CHAT_FIELDS,
     STAGE_OF_CHAT,
     USER_AVATAR,
+    REACT_ROUTER_TYPE,
 }

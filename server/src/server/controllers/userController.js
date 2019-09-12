@@ -101,6 +101,9 @@ module.exports.getUserContests = async (req,res,next) => {
             where: {
                 userId: decoded.id
             },
+            attributes: {
+                exclude: ['updatedAt', 'createdAt']
+            },
             raw: true,
             order: [['id', 'DESC']]
         });

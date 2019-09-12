@@ -17,11 +17,6 @@
   {
     "title": " My Account ",
     "class": "fas fa-briefcase",
-    "to": "/myaccount"
-  },
-  {
-    "title": " My Contests ",
-    "class": "fas fa-chart-line",
-    "to": "/my-contests"
+    "to": "/my-account"
   }
 ]

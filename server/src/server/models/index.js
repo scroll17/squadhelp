@@ -12,6 +12,7 @@ const fs = require('fs'),
 const Op = Sequelize.Op;
 const operatorsAliases = {
   $eq: Op.eq,
+  $or: Op.or,
   $ne: Op.ne,
   $gte: Op.gte,
   $gt: Op.gt,

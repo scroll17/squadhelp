@@ -11,7 +11,11 @@ module.exports.getContestById = async (req, res, next) => {
     try {
         req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
 
-        const contest = await Contests.findByPk(id);
+        const contest = await Contests.findByPk(id, {
+            attributes: {
+                exclude: ['updatedAt', 'createdAt']
+            },
+        });
         if(contest){
             return res.send(contest);
         }else{

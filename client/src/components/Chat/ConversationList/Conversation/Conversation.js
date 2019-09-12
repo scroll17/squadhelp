@@ -3,7 +3,7 @@ import style from './Conversation.module.sass'
 
 import connect from "react-redux/es/connect/connect";
 
-import timeConversion from "../../../../utils/timeConversion";
+import timeConversion from "../../../../utils/moment/timeConversion";
 
 import {openConversation} from "../../../../actions/actionCreators/chatActionCreator";
 

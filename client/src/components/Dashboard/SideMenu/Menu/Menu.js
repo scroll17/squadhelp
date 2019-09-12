@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import style from './Menu.module.sass'
 
 import { URL } from "../../../../api/baseURL";
-import { isEqual } from 'lodash'
 
-import historyLocationPath from "../../../../utils/historyLocationPath";
+import historyLocationPath from "../../../../utils/history/historyLocationPath";
 
 function Menu(props) {
     const { sideMenuIsOpen, links} = props;
