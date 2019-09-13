@@ -10,7 +10,10 @@ import chatMessagesReducer from './chat/chatMessagesReducer';
 import chatConversationsReducer from './chat/chatConversationsReducer'
 
 import dashboardReducer from './dashboard/dashboardReducer';
-import dashboardContestsReducer from './dashboard/dashboardContestsReducer';
+
+import dashboardContestsReducer from './dashboard/contest/dashboardContestsReducer';
+
+import dashboardEntriesReducer from './dashboard/entries/dashboardEntriesReducer';
 
 
 import { reducer as formReducer } from 'redux-form';
@@ -30,6 +33,7 @@ const appReducer = combineReducers({
 
   dashboardReducer,
   dashboardContestsReducer,
+  dashboardEntriesReducer,
 });
 
 const rootReducer = (state, action) => appReducer(state, action);

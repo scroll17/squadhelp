@@ -11,7 +11,7 @@ const SubmitButton = (props) => {
 
     return (
         <button type="submit" onClick={() => dispatch(submit(formNow))} >
-            {isEmpty(contestQueue) ? "Play now" : "next"}
+            {isEmpty(contestQueue) ? "Pay now" : "next"}
         </button>
     )
 };

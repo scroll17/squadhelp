@@ -10,7 +10,6 @@ import { STAGE_OF_CHAT } from '../constants/chat'
 
 import { joinToRoom } from "../api/socket/chatController";
 
-//import sortByDate from "../utils/sortByDate";
 
 export function* closeOrOpenConnectionSaga({isOpen}) {
     try {
@@ -62,8 +61,6 @@ export function* closeConversationSaga({openConversation}) {
             }
         });
 
-        //sortByDate(newConversations);
-
         yield put({type: CHAT_ACTION.SHOW_CONVERSATIONS, conversations: newConversations});
         yield put({type: CHAT_ACTION.TO_NEXT_CHAT_STAGE, nextStage: STAGE_OF_CHAT.BEGIN});
         yield put({type: CHAT_ACTION.CLEAR_MESSAGES});
@@ -76,10 +73,8 @@ export function* addNewConversationSaga() {
     try {
         const {chatConversationsReducer: { conversations: oldConversations, openConversation }} = yield select();
 
-
         const newConversations = cloneDeep(oldConversations);
         newConversations.push(openConversation);
-
 
         yield put({type: CHAT_ACTION.ADD_CONVERSATION, conservations: newConversations});
     } catch (e) {

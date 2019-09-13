@@ -11,7 +11,7 @@ import MyAccount  from '../../components/Dashboard/MyAccount/MyAccount'
 import ContestInfo from "../../components/Dashboard/ContestInfo/ContestInfo";
 
 
-import {closeOrOpenSideMenu} from "../../actions/actionCreators/dashboardActionCreator";
+import {closeOrOpenSideMenu} from "../../actions/actionCreators/dashboardContestsActionCreator";
 import { URL } from "../../api/baseURL";
 
 import historyLocationPath from "../../utils/history/historyLocationPath";

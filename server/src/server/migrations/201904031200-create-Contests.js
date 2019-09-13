@@ -83,13 +83,13 @@ module.exports = {
                 },
             },
             style: {
-                type: Sequelize.STRING,
+                type:  Sequelize.ARRAY(Sequelize.STRING),
                 allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
             },
-            files: {
+            file: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },

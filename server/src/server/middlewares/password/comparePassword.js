@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const { NotFound } = require("../../errors/errors");
 
 module.exports = async (req, res, next) => {
     const { password, user } = req.body;
@@ -8,11 +7,11 @@ module.exports = async (req, res, next) => {
         const isValidPassword = await bcrypt.compare(password, user.password);
 
         if(isValidPassword){
+            delete req.body.user.password;
             return next();
         }else{
             return next({name: 'bcrypt_err'});
         }
-
     }catch (err) {
         next(err)
     }

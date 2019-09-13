@@ -78,13 +78,13 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         style: {
-            type: DataTypes.STRING,
+            type:  DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
             validate: {
                 notEmpty: true,
             },
         },
-        files: {
+        file: {
             type: DataTypes.STRING,
             allowNull: true,
         },

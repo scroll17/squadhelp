@@ -6,13 +6,13 @@ import {startConversation} from "../../../../api/socket/chatController";
 import Avatar from "../../../Avatart/Avatar";
 
 function User(props) {
-    const {id, displayName, role, avatar, clickToResetField} = props;
+    const {id, displayName, role, avatar, clickToResetField, userId} = props;
 
     return (
         <li className={style.user} key={id}
             onClick={() => {
                 clickToResetField();
-                return startConversation({id, displayName, avatar})
+                return startConversation({id, displayName, avatar, userId })
             }}
         >
             <Avatar

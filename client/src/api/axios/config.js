@@ -9,12 +9,21 @@ import { refreshToken } from '../rest/userContoller'
 import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../constants';
 
 const responseHandler = (response) => {
+    STORE.dispatch({type: ACTION.USERS_RESPONSE});
+
     switch (response.status) {
-        case SUCCESS_CODE.CREATED:
+        case SUCCESS_CODE.CREATED: {
             toast.success(response.data, {
                 position: toast.POSITION.TOP_RIGHT
             });
             break;
+        }
+        case SUCCESS_CODE.ACCEPTED: {
+            toast.success(response.data, {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            break;
+        }
         default:
             break;
     }

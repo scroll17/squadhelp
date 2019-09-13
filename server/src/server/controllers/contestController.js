@@ -14,10 +14,10 @@ const convertMapToObject = require('../utils/convertMapToObject');
 
 
 module.exports.createContest = async (req, res, next) => {
-    const { contests } = req.body;
     const { accessToken } = req;
     const uuid = uuidv1();
 
+    const contests = JSON.parse(req.body.formFields);
 
     contests.forEach( contest => {
        contest.contestId = uuid;
@@ -40,5 +40,26 @@ module.exports.getPriceToContests =  (req, res, next) => {
         res.send(price)
     }else{
         next( new error.NotFound())
+    }
+};
+
+module.exports.getContestById = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+
+        const contest = await Contests.findByPk(id, {
+            attributes: {
+                exclude: ['updatedAt', 'createdAt']
+            },
+        });
+        if(contest){
+            return res.send(contest);
+        }else{
+            return next(new error.NotFound())
+        }
+
+    } catch (err) {
+        next(err);
     }
 };

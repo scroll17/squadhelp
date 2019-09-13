@@ -7,7 +7,7 @@ import style from './Contest.module.sass'
 import { URL, SEARCH } from "../../../api/baseURL";
 import historyLocationSearch from "../../../utils/history/historyLocationSearch";
 
-import { getContestById } from "../../../actions/actionCreators/dashboardActionCreator";
+import { getContestById } from "../../../actions/actionCreators/dashboardContestsActionCreator";
 
 function Contest(props) {
     const { id, title } = props;
@@ -16,8 +16,9 @@ function Contest(props) {
 
     return (
         <div className={style.contest}>
-            <div className={style.contestInfo}
-            >
+
+            <div className={style.contestInfo}>
+
                 <Link
                     onClick={() => props.getContestById(id)}
                     to={historyLocationSearch(
@@ -31,12 +32,7 @@ function Contest(props) {
                 </Link>
 
                 <p className={style.contestType}>
-                    {contestType} /
-                    { type ?
-                        type.join(' & ')
-                        :
-                        props.style
-                    }
+                    {contestType} / { type ? type.join(' & ') : props.style }
                 </p>
 
                 <p className={style.typeOfVenture}>{whatVentureDoes}</p>
@@ -57,6 +53,7 @@ function Contest(props) {
                 </ul>
 
             </div>
+
             <div className={style.countOfEntries}>
                 <div className={style.container}>
                     <span className={style.entries}>
@@ -66,6 +63,7 @@ function Contest(props) {
                     <span>Entries</span>
                 </div>
             </div>
+
         </div>
     )
 }

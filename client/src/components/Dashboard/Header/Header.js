@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './Header.module.sass'
 
-import { closeOrOpenSideMenu } from "../../../actions/actionCreators/dashboardActionCreator";
+import { closeOrOpenSideMenu } from "../../../actions/actionCreators/dashboardContestsActionCreator";
 import Avatar from "../../Avatart/Avatar";
 
 const Header = props => {

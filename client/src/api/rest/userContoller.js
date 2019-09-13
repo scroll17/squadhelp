@@ -10,3 +10,4 @@ export const getUser = () =>  axios.get(`${userURL}${URL.AUTHORIZE}`);
 export const refreshToken = () =>  axios.post(`${userURL}${URL.REFRESH}`, {refreshToken: localStorage.getItem(TOKEN.REFRESH_TOKEN)});
 
 export const getUserContests = () => axios.get(`${userURL}${URL.USER_CONTESTS}`);
+export const getUserEntries = () => axios.get(`${userURL}${URL.USER_ENTRIES}`);

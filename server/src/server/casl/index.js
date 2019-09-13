@@ -18,18 +18,19 @@ module.exports.defineAbilitiesFor = (role, user) => {
         }
         case ROLE.BUYER:{
             can(ACTIONS.READ, SUBJECT.USER);
+            can(ACTIONS.READ, SUBJECT.CONTEST);
             cannot(ACTIONS.READ, SUBJECT.USER, { isBanned: true }).because('You lox, Zabanen !');
             break;
         }
         case ROLE.CREATIVE:{
             can(ACTIONS.READ, SUBJECT.USER);
+            can(ACTIONS.READ, SUBJECT.CONTEST);
             cannot(ACTIONS.READ, SUBJECT.USER,  { isBanned: true }).because('You lox, Zabanen !');
             break;
         }
         case null:
         default:
             can(ACTIONS.CREATE, SUBJECT.USER);
-            cannot(ACTIONS.READ, SUBJECT.CONTEST);
     }
 
 

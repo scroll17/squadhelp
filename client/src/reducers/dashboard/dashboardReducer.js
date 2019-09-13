@@ -1,8 +1,6 @@
 import DASHBOARD_ACTION from '../../actions/actionTypes/dashboardActionTypes';
-import { STAGE_OF_DASHBOARD } from "../../constants/dashboard";
 
 const initialState = {
-    stageNow: STAGE_OF_DASHBOARD.DASHBOARD,
     sideMenuIsOpen: false,
     error: null,
 };

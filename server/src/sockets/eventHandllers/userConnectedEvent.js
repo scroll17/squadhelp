@@ -56,8 +56,6 @@ module.exports = (io, socket) => socket.on( ON.USER_CONNECTED, async user => {
         socket.join(foundConversation[i]._id);
     }
 
-    console.log('foundConversation', foundConversation);
-
     socket.emit( EMIT.SHOW_CONVERSATION, foundConversation);
 });
 

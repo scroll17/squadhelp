@@ -15,6 +15,8 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
 
     const conversationId = userData.get('roomId');
 
+    console.log(' -- conversationId --', conversationId);
+
     const message = await Message.create({
         time,
         content,
@@ -30,6 +32,7 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
 
 
     if(messagePushToConversation.ok >= 1){
+        console.log('--------------- NEW_MESSAGE -------------- ')
         socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
     }else{
         console.log('error ---- message not send')

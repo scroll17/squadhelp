@@ -39,7 +39,12 @@ import {
 import {
     getUserContestsSaga,
     getContestByIdSaga
-} from './dashboardSaga'
+} from './dashboardContestSaga'
+
+import {
+    getUserEntriesSaga,
+    createEntrySaga
+} from './dashboardEntriesSaga'
 
 function* rootSaga() {
     yield takeLatest(ACTION.LOGIN_USER, loginUserSaga);
@@ -75,6 +80,10 @@ function* rootSaga() {
 
     yield takeLatest(DASHBOARD_ACTION.GET_USER_CONTESTS, getUserContestsSaga);
     yield takeLatest(DASHBOARD_ACTION.GET_CONTEST_BY_ID, getContestByIdSaga);
+
+    yield takeLatest(DASHBOARD_ACTION.CREATE_ENTRY, createEntrySaga);
+    yield takeLatest(DASHBOARD_ACTION.GET_USER_ENTRIES, getUserEntriesSaga);
+    //yield takeLatest(DASHBOARD_ACTION.GET_ENTRIES_BY_ID, getContestByIdSaga);
 }
 
 export default rootSaga;

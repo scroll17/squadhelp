@@ -5,7 +5,7 @@ module.exports = {
         return queryInterface.bulkInsert('Contests', [
             {
                 contestId: '0d915310-ca6b-11e9-a468-93978114f0f1',
-                userId: 1,
+                userId: 3,
                 contestType: 'name',
                 title: "Test contest name",
                 name: "Test contest name",
@@ -14,13 +14,13 @@ module.exports = {
                 typeOfVenture: "test type of industry",
                 whatVentureDoes: "test target customers",
                 targetCustomers: "test description",
-                style: 'normal style',
+                style: ['Professional'],
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 contestId: '0d915310-ca6b-11e9-a468-93978114f0f1',
-                userId: 1,
+                userId: 3,
                 contestType: 'logo',
                 title: "Test contest name",
                 name: "Test contest name",
@@ -29,7 +29,7 @@ module.exports = {
                 typeOfVenture: "test type of industry",
                 whatVentureDoes: "test target customers",
                 targetCustomers: "test description",
-                style: 'normal style',
+                style: ['normal style'],
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },

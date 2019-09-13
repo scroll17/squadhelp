@@ -25,6 +25,7 @@ export function* createContestSaga({formData}) {
         }else{
             const dataOfPayContests = {
                 ...formData,
+                number: formData.number.replace(/\s+/g, ''),
                 contests: Object.keys(priceOfContest)
             };
             yield payContests(dataOfPayContests);
@@ -76,9 +77,8 @@ export function* createContestSaga({formData}) {
         });
         finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
-        const { data } = yield createContest(finalDataToSend);
-        console.log(data);
-        yield put({type: ACTION.USERS_RESPONSE});
+        yield createContest(finalDataToSend);
+
 
         for (let formIndex = 1; formIndex <= _.size(contestNow); formIndex++) {
             yield put(reset(contestNow[formIndex]))

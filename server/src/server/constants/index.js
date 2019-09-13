@@ -12,6 +12,7 @@ const { SOCKET_EVENTS, USER_SOCKET_DATA } = require('./socket');
 const { ROLES, ROLE } = require('./role');
 const { CONTEST_PRICE, CONTEST_TYPE} = require('./contest');
 const { ABILITY } = require("./ability");
+const { ENTRIES_STATUS } = require("./entries");
 
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 8;
@@ -25,6 +26,7 @@ const SQUAD_HELP_BANK_CARD = {
 const ERROR_MESSAGE = {
     YOUR_BANNED: 'Your banned !'
 };
+
 
 module.exports = {
     PORT,
@@ -50,4 +52,6 @@ module.exports = {
 
     CONTEST_PRICE,
     CONTEST_TYPE,
+
+    ENTRIES_STATUS,
 };

@@ -1,7 +1,8 @@
 export const FORM = {
     SIGN_UP: 'signUp',
     LOGIN: 'login',
-    CHAT: 'chat'
+    CHAT: 'chat',
+    ENTRIES: 'entries',
 };
 
 export const TYPE_FIELD = {

@@ -4,7 +4,7 @@ const { User, RefreshToken, Contests } = require('../models');
 const {
     TOKEN,
     HTTP_CODE: { SUCCESS },
-    ABILITY: { ACTIONS }
+    ABILITY: { ACTIONS, SUBJECT }
 } = require("../constants");
 
 const { verifyToken } = require('../middlewares/token/checkJwtTokens');
@@ -14,7 +14,7 @@ const { isEmpty } = require('lodash');
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
     try{
-        /*req.ability.js.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);               // CASL*/
+        req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);
 
         const [user, created] = await User.findOrCreate({
             where: {email: body.email},
@@ -42,8 +42,10 @@ module.exports.createUser = async (req, res, next) => {
 
 module.exports.loginUser = async (req,res,next) => {
     const { user, tokenPair } = req.body;
-    try{
 
+        console.log('----- 3 -----')
+
+    try{
         await RefreshToken.create({
             userId: user.id,
             tokenString: tokenPair.refreshToken

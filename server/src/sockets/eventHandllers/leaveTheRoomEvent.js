@@ -4,6 +4,5 @@ module.exports = (socket) => socket.on(ON.LEAVE_THE_ROOM, () => {
     if(userData.has('newConversation')){
         userData.delete('newConversation');
     }
-
     userData.delete('roomId')
 });

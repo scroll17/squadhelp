@@ -1,43 +1,39 @@
 const express = require('express');
 
-const path = require('path');
 const multer = require('multer');
 
 const {
- createContest,
- getPriceToContests,
- paymentOfContests,
+    createContest,
+    getPriceToContests,
+    paymentOfContests,
+    getContestById
 } = require('../controllers/contestController');
 
 
-const parseContestFormData = require('../middlewares/contest/parseContestFormData');
 const compareThePriceOfContests = require('../middlewares/contest/compareThePriceOfContests');
+const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
 const { URL: { API } } = require('../constants');
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../tmp/taskFiles'))
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    }
+const upload = multer({
+    storage: createDiskStorageConfig(__dirname, '../../../public/tmp/contestFiles')
 });
-const upload = multer({storage: storage});
-
 
 const router = express.Router();
 
 
-router.post(API.CONTEST,
+router.post(API.CREATE,
     upload.array('files', 3),
-    parseContestFormData,
     compareThePriceOfContests,
     createContest
 );
 
 router.get(API.CONTEST_PRICE,
     getPriceToContests,
+);
+
+router.get(`${API.CONTESTS}/:id`,
+    getContestById,
 );
 
 module.exports = router;

@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import style from './Profile.module.sass'
 
 
-import {getContestById} from "../../../actions/actionCreators/dashboardActionCreator";
+import {getContestById} from "../../../actions/actionCreators/dashboardContestsActionCreator";
 
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
 import Avatar from "../../Avatart/Avatar";

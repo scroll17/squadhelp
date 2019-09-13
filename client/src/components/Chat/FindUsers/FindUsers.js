@@ -10,7 +10,7 @@ import { Field } from 'redux-form';
 import { findUsers } from "../../../api/socket/chatController";
 
 function FindUsers(props){
-    const { resetField, fieldName, foundUsers } = props;
+    const { resetField, fieldName, foundUsers, user } = props;
 
     const findParticipants = (e) => {
         if(e.target.value){
@@ -19,10 +19,11 @@ function FindUsers(props){
     };
 
     const showFoundUsers = (foundUsers) => {
-        return foundUsers.map( user => (
+        return foundUsers.map( foundUser => (
             <User
                 {...user}
-                key={user.id}
+                key={foundUser.id}
+                userId={user.id}
                 clickToResetField={() => resetField(fieldName)}
             />
         ))
@@ -50,6 +51,7 @@ function FindUsers(props){
 
 const mapStateToProps = (state) => ({
     foundUsers: state.chatFindReducer.foundUsers,
+    user: state.userReducers.user,
 });
 export default connect(mapStateToProps)(FindUsers);
 

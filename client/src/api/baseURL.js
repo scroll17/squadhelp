@@ -9,7 +9,7 @@ export const baseURL = `http://${HOST.MY_IP_107}:3000`;
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;
 export const contestURL = `${baseURL}/contest`;
-export const dashboardURL = `${baseURL}/dashboard`;
+export const entriesURL = `${baseURL}/entries`;
 export const paymentURL = `${baseURL}/payment`;
 
 
@@ -23,8 +23,10 @@ export const URL = {
   SIGN_UP: "/signup",
   REFRESH: "/refresh",
   USER_CONTESTS: '/contests',
+  USER_ENTRIES: '/entries',
 
   // API CONTEST
+  CREATE: '/create',
   CONTEST: '/contest',
   CONTEST_PRICE: '/contest/price',
 
@@ -34,6 +36,9 @@ export const URL = {
   MY_CONTESTS: "/my-contests",
   CONTEST_TYPE: "/contest-type",
   NAME_IDEAS: "/Name-Ideas",
+
+  // ENTRY
+  ENTRY: '/entry',
 
   // USER
   HOME: '/',

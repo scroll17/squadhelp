@@ -13,7 +13,8 @@ const URL = {
         USER_CONTESTS: '/contests',
         CONTEST_PRICE: '/contest/price',
 
-        PAYMENT: '/payment'
+        PAYMENT: '/payment',
+        CREATE: '/create'
     },
 };
 module.exports = {
