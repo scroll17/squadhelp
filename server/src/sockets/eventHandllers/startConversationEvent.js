@@ -1,6 +1,6 @@
 const { Conversation } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA  } = require('../../server/constants');
 
 const { isEmpty, first } = require('lodash');
 
@@ -8,7 +8,9 @@ const findMessage = require('../middlewares/findMessage');
 
 module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
 
-    const {id: participantId, displayName: title, avatar: userAvatar, userId} = data;
+    const userData = USER_SOCKET_DATA.get(socket.id);
+
+    const {id: participantId, displayName: title, avatar: userAvatar} = data;
 
 
     const foundConversation = await Conversation.aggregate([
@@ -25,7 +27,7 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
 
     if(isEmpty(foundConversation)){
         const conversation = new Conversation({
-            participants: [participantId, userId],
+            participants: [participantId, userData.get('id')],
         });
 
 

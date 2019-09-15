@@ -23,7 +23,7 @@ import { addNewMessage } from "../../actions/actionCreators/chatActionCreator";
 let ChatPage = (props) => {
     let typingTimer;
 
-    const { handleSubmit, submitting, reset, resetSection} = props;
+    const { handleSubmit, submitting, resetSection} = props;
     const { addNewMessage, stageNow, user } = props;
 
 
@@ -38,7 +38,7 @@ let ChatPage = (props) => {
             sendMessage(message);
             addNewMessage(message);
 
-            return reset()
+            return resetSection(CHAT_FIELDS.MESSAGE)
         }
     };
 

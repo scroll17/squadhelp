@@ -1,8 +1,17 @@
-const { SOCKET_EVENTS: { ON }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
+const {SOCKET_EVENTS: {ON}, USER_SOCKET_DATA} = require('../../server/constants');
 
 module.exports = (socket) => socket.on(ON.LEAVE_THE_ROOM, () => {
-    if(userData.has('newConversation')){
+    const userData = USER_SOCKET_DATA.get(socket.id);
+
+    if (userData.has('newConversation')) {
         userData.delete('newConversation');
     }
     userData.delete('roomId')
+
+    // if(userData){
+    //     if(userData.has('newConversation')){
+    //         userData.delete('newConversation');
+    //     }
+    //     userData.delete('roomId')
+    // }
 });

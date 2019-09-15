@@ -31,7 +31,7 @@ function ContestForms(props){
         const formDataToSave = omit(contestFormData, CONTEST.BANKS);
 
         Object.keys(formDataToSave).forEach( stage => {
-            formDataToSave[stage] = omit(formDataToSave[stage], 'files');
+            formDataToSave[stage] = omit(formDataToSave[stage], 'file');
         });
         sessionStorage.setItem('contestFormData', JSON.stringify(formDataToSave));
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserNavigation from '../../components/UserNavigation/UserNavigation'
 import BannerHome from '../../components/MainHome/BannerHome/BannerHome'
-//import HowItWorksHome from '../../components/MainHome/HowItWorksHome/HowItWorksHome'
+import HowItWorksHome from '../../components/MainHome/HowItWorksHome/HowItWorksHome'
 
 import MarketplaceDomainsHome from '../../components/MainHome/MarketplaceDomainsHome/MarketplaceDomainsHome'
 import GrowBusinessHome from '../../components/MainHome/GrowBusinessHome/GrowBusinessHome'
@@ -17,7 +17,7 @@ class MainHomePage extends Component{
 
                 <div>
                     <BannerHome />
-                    {/*<HowItWorksHome />*/}
+                    <HowItWorksHome />
                     <MarketplaceDomainsHome />
                     <GrowBusinessHome />
                     <HowDoNameContestsWork />

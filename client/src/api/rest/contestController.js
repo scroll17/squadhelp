@@ -6,4 +6,5 @@ export const getPriceOfContests = () => axios.get(`${contestURL}${URL.CONTEST_PR
 
 export const payContests = (data) => axios.post(`${paymentURL}${URL.CONTEST}`, {paymentData: data});
 
-export const getContestById = (id) =>  axios.get(`${contestURL}${URL.CONTESTS}/${id}`);
+export const getContestById = (id) => axios.get(`${contestURL}${URL.CONTESTS}/${id}`);
+

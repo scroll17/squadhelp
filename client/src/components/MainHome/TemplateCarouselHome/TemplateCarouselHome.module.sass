@@ -9,6 +9,8 @@
   display: flex
   margin-bottom: 20px
 
+  z-index: 0
+
   .carouselIconPrev
     @extend %carouselIcon
     margin-right: 12vw
@@ -41,34 +43,23 @@
       color: white
       margin-left: 7vw
 
-//@media only screen and (max-width: 900px)
-//  .container
-//    width: min-content
-//    .carousel
-//      .item
-//        width: 50vw
-//        height: 50vw
-//      div:last-child
-//        display: none
-//    .carouselIconPrev
-//      color: #333333
-//      margin-right: 16vw
-//    .carouselIconNext
-//      color: #333333
-//      margin-left: 16vw
-//
-//@media only screen and (max-width: 725px)
-//  .container
-//    width: min-content
-//    .carousel
-//      .item
-//        width: 50vw
-//        height: 50vw
-//      div:last-child
-//        display: none
-//    .carouselIconPrev
-//      color: #333333
-//      margin-right: 16vw
-//    .carouselIconNext
-//      color: #333333
-//      margin-left: 16vw
+@media only screen and (max-width: 900px)
+  .container
+    width: min-content
+    .carousel
+      .item
+        width: 50vw
+        height: 50vw
+    .carouselIconPrev
+      color: #333333
+      margin-right: 20vw
+    .carouselIconNext
+      color: #333333
+      margin-left: 20vw
+
+@media only screen and (max-width: 725px)
+  .container
+    .carousel
+      .item
+        width: 80vw
+        height: 80vw

@@ -7,7 +7,7 @@ const {
     CONTEST_PRICE,
 } = require('../constants');
 
-const { Contests } = require('../models');
+const { Contests, User } = require('../models');
 
 
 const convertMapToObject = require('../utils/convertMapToObject');
@@ -15,9 +15,9 @@ const convertMapToObject = require('../utils/convertMapToObject');
 
 module.exports.createContest = async (req, res, next) => {
     const { accessToken } = req;
+    const { contests } = req.body;
     const uuid = uuidv1();
 
-    const contests = JSON.parse(req.body.formFields);
 
     contests.forEach( contest => {
        contest.contestId = uuid;
@@ -29,6 +29,7 @@ module.exports.createContest = async (req, res, next) => {
 
         res.status(SUCCESS.CREATED.CODE).send("Contest created!")
     }catch (err) {
+        console.log(err)
         next(new error.BadRequest(err.name))
     }
 };
@@ -52,6 +53,10 @@ module.exports.getContestById = async (req, res, next) => {
             attributes: {
                 exclude: ['updatedAt', 'createdAt']
             },
+            include: [{
+                model: User,
+                attributes: ['displayName', 'avatar'],
+            }]
         });
         if(contest){
             return res.send(contest);

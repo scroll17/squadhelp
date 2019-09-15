@@ -18,6 +18,7 @@ const {
     loginUser,
     logoutUser,
     getUserContests,
+    getUserEntries
 } = require('../controllers/userController');
 
 const { URL: { API } } = require('../constants');
@@ -57,6 +58,10 @@ router.get(API.AUTHORIZE,
 
 router.get(API.USER_CONTESTS,
     getUserContests
+);
+
+router.get(API.USER_ENTRIES,
+    getUserEntries
 );
 
 module.exports = router;

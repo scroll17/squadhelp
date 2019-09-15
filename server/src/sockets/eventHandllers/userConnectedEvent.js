@@ -1,14 +1,15 @@
 const { Conversation } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA  } = require('../../server/constants');
 
 const findParticipant = require('../middlewares/findParticipant');
 
 module.exports = (io, socket) => socket.on( ON.USER_CONNECTED, async user => {
 
-    userData
-        .set('id', user.id)
-        .set('role', user.role);
+    USER_SOCKET_DATA.set(socket.id, new Map([
+        ['id', user.id],
+        ['role', user.role]
+    ]));
 
     const foundConversation = await Conversation.aggregate([
         {$match: {

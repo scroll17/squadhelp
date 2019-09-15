@@ -25,7 +25,6 @@ const appReducer = combineReducers({
 
   contestReducers,
 
-
   chatReducers,
   chatFindReducer,
   chatMessagesReducer,

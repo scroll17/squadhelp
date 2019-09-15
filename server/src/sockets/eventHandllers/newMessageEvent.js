@@ -1,8 +1,10 @@
 const { Conversation, Message } = require('../../server/mongoModels/index');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData  } = require('../../server/constants');
+const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA  } = require('../../server/constants');
 
 module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content, time}) => {
+
+    const userData = USER_SOCKET_DATA.get(socket.id);
 
     if(userData.has('newConversation')){
         const conversation = userData.get('newConversation');
@@ -14,8 +16,6 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
     }
 
     const conversationId = userData.get('roomId');
-
-    console.log(' -- conversationId --', conversationId);
 
     const message = await Message.create({
         time,
@@ -32,7 +32,6 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
 
 
     if(messagePushToConversation.ok >= 1){
-        console.log('--------------- NEW_MESSAGE -------------- ')
         socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
     }else{
         console.log('error ---- message not send')

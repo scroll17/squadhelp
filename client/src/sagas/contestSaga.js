@@ -32,7 +32,6 @@ export function* createContestSaga({formData}) {
         }
 
 
-
         const contestFormDataToSend = _.cloneDeep(contestFormData);
         const finalDataToSend = new FormData();
 
@@ -53,7 +52,7 @@ export function* createContestSaga({formData}) {
                 if(currentFormData.hasOwnProperty(field)){
                     const currentDataField = currentFormData[field];
 
-                    if(field === 'files'){
+                    if(field === 'file'){
                         const originalFileName = `${performance.now()}_${currentDataField.name}`;
 
                         convertedFormData[field] = originalFileName;

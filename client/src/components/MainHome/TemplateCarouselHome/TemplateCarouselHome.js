@@ -2,6 +2,7 @@ import React, {useState, useEffect}  from 'react';
 import style from './TemplateCarouselHome.module.sass';
 
 import { Carousel } from 'react-bootstrap';
+import { isEqual, cloneDeep, size, last } from 'lodash'
 
 function TemplateCarouselHome(props){
 
@@ -17,9 +18,11 @@ function TemplateCarouselHome(props){
         setWidth(newWidth);
     };
     const resizeWidth = () =>{
-        if(window.innerWidth <= 725){
+        const width = document.body.clientWidth;
+
+        if(width <= 725){
             return 1
-        }else if(window.innerWidth <= 900){
+        }else if(width <= 900){
             return 2
         }
         return 3
@@ -30,40 +33,58 @@ function TemplateCarouselHome(props){
     const nextIcon = <span className={style.carouselIconNext}><i className="fas fa-chevron-right"/></span>;
 
 
-    let arrayOfImages = [].concat(props.images);
+    let arrayOfImages = cloneDeep(props.images);
     const carouselItem  = (items) => {
         const image = (img) => ({backgroundImage: `url(${img})`});
-        const lastElement = (element) => [element].length-1;
 
-        //let newArrayOfImages = [].concat(props.images);
-/*        if(width === 2){
-            let newArrayOfImages = [].concat(props.images);
-            items.forEach( item => {
-                if(item.src.length > width || lastElement(items).src.length > width){
-                    items.push({
-                        src: item.src.splice(-1, 1)
+        let newItems;
+        if(isEqual(width, 2)){
+            const cloneItems = cloneDeep(items);
+
+            cloneItems.forEach( item => {
+                const lastItemSrc = last(cloneItems).src;
+                if(size(lastItemSrc) < 2){
+                    lastItemSrc.push(item.src.pop())
+                }else{
+                    cloneItems.push({
+                        src: [item.src.pop()]
                     })
-
                 }
             });
-            console.log(items);
 
-            return newArrayOfImages.map( item => (
-                <Carousel.Item>
-                    <div className={style.carousel}>
+            newItems = cloneItems
+
+        }else if(isEqual(width, 1)){
+            const cloneItems = cloneDeep(items);
+
+            cloneItems.forEach( item => {
+                if(size(item.src) > 1){
+                    cloneItems.push(
                         {
-                            item.src.map( img => (<div className={style.item} style={image(img)} />))
+                            src: [item.src.pop()]
+                        },
+                        {
+                            src: [item.src.pop()]
                         }
-                    </div>
-                </Carousel.Item>
-            ))
-        }*/
+                    );
+                }
+            });
 
-        return items.map( item => (
-            <Carousel.Item>
+            newItems = cloneItems
+        }
+
+
+        return (newItems || items).map( (item, id) => (
+            <Carousel.Item key={id}>
                 <div className={style.carousel}>
                     {
-                        item.src.map( img => (<div className={style.item} style={image(img)} />))
+                        item.src.map( img => (
+                                <div
+                                    className={style.item}
+                                    style={image(img)}
+                                    key={img}
+                                />
+                            ))
                     }
                 </div>
             </Carousel.Item>
@@ -71,50 +92,23 @@ function TemplateCarouselHome(props){
     };
 
     return (
-        <div className={style.container}>
-            <Carousel
-                indicators={false}
-                pauseOnHover={true}
-                nextIcon={nextIcon}
-                prevIcon={prevIcon}
-            >
-                {carouselItem(arrayOfImages)}
-            </Carousel>
-        </div>
+        <>
+            { isEqual(width, 0) && setWidth(resizeWidth())}
+
+            <div className={style.container}>
+                <Carousel
+                    indicators={false}
+                    pauseOnHover={true}
+                    nextIcon={nextIcon}
+                    prevIcon={prevIcon}
+                >
+                    {carouselItem(arrayOfImages)}
+                </Carousel>
+            </div>
+        </>
     );
 
 
 }
 
 export default TemplateCarouselHome;
-
-/*if(width < 3){
-    const a = [];
-    newArrayOfImages.forEach( images => {
-        if(a.length === 0){
-            a.push({src: []})
-        }
-        if(a[a.length - 1].src.length === 2){
-            a.push({src: []})
-        }
-        const lastImage = images.src.pop();
-        a[a.length - 1].src.push(lastImage)
-    });
-
-    const newA = a.concat(newArrayOfImages);
-    console.log(newA);*/
-
-
-/*
-
-    if(width === 1){
-        arrayOfImages.push({});
-        arrayOfImages = arrayOfImages.map( images => {
-            console.log(images);
-            return images.src.map( (image, index) => {
-                console.log('index', arrayOfImages);
-                if(index )
-                    return arrayOfImages[index + 1].push(images.src.pop());
-            });
-        });
-    }*/

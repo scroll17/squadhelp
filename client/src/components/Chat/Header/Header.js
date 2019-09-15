@@ -7,14 +7,19 @@ import Avatar from "../../Avatart/Avatar";
 
 import { isEqual } from 'lodash'
 
-import { startFindUsers, closeConversation, closeStageFindUsers } from "../../../actions/actionCreators/chatActionCreator";
+import {
+    startFindUsers,
+    closeConversation,
+    closeStageFindUsers,
+    closeOrOpenConnection
+} from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
 import { STAGE_OF_CHAT } from "../../../constants/chat";
 
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;
-    const { startFindUsers, closeConversation, closeStageFindUsers } = props;
+    const { startFindUsers, closeConversation, closeStageFindUsers, closeOrOpenConnection } = props;
 
     const toFindUsers = () => {
         if(isEqual(stageNow, STAGE_OF_CHAT.FIND_USERS)){
@@ -55,7 +60,7 @@ function Header(props){
                             </div>
                             <div className={style.tools}>
                                 <i className="fas fa-search" onClick={toFindUsers}/>
-                                <i className="fas fa-sign-out-alt" />
+                                <i className="fas fa-sign-out-alt" onClick={() => closeOrOpenConnection(true)}/>
                             </div>
                         </>
                 }
@@ -68,9 +73,10 @@ const mapStateToProps = (state) => ({
     openConversation: state.chatConversationsReducer.openConversation,
 });
 const mapDispatchToProps = dispatch => ({
-    closeConversation: (openConversation) => dispatch(closeConversation(openConversation)),
     startFindUsers: () => dispatch(startFindUsers()),
     closeStageFindUsers: (nextStage) => dispatch(closeStageFindUsers(nextStage)),
+    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    closeConversation: (openConversation) => dispatch(closeConversation(openConversation)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

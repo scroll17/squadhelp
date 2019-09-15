@@ -7,7 +7,7 @@ module.exports = {
         firstName: 'Admin',
         lastName: '1',
         displayName: "First",
-        email: 'admin@gmail.com',
+        email: 'Admin@gmail.com',
         password: bcrypt.hashSync('admin', bcrypt.genSaltSync(8)),
         role: "admin",
         avatar: '1.jpeg',

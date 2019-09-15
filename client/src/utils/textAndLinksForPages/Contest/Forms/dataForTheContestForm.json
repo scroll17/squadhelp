@@ -74,11 +74,12 @@
       "type":"select",
       "dataType":"visualStyle",
       "isRequired": true,
+      "isMulti": true,
       "belongsToForm" : ["logo"]
     },
 
     {
-      "name": "files",
+      "name": "file",
       "label":"Do you have any documents that might be helpful (Optional)?",
       "type":"file",
       "isRequired": false,

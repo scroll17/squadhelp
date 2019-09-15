@@ -6,8 +6,10 @@ const newMessageEvent = require('./eventHandllers/newMessageEvent');
 const joinToRoomEvent = require('./eventHandllers/joinToRoomEvent');
 const leaveTheRoomEvent = require('./eventHandllers/leaveTheRoomEvent');
 
+const userStartsTyping = require('./eventHandllers/userTyping/userStartsTyping');
+const userStopTyping = require('./eventHandllers/userTyping/userStopTyping');
 
-const { SOCKET_EVENTS: { ON, EMIT }, USER_SOCKET_DATA: userData } = require('../server/constants');
+const { SOCKET_EVENTS: { ON }, USER_SOCKET_DATA } = require('../server/constants');
 
 module.exports = async io => {
 
@@ -24,19 +26,14 @@ module.exports = async io => {
             newMessageEvent(socket);
 
             joinToRoomEvent(io, socket);
-
             leaveTheRoomEvent(socket);
 
+            userStartsTyping(socket);
+            userStopTyping(socket);
 
-            socket.on(ON.USER_STARTS_TYPING, (id) => {
-                socket.to(userData.get('roomId')).emit(EMIT.USER_STARTS_TYPING, id)
-            });
-
-            socket.on(ON.USER_STOP_TYPING, () => {
-                socket.to(userData.get('roomId')).emit(EMIT.USER_STOP_TYPING)
-            });
 
             socket.on(ON.DISCONNECT, reason => {
+                USER_SOCKET_DATA.delete(socket.id);
                 console.info('user disconnect:', reason)
             })
         });

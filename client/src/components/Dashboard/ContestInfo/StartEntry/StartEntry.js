@@ -14,15 +14,18 @@ import { isEqual } from 'lodash'
 
 
 let ContestInfo = (props) => {
-    const { typeOfContest, createEntry } = props;
+    const [ showFields, setShowFields ] = useState(false);
+
+    const { typeOfContest, contestId, createEntry, user } = props;
 
     const { handleSubmit, submitting, pristine } = props;
 
-    const [ showFields, setShowFields ] = useState(false);
-
-
     const submit = (values) =>{
-        return createEntry(values)
+        return createEntry({
+            ...values,
+            contestId,
+            userId: user.id
+        })
     };
 
     return (
@@ -68,7 +71,9 @@ ContestInfo = reduxForm ({
 })(ContestInfo);
 
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    user: state.userReducers.user
+});
 const mapDispatchToProps = dispatch => ({
     createEntry: (values) => dispatch(createEntry(values)),
 });

@@ -11,7 +11,9 @@ const URL = {
         CONTEST: '/contest',
         CONTESTS: '/contests',
         USER_CONTESTS: '/contests',
-        CONTEST_PRICE: '/contest/price',
+        CONTEST_PRICE: '/price',
+
+        USER_ENTRIES: '/entries',
 
         PAYMENT: '/payment',
         CREATE: '/create'

@@ -1,34 +1,17 @@
-const error = require("../errors/errors");
 const { Entries } = require('../models');
 
-
-const {  } = require('../constants');
+const { HTTP_CODE: { SUCCESS }, ABILITY: {ACTIONS, SUBJECT} } = require('../constants');
 
 module.exports.createEntry = async (req, res, next) => {
-    const textOfEntry = JSON.parse(req.body.text);
+    const contentOfEntry = JSON.parse(req.body.contentOfEntry);
 
     try{
-        req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);
+        req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.ENTRIES);
 
-        const [user, created] = await User.findOrCreate({
-            where: {email: body.email},
-            defaults: {
-                firstName: body.firstName,
-                lastName: body.lastName,
-                displayName: body.displayName,
-                email: body.email,
-                role: body.role,
-                avatar: body.avatar,
-                password: body.hashPassword
-            },
-        });
+        await Entries.create(contentOfEntry);
 
-        if (!created){
-            return next(new error.BadRequest());
-        }
+        res.status(SUCCESS.CREATED.CODE).send("Entry created!")
 
-        req.body.user = user;
-        next()
     }catch (err){
         next(err)
     }

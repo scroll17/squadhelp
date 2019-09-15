@@ -2,6 +2,7 @@ const ABILITY = {
     SUBJECT: {
         USER: "User",
         CONTEST: "Contest",
+        ENTRIES: 'Entries',
         ALL: "all",
     },
     ACTIONS:{

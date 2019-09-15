@@ -1,5 +1,5 @@
 const error = require("../errors/errors");
-const { User, RefreshToken, Contests } = require('../models');
+const { User, RefreshToken, Contests, Entries } = require('../models');
 
 const {
     TOKEN,
@@ -95,6 +95,30 @@ module.exports.giveAccessUser = async (req,res,next) => {
     }
 };
 
+
+module.exports.getUserEntries = async (req,res,next) => {
+    try{
+        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const entries = await Entries.findAll({
+            where: {
+                userId: decoded.id
+            },
+            attributes: {
+                exclude: ['updatedAt', 'createdAt']
+            },
+            include: [{
+                model: Contests,
+                as: 'contestInfo',
+                attributes: ['title', 'contestType'],
+            }],
+            order: [['id', 'DESC']]
+        });
+
+        return res.send(entries);
+    }catch (err) {
+        next(err)
+    }
+};
 
 module.exports.getUserContests = async (req,res,next) => {
     try{

@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		var result = " Brick" < "alphabet"; 								//true
+		var result = "Brick ".toLowerCase() < " alphabet ".toLowerCase ();  // false 
+		var result = "Brick ".toUpCase() < " alphabet ".toUpCase ();  		// false 
+
+
+		function doAdd( numl, num2 ) {
+			arguments[l] = 10;
+				alert(arguments[0] + num2 ) ;
+		} 
+		function doAdd(numl, num2 ) {
+			if(arguments.length == 1) {
+				alert (numl + 10) ;
+			}
+			else if ( arguments . length == 2) {
+				alert(arguments[0] + num2);
+			} 
+		}
+		/*alert ( persoп iпstanceof Object );// относится ли persoп к типу Obj ect ?
+		alert (colors iпstaпceof Array) ;    // относится ли colors к типу Array ?
+		alert ( patterп iпstaпceof RegExp ); // относится ли patterп к типу RegExp ? */
+
+		for (var propName in window) { 		 //Здесь инструкция for -in используется для вblвода из объектной модели браузерана экран всех свойств объекта windows. 
+			document.write (propName); 		 //При каждой итерации цикла переменной propName присваивается имя очередного свойства
+		}
+
+		var color = "bluе";
+		function getColor ( ){
+			var color = " red " ;
+				return color;
+		}
+		alert ( getColor ( )); 				// " red"
+			document.write(window.color);
+		var objl = new Object();
+		var obj2 = objl;
+		objl. name = " Nicholas";
+		alert (obj2.name); 
+		alert(typeof(color));
+
+		alert ( person["name"]);			// "Nicholas"
+		alert ( person.name ) ;				// "Nicholas"
+		var propertyName = " name";
+		alert ( person[propertyName]);  	// "Nicholas"
+		person["first name"] = "Nicholas";
+	
+
+		var person = {						//	var person = { 
+			name : "Nicholas",				//	"name" : "Nicholas",
+			age : 29						//	"age" : 29, 
+		};									//	5: true };
+
+		function displayinfo (args){
+			var output = "";
+			if (typeof args.name == " string" ) {
+				output += " Name : " + args.name + " \n";
+				}
+			if (typeof args.age == " number") {
+				output += "Age : " + args.age + " \n";
+				}
+			alert(output);
+			}
+			displayinfo ({
+				name : " Nicholas",
+				age : 29
+			}) ;
+			displayinfo ({
+				name : "Greg"
+			});
+		
+			outermost :
+			for (var i=0 ; i < 10; i++ ) {
+				for (var j =0; j < 10; j++) {
+					if (i == 5 && j == 5) {
+						break outermost;
+					}
+				num++;
+				}}
+			alert (num) ; 						// 55 
+	//
+			for (var i=l; i < 10; i++ ) {
+				if (i % 5 == 0) {
+					continue;
+				}
+				num++ ;
+			}
+			alert (num) ; 						// 8 
+	//
+			var num = 0; о
+		for (var i=l; i < 10; i++ ) {
+			if (i % 5 == 0) {
+				break;
+			}
+			num++;
+		}alert(num) ; 							// 4
+
+
+		var colors = new Array(З) ; 				// массив с тремя элементами
+		var names = new Array ( "Greg" ); 			// массив с одним элементом, строкой "Greg" 
+		var colors = Array (З); 					//массив с тремя элементами
+		var names = Array( "Greg" ); 				//массив с одним элементом, строкой "Greg"
+	// 
+		var colors = ["red", "bluе" , "green " ]; 	//массив с тремя строками
+		var names = []; 							//пустой массив 
+		var colors = ["red", "bluе" , "greeп " ];	// определение массива строк
+		alert (colors [0] ); 						// вblвод первого элемента
+		colors[2] =" blасk"; 						// изменение третьего элемента
+		colors [З] = " browп"; 						// добавление четвертого элемента 
+	//
+		var colors = ["red", "bluе", "green " ]; 	// массив с тремя строками
+		colors.length = 2;
+		alert ( colors [2] ); 						// undefined  
+	//
+		var colors = ["red", " bluе", " green " ]; 	// массив с тремя строками
+		colors [colors.length] =" blасk"; 			// добавление черного цвета в позиции 3
+		colors [colors.length] = " brown"; 			// добавление коричневого цвета в позиции 4
+		var colors = ["red", "bluе", " green"]; 	// массив с тремя строками
+		colors [99] = " blасk"; 					// добавление черного цвета в позиции 99
+		alert ( colors.length ); 					// 100 
+	//
+			if (value instanceof Array ){
+				// какие -то действия с массивом
+			} 
+			if (Array.isArray ( value )){
+				// какие-то действия с массивом
+			}	
+		
+		var colors = ["red", " blue", "green " ]; 	// массив с тремя строками
+		alert ( colors.toString ( ));	 			// red , blue, green
+		alert ( colors.valueOf( )); 				// red , blue, green
+		alert ( colors ); 							// red , blue, green 
+	//
+		var personl = {
+			toLocaleString : function () {
+				return "Nikolaos";
+			},
+			toString : function() {
+				return " Nicholas";
+			}
+		};
+		var person2 = {
+			toLocaleString : function () {
+				return "Grigorios";
+			},
+			toString : function() {
+				return "Greg" ;
+			}
+		};
+		var people = [ personl, person2 ];
+		alert ( people ); 							 // Nicholas, Greg
+		alert ( people.toString ());				 // Nicholas,Greg
+		alert ( people.toLocaleString ());			 // Nikolaos, Grigorios 
+	//
+		var colors = ["red", "green", " bluе" ];
+		alert ( colors.join(",")); 					 // red, green, bluе
+		alert ( colors.join(" lI ")); 				 // red ll green lI bluе 
+		
+		var colors = new Array( );					 // создание массива
+		var count = colors.push("red", "green " ); 	 // включение двух элементов 
+		alert ( count ); 							 // 2
+		count = colors.push("blасk " );			 	 // включение еще одного элемента
+		alert (count );  							 // З
+		var item = colors.pop ( );				 	 // извлечение последнего элемента 
+		alert ( item) ;  							 // " blасk"
+		alert (colors.length); 						 // 2 
+	//
+		var colors = ["red", " bluе" ];
+		colors.push("brown");						 // добавление элемента
+		colors[З] = "blасk";						 // добавление элемента
+		alert ( colors.length); 					 // 4
+		var item = colors.pop ( );					 // получение последнего элемента
+		alert (item);								 // " blасk" 
+	//
+		var colors = new Array ( );					 // создание массива
+		var count = colors.push("red", "green");	 // добавление двух элементов
+		alert ( count); 							 // 2
+		count = colors.push("blасk" );			 	 // добавление еще одного элемента
+		alert ( count ) ; 							 // З
+		var item = colors.shift();				 	 // извлечение первого элемента 
+		alert(item ) ; 								 // " red"
+		alert ( colors.length); 					 // 2
+	//
+		var colors = new Array ( );					 // создание массива
+		var count = colors.unshift("red ","green "); // добавление элементов
+		alert (count ); 							 // 2
+		count = colors.unshift("blасk" ); 		     // добавление еще одного элемента
+		alert (count ); 							 // 3
+		var item = colors.pop( ); 					 // извлечение элемента
+		alert(item) ; 								 // "green"
+		alert (colors . length); 					 // 2
+	//
+		var values = [1, 2, 3, 4, 5 ] ;
+		values.reverse ();
+		alert (values); 							 // 5,4, 3,2,1  
+	//
+		var values = [0, 1, 5, 10, 15] ;
+		values.sort();
+		alert (values); 							 // 0,1, 10,15, 5 
+	//
+		function compare ( valuel, value2) {
+			if ( valuel < value2) {
+					return -1;
+			} 
+			else if ( valuel > value2 ) {
+					return 1;
+			} 
+			else {	return 0; }}
+		var values = [0, 1, 5, 10, 15] ;
+		values.sort ( compare );
+		alert(values); 								 // 0,1, 5 , 10,15 
+	//
+		var colors = ["red", "green", "  blue" ];
+		var colors2 = colors.concat ( "yellow", [ "blасk" , " brown " ]);
+		alert (colors); 							 // red , green, Ьlue
+		alert (colors2) ; 							 // red, green, Ьlue, yellow, black,brown 
+	//
+		var colors = ["red", " green", "blue", "yellow" , " purple" ];
+		var colors2 = colors . slice(l) ;
+		var colorsЗ = colors . slice(l,4) ;
+		alert ( colors2) ;							 // green, blue, yellow, purple
+		alert ( colorsЗ);							 // green, blue, yellow
+	//
+		var colors = ["red", " green", "  blue" ];
+		var removed = colors.splice (0,1);		 				//удаление первого элемента
+		alert (colors); 							 			// greeп, blue
+		alert (removed); 							 			// red - массив с одним элементом
+		removed = colors.splice (l, 0, "yellow" , "oraпge" );   // вставка двух элементов в позиции 1
+		alert (colors); 										// greeп, yellow, oraпge, blue
+		alert (removed); 										// пустой массив
+		removed = colors.splice (l, 1, " red", " purple " ); 	// вставка двух значений и удаление одного
+		alert (colors); 										// greeп, red, purple, oraпge, blue
+		alert (removed); 										// yellow - массив с одним элементом 
+		
+
+		var пumbers = [1,2,3,4,5,4,3,2,1] ;
+		alert (пumbers.iпdex0f(4) ); 							// 3
+		alert(пumbers.lastiпdexOf(4) ); 						// 5
+		alert(пumbers.iпdex0f(4, 4) ); 							// 5
+		alert(пumbers.lastiпdexOf(4, 4) ); 						// 3
+		var persoп = { паmе : "Nicholas" };
+		var people = [{ паmе : "Nicholas" }];
+		var morePeople = [ persoп];
+		alert ( people.indexOf( person)); 						// -1
+		alert (morePeople.iпdexOf( persoп)); 					// 0 
+		
+
+		var numbers = [1, 2, 3,4, 5,4,3,2 ,1];
+		var everyResult = numbers.every(function(item, index, array){
+			return ( item > 2);
+		});
+		alert ( everyResult); 									// false
+		var someResult = numbers.some(function(item, index, array){
+			return ( item > 2);
+		});
+		alert ( someResult); 									// true 
+	//
+		var numbers = [1,2,3,4,5,4,3, 2, 1];
+		var filterResult = numbers.filter(function( item, index, array){
+			return ( item > 2 ) ;
+		});
+		alert (filterResult ); 									// [3,4,5,4,3] 
+	//
+		var numbers = [1,2, 3,4, 5 , 4, 3,2 ,1];
+		var mapResult = numbers .map(function(item, index, array){
+			return item * 2;
+		});
+		alert (mapResult ); 									// [2,4,б,8 , 10, 8,6,4, 2] 
+	//
+		var numbers = [1,2, 3,4, 5,4, 3,2,1];
+		numbers.forEach(function(item, index, array){
+				// какие -то действия
+		}); 
+	//
+		var values = [1,2,3,4,5];
+		var sum = values.reduce(function( prev, cur, index, array){
+			return prev + cur;
+		});
+		alert (sum) ; 											// 15 		
+	//
+		var values = [1, 2,3,4,5];
+		var sum = values.reduceRight ( function( prev , cur, index, array){
+			return prev + cur;
+		});
+		alert (sum) ; 											// 15 
+		
+		
+		var someDate = new Date( Date . parse( "May 25, 2004" )); // 25 мая 2004 г
+		var someDate = new Date ( "May 25, 2004" ); 			  // 25 мая 2004 г
+	//
+		var y2k = new Date ( Date.UTC ( 2000, 0 ) );					// 1 января 2000 г., полночь (GMT )
+		var allFives = new Date ( Date.UTC ( 2005, 4, 5, 17, 55, 55) ); // 5 мая 2005 г ., 17 : 55:55 (GMT )
+	//
+		var y2k = new Date ( 2000, 0 ) ;								// 1 января 2000 г ., полночь по локальному времени
+		var allFives =  new  Date ( 2005, 4, 5, 17, 55, 55);			// 5 мая 2005 г ., 17 : 55:55 по локальному времени 
+	//
+		var start = Date.пow( );										// получение времени начала
+		doSomethiпg( );													// вblзов функции
+		var stop = Date.now( );											// получение времени окончания
+		result = stop - start; 
+	//
+		var datel=  new Date( 2007 , 0, 1); // 1 января 2007 г.
+		var date2 = new Date( 2007 , 1, 1); // 1 февраля 2007 г.
+		alert(datel < date2);				// true
+		alert(datel > date2);				// false 
+		
+
+		/*
+		 * Поиск всех экземпляров "at" в строке .
+		 */
+			var patterпl = /at/g;
+		/*
+		 * Поиск первого экземпляра " bat" или " cat " без учета регистра .
+		 */
+			var patterп2 = /[bc]at/i; //= var patterп2 : new RegExp ( "[bc]at", "i" ); 
+		/*
+		 * Поиск всех трехсимвольнblх сочетаний, заканчивающихся на " at",
+		 * независимо от ре гистра .
+		 */
+			var patterпЗ = /.at/gi; 
+		/*
+		 * Поиск первого экземпляра "[bc]at" без учета ре гистра .
+		 */
+			var patterп2 = /\[bc\]at/i; 
+		/*
+		 * Поиск всех экземпляров ".at" без учета регистра .
+		 */
+			var patterп4 = /\ .at/gi;	
+	//
+		var re = null,
+			i;
+		for ( i=0; i < 10; i++){
+			re = /cat/g;					// каждblй второй раз не может обнаружить шаблон /cat/ в строке
+			re.test("catastrophe" );
+		}
+		for ( i=0; i < 10; i++){
+			re = new RegExp("cat", "g" );   // воз­вращает true
+			re.test ( "catastrophe" ); 
+		}
+	//
+		var patternl = /\[bc\] at/i;
+		alert ( patternl. global);						// false
+		alert ( patternl. ignoreCase);					// true
+		alert ( patternl. multiline ) ;					// false
+		alert ( patternl. lastindex ) ;					// 0
+		alert ( patternl. source );						// "\[bc\] at"
+		var pattern2 = new RegExp ( "\\[bc\\]at", "i" );
+		alert ( pattern2 . global);						// false
+		alert ( pattern2 . ignoreCase);					// true
+		alert ( pattern2 . multiline );					// false
+		alert ( pattern2 . lastindex);					// 0
+		alert ( pattern2 . source );					// "\[bc\]at"
+	//
+		var text = "mom and dad and ЬаЬу" ;
+		var pattern = /mom ( and dad( and baby) ? ) ?/gi;
+		var matches = pattern.exec( text);
+		alert (matches . index ) ; 						// 0
+		alert (matches . input); 						// "mom and dad and ЬаЬу"
+		alert(matches[0] ); 							// "mom and dad and ЬаЬу"
+		alert(matches [l] );						    // " and dad and ЬаЬу"
+		alert(matches[2]); 								// " and ЬаЬу" 
+	//
+		var text = " cat, bat, sat, fat";
+		var patternl = /.at/;
+		var matches = patternl. exec(text);
+
+		alert (matches . index);						// 0
+		alert (matches[0] );							// cat
+		alert ( patternl.lastIndex);					// 0
+		matches = patternl. exec(text);
+
+		alert (matches . index); 						// 0
+		alert (matches[0] ); 							// cat
+		alert ( patternl. lastIndex ) ; 				// 0
+		var pattern2 = /.at/g;
+		var matches = pattern2 . exec( text);
+
+		alert (matches . index); 						// 0
+		alert (matches [0] ); 							// cat
+		alert ( pattern2 . lastindex ) ; 				// 0
+		matches = pattern2 . exec(text);
+		
+		alert ( matches . index ); 						// 5
+		alert (matches[0] ); 							// bat
+		alert ( pattern2 . lastindex); 					// 8
+	//
+		var text = "000-00-0000";
+		var pattern = /\d{3}-\d{2}-\d{4}/;
+		if (pattern.test(text)){
+			alert ("The pattern was matched .");} 		// Обнаружено соответствие шаблону 
+	//
+		var pattern = new RegExp ( "\\[bc\\]at", "gi " );
+		alert ( pattern.toString ( )); 					// /\[bc\]at/gi
+		alert ( pattern.tolocaleString ()); 			// /\[bc\]at/gi 
+	//
+		var text = "this has been а short summer" ;
+		var pattern = / (.)hort/g;
+	   /*
+		* Примечание : Opera не nоддерживает свойства in put ,
+		* lastMatch, lastParen и multiline .
+		* Internet Explorer не nоддерживает свойство multiline .
+		*/
+		if ( pattern . test ( text ) ){
+			alert (RegExp . input);				// this has been а short summer 
+			alert (RegExp . leftContext );		// this has been а
+			alert (RegExp . rightContext );		// summer 
+			alert (RegExp . lastMatch);			// short 
+			alert (RegExp . lastParen);			// s
+			alert (RegExp . multiline );}		// false
+	//
+		var text = "this has been а short summer" ;
+		var pattern = / (.)hort/g;
+	   /*
+		* Примечание : Opera не поддерживает сокращеннblе имена свойств.
+		* Internet Explorer не поддерживает свойство multiline .
+		*/
+		if ( pattern . test ( text)){
+			alert ( RegExp . $_) ;
+			alert ( RegExp [ "$'" ]);
+			alert ( RegExp [ "$'" ] );
+			alert ( RegExp [ "$&" ] );
+			alert ( RegExp [ "$+" ] );
+			alert ( RegExp [ "$*"]);}
+	//
+		var text = "this has been а short summer" ;
+		var pattern = /(..)or(.)/g;
+		if ( pattern . test ( text)){
+			alert (RegExp . $1 ) ;					// sh 
+			alert (RegExp . $2 ) ;	}				// t
+		
+
+		alert (sum(10,10) );						//Сработает
+		function sum(numl, num2){
+			return numl + num2;
+		} 
+	//
+		alert (sum(10,10) );						//Не сработает 
+		var sum = function ( numl, num2){
+			return numl + num2;
+		}; 
+	//
+		function callSomeFunction(someFunction, someArgument){
+			return someFunction( someArgument ); 
+		}
+		function add10 (num){
+			return num + 10;}
+		var resultl = callSomeFunction( add10, 10) ;
+	    alert (resultl); 							// 20
+		function getGreeting(name){
+			return "Hello, " + name ;}
+		var result2 = callSomeFunction( getGreeting, " Nicholas" );
+		alert (result2 ); 							// "Hello, Nicholas" 
+	//
+		function createComparisonFunction( propertyName ) {
+			return function(objectl, object2 ){
+				var valuel =objectl[propertyName] ;
+				var value2= object2[propertyName];
+				if (valuel < value2 ){
+					return -1;
+				} else if (valuel > value2 ){
+					return 1;
+				} else {
+					return 0;}
+			};}
+		var data = [ {name : "Zachary", age : 28 }, {name : " Nicholas", age : 29 }];
+		data.sort(createComparisonFunction("name"));
+		alert (data[0].name) ; 															// Nicholas
+		data.sort(createComparisonFunction("age"));
+		alert (data[0].name); 															// Zachary 
+	//
+			function factorial(num ){
+			if ( num <= 1) {
+				return 1;
+			} else {
+				return num * factorial(num-1)
+			}}
+			function factorial(num ){
+			if ( num <= 1) {
+				return 1;
+			} else {
+				return num * arguments.callee ( num-1)
+			}} 
+			var trueFactorial = factorial;
+			factorial = function( ){
+				return 0;
+			};
+		alert (trueFactorial(5) );						//120
+		alert (factorial(5) );							//0
+	//
+		window. color = " red";
+		var о = { color: "bluе" };
+		function sayColor(){
+			alert ( this.color ) ;
+		}
+		sayColor(); 									// " red"
+		o.sayColor = sayColor;
+		o.sayColor(); 									// " bluе" 
+	//
+		function outer(){                              //function outer(){ inner();}   содержит ссblлку на функцию, котораявblзвала текущую функцию            
+			inner ();
+		}
+		function inner(){
+			alert (inner. caller);
+		}
+		outer ();
+	//
+		function sayName ( name){
+			alert ( name);
+		}
+		function sum(numl, num2){
+			return numl + num2 ;}
+		function sayHi(){
+			alert ( "Hello" );}
+		alert(sayName.length); 				// 1
+		alert (sum.length); 				// 2
+		alert (sayHi.length); 				// 0 
+	//
+		function sum(пuml, пum2){
+			return пum1 + пum2;
+		}
+		function callSum1(пuml, пum2){
+			return sum.apply(this, argumeпts); 			// передача объекта argumeпts
+		}
+		function callSum2( пuml, пum2){
+			return sum.apply(this,[ пuml, пum2 ] ); 	// передача массива
+		}
+		alert (cal1Sum1(10,10) );						//20
+		alert(callSum2(10, 10) );						//20'
+	//
+		function sum(numl, num2){
+			return numl + num2;
+		}
+		function callSum(numl, num2){
+			return sum.call(this, numl , num2);
+		}
+		alert ( cal1Sum(10, 10 ) ); 					// 20 
+	//
+		window . color = "red";
+		var о = { color: "bluе" };
+		function sayColor( ){
+			alert ( this.color);}
+		sayColor();						//"red "
+		sayColor.call(this);			//"red "
+		sayColor.call (window) ;		//"red "
+		sayColor.call(o) ;				//"blue"
+	//
+		window . color = " red";
+		var о = { color: " bluе" };
+		function sayColor(){
+			alert (this.color);
+		}
+		var objectSayColor=sayColor.bind(o)();
+		objectSayColor();						//"blue"
+		
+
+		var sl =" some text"; 					// некоторblй текст
+		var s2 =s1.substring(2) ; 
+	//
+		var sl = new String("some text");
+		var s2 = sl.substring(2) ;
+		sl = null; 
+	//
+		var s1 = " some text" ;
+		sl.color = " red";
+		alert(sl.color); 						// undefined 
+	//
+		var value = "25";
+		var number = Number( value);			// функция приведения типов
+		alert ( typeof number);					// "пumber"
+		var obj = new Number(value ) ;			// конструктор
+		alert (typeof obj );					// "object" 
+	//
+		var falseObject = new Boolean(false );
+		var result = falseObject && true;
+		alert(result); 							// true
+		var falseValue = false;
+		result = falseValue && true;
+		alert ( result ) ; 						// false 
+	//
+		alert ( typeof falseObject );			// object
+		lert ( typeof falseValue ) ;			// boolean
+		alert (falseObject instanceof Boolean);	// true
+		alert (falseValue instanceof Boolean) ;	// false 
+	//
+		var num = 10;
+		alert(num.toString ());					// "10"
+		alert ( num.to5tring(2));				// "1010"
+		alert(num.toString(8));					// "12"
+		alert ( num.toString (10));				// "10"
+		alert(num.toString(16));				// "а"
+	//
+		var num = 10;
+		alert(num.toFixed (2) ); 				// " 10.00" 
+	//
+		var num = 10.005 ;
+		alert ( num.toFixed(2)); 				// " 10.01" 
+	//
+		var num = 10;
+		alert (num.toExponential(1)); 			// "1.0e+l" 
+	//
+		var num = 99;
+		alert (num.toPrecision (l) ); 			// " le+2" = "100"
+		alert (num.toPrecision ( 2 ));			// "99"
+		alert (num.toPrecision ( З ));			// "99.0"
+	//
+		var numberObject = new Number( 10 ) ;
+		var numberValue = 10;
+		alert ( typeof numberObject);				// "object"
+		alert ( typeof numberValue ) ;				// "number"
+		alert ( numberObject instanceof Number) ;	// true
+		alert ( numberValue instanceof Number) ;	// false 
+	//
+		var stringValue = " hello world";
+		alert ( stringValue.length ); 				// "11" 
+	//
+		var stringValue = " hello world";
+		alert ( stringValue.charAt(1)); 			// "е"
+		alert ( stringValue.charCodeAt(1)); 		// "101" 
+		var stringValue = " hello world";
+		alert (stringValue[1]); 					// "е" 
+	//
+		var stringValue = " hello ";
+		var result = stringValue . concat ( "world");
+		alert(result); 								// "hello world"
+		alert(stringValue ) ; 						// "hello"
+	//
+		var stringValue = " hello ";
+		var result = stringValue . concat ( "world", " ! ");
+		alert(result); 										// "hello world !"
+		alert(stringValue ); 								// "hello"  
+	//
+		var stringValue = " hello world";
+		alert ( stringValue.slice(3) );						//" lo world "
+		alert ( stringValue.substring(3) );					//" lo world "
+		alert ( stringValue.substr(3) );					//" lo world "
+		alert ( stringValue.slice (3, 7));					//" lo w"
+		alert (stringValue.substring(3, 7 ));				//" lo w"
+		alert ( stringValue.substr(3, 7 ) );				//" lo worl"
+	//
+		var stringValue = " hello world";
+		alert ( stringValue.slice( -3) );					//" rld "
+		alert ( stringValue.substring(-3) );				//" hello world "		-3 преобразуется в О. 
+		alert ( stringValue.substr(-3 ));					//" rld "
+		alert(stringValue.slice (3, -4) );					//" lo w"
+		alert (stringValue.substring(3, -4) );				//" hel"
+		alert (stringValue.substr(3, -4) );					//"" ( пустая строка )  -4 преобразуется в О.
+	//
+		var stringValue = " hello world";
+		alert ( stringValue . indexOf ("о")); 				// 4
+		alert ( stringValue . lastindexOf ("о")); 			// 7 
+	//
+		var stringValue = " hello world";
+		alert ( stringValue . indexOf("o", 6 ) ); 			// 7
+		alert ( stringValue . lastindexOf( "о", 6 ) ); 		// 4
+	//
+		var stringValue = " Lorem ipsum dolor s it amet , consectetur adipisicing ... ";
+		var positions = new Array ( );
+		var pos = stringValue . indexOf("e");
+		while ( pos > -1){
+			positions.push(pos);
+			pos = stringValue.indexOf("e", pos + 1);
+		}
+		alert (positions); 								// "3,24, 32 , 35" 
+	//
+		var stringValue = " hello world ";
+		var trimmedStringValue = stringValue.trim( );
+		alert ( stringValue ) ; 						// " hello world "
+		alert(trimmedStringValue ) ; 					// "hello world"   создает копию строки, удаляет все на­чальнblе и конечнblе пробельнblе символbl
+	//
+		var stringValue = " hello world";				
+		alert ( stringValue.toLocaleUpperCase( ));      //"HELLO WORLD"
+		alert ( stringValue.toUpperCase ());			//"HELLO WORLD"
+		alert ( stringValue.toLocaleLowerCase( ));		//" hello world "
+		alert ( stringValue.toLowerCase( ));			//" hello world "
+		//методbl Locale LowerCa se( ) и toLoca leUpperCa se( ), по идее, должнbl бblть 
+		//реализо­ванbl на основе конкретного регионального стандарта
+	//
+		var text = " cat, bat , sat, fat";
+		var pattern = /.at/;
+	// то же , что и pattern . exec( text )
+		var matches = text.match( pattern);
+		alert (matches . index); 					// 0
+		alert (matches[0] ); 						// " cat "
+		alert ( pattern.lastIndex); 				// 0 
+	//
+		var text = " cat, bat , sat , fat";
+		var pos = text . search( /at/ );
+		alert ( pos ); 								// 1 - позицию первого вхождения подстроки "at" в строку
+	//
+		var text = " cat , bat , sat , fat";
+		var result = text.replace ( "at ", "ond " );
+		alert(result); 									// " cond, bat, sat, fat "
+		result = text.replace (/at/g, "ond " );
+		alert(result); 									// " cond, bond, sond , fond" 
+	//
+		var text = " cat, bat , sat , fat";
+		кesult = text . replace (/(.at)/g, "word ($1)");
+		alert(result); 										// word (cat), word ( bat), word ( sat), word (fat ) 
+	//
+		function htmlEscape(text ){
+			return text.replace (/[<>"&]/g, function( match, pos, originalText ){
+				switch(match){
+					case "<" :
+						return "&lt ; ";
+					case ">" :
+						return "&gt ; ";
+					case "&" :
+						return "&amp; ";
+					case "\" " :
+						return "&quot ; ";}});}
+		alert (htmlEscape("<p class=\" greeting\" >Hello world ! </p>" ));// "&lt;p class=&quot ; greeting&quot ; &gt ; Hello world ! &lt ; / p&gt"; 
+	//
+		var colorText = " red, blue, green, yellow" ;
+		var colorsl = colorText.split(", ");								// ["red", "bluе", "green" , "yellow" ]
+		var colors2 = colorText.split ( ",", 2);							// [" red", " bluе" ]
+		var colorsЗ = colorText.split(/[^\, ]+/);							// ["", ",", ",", ",", ""] 
+		
+
+		var stringValue = "yellow" ;
+		alert (stringValue.localeCompare ( "brick" ));     // 1
+		alert (stringValue.localeCompare ( "yellow" ));	   // 0 
+		alert (stringValue.localeCompare ( "zoo " ));	   // -1
+	//
+		function determineOrder(value ){
+			var result = stringValue.localeCompare (value);
+			if ( result < 0){
+				alert ( "The string ' yellow ' comes before the string ' " + value + "'.");
+			} else if ( result > 0) {
+				alert ( "The string ' yellow ' comes after the string ' "+ value + "'.");}
+			else {
+				alert ( "The string ' yellow ' is equal to the string ' " + value + "'.");}}
+		determineOrder( "brick" );
+		determineOrder("yellow" );
+		determineOrder("zoo" );
+
+		alert (String.fromCharCode(104, 101, 108 , 108 , 111) ); 							// " hello" 
+		
+
+		var uri = " http://www.wrox.com/illegal value.htm#start";
+		alert (encodeURI(uri));																// " http : //www . wrox . com/illegal%20value .htm#start"
+		alert (encodeURIComponent ( uri) ); 												// " http%3A%2F%2Fwww.wrox . com%2Fillegal%20value . htm%23start"
+	//
+		var uri = " http%3A%2F%2Fwww.wrox.com%2F illegal%20value.htm%23start";
+		alert (decodeURI( uri ) );// http%3A%2 F%2Fwww . wrox . com%2 Fillegal value . htm%23start
+		alert (decodeURIComponent (uri ) ); // http : //www.wrox . com/illegal value . htm#start
+
+
+		eval("alert ( ' Hello ' )"); /*==*/ alert ( "Hello" ) ; 
+	//
+		var msg = "Hello world ! " ;
+		eval( "alert (msg) "); 									// "Hello world !" 
+	//помощью eval( ) , считается частью контекста вblполнения, в котором бblл вblзван метод, и имеет ту же цепочку областей видимости, что и этот контекст
+		eval( "function sayHi(){alert('Hello');}");
+		sayHi()
+	//
+		eval( "var msg = ' Hello world ! '; ");
+		alert ( msg) ; 											// "Hello world !" 
+
+
+		var color = " red";
+		function sayColor(){
+		alert (window.color);
+		window.sayColor (); 									// " red" 
+	//
+		var global = function( ){
+		return this;
+		}(); 
+
+
+		var max = Math . max(3, 54, 32, 16 );
+		alert(max) ; 							// 54
+		var min = Math . min(3, 54, 32, 16 );
+		alert ( min); 							// 3 
+	//
+		var values = [ 1, 2, 3, 4, 5, 6, 7, 8] ;
+		var max = Math.max.apply(Math, values); 
+
+
+		alert(Math.ceil( 25.9 )); 				// 26
+		alert(Math.ceil(25.5)); 				// 26
+		alert(Math.ceil(25.1)); 				// 26
+		//
+		alert(Math.round( 25.9 )); 				// 26
+		alert(Math.round( 25.5)); 				// 26
+		alert(Math.round( 25.1)); 				// 25
+		//
+		alert(Math.floor( 25.9 )); 				// 25
+		alert(Math.floor( 25.5)); 				// 25
+		alert(Math.floor( 25.1)); 				// 25 	
+
+
+		number = Math.floor(Math.random( ) * количество_вариантов + первое_возможное_значение) 
+	//
+		var num = Math.floor(Math.random( ) * 10 + 1);		 // 1 до 10
+		var num = Math.floor(Math.random( ) * 9 + 2);  		 // 2 до 10
+	//
+		function selectFrom(lowerValue, upperValue) {
+			var choices = upperValue - lowerValue + 1;
+			return Math.floor(Math.random() * choices + lowerValue);
+		}
+		var num = selectFrom(2,10) ;
+		alert(num) ; 										// число от 2 до 10 включительно 
+	//
+		var colors = ["red", "green", "bluе", "yellow" , " blасk", "purple" , "brown " ];
+		var color = colors [ selectFrom(0, colors.length- 1)]; 
+
+		
+		var person = new Object();
+		person . name = "Nicholas";
+		person . age =29 ;
+		person . job = "Software Engineer";
+		person . sayName = function(){
+		alert ( this .name);
+		}; 
+	//
+		var person = {
+			name : "Nicholas",
+			age : 29,
+			job: "Software Engineer" ,
+			sayName : function(){
+				alert ( this . name);
+			} 
+		};
+	//						Свойства с даннblми
+		/*[[Configurable]] - указblвает, можно ли удалить свойство с помощью 
+		 	опера­тора delete, изменить атрибутbl свойства или преобразовать его в свойство  
+			с функциями доступа. По умолчанию этот атрибут имеет значение true у всех
+			свойств, определеннblх непосредственно для объекта, как в предblдущем примере.
+		  [[Enumerable]] - указblвает, будет ли свойство возвращаться в циклах for-in.
+			По умолчанию этот атрибут имеет значение true у всех свойств, определеннblх
+			непосредственно для объекта, как в предblдущем примере.
+		  [[Writаblе]] - указblвает, можно ли изменить значение свойства. По умолчанию
+			этот атрибут имеет значение true у всех свойств, определеннblх непосредственно
+			lля объекта, как в предblдущем примере.
+		  [[Value]] - содержит фактические даннblе. Это место, откуда читается значение
+			свойства и куда сохраняются новblе значения. По умолчанию этот атрибут имеет
+			значение undefined. */
+		var person = {};
+		Object.defineProperty( person, " name", {
+			writable : false,
+			value : " Nicholas"});
+		alert ( person.name);						// "Nicholas"
+		person.name = "Greg" ;
+		alert ( person.name);						// "Nicholas"
+	//
+		var person = {};
+		Object.defineProperty ( person, " name", {
+			configurable : false,
+			value : "Nicholas"});
+		alert ( person . name ) ;					//" Nicholas"
+		delete person. name ;
+		alert ( person . name);						//"Nicholas" 
+	//
+		//Попblтка вblзвать метод Objecj.defineProperty() и изменить любойатрибут, кроме writаblе
+		var person = {};
+		Object.defineProperty ( person, " name", {
+			configurable : false,
+			value : " Nicholas"});
+		Object.defineProperty ( person, " name", {
+			configurable : true,							// возникает ошибка
+			value : "Nicholas"}); 
+		//При вblзове метода Object.defineProperty() атрибутbl configurable,enumerable и writаblе получают по умолчанию значение false, если не указано иное.
+	
+	//					Свойства с функциями доступа 
+	/* [[Configurable]] - указblвает, можно ли удалить свойство с помощью оператора
+		delete, изменить атрибутbl свойства или преобразовать его в свойство с даннblми.
+		по умолчанию этот атрибут имеет значение true у всех свойств, определеннblх
+		непосредственно для объекта.
+	   [[Enumerable]] - указblвает, будет ли свойство возвращаться в циклах for -in.
+		По умолчанию этот атрибут имеет значение true у всех свойств, определеннblх
+		непосредственно для объекта.
+	   [[Get]] - функция, вblзblваемая при чтении свойства. По умолчанию имеет
+		значение u ndefined.
+	   [[Set]] - функция, вblзblваемая при записи свойства. По умолчанию имеет
+		значение u ndefined. */
+		var book = {
+			_year: 2004,	// Знак подчеркивания в имени _year - это популярнаянотация, указblвающая, что значение не предполагается использовать вне мето­дов объекта
+			edition : 1
+		};
+		Object.defineProperty ( book, "year" , {
+			get : function( ){
+				return this._year;
+			},
+			set : function(newValue ){
+				if ( newValue > 2004) {
+					this._year = newValue;
+					this.edition += newValue - 2004;}
+			}});
+		book.year = 2005;
+		alert(book.edition); 									// 2
+	//
+		var book = {
+			_year: 2004,
+			edition : 1
+		};
+		book._defineGetter_( "year ", function (){  			// унаследованнblе функции доступа
+			return this . _year;});
+		book._defineSetter_( "year" , function ( newValue){
+			if (newValue > 2004) {
+				this._year = newValue;
+				this.edition += newValue - 2004;}});
+		book. year = 2005;
+		alert (book. edition); 									// 2 
+	//
+		var book = {};
+		Object.defineProperties( book, {
+			_year: {
+				value : 2004
+			},
+			edition : {
+				value : 1
+			},
+			year: {
+				get : function(){
+					return this . _year;
+				},
+				set : function(newValue){
+					if ( newValue > 2004) {
+						this._year = newValue;
+						this.edition += newValue - 2004;
+		}}}}); 
+	//
+		var descriptor = Object.getOwnPropertyDescriptor ( book, "_year ");
+		alert (descriptor.value ); 												// 2004
+		alert ( descriptor.configurable ); 										// false
+		alert (typeof descriptor.get); 											// " undefined "
+		var descriptor = Object.getOwnPropertyDescriptor ( book, "year " );
+		alert (descriptor.value); 												// undefined
+		alert (descriptor.enumerable) ; 											// false
+		alert (typeof descriptor.get); 											// " function "
+	//	Паперн Фабрика 
+		function createPersoп( name, age , job){
+			var о = new Object();
+				о.паmе = nаmе;
+				o.age = age;
+				o.job = job;
+				o.sayNaтe = function(){
+					alert (this.паmе);
+			return 0;}};
+		var persoпl = createPersoп( " Nicholas", 29 , " Software Eпgiпeer" );
+		var persoп2 = createPersoп( "Greg" , 27, " Doctor" ); 
+	//	Паттерн Конструктор 
+		function Реrsоп(паmе , age , job){                                    //Имена конструкторов всегда начинаются с прописной буквbl, а имена обblч­нblх функций - со строчной
+			this.пaтe = паmе;
+			this.age = age ;
+			this.job = job;
+			this.sayNaтe = function(){			//this.sayName = new Function ("alert (this . name)"); ----- логический эквивалент
+				alert(this.name);};				
+		var persoпl = new Persoп( " Nicholas", 29, " Software Eпgiпeer" );
+		var person2 = new Persoп( "Greg", 27, " Doctor"); 
+		alert(personl. constructor == Person) ;								// true
+		alert(person2. constructor == Person) ;								// true
+	//
+		var person = new Person( " Nicholas" , 29 , " Software Engineer");		// вblзов в качестве конструктора
+		person.sayName ();														// " Nicholas"
+		// 														
+		Person( "Greg" , 27, "Doctor " );										// вblзов в качестве обblчной функции 
+		window.sayName (); 													// "Greg" : функция добавляется к window
+		//
+		var о = new Object();													// вblзов в области видимости другого объе кта
+		Person.call(o, " Kristen", 25, "Nurse" );
+		o.sayName (); 															// "Kristen" 
+	//
+		function Person( name, age, job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.sayName = sayName ;}
+		function sayName(){
+			alert (this.name);}
+
+	// 		Паттерн Прототип
+		function Person(){}
+			Person.prototype.name = " Nicholas";
+			Person.prototype.age = 29;
+			Person.prototype.job = " Software Engineer" ;
+			Person.prototype.sayName = function(){
+					alert (this.name);};
+		var personl = new Person();
+		personl. sayName (); 									// " Nicholas"
+		var person2 = new Person();
+		person2 . sayName ();									// "Nicholas"
+		alert ( personl.sayName == person2.sayName);			// true
+	//
+		alert(Person.prototype.isPrototypeOf( personl ) ); 		// true
+		alert(Person.prototype.isPrototypeOf( person2 ) );		// true
+	//
+		alert (Object.getPrototypeOf ( personl) == Person.prototype );		// true
+		alert (Object.getPrototypeOf( personl ).name ) ;					// "Nicholas"
+	//
+		function Person( ){
+		}
+		Person . prototype . name = " Nicholas" ;
+		Person . prototype . age = 29;
+		Person . prototype . job = "Software Engineer" ;
+		Person . prototype . sayName = function(){
+			alert ( this . name);
+		};
+		var personl = new Person();
+		var person2 = new Person();
+		persoпl. пame = "Greg" ;
+		alert ( persoпl. пame);						// "Greg" - из экземпляра
+		alert ( persoп2 . пame);					// " Nicholas" - из прототипа
+	//
+		persoпl. пame = "Greg" ;
+		alert ( persoпl. пame);						// "Greg" - из экземпляра
+		alert ( persoп2 . пame);
+		delete personl . name;						// " Nicholas" - из прототипа
+		alert ( personl . name);					// " Nicholas" - из прототипа
+	//
+		alert ( personl. hasOWnProperty(" name" ));				// false 
+		personl. name = "Greg" ;
+		alert ( personl. name); 								// "Greg" - из экземпляра
+		alert ( personl. hasOWnProperty(" name " )); 			// true
+		alert ( person2 . name); 								// "Nicholas" - из прототипа
+		alert ( person2 . hasOWnProperty(" name" )); 			// false
+		delete personl. name ;
+		alert ( personl. name); 								// "Nicholas" - из прототипа
+		alert ( personl . hasOWnProperty( " name " )); 			// false 
+	//
+		alert ( personl. hasOwnProperty("name" )); 			// false
+		alert(" name " in personl) ; 						// true
+		personl. name = "Greg";
+		alert ( personl. name) ; 							// "Greg" - из экземпляра
+		alert ( personl. hasOwnProperty("name " )); 		// true
+		alert(" name " in personl ); 						// true
+		alert ( person2. name) ; 							// "Nicholas" - из прототипа
+		alert ( person2 . hasOwnProperty("name " )); 		// false
+		alert(" name" in person2) ; 						// true
+		delete personl. name ;
+		alert ( personl. name ) ; 							// "Nicholas" - из прототипа
+		alert(personl. hasOwnProperty("name" )); 			// false
+		alert(" name" in personl) ;							// true 
+	//
+		function hasPrototypeProperty (object, name){
+			return ! object.hasOwnProperty ( name ) && ( name in object );
+		} 
+		var person = new Person();
+		alert ( hasPrototypeProperty( person , " name" ));					// true
+		person . name = "Greg" ;
+		alert ( hasPrototypeProperty( person , " name" ));					// false
+	//
+		var о = {
+		toString : function(){
+			return "Му Object ";
+		}};
+		for (var prop in о){
+		if ( prop == "toString" ){
+			alert("Found toSt ring" ); 										// не вblводится в IE 
+		}}
+	//
+		var keys = Object . keys ( Person . prototype );
+		alert ( keys ); 									// " name, age, job, sayName"
+		var pl = new Person();
+		pl.name = " Rob" ;
+		pl.age = 31;
+		var plkeys = Object . keys(pl ) ;
+		alert ( plkeys ); 									// " name, age" 
+	//
+		var keys = Object . getOwnPropertyNames ( Person . prototype );
+		alert ( keys ); 												// " constructor, name, age, job, sayName"
+
+	//			Альтернативнblй синтаксис прототипов
+		function Person(){
+		}
+		Person . prototype = {
+			name : " Nicholas ",
+			age : 29,
+			job : " Software Engineer",
+			sayName : function () {
+				alert (this . name); }}
+	//
+		var friend = new Person();
+		alert (friend instanceof Object ) ;				// true
+		alert (friend instanceof Person);				// true
+		alert ( friend . constructor Person);			// false
+		alert (friend . constructor == Object );		// true
+	//
+		function Person( ){}
+		Person . prototype = {
+			constructor : Person ,						//у конструктора, восстановленного таким способом, атрибут[[Enumerable]] имеет значение true
+			name : " Nicholas",
+			age : 29 , 	
+			job : "Software Engineer" ,
+			sayName : function () {
+				alert ( this .name); 
+			}
+	//
+		Object.defineProperty(Person.prototype, " constructor ", {			// восстановление конструктора (только в ECMAScript 5)
+			enumerable : false,
+			value : Person
+		}); 
+	//
+		var friend = new Person();
+		Person.prototype.sayHi = function( ){
+			alert ( "hi" );
+		};
+		friend.sayHi(); 						// "hi" - все работает ! 
+	//
+		function Person(){
+		}
+		var friend = new Person ( );
+		Person . prototype = {					//перезапись прототипа 
+			constructor: Person,
+			name : " Nicholas",
+			age : 29,
+			job : " Software Engineer",
+			sayName : function () {
+				alert ( this . name);}};
+		friend . sayName (); 					// ошибка 
+	
+	//			Прототипbl встроеннblх объектов 
+		alert ( typeof Array.prototype.sort);				//"function"
+		alert ( typeof String.prototype.substring) ;		//"function"
+	//
+		String.prototype.startsWith = function ( text ) { 	//следующий код добавляет метод startsWith () к оболочке примитивного типа String: 
+			return this.indexOf(text) == 0;
+		};
+		var msg = "Hello world!";
+		alert ( msg.startsWith( "Hello" )); 				// true 
+	
+	//		Проблемbl прототипов 
+		function Person( ){}
+			Person . prototype = {
+				constructor : Person ,						//у конструктора, восстановленного таким способом, атрибут[[Enumerable]] имеет значение true
+				name : " Nicholas",
+				age : 29 , 	
+				job : "Software Engineer" ,
+				sayName : function () {
+					alert ( this .name); 
+			}};
+		var personl = new Person();
+		var person2 = new Person();
+		person1.friends.push( "Van");
+		alert ( personl . friends ); 						// " Shelby, Court,Van"
+		alert ( person2 . friends) ; 						// " Shelby , Court , Van"
+		alert ( personl . friends === person2. friends ); 	// true
+	
+	//
+		function Person( name , age , job){
+			this . name = name ;
+			this .age = age ;
+			this . job = job;
+			this . friends = [ "Shelby" , "Court " ];
+		}
+		Person.prototype = {
+			constructor: Person,
+			sayName : function () {
+				alert ( this . name);
+			}};
+		var personl = new Person( " Nicholas", 29 , " Software Engineer " );
+		var person2 = new Person( "Greg" , 27, "Doctor");
+		personl.friends.push( "Van" );
+		alert ( personl.friends);								//" Shelby, Court,Van"
+		alert ( person2.friends);								//" Shelby, Court "
+		alert ( personl.friends === person2.friends);			//false
+		alert(personl.sayName === person2.sayName);				//true 
+	
+	//			Паперн Динамический прототип 
+		function Person( name , age , job){
+		// свойства
+			this . name = name ;
+			this . age = age;
+			this . job = job;
+		// методbl
+			if ( typeof this.sayName != "function"){ // В инструкции if достаточно прове­рить наличие любого свойства или метода, которblе должнbl бblть доступнbl после инициализации
+			Person.prototype.sayName = function () {
+				alert (this.name);
+		}}};
+		//Создание объектов
+		var friend = new Person("Nicholas", 29 , " Software Engineer" );
+		friend.sayName ();
+
+	//			Паперн Паразитнblй конструктор 
+		function Person( name , age, job){
+			var о = new Object();
+				o . name = name ;
+				o . age = age ;
+				o . job = job;
+				o . sayName = function( ){
+					alert (this . name);};
+				return о; }; 
+		var friend = new Person( " Nicholas", 29 , " Software Engineer" );
+		friend.sayName( ); 													// "Nicholas		
+	//
+		function SpecialArray (){
+		// создание массива
+			var values = new Array( );
+		// добавление значений
+			values . push .apply(values, arguments);
+		// назначение метода
+			values . toPipedString = function(){
+				return this . join(" I ");
+		// возвращение массива
+			return values;}}
+		var colors = new SpecialArray ("red", " bluе" , " green");
+		alert (colors . toPipedString( )); 									// " red l blue l green" 
+	
+	//
+		function Person(name , age, job){
+		// создание возвращаемого объекта
+			var о = new Object();
+		// необязательно : определите здесь закрblтblе переменнblе/функции
+		// присоединение методов
+			o.sayName = fuпction( ){
+				alert(name);};
+		// возвращение объекта
+			return о; }
+		var friend = Persoп( " Nicholas", 29, " Software Engineer");		//получить доступ к ка­ким-либо его даннblм без вblзова метода нельзя.
+		friend. sayName(); 													// " Nicholas"
+	
+	//			Цепочки прототипов 
+		function SuperType(){
+			this.property = true;}
+		SuperType.prototype.getSuperValue=function( ){
+			return this.property ;};
+		function SubType (){
+			this.subproperty= false;}
+		SubType.prototype = new SuperType ();				//наследование от SuperType 
+		SubType.prototype.getSubValue = function ( ){
+			return this.subproperty;};
+		var instance = new SubType ();
+		alert ( instance . getSuperValue ()); 				// true 
+	
+	//
+		alert (instance instanceof Object ) ;				// true
+		alert ( instance instanceof SuperType );			// true
+		alert ( instance instanceof SubType );				// true
+		/*Объект instance благодаря цепочке прототипов является экземпляром типов
+		Object, SuperType и SubType, поэтому оператор instanceof возвращает true для всех
+		трех конструкторов. */
+	//
+		alert (Object . prototype . isPrototypeOf(instance ) );			// true
+		alert ( uperType . prototype . isPrototypeOf (instance ) );		// true
+		alert(SubType . prototype . isPrototypeOf(instance ) );			// true
+		/*Второй способ основан на имеющемся у каждого прототипа в цепочке методе
+		isPrototypeOf( ), которblй возвращает true, если переданнblй ему экземпляр входит
+		в цепочку, например: */
+	//
+		function SuperType(){
+			this.property = true;}
+		SuperType.prototype.getSuperValue=function( ){
+			return this.property ;};
+		function SubType (){
+			this.subproperty= false;}
+		SubType.prototype = new SuperType ();
+		// новblй метод
+		SubType.prototype.getSubValue = function(){
+			return this.subproperty;};
+		// переопределение существующего метода
+		SubType.prototype.getSuperValue = function (){
+			return false;};
+		var instance = new SubType();
+		alert (instance . getSuperValue ()); 				// false 
+	//
+		function SuperType(){
+			this.property = true;}
+		SuperType.prototype.getSuperValue=function( ){
+			return this.property ;};
+		function SubType (){
+			this.subproperty= false;}
+		SubType.prototype = new SuperType ();				//наследование от SuperType 	
+		// попblтка добавить новblе методbl аннулирует предblдущую строку
+		SubType.prototype = {
+			getSubValue : function (){
+				return this . subproperty;
+			} ,
+			someOtherMethodfunction ( ) {
+				return false;
+			}};
+		var instance = new SubType ( );
+		alert ( instance.getSuperValue ()); 				//ошибка ! 
+	//	При использовании цепочки прототипов нельзя создавать методbl прототипа с по­мощью литерала объекта, потому что это перезаписblвает цепочку
+	//			Проблемbl с цепочками прототипов 
+		function SuperType (){
+			this . colors = ["red", " bluе", "green " ];
+		}
+		function SubType(){}
+		SubType . prototype = new SuperType ();			// наследование от SuperType
+		var instancel = new SubType ( );
+		instancel. colors . push("black" );
+		alert ( instancel. colors); 					// " red, Ьlue, green , black"
+		var instance2 = new SubType();
+		alert ( instance2 . colors); 					// " red, Ьlue, green , black" 
+	/*Факти­чески, нет способа передать аргументbl в конструктор супертипа, не затронув все
+	  его экземплярbl. Из-за этих двух проблем цепочки прототипов редко используются
+      сами по себе.*/ 
+	//				Кража конструктора 
+		function SuperType (){
+			this . colors = ["red", "bluе", "green " ];
+		}
+		function SubType (){// наследование от SuperType
+		SuperType . call(this);}
+		var instancel = new SubType ();
+		instancel. colors . push("black" );
+		alert ( instancel. colors); 				// " red, blue, green , black"
+		var instance2 = new SubType ( );
+		alert (instance2 . colors); 				// " red , blue, green"
+	//
+		function SuperType ( name){
+		this .name = name ;}
+		function SubType ( ){
+			SuperType.call(this, "Nicholas" );// наследование от SuperType с передачей аргумента в супертиn
+			this .age = 29 ;}// свойство экэемnляра
+		var instance = new SubType ();
+		alert ( instance . name ) ; // "Nicholas" ;
+		alert ( instance . age) ; // 29
+		
+	// 			Комбинированное наследование 
+		function SuperType ( name){
+			this . name = name ;
+			this . colors = ["red", "bluе", "green"];	}
+		SuperType . prototype . sayName = function(){
+			alert ( this .name);};
+		function SubType ( name , age){
+		// наследование свойств
+			SuperType . call(this, name ) ;
+			this .age = age;
+		SubType . prototype = new SuperType ();			// наследование методов
+		SubType . prototype . sayAge = function( ){
+			alert (this . age);};
+		var instancel = new SubType ( " Nicholas", 29 );
+		instancel. colors . push("black " );
+		alert ( instancel. colors); 					// " red, blue, green, black"
+		instancel. sayName ( ); 						// " Nicholas";
+		instancel. sayAge(); 							// 29
+		var instance2 = new SubType ( "Greg" , 27 );
+		alert (instance2 . colors);						// " red, blue, green"
+		instance2 . sayName ( );						// "Greg" ;
+		instance2 . sayAge ( ); 						// 27 
+
+	//
+		function object (o){
+		function F () {}
+			F.prototype = о ;
+			return new F() ;
+		} 
+		//
+		var person = {
+			name : "Nicholas",
+			friends : [ " Shelby" , "Court", "Van"]};
+		var anotherPerson = object ( person);
+			anotherPerson.name = "Greg" ;
+			anotherPerson.friends.push("Rob" ) ;
+		var yetAnotherPerson = object ( person);
+			yetAnotherPerson . name = " Linda" ;
+			yetAnotherPerson . friends . push("Barbie" ) ;
+		alert ( person . friends) ; 						// "Shelby, Court,Van, Rob, Barbie" 
+	
+	/*в методе Object . create ( ) . Он принимает два аргумента: прототип нового объекта
+	  и необязательнblй объект, определяющий для нового объекта дополнительнblе
+	  свойства. Если второй аргумент опущен, метод Obj ect . с reate () эквивалентен
+	  методу obj ect()*/
+	//
+		var anotherPerson = Object.create( person ); 
+			anotherPerson.name = "Greg" ;
+			anotherPerson.friends.push("Rob" ) ;
+		var yetAnotherPerson = Object.create( person);
+			yetAnotherPerson . name = "Linda" ;
+			yetAnotherPerson . friends . push("Barbie" ) ;
+		alert ( person . friends) ; 						// "Shelby, Court,Van, Rob, Barbie" 
+	//
+		var person = {
+				name : "Nicholas",
+				friends : [ " Shelby" , "Court", "Van"]};
+		var anotherPerson = Object.create( person , {
+			name : {
+					value : "Greg"}}) ;
+		alert ( anotherPerson.name ) ; 						// "Greg" 
+	
+	//					Паразитное комбинированное наследование 
+		function SuperType ( name){
+			this.name = name ;
+			this.colors = ["red", "bluе", "green"];
+			SuperType.prototype.sayName = function(){
+				alert ( this . name);};
+		function SubType ( name , age){
+			SuperType.call(this, name);					// второй вblзов SuperType ()
+			this.age = age ;}
+		SubType.prototype = new SuperType();			// первblй вblзов SuperType ()
+		SubType.prototype.constructor = SubType ;
+		SubType.prototype.sayAge = function(){
+		alert(this . age );};
+	// 
+		function inheritPrototype ( subType, superType ){
+			var prototype = object ( superType.prototype );		// создание объекта
+			prototype.constructor = subType ;					// расширение объекта
+			subType.prototype = prototype ;}					// назначение объекта 
+
+	/*фуккция inheritPrototype () реализует очень простое паразитное комбинированное
+		наследование. Она принимает два аргумента: конструктор подтипа и конструктор
+		супертипа. Внутри функции первblм делом создается клон прототипа супертипа.
+		Затем к прототипу добавляется свойство constructor, чтобbl компенсировать
+		потерю первоначального свойства конструктора при перезаписи прототипа. На­
+		конец, созданнblй объект назначается прототипом подтипа*/
+	//
+		function SuperType ( name){
+			this.name = name ;
+			this.colors = ["red", "bluе", "green"];
+			SuperType.prototype.sayName = function(){
+				alert ( this . name);};
+		function SubType ( name , age){
+			SuperType.call(this, name);					
+			this.age = age ;}
+		inheritPrototype ( SubType, SuperType );
+		SubType . prototype.sayAge = function(){
+		alert (this . age); 
+
+
+	//			Рекурсия 
+		function factorial(num ){
+			if ( num <= 1){
+				return 1;
+			} else {
+				return num * factorial(num-1) ;}
+		var anotherFactorial = factorial;
+		factorial = null;
+		alert(anotherFactorial(4) ); 				// ошибка ! 
+		/*arguments.callee - это указатель на вblполняемую функцию, с по­
+			мощью которого можно вblзвать ее рекурсивно*/
+		function factorial(num ){
+			if ( num <= 1){
+				return 1;
+			} else {
+				return num * arguments.callee ( num- 1);}} 
+		//
+			var factorial = (function f(num){
+				if (num <= 1){
+					return 1;
+				} else {
+					return num * f( num- 1);}}); 
+
+	//			Замblкания
+		function createComparisonFunction( propertyName ) { 
+			return function( object1, object2 ){
+				var value1 = object1[ propertyName ];
+				var value2 = object2[ propertyName ];
+				if ( valuel < value2 ){
+					return -1;
+				} else if ( valuel > value2 ){
+					return 1;
+				} else {return 0;}};}
+		var compareNames = createComparisoпFuпctioп( "пame " );					// создание функции
+		var result = compareNames ({ паmе : "Nicholas" }, { паmе : "Greg" });   // вblзов функции 
+		compareNames = пull; // завершение работbl с функцией - теперь память может бblть возвращена среде
+	//
+		function createFuпctioпs(){
+			var result = new Array();
+		for (var i=0; i < 10; i++){
+			result [i] = function(){
+			return i;};
+			}
+			return result ;}			// i = 1О, а раз все анонимнblе функции ссblлаются на один и тот же объект переменнblх,  i внутри каждой функции = 10
+		//
+		function createFuпctioпs(){
+			var result = new Array();
+		for (var i=0; i < 10; i++){
+			result [i] = function(num){
+			return function(){
+				return num;};
+			}(i);	}
+			return result ;}			// все функции в массиве result имеют собственнblе копии num и могут возвращать разнblе числа.
+	
+	//
+		var name = "The Window" ;
+		var object = {
+			name : "Му Object ",
+			getNameFunc : function( ){
+				return function(){
+					return this.name ;};}
+			};
+		alert(object.getNameFunc()()); 		// "The Window" (в нестрогом режиме )
+		//
+		var name = "The Window" ;
+		var object = {
+			name : "Му Object ",
+			getNameFunc : function( ){
+				var that = this ; 
+				return function(){
+					return that.name ;};}
+			};
+		alert(object.getNameFunc()()); 		// "Му Object " (в нестрогом режиме )
+		//
+		var name = "The Window" ;
+		var object = {
+			name : "Му Obj ect", 
+			getName : function (){
+			return this.name;
+			}};
+		object.getName(); 						// "Му Object"
+		(object.getName)(); 					// "Му Object"
+		(object.getName = object.getName)(); 	// "The Window" в нестрогом режиме
+
+	//
+		function assignHandler( ){
+			var element = document.getElementByid( "someE lement " );
+			element.onclick = function(){
+			alert (element.id);}
+		//
+		function assignHandler( ){
+			var element = document.getElementByid( "someE lement " );
+			var id = element.id; 
+			element.onclick = function(){
+			alert (id);};
+			element = null;
+		}
+	// 			синтаксис анонимной функции
+		(function(){
+			// код блока
+		})();
+	//			функцией-вblражением
+		(function(){
+			// код блока
+		})();
+	//	
+		function outputNumbers(couпt){
+			for (var i=0; i < couпt ; i++){
+				alert(i);}
+			alert(i) ; 						// count 
+		}
+		//
+		function outputNumbers(couпt){
+			(function(){
+			for (var i=0; i < couпt ; i++){
+				alert(i);}
+			})();
+			alert(i) ; 						// ошибка
+		}
+		//	 Переменная now локальна для анонимной функции и не засоряет глобальную область видимости.
+		(function( ){
+			var now = new Date ( );
+			if ( now.getMonth() == 0 && now.getDate () == 1){
+				alert(" Happy new year!"); }
+			})();
+	//
+		function Person( name){
+			this.getName = function(){
+				return name;
+			};
+			this.setName = function ( value ) {
+				name = value;};
+		}
+		var person = new Person( " Nicholas" );
+		alert(person.getName ( ));				// " Nicholas"
+		person.setName ( "Greg" );
+		alert ( person.getName ());				// "Greg" 
+	
+	//			Статические закрblтblе переменнblе 
+		(function(){
+		// закрblтblе переменнblе и функции
+		var privateVariable = 10;
+		function privateFunction( ){
+			return false;}
+		// конструктор
+		MyObject = function(){};
+		// открblтblе и привиле гированнblе методbl
+		MyObject.prototype.puЬlicMethod = function(){ 
+			privateVariable++;
+			return privateFunction();};
+		})();
+	//
+		(function () {
+			var name=""
+			Person = function( value ){
+				name = value;
+			};
+			Person.prototype.getName = function( ){
+				return name;
+			};
+			Person.prototype.setName= function (value){
+				name = value;};
+			})();
+		var personl = new Person( " Nicholas" );
+		alert ( personl.getName ()); 				// " Nicholas"
+		personl.setName ( "Greg" );
+		alert ( personl.getName ()); 				// "Greg"
+		var person2 = new Person( "Michael " );
+		alert ( personl.getName ()); 				// "Michael"
+		alert ( person2.getName ()); 				// "Michael" 
+
+	//			Паттерн Модуль 
+		var siпgleton = function(){
+		// закрblтblе переменнblе и функции
+			var privateVariable = 10;
+			function privateFunction( ){
+				return false;}
+		// привилегированнblе/открblтblе методbl и свойства
+			return {
+				publicProperty : true,
+				publicMethod : function(){ 
+					privateVariable++;
+					return privateFunction();}
+					};
+				}();
+	//
+		var application = function( ){
+			// закрытые переменные и функции
+			var components = new Array ( );
+			// инициализация
+			components.push(new BaseComponent ());
+			// открытый интерфейс
+			return {
+				getComponentCount : function(){
+					return components.length;
+					},
+				registerComponent : function(component){
+					if ( typeof component == "object" ){
+						components.push(component); 
+					}}
+			};	
+		}();
+
+
+		
+
+		
+
+
+
+
+
+		
+
+	</script>
+</body>
+</html>

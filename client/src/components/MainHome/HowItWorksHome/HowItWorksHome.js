@@ -10,9 +10,6 @@ import { LinksForHowItWorksHome } from '../../../utils/textAndLinksForPages/text
 
 function HowItWorksHome(){
 
-    const prevIcon = <span className={style.carouselIconPrev}><i className="fas fa-chevron-left"/></span>;
-    const nextIcon = <span className={style.carouselIconNext}><i className="fas fa-chevron-right"/></span>;
-
         return (
             <div className={style.main}>
                 <div className={style.container}>
@@ -31,8 +28,6 @@ function HowItWorksHome(){
                         </ul>
 
                         <TemplateCarouselHome
-                            prevIcon={prevIcon}
-                            nextIcon={nextIcon}
                             images={LinksForHowItWorksHome.names}
                         />
 

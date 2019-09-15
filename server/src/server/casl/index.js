@@ -25,6 +25,7 @@ module.exports.defineAbilitiesFor = (role, user) => {
         case ROLE.CREATIVE:{
             can(ACTIONS.READ, SUBJECT.USER);
             can(ACTIONS.READ, SUBJECT.CONTEST);
+            can(ACTIONS.CREATE, SUBJECT.ENTRIES);
             cannot(ACTIONS.READ, SUBJECT.USER,  { isBanned: true }).because('You lox, Zabanen !');
             break;
         }

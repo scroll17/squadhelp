@@ -3,6 +3,8 @@ import { put } from 'redux-saga/effects';
 import { getUserEntries } from "../api/rest/userContoller";
 import { createEntries } from "../api/rest/entriesController";
 
+import history from "../boot/browserHistory";
+import { URL } from "../api/baseURL";
 
 export function* getUserEntriesSaga() {
     try {
@@ -15,18 +17,28 @@ export function* getUserEntriesSaga() {
 }
 
 export function* createEntrySaga({formData}) {
+
     try {
         const finalDataToSend = new FormData();
-        if(formData.file){
+        const dataToSend = {
+            contestId: formData.contestId,
+            userId: formData.userId,
+        };
+
+        if(formData['file']){
             const originalFileName = `${performance.now()}_${formData.file.name}`;
+            dataToSend['file'] = originalFileName;
+
             finalDataToSend.append("file", formData.file, originalFileName);
         }else{
-            finalDataToSend.append("text", JSON.stringify(formData.text));
+            dataToSend['text'] = formData.text;
         }
+        finalDataToSend.append("contentOfEntry", JSON.stringify(dataToSend));
 
 
-        //yield createEntries(finalDataToSend);
+        yield createEntries(finalDataToSend);
 
+        history.push(`${URL.DASHBOARD}${URL.MY_ACCOUNT}`)
     } catch (e) {
         yield put({type: DASHBOARD_ACTION.DASHBOARD_ERROR, error: e})
     }

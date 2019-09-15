@@ -54,16 +54,6 @@ function Contest(props) {
 
             </div>
 
-            <div className={style.countOfEntries}>
-                <div className={style.container}>
-                    <span className={style.entries}>
-                        <i className="fa fa-user" />
-                        0
-                    </span>
-                    <span>Entries</span>
-                </div>
-            </div>
-
         </div>
     )
 }

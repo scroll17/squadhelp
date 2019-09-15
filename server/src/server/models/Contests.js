@@ -92,6 +92,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
     Contests.associate = function (models) {
+        Contests.hasMany(models.Entries, {foreignKey: 'contestId', targetKey: 'id', as: 'entries',});
         Contests.belongsTo(models.User, {foreignKey: 'userId',targetKey: 'id',})
     };
 
