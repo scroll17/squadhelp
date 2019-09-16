@@ -20,7 +20,7 @@ function OpenChatButton(props){
 }
 
 const mapStateToProps = (state) => ({
-    chatIsOpen: state.chatReducers.isOpen,
+    chatIsOpen: state.chatReducer.isOpen,
 });
 const mapDispatchToProps = dispatch => ({
     closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),

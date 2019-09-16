@@ -1,0 +1,61 @@
+.listEntries
+  font-family: Arial, "sans-serif"
+
+  max-width: 1000px
+  border:
+    right: 1px solid #cacaca
+    left: 1px solid #cacaca
+
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: center
+  background-color: #FFFFFF
+
+  .home
+    position: sticky
+    top: 0
+
+    background-color: #FFFFFF
+    width: auto
+    padding: 11px
+    height: 44px
+    text-align: center
+    border-bottom: 1px solid #cacaca
+    a
+      text-decoration: none
+      color: inherit
+
+  .container
+    display: flex
+    flex-direction: column
+
+    margin-top: 35px
+    padding: 0 20px
+
+
+    .validation
+      margin-top: 15px
+      display: flex
+      flex-direction: row
+      justify-content: space-evenly
+      div
+        cursor: pointer
+        text-transform: uppercase
+        padding: 14px 30px
+        border: 1.5px solid
+        &:hover
+          color: #FFFFFF
+
+      .valid
+        border-color: #28d2d0
+        color: #28d2d0
+        &:hover
+          background-color: #28d2d0
+
+      .noValid
+        border-color: #FF0000
+        color: #FF0000
+        &:hover
+          background-color: #FF0000
+

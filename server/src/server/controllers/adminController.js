@@ -1,25 +1,25 @@
 const error = require("../errors/errors");
-const { User } = require('../models');
+const { User, Entries, Contests } = require('../models');
 
 const {
     ABILITY: { SUBJECT, ACTIONS },
 } = require("../constants");
 
+const last = require('lodash/last');
 
 module.exports.getAllUsers = async (req, res, next) => {
     try{
-        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ALL);                      // CASL
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ALL);
 
         const users = await User.findAll({
-            raw: true,
             rejectOnEmpty: true,
             attributes: {
                 exclude: ['password','updatedAt', 'createdAt']
             },
             order: [['email', 'ASC'], ['id', 'ASC']]
         });
-        res.send(users);
 
+        res.send(users);
     }catch (err) {
         next(err)
     }
@@ -30,10 +30,64 @@ module.exports.updateUserById = async (req, res, next) => {
     const { isBanned, user } = req.body;
 
     try {
-        if(req.ability.cannot(ACTIONS.UPDATE, user)){
-            return next(new error.Forbidden());
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, user);
+
+        const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
+            where: { id },
+            fields: ['isBanned'],
+            returning: true,
+            //nest : true
+        });
+
+        if(numberOfUpdatedRows <= 0){
+            return next(new error.NotFound());
         }
-        //req.ability.js.throwUnlessCan('update', user);                                     // CASL
+
+        return res.send(last(updateUser));
+    } catch (err) {
+        console.log(err);
+
+        next(err);
+    }
+};
+
+module.exports.getAllEntries = async (req, res, next) => {
+    try{
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ALL);
+
+        const entries = await Entries.findAll({
+            attributes: {
+                exclude: ['updatedAt', 'createdAt', 'userId'],
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['displayName', 'avatar', 'id']
+                },
+                {
+                    model: Contests,
+                    as: 'contestInfo',
+                    attributes: ['title']
+                },
+            ],
+            order: [['id', 'DESC']]
+        });
+
+
+        res.send(entries);
+
+    }catch (err) {
+        next(err)
+    }
+};
+
+
+module.exports.updateEntryById = async (req, res, next) => {
+    const { id } = req.params;
+    const { isBanned, user } = req.body;
+
+    try {
+
 
         const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
             where: { id },

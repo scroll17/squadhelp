@@ -29,8 +29,8 @@ class PrivateRoute extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
-    isFetching: state.userReducers.isFetching
+    user: state.userReducer.user,
+    isFetching: state.userReducer.isFetching
 });
 const mapDispatchToProps = (dispatch) => ({
     getUser: () => dispatch(getUser()),

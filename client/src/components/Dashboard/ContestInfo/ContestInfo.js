@@ -8,6 +8,7 @@ import style from './ContestInfo.module.sass'
 import PrivateComponent from "../../PrivateComponent/PrivateComponent";
 import StartEntry from "./StartEntry/StartEntry";
 import Brief from "./Brief/Brief";
+import Entry from "./Entry/Entry";
 
 
 import history from "../../../boot/browserHistory";
@@ -37,11 +38,8 @@ function ContestInfo(props) {
             {openContest &&
                 <>
                     <div className={style.aboutContestContainer}>
-
                         <div className={style.info}>
-
                             <div className={style.container}>
-
                                 <div className={style.aboutContest}>
                                     <img src="https://www.squadhelp.com/images/entry-not-icon.png"
                                          className={style.image}
@@ -51,16 +49,23 @@ function ContestInfo(props) {
                                 </div>
 
                                 <div className={style.content}>
-                                    {conversionObjectInformation(openContest, ['contestId', 'userId', 'price', 'User'])}
+                                    {conversionObjectInformation(openContest, ['contestId', 'userId', 'price', 'User', 'Entries'])}
                                 </div>
-
                             </div>
                         </div>
+
+                        <PrivateComponent requireRole={[ROLE.BUYER]}>
+                            <div className={style.entries}>
+                                <div className={style.title}>Entries</div>
+                                <div className={style.list}>
+                                    {openContest.Entries.map( entry => <Entry {...entry} key={entry.id}/>)}
+                                </div>
+                            </div>
+                        </PrivateComponent>
 
                         <PrivateComponent requireRole={[ROLE.CREATIVE]}>
                             <StartEntry typeOfContest={openContest.contestType} contestId={openContest.id}/>
                         </PrivateComponent>
-
                     </div>
 
                     <Brief contestInfo={openContest}/>

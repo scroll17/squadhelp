@@ -32,7 +32,7 @@ class SignUpPage extends Component{
 
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     toSignUpUser: user => dispatch(createUser(user)),

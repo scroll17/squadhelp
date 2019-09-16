@@ -14,7 +14,7 @@ const { URL: { API } } = require('../constants');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../../../public/images/tmp/entriesFiles'))
+        cb(null, path.join(__dirname, '../../../public/images/tmp/entryFiles'))
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);

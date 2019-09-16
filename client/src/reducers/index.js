@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 
-import userReducers from './user/userReducer';
+import userReducer from './user/userReducer';
+import adminReducer from './admin/adminReducer'
 
-import contestReducers from './contest/contestReducers';
+import contestReducer from './contest/contestReducer';
 
-import chatReducers from './chat/chatReducer';
+import chatReducer from './chat/chatReducer';
 import chatFindReducer from './chat/chatFindReducer';
 import chatMessagesReducer from './chat/chatMessagesReducer';
 import chatConversationsReducer from './chat/chatConversationsReducer'
@@ -21,11 +22,12 @@ import { reducer as formReducer } from 'redux-form';
 const appReducer = combineReducers({
   form: formReducer,
 
-  userReducers,
+  userReducer,
+  adminReducer,
 
-  contestReducers,
+  contestReducer,
 
-  chatReducers,
+  chatReducer,
   chatFindReducer,
   chatMessagesReducer,
   chatConversationsReducer,

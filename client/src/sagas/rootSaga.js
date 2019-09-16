@@ -2,6 +2,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 import ACTION from '../actions/actionTypes/actionsTypes';
 import CHAT_ACTION from '../actions/actionTypes/chatActionsTypes';
+import ADMIN_ACTION from '../actions/actionTypes/adminActionTypes';
 import DASHBOARD_ACTION from '../actions/actionTypes/dashboardActionTypes';
 
 import {
@@ -9,9 +10,14 @@ import {
     createUserSaga,
     userLogoutSaga,
     getUserSaga,
+} from './userSaga';
+
+import {
     getAllUserSaga,
     banUserByIdSaga,
-} from './userSaga';
+    getAllEntriesSaga,
+    updateValidityEntrySaga,
+} from './adminSaga'
 
 import { saveTokenSaga, tokenErrorSaga } from './tokenSaga'
 
@@ -52,8 +58,10 @@ function* rootSaga() {
     yield takeLatest(ACTION.USER_LOGOUT, userLogoutSaga);
     yield takeLatest(ACTION.GET_USER, getUserSaga);
 
-    yield takeLatest(ACTION.GET_ALL_USER, getAllUserSaga);
-    yield takeLatest(ACTION.BAN_USER_BY_ID, banUserByIdSaga);
+    yield takeLatest(ADMIN_ACTION.GET_ALL_USER, getAllUserSaga);
+    yield takeLatest(ADMIN_ACTION.BAN_USER_BY_ID, banUserByIdSaga);
+    yield takeLatest(ADMIN_ACTION.GET_ALL_ENTRIES, getAllEntriesSaga);
+    yield takeLatest(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);

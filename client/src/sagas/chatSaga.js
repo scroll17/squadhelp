@@ -16,7 +16,7 @@ export function* closeOrOpenConnectionSaga({isOpen}) {
         if(isOpen){
             socket.disconnect()
         }else{
-            const {userReducers: { user }, chatConversationsReducer: { openConversation }} = yield select();
+            const {userReducer: { user }, chatConversationsReducer: { openConversation }} = yield select();
 
             socket.connect();
             userConnected(omit(user, ['email', 'isBanned']));

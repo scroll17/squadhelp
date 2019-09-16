@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 
 import { getUserEntries } from "../../../../actions/actionCreators/dashboardEntriesActionCreator";
 import style from "./MyEntries.module.sass";
-import Entry from "../../Entry/Entry";
+import Entry from "./MyEntry/MyEntry";
 
 
 function MyEntries(props) {

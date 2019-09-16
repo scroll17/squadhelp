@@ -96,9 +96,9 @@ ChatPage = reduxForm ({
 })(ChatPage);
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
-    foundUsers: state.chatReducers.foundUsers,
-    stageNow: state.chatReducers.stageNow,
+    user: state.userReducer.user,
+    foundUsers: state.chatReducer.foundUsers,
+    stageNow: state.chatReducer.stageNow,
 });
 const mapDispatchToProps = dispatch => ({
     addNewMessage: (message) => dispatch(addNewMessage(message))

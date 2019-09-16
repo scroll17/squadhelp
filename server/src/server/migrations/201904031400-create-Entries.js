@@ -1,5 +1,5 @@
 'use strict';
-const { ENTRIES_STATUS } = require('../constants');
+const { ENTRIES_STATUS, ENTRY_VALIDATION_STATUS } = require('../constants');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
@@ -39,9 +39,12 @@ module.exports = {
                 defaultValue: ENTRIES_STATUS.EXPECTATION,
             },
             isValid: {
-                type: Sequelize.BOOLEAN,
+                type: Sequelize.STRING,
                 allowNull: false,
-                defaultValue: false,
+                validate: {
+                    isIn: [[...Object.values(ENTRY_VALIDATION_STATUS)]]
+                },
+                defaultValue: ENTRY_VALIDATION_STATUS.PENDING,
             },
             text: {
                 type: Sequelize.TEXT,

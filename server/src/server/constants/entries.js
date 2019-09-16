@@ -4,6 +4,13 @@ const ENTRIES_STATUS = {
     EXPECTATION: 'expectation',
 };
 
+const ENTRY_VALIDATION_STATUS = {
+    VALID: 'valid',
+    INVALID: 'invalid',
+    PENDING: 'pending',
+};
+
 module.exports = {
-    ENTRIES_STATUS
+    ENTRIES_STATUS,
+    ENTRY_VALIDATION_STATUS
 };

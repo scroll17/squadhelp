@@ -72,7 +72,7 @@ ContestInfo = reduxForm ({
 
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     createEntry: (values) => dispatch(createEntry(values)),

@@ -16,7 +16,10 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
     const foundConversation = await Conversation.aggregate([
         {$match: {
                 $expr: {
-                    $in: [ participantId, "$participants" ]
+                    $and: [
+                        { $in: [ participantId, "$participants" ] },
+                        { $in: [ userData.get('id'), "$participants" ] }
+                    ]
                 }
             }},
         {$project: {
@@ -25,11 +28,11 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
             }},
     ]);
 
+
     if(isEmpty(foundConversation)){
         const conversation = new Conversation({
             participants: [participantId, userData.get('id')],
         });
-
 
         userData.set('newConversation', conversation);
         userData.set('roomId', conversation._id);
@@ -38,6 +41,7 @@ module.exports = (socket) => socket.on(ON.START_CONVERSATION, async data => {
 
         const roomId = first(foundConversation)._id;
         userData.set('roomId', roomId);
+
 
         const foundMessages = await findMessage(roomId);
         socket.emit(EMIT.OLD_MESSAGES, foundMessages);

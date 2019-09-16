@@ -69,7 +69,7 @@ function Header(props){
 }
 
 const mapStateToProps = (state) => ({
-    stageNow: state.chatReducers.stageNow,
+    stageNow: state.chatReducer.stageNow,
     openConversation: state.chatConversationsReducer.openConversation,
 });
 const mapDispatchToProps = dispatch => ({

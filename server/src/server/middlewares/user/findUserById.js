@@ -5,7 +5,6 @@ module.exports = (idSource) => async (req,res,next) => {
 
     let id;
     if(idSource === 'decoded'){
-        console.log('decoded 2', req.decoded);
         id = req.decoded.userId;
     }else if(idSource === 'params'){
         id = req.params.id;

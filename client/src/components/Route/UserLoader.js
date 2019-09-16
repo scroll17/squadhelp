@@ -18,7 +18,7 @@ function UserLoader(props) {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
+    user: state.userReducer.user,
 });
 const mapDispatchToProps = (dispatch) => ({
     getUser: () => dispatch(getUser()),

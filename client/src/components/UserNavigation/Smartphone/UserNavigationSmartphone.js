@@ -71,7 +71,7 @@ function UserNavigationSmartphone(props) {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 export default connect(mapStateToProps)(UserNavigationSmartphone);
 

@@ -4,10 +4,10 @@ const error = require("../errors/errors");
 const {
     HTTP_CODE : { SUCCESS },
     ABILITY: { SUBJECT, ACTIONS },
-    CONTEST_PRICE,
+    ENTRY_VALIDATION_STATUS
 } = require('../constants');
 
-const { Contests, User } = require('../models');
+const { Contests, User, Entries } = require('../models');
 
 
 const convertMapToObject = require('../utils/convertMapToObject');
@@ -47,17 +47,33 @@ module.exports.getPriceToContests =  (req, res, next) => {
 module.exports.getContestById = async (req, res, next) => {
     const { id } = req.params;
     try {
-        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+        //req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
 
         const contest = await Contests.findByPk(id, {
             attributes: {
-                exclude: ['updatedAt', 'createdAt']
+                exclude: ['updatedAt', 'createdAt'],
             },
-            include: [{
-                model: User,
-                attributes: ['displayName', 'avatar'],
-            }]
+            include: [
+                {
+                    model: User,
+                    attributes: ['displayName', 'avatar'],
+                },
+                {
+                    model: Entries,
+                    where: {
+                        isValid: ENTRY_VALIDATION_STATUS.PENDING
+                    },
+                    required: false,
+                    attributes: ['text', 'file', 'status', 'id'],
+                    include: [{
+                        model: User,
+                        attributes: ['displayName', 'avatar', 'id'],
+                    }]
+                }
+            ],
+            order: [['id', 'DESC']]
         });
+
         if(contest){
             return res.send(contest);
         }else{

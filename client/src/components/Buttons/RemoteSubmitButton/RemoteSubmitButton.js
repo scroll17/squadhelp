@@ -16,7 +16,7 @@ const SubmitButton = (props) => {
     )
 };
 const mapStateToProps = (state) => ({
-    contestNow: state.contestReducers.contestNow,
-    contestQueue: state.contestReducers.contestQueue,
+    contestNow: state.contestReducer.contestNow,
+    contestQueue: state.contestReducer.contestQueue,
 });
 export default connect(mapStateToProps)(SubmitButton)

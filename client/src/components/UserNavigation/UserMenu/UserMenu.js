@@ -9,7 +9,7 @@ import Avatar from "../../Avatart/Avatar";
 import { userLogout } from "../../../actions/actionCreators/userActionCreator";
 
 import { URL } from '../../../api/baseURL'
-import { ROLE, DISPLAY, VIEW } from '../../../constants'
+import { ROLE, DISPLAY, VIEW, HEX_COLOR } from '../../../constants'
 import {closeOrOpenConnection} from "../../../actions/actionCreators/chatActionCreator";
 
 import { useMissClick } from '../../Hooks/useMissClick'
@@ -21,9 +21,18 @@ function UserNavigationSmartphone(props){
     const [displayStyle, toOpenMenu] = useMissClick(toggleContainer);
 
 
-    const adminPanel = props.user.role === ROLE.ADMIN ?
-                <Link to={URL.ADMIN_PANEL} style={{color: "#3ea9f5"}}><li>Admin panel</li></Link>
-                : null;
+    const adminLinks = props.user.role === ROLE.ADMIN ?
+        (
+            <>
+                <Link to={URL.ADMIN_PANEL} style={{color: HEX_COLOR.BLUE}}>
+                    <li>Admin panel</li>
+                </Link>
+                <Link to={URL.MODERATION} style={{color: HEX_COLOR.BLUE}}>
+                    <li>Moderation</li>
+                </Link>
+            </>
+        )
+        : null;
 
     return (
         <div className={style.userMenu}>
@@ -45,7 +54,7 @@ function UserNavigationSmartphone(props){
                         <span onClick={() => closeOrOpenConnection(props.chatIsOpen)}>
                             <li> Messages </li>
                         </span>
-                        {adminPanel}
+                        {adminLinks}
                         <span onClick={props.clickToLogout}><li>Logout</li></span>
                     </ul>
                 }
@@ -63,8 +72,8 @@ function UserNavigationSmartphone(props){
 }
 
 const mapStateToProps = (state) => ({
-    chatIsOpen: state.chatReducers.isOpen,
-    user: state.userReducers.user
+    chatIsOpen: state.chatReducer.isOpen,
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     clickToLogout: () => dispatch(userLogout()),

@@ -72,7 +72,7 @@ DrawContestForm = reduxForm({
 })(DrawContestForm);
 
 export default DrawContestForm = connect(state => {
-    const { contestFormData, contestNow } = state.contestReducers;
+    const { contestFormData, contestNow } = state.contestReducer;
     const contestStageNow = last(contestNow);
 
     return ({

@@ -5,7 +5,7 @@ import { CHAT_FIELDS, STAGE_OF_CHAT } from './chat'
 import { CONTEST, FORM, TYPE_FIELD } from './form'
 import { ERROR, SUCCESS_CODE } from './http'
 import { DISPLAY, VIEW } from './viewAndDisplay'
-import { CONTEST_USER_FILE, STATUS_OF_CONTEST_AND_ENTRY } from './dashboard'
+import { CONTEST_USER_FILE, ENTRY_USER_FILE,STATUS_OF_CONTEST_AND_ENTRY } from './dashboard'
 import { ICON } from './icon'
 
 const STORE = config();
@@ -54,5 +54,6 @@ export  {
     USER_AVATAR,
     REACT_ROUTER_TYPE,
     CONTEST_USER_FILE,
+    ENTRY_USER_FILE,
     STATUS_OF_CONTEST_AND_ENTRY,
 }

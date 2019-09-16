@@ -40,7 +40,7 @@ function StartContestSteps(props){
 }
 
 const mapStateToProps = (state) => ({
-    contestNow: state.contestReducers.contestNow,
+    contestNow: state.contestReducer.contestNow,
 });
 export default connect(mapStateToProps)(StartContestSteps);
 

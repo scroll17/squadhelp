@@ -4,7 +4,6 @@ const initialState = {
   isFetching: null,
   error: null,
   user: null,
-  users: [],
 };
 
 export default function (state = initialState, action) {

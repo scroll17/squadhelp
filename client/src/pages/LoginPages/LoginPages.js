@@ -49,7 +49,7 @@ function LoginPage(props){
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     toLoginUser: user => dispatch(loginUser(user)),

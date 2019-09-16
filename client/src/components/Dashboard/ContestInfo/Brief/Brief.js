@@ -7,10 +7,10 @@ import Avatar from "../../../Avatart/Avatar";
 import {closeOrOpenConnection} from "../../../../actions/actionCreators/chatActionCreator";
 import {startConversation} from "../../../../api/socket/chatController";
 import { ROLE } from "../../../../constants";
-import { isEqual } from 'lodash'
+import { isEqual, size } from 'lodash'
 
 function ContestInfo(props) {
-    const { price, userId, User } = props.contestInfo;
+    const { price, userId, User, Entries } = props.contestInfo;
     const { userRole } = props;
 
     const clickToStartConversation = () => {
@@ -30,7 +30,7 @@ function ContestInfo(props) {
                 </h1>
                 <div className={style.entries}>
                     <span>
-                        <i className="fa fa-user" /> 0
+                        <i className="fa fa-user" /> {size(Entries)}
                     </span>
                     <p>Entries</p>
                 </div>
@@ -43,7 +43,6 @@ function ContestInfo(props) {
                 <div className={style.holderInfo}>
                     <Avatar customAvatar={User.avatar} size={62}/>
                     <span>
-                        {console.log(userRole)}
                         {User.displayName}
                         {
                             !isEqual(userRole, ROLE.BUYER) &&
@@ -57,7 +56,7 @@ function ContestInfo(props) {
 }
 
 const mapStateToProps = (state) => ({
-    userRole: state.userReducers.user.role
+    userRole: state.userReducer.user.role
 });
 const mapDispatchToProps = dispatch => ({
     closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),

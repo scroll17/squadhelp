@@ -18,7 +18,7 @@ function ChatPage(props){
 }
 
 const mapStateToProps = (state) => ({
-    chatIsOpen: state.chatReducers.isOpen,
+    chatIsOpen: state.chatReducer.isOpen,
 });
 export default connect(mapStateToProps)(ChatPage);
 

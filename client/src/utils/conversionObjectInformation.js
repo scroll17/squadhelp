@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import {isNull, omit, startCase, isEqual} from 'lodash';
 
 import { CONTEST_USER_FILE } from "../constants";
-
+import createFilePathAndName from "./createFilePathAndName";
 
 export default (obj, omitFields) => {
     const fields = Object.keys(omit(obj, omitFields));
@@ -16,14 +16,15 @@ export default (obj, omitFields) => {
             if(isEqual(field, 'file')){
 
                 const file = obj[field];
-                const filePath = `${CONTEST_USER_FILE}${file}`;
+                const {filePath, fileName} = createFilePathAndName(file, CONTEST_USER_FILE);
+
                 fieldData = (
                     <a href={filePath} download>
-                        {file}
+                        {fileName}
                     </a>
                 );
 
-            }else if(isEqual(field, 'style')){
+            }else if(Array.isArray(obj[field])){
 
                 fieldData = obj[field].join(', ')
             }else{

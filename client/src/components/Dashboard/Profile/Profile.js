@@ -27,7 +27,7 @@ function ContestInfo(props) {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     getContestById: (id) => dispatch(getContestById(id)),

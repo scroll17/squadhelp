@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 
 import style from './Contest.module.sass'
 
-import { URL, SEARCH } from "../../../api/baseURL";
-import historyLocationSearch from "../../../utils/history/historyLocationSearch";
+import GetContestLink from "../../../Links/GetContestLink/GetContestLink";
 
-import { getContestById } from "../../../actions/actionCreators/dashboardContestsActionCreator";
 
 function Contest(props) {
     const { id, title } = props;
@@ -16,51 +13,32 @@ function Contest(props) {
 
     return (
         <div className={style.contest}>
-
             <div className={style.contestInfo}>
-
-                <Link
-                    onClick={() => props.getContestById(id)}
-                    to={historyLocationSearch(
-                        [[SEARCH.ID, id]],
-                        `${URL.DASHBOARD}${URL.CONTEST}`
-                    )}
-                    className={style.title}
-                >
-                    {title}
-                    <span> (#{id})</span>
-                </Link>
+                <GetContestLink id={id} title={title}/>
 
                 <p className={style.contestType}>
                     {contestType} / { type ? type.join(' & ') : props.style }
                 </p>
 
-                <p className={style.typeOfVenture}>{whatVentureDoes}</p>
+                <p className={style.typeOfVenture}>
+                    {whatVentureDoes}
+                </p>
 
                 <ul className={style.statusInfo}>
-                    <li className={style.prize}>
-                        <i className="fa fa-check-circle" />
-                        Guaranteed prize
+                    <li className={style.price}>
+                        <i className="fa fa-gem" />
+                        {price}
                     </li>
                     <li className={style.status}>
                         <i className="fa fa-times-circle" />
                         Awaiting
                     </li>
-                    <li className={style.price}>
-                        <i className="fa fa-gem" />
-                        {price}
-                    </li>
                 </ul>
-
             </div>
-
         </div>
     )
 }
 const mapStateToProps = (state) => ({
     sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
 });
-const mapDispatchToProps = dispatch => ({
-    getContestById: (id) => dispatch(getContestById(id)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Contest);
+export default connect(mapStateToProps)(Contest);

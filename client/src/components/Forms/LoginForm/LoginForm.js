@@ -90,7 +90,7 @@ LoginForm = reduxForm({
 })(LoginForm);
 
 const mapStateToProps = (state) => ({
-    err: state.userReducers.error
+    err: state.userReducer.error
 });
 const mapDispatchToProps = dispatch => ({
     getUserResponse: () => dispatch(getUserResponse())

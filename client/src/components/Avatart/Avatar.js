@@ -37,7 +37,7 @@ Avatar.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 export default connect(mapStateToProps)(Avatar);
 

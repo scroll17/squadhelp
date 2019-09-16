@@ -11,6 +11,7 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 import AdminPage from './pages/AdminPage/AdminPage';
 import ContestPage from './pages/ContestPage/ContestPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage'
+import ModerationPage from './pages/ModerationPage/ModerationPage'
 
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
@@ -65,6 +66,12 @@ class App extends Component{
                             component={AdminPage}
                             redirectTo={URL.NOT_FOUND}
                         />
+                        <PrivateRoute
+                            requireRole={[ROLE.ADMIN]}
+                            path={URL.MODERATION}
+                            component={ModerationPage}
+                            redirectTo={URL.NOT_FOUND}
+                        />
 
                         <Route component={ NotFoundPage } />
                     </Switch>
@@ -77,6 +84,6 @@ class App extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
+    user: state.userReducer.user,
 });
 export default connect(mapStateToProps)(App);

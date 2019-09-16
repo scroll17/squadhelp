@@ -25,7 +25,7 @@ const Header = props => {
 };
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
+    user: state.userReducer.user,
     sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
 });
 const mapDispatchToProps = dispatch => ({

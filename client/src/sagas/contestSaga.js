@@ -15,7 +15,7 @@ import {URL} from "../api/baseURL";
 
 export function* createContestSaga({formData}) {
     try {
-        const { contestReducers: { contestNow, contestFormData, priceOfContest } } = yield select();
+        const { contestReducer: { contestNow, contestFormData, priceOfContest } } = yield select();
 
 
         if(_.isEmpty(formData)){
@@ -97,7 +97,7 @@ export function* createContestSaga({formData}) {
 
 export function* nextContestStageSaga({formData}) {
     try {
-        let {contestReducers: {contestNow, contestQueue }} = yield select();
+        let {contestReducer: {contestNow, contestQueue }} = yield select();
 
         yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
@@ -113,7 +113,7 @@ export function* nextContestStageSaga({formData}) {
 
 export function* prevContestStageSaga() {
     try {
-        let {contestReducers: {contestNow: prevContest, contestQueue}} = yield select();
+        let {contestReducer: {contestNow: prevContest, contestQueue}} = yield select();
         const contest = _.clone(prevContest);
         const queue = _.clone(contestQueue);
 
@@ -129,7 +129,7 @@ export function* prevContestStageSaga() {
 
 export function* toContestQueueSaga({stage}) {
     try {
-        let {contestReducers: {contestNow: prevContest}} = yield select();
+        let {contestReducer: {contestNow: prevContest}} = yield select();
 
         let contest = [..._.clone(prevContest), _.first(stage)];
 
@@ -149,7 +149,7 @@ export function* toContestQueueSaga({stage}) {
 
 export function* writeFormDataToStore({formData}) {
     try {
-        let {contestReducers: {contestNow, contestFormData}} = yield select();
+        let {contestReducer: {contestNow, contestFormData}} = yield select();
 
         console.log('formData', formData);
 

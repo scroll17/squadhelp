@@ -1,4 +1,4 @@
-const { ENTRIES_STATUS } = require('../constants');
+const { ENTRIES_STATUS, ENTRY_VALIDATION_STATUS  } = require('../constants');
 
 module.exports = (sequelize, DataTypes) => {
     const Entries = sequelize.define('Entries', {
@@ -33,9 +33,12 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: ENTRIES_STATUS.EXPECTATION,
         },
         isValid: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: false,
+            validate: {
+                isIn: [[...Object.values(ENTRY_VALIDATION_STATUS)]]
+            },
+            defaultValue: ENTRY_VALIDATION_STATUS.PENDING,
         },
         text: {
             type: DataTypes.TEXT,
@@ -50,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Entries.associate = function (models) {
         Entries.belongsTo(models.Contests, {foreignKey: 'contestId', targetKey: 'id', as: 'contestInfo'});
-        Entries.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id', as: 'user'});
+        Entries.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'});
     };
     return Entries;
 };

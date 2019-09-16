@@ -117,11 +117,11 @@ function ContestForms(props){
 }
 
 const mapStateToProps = (state) => ({
-    contestNow: state.contestReducers.contestNow,
-    contestQueue: state.contestReducers.contestQueue,
-    contestFormData: state.contestReducers.contestFormData,
+    contestNow: state.contestReducer.contestNow,
+    contestQueue: state.contestReducer.contestQueue,
+    contestFormData: state.contestReducer.contestFormData,
 
-    user: state.userReducers.user
+    user: state.userReducer.user
 });
 const mapDispatchToProps = dispatch => ({
     createNewContest: contest => dispatch(createContest(contest)),

@@ -123,8 +123,8 @@ const selector = formValueSelector(CONTEST.BANKS); // <-- same as form name
 const mapStateToProps = state => {
     const fields = getFormMeta(CONTEST.BANKS)(state);
 
-    const priceOfContest = state.contestReducers.priceOfContest;
-    const contestNow = state.contestReducers.contestNow;
+    const priceOfContest = state.contestReducer.priceOfContest;
+    const contestNow = state.contestReducer.contestNow;
 
     const {number, expiry, cvc} = selector(state, 'number','name','expiry','cvc');
     return {

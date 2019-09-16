@@ -47,7 +47,7 @@ function Messages(props) {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
+    user: state.userReducer.user,
 });
 export default connect(mapStateToProps)(Messages);
 

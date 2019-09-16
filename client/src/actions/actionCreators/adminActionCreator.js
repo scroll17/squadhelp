@@ -1,10 +1,17 @@
-import ACTION from '../actionTypes/actionsTypes';
+import ADMIN_ACTION from '../actionTypes/adminActionTypes';
 
 export const getAllUser = () => ({
-    type: ACTION.GET_ALL_USER,
+    type: ADMIN_ACTION.GET_ALL_USER,
 });
 export const banUserById = (userId, isBanned) => ({
-    type: ACTION.BAN_USER_BY_ID,
+    type: ADMIN_ACTION.BAN_USER_BY_ID,
     userId,
     isBanned,
+});
+
+export const getAllEntries = () => ({
+    type: ADMIN_ACTION.GET_ALL_ENTRIES,
+});
+export const updateValidityEntry = () => ({
+    type: ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY,
 });
