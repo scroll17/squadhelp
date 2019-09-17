@@ -34,7 +34,8 @@ function ModerationPage(props){
                 </Link>
             </div>
             {entries.map( entry => {
-                const {id, contestId, contestInfo} = entry;
+                const {id, contestId, contestInfo, User: { email } } = entry;
+
                 return (
                     <div className={style.container} key={id}>
 
@@ -50,12 +51,12 @@ function ModerationPage(props){
 
                         <div className={style.validation}>
                             <div className={style.valid}
-                                 onClick={() => updateValidityEntry(id, VALID)}
+                                 onClick={() => updateValidityEntry(id, VALID, email)}
                             >
                                 {VALID}
                             </div>
                             <div className={style.noValid}
-                                 onClick={() => updateValidityEntry(id, INVALID)}
+                                 onClick={() => updateValidityEntry(id, INVALID, email)}
                             >
                                 {INVALID}
                             </div>
@@ -72,7 +73,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = dispatch => ({
     getAllEntries: () => dispatch(getAllEntries()),
-    updateValidityEntry: (id, status) => dispatch(updateValidityEntry(id, status))
+    updateValidityEntry: (id, status, userEmail) => dispatch(updateValidityEntry(id, status, userEmail))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ModerationPage);
 

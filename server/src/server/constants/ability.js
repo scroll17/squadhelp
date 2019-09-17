@@ -12,7 +12,7 @@ const ABILITY = {
         DELETE: "delete",
         MANAGE: "manage", // управлять
         CRUD: "crud",
-    }
+    },
 };
 
 module.exports = {

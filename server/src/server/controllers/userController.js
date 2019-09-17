@@ -9,8 +9,6 @@ const {
 
 const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 
-const { isEmpty } = require('lodash');
-
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
     try{
@@ -42,8 +40,6 @@ module.exports.createUser = async (req, res, next) => {
 
 module.exports.loginUser = async (req,res,next) => {
     const { user, tokenPair } = req.body;
-
-        console.log('----- 3 -----')
 
     try{
         await RefreshToken.create({

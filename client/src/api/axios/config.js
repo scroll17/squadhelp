@@ -58,7 +58,6 @@ const errorHandler = async (error) => {
                 return axios.request();
             default:
                 const { statusText, data } = error.response;
-                console.log(error.response);
                 toast.error(toastifyErrorMessage(statusText, data), {
                     position: toast.POSITION.TOP_RIGHT
                 });

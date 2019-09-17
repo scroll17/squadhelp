@@ -1,26 +1,18 @@
 const express = require('express');
 
 const multer = require('multer');
-const path = require('path');
 
 const {
     createEntry,
+    updateEntryById
 } = require('../controllers/entriesController');
 
 
-//const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
+const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
 const { URL: { API } } = require('../constants');
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../../../public/images/tmp/entryFiles'))
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    }
-});
-const upload = multer({storage: storage});
+const upload = multer({storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/tmp/entryFiles')});
 
 
 const router = express.Router();
@@ -29,6 +21,10 @@ const router = express.Router();
 router.post(API.CREATE,
     upload.array('file', 1),
     createEntry
+);
+
+router.put(API.ENTRY_ID,
+    updateEntryById,
 );
 
 

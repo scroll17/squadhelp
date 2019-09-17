@@ -19,15 +19,12 @@ function MyContests(props) {
     };
 
     return (
-
         <div className={style.myContests}>
             <div className={style.title}>my contests</div>
             <div className={style.listBox}>
                 {showMyContests(myContests)}
             </div>
         </div>
-
-
     )
 }
 

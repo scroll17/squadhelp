@@ -22,7 +22,9 @@ module.exports = (io, socket) => socket.on( ON.USER_CONNECTED, async user => {
                     $filter: {
                         input: "$participants",
                         as: "participant",
-                        cond: { $ne: [ "$$participant", user.id ] }
+                        cond: {
+                            $ne: [ "$$participant", user.id ]
+                        }
                     }
                 },
                 lastMessageId: {

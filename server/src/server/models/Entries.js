@@ -40,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
             },
             defaultValue: ENTRY_VALIDATION_STATUS.PENDING,
         },
+        liked: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
         text: {
             type: DataTypes.TEXT,
             allowNull: true,

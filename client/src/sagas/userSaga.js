@@ -8,7 +8,7 @@ import {
     loginUser,
     createUser,
     userLogout,
-    getUser
+    getUser,
 } from '../api/rest/userContoller';
 
 
@@ -26,7 +26,6 @@ export function* loginUserSaga({user}) {
         yield put({type: ACTION.SAVE_TOKENS_LOCALLY, tokens: data.tokenPair});
 
 
-        //console.log(document.referrer);
         yield historyPushOrBack(history, call, URL.HOME);
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})

@@ -9,12 +9,19 @@ import statusInIcon from "../../../../utils/statusInIcon";
 
 import {startConversation} from "../../../../api/socket/chatController";
 import {closeOrOpenConnection} from "../../../../actions/actionCreators/chatActionCreator";
+import { updateEntryById, likeEntryById } from "../../../../actions/actionCreators/dashboardEntriesActionCreator";
 
 import createFilePathAndName from "../../../../utils/createFilePathAndName";
-import { ENTRY_USER_FILE } from "../../../../constants";
+
+import {
+    ENTRY_USER_FILE,
+    STATUS_OF_CONTEST_AND_ENTRY,
+} from "../../../../constants";
+
+import { isEqual } from 'lodash'
 
 function Entry(props) {
-    const {User, text, file, status, id, isValid, isModerationPage} = props;
+    const {User, text, file, status, id, isValid, isModerationPage, liked} = props;
     const {displayName, avatar} = User;
 
     const styleForModerationPage = {
@@ -22,6 +29,10 @@ function Entry(props) {
         flexDirection: 'column',
         justifyContent: 'space-between',
         height: '100%'
+    };
+
+    const likedEntryStyle = {
+        color: "#28d2d0"
     };
 
     const fileData = createFilePathAndName(file, ENTRY_USER_FILE);
@@ -45,15 +56,21 @@ function Entry(props) {
 
                 {!isModerationPage &&
                     <div className={style.entryAction}>
-                        <i className="fas fa-heart"/>
-                        <div>
-                            <span>
-                                choose as a winner
-                            </span>
-                            <span>
-                                reject
-                            </span>
-                        </div>
+                        <i className="fas fa-heart"
+                           style={liked ? likedEntryStyle : null}
+                           onClick={() => props.likeEntryById(id, liked)}
+                        />
+
+                        {isEqual(status, STATUS_OF_CONTEST_AND_ENTRY.EXPECTATION) &&
+                            <div>
+                                <span onClick={() => props.updateEntryById(id, STATUS_OF_CONTEST_AND_ENTRY.RESOLVE)}>
+                                    {STATUS_OF_CONTEST_AND_ENTRY.RESOLVE}
+                                </span>
+                                <span onClick={() => props.updateEntryById(id, STATUS_OF_CONTEST_AND_ENTRY.REJECT)}>
+                                    {STATUS_OF_CONTEST_AND_ENTRY.REJECT}
+                                </span>
+                            </div>
+                        }
                     </div>
                 }
             </div>
@@ -81,6 +98,8 @@ Entry.defaultProps = {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = dispatch => ({
     closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    likeEntryById: (id, liked) => dispatch(likeEntryById(id, liked)),
+    updateEntryById: (id, status) => dispatch(updateEntryById(id, status)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Entry);
 

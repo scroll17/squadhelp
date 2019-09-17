@@ -30,10 +30,5 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
         timestamps: false
     });
 
-
-    if(messagePushToConversation.ok >= 1){
-        socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
-    }else{
-        console.log('error ---- message not send')
-    }
+    socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
 });

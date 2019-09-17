@@ -1,6 +1,6 @@
 'use strict';
 
-const { CONTEST_TYPE } = require('../constants');
+const { CONTEST_TYPE, CONTEST_STATUS } = require('../constants');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
@@ -45,6 +45,13 @@ module.exports = {
                 allowNull: true,
                 validate: {
                     notEmpty: false,
+                },
+            },
+            status:{
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    isIn: Object.keys(CONTEST_STATUS)
                 },
             },
             price: {

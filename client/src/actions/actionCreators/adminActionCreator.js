@@ -12,8 +12,9 @@ export const banUserById = (userId, isBanned) => ({
 export const getAllEntries = () => ({
     type: ADMIN_ACTION.GET_ALL_ENTRIES,
 });
-export const updateValidityEntry = (id, status) => ({
+export const updateValidityEntry = (id, status, userEmail) => ({
     type: ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY,
     id,
-    status
+    status,
+    userEmail
 });

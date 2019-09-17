@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, takeEvery } from 'redux-saga/effects';
 
 import ACTION from '../actions/actionTypes/actionsTypes';
 import CHAT_ACTION from '../actions/actionTypes/chatActionsTypes';
@@ -49,7 +49,9 @@ import {
 
 import {
     getUserEntriesSaga,
-    createEntrySaga
+    createEntrySaga,
+    updateEntryByIdSaga,
+    likeEntryByIdSaga
 } from './dashboardEntriesSaga'
 
 function* rootSaga() {
@@ -61,7 +63,7 @@ function* rootSaga() {
     yield takeLatest(ADMIN_ACTION.GET_ALL_USER, getAllUserSaga);
     yield takeLatest(ADMIN_ACTION.BAN_USER_BY_ID, banUserByIdSaga);
     yield takeLatest(ADMIN_ACTION.GET_ALL_ENTRIES, getAllEntriesSaga);
-    yield takeLatest(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
+    yield takeEvery(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);
@@ -91,7 +93,10 @@ function* rootSaga() {
 
     yield takeLatest(DASHBOARD_ACTION.CREATE_ENTRY, createEntrySaga);
     yield takeLatest(DASHBOARD_ACTION.GET_USER_ENTRIES, getUserEntriesSaga);
-    //yield takeLatest(DASHBOARD_ACTION.GET_ENTRIES_BY_ID, getContestByIdSaga);
+
+    yield takeLatest(DASHBOARD_ACTION.UPDATE_ENTRY_BY_ID, updateEntryByIdSaga);
+    yield takeLatest(DASHBOARD_ACTION.LIKE_ENTRY_BY_ID, likeEntryByIdSaga);
+
 }
 
 export default rootSaga;

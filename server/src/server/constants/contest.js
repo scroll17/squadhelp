@@ -4,6 +4,12 @@ const CONTEST_TYPE = {
     TAGLINE: 'tagline',
 };
 
+const CONTEST_STATUS = {
+  OPEN: 'open',
+  CLOSED: 'closed',
+  AWAITING: 'awaiting'
+};
+
 const CONTEST_PRICE = new Map([
     [CONTEST_TYPE.NAME, 33],
     [CONTEST_TYPE.LOGO, 33],
@@ -12,5 +18,6 @@ const CONTEST_PRICE = new Map([
 
 module.exports = {
     CONTEST_TYPE,
-    CONTEST_PRICE
+    CONTEST_PRICE,
+    CONTEST_STATUS
 };

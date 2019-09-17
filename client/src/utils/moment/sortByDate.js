@@ -7,14 +7,11 @@ export default (array) => {
         let dayTwo = momentConversion(nextItem.lastMessage.time).format("HH:hh");
 
         if (moment(dayOne).isBefore(dayTwo)){
-            console.log('-1')
             return -1;
         }
         else if (moment(dayOne).isAfter(dayTwo)) {
-            console.log('1')
             return 1;}
         else if (moment(dayOne).isSame(dayTwo)) {
-            console.log('0')
             return 0;}
     })
 }

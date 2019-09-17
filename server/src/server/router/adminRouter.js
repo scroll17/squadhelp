@@ -8,6 +8,7 @@ const {
 } = require('../controllers/adminController');
 
 const findUserById  = require('../middlewares/user/findUserById');
+const sendUserEmail = require('../middlewares/nodemailer/sendUserEmail');
 
 const { URL: { API } } = require('../constants');
 
@@ -27,6 +28,7 @@ router.get(API.ALL_ENTRIES,
 );
 router.put(API.ENTRY_ID,
     updateEntryById,
+    sendUserEmail
 );
 
 module.exports = router;

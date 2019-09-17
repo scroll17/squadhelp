@@ -1,4 +1,6 @@
 .container
+  margin-top: 30px
+
   display: flex
   flex-direction: column
 
@@ -6,3 +8,8 @@
     display: flex
     flex-direction: row
 
+
+@media only screen and (max-width: 900px)
+  .container
+    .myProfile
+      flex-direction: column-reverse

@@ -1,10 +1,76 @@
 import DASHBOARD_ACTION from "../actions/actionTypes/dashboardActionTypes";
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
+
 import { getUserEntries } from "../api/rest/userContoller";
-import { createEntries } from "../api/rest/entriesController";
+import { createEntries, updateEntryById } from "../api/rest/entriesController";
 
 import history from "../boot/browserHistory";
 import { URL } from "../api/baseURL";
+import {STATUS_OF_CONTEST_AND_ENTRY} from "../constants";
+import ACTION from "../actions/actionTypes/actionsTypes";
+
+import { isEqual, cloneDeep, findIndex } from 'lodash'
+
+import { TYPE_UPDATE_ENTRY } from "../constants";
+
+export function* updateEntryByIdSaga({id, status}) {
+    try {
+
+        const updateType = TYPE_UPDATE_ENTRY.STATUS;
+
+        let {dashboardContestsReducer: { openContest: oldOpenContest }} = yield select();
+
+        if(isEqual(status, STATUS_OF_CONTEST_AND_ENTRY.REJECT)){
+            yield updateEntryById(id, status, updateType);
+
+            const newOpenContest = cloneDeep(oldOpenContest);
+            const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
+
+            newOpenContest.Entries.splice(entryIndex, 1);
+
+            yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
+        }else{
+            yield updateEntryById(id, status, updateType);
+
+            const newOpenContest = cloneDeep(oldOpenContest);
+            const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
+
+            newOpenContest.Entries[entryIndex].status = STATUS_OF_CONTEST_AND_ENTRY.RESOLVE;
+
+            yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
+        }
+
+
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+
+export function* likeEntryByIdSaga({id, liked}) {
+    try {
+
+        const updateType = TYPE_UPDATE_ENTRY.LIKED;
+
+        let {dashboardContestsReducer: { openContest: oldOpenContest }} = yield select();
+
+        const newOpenContest = cloneDeep(oldOpenContest);
+        const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
+
+        newOpenContest.Entries[entryIndex].liked = !liked;
+
+
+        yield updateEntryById(id, !liked, updateType);
+
+
+        yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
+
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+
 
 export function* getUserEntriesSaga() {
     try {

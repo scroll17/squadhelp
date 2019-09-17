@@ -10,7 +10,13 @@ const ENTRY_VALIDATION_STATUS = {
     PENDING: 'pending',
 };
 
+const TYPE_UPDATE_ENTRY = {
+    STATUS: 'status',
+    LIKED: 'liked',
+};
+
 module.exports = {
     ENTRIES_STATUS,
-    ENTRY_VALIDATION_STATUS
+    ENTRY_VALIDATION_STATUS,
+    TYPE_UPDATE_ENTRY
 };

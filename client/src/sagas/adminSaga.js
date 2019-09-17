@@ -43,28 +43,18 @@ export function* getAllEntriesSaga() {
     }
 }
 
-export function* updateValidityEntrySaga({id, status}) {
 
+export function* updateValidityEntrySaga({id, status, userEmail}) {
     try {
 
-        const { data: updatedEntry } = yield updateValidityStatusEntry(id, status);
+        yield updateValidityStatusEntry(id, status, userEmail);
 
         const {adminReducer: {entries: prevEntries}} = yield select();
         const newEntries = _.cloneDeep(prevEntries);
 
-        const entryIndex = _.findIndex(newEntries, entry => _.isEqual(updatedEntry.id, entry.id));
-        if (entryIndex >= 0) {
-            const oldEntry = newEntries[entryIndex];
+        const entryIndex = _.findIndex(newEntries, entry => _.isEqual(id, entry.id));
+        newEntries.splice(entryIndex, 1);
 
-            for( let field in updatedEntry ){
-                const oldFieldData = oldEntry[field];
-                const newFieldData = updatedEntry[field];
-
-                if(!_.isEqual(oldFieldData, newFieldData)){
-                    oldEntry[field] = newFieldData
-                }
-            }
-        }
 
         yield put({type: ADMIN_ACTION.ALL_ENTRIES, entries: newEntries});
     } catch (e) {

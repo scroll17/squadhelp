@@ -1,4 +1,4 @@
-const { CONTEST_TYPE } = require('../constants');
+const { CONTEST_TYPE, CONTEST_STATUS } = require('../constants');
 
 module.exports = (sequelize, DataTypes) => {
     const Contests = sequelize.define('Contests', {
@@ -41,6 +41,13 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: false,
             },
+        },
+        status:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isIn: Object.keys(CONTEST_STATUS)
+            }
         },
         price: {
             type: DataTypes.INTEGER,

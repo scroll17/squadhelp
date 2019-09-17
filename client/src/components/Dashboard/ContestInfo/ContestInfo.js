@@ -17,7 +17,7 @@ import { getContestById } from "../../../actions/actionCreators/dashboardContest
 import { isEqual } from 'lodash'
 
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
-import {ROLE} from "../../../constants";
+import {ROLE, CONTEST_STATUS} from "../../../constants";
 
 function ContestInfo(props) {
     const { openContest } = props;
@@ -49,7 +49,10 @@ function ContestInfo(props) {
                                 </div>
 
                                 <div className={style.content}>
-                                    {conversionObjectInformation(openContest, ['contestId', 'userId', 'price', 'User', 'Entries'])}
+                                    {conversionObjectInformation(
+                                        openContest,
+                                        ['contestId', 'userId', 'price', 'User', 'Entries', 'status']
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -58,14 +61,16 @@ function ContestInfo(props) {
                             <div className={style.entries}>
                                 <div className={style.title}>Entries</div>
                                 <div className={style.list}>
-                                    {openContest.Entries.map( entry => <Entry {...entry} key={entry.id}/>)}
+                                    {openContest.Entries && openContest.Entries.map( entry => <Entry {...entry} key={entry.id}/>)}
                                 </div>
                             </div>
                         </PrivateComponent>
 
-                        <PrivateComponent requireRole={[ROLE.CREATIVE]}>
-                            <StartEntry typeOfContest={openContest.contestType} contestId={openContest.id}/>
-                        </PrivateComponent>
+                        {isEqual(openContest.status, CONTEST_STATUS.OPEN) &&
+                            <PrivateComponent requireRole={[ROLE.CREATIVE]}>
+                                <StartEntry typeOfContest={openContest.contestType} contestId={openContest.id}/>
+                            </PrivateComponent>
+                        }
                     </div>
 
                     <Brief contestInfo={openContest}/>

@@ -18,10 +18,3 @@ module.exports = async (req, res, next) => {
         next(err)
     }
 };
-
-/*router.use(['/user','/login'], (req, res, next) => {
-    console.log('---- req.method ---- ', req.method);
-    console.log('---- req.baseUrl ---- ', req.baseUrl);
-    // req.method = "POST"  && req.baseUrl = "/login" || req.originalUrl = "/login" || req.Url.path = "/login"
-    next();
-});*/

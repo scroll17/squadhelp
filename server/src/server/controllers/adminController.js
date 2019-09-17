@@ -3,6 +3,7 @@ const { User, Entries, Contests, sequelize } = require('../models');
 
 const {
     ABILITY: { SUBJECT, ACTIONS },
+    ENTRY_VALIDATION_STATUS
 } = require("../constants");
 
 const last = require('lodash/last');
@@ -45,8 +46,6 @@ module.exports.updateUserById = async (req, res, next) => {
 
         return res.send(last(updateUser));
     } catch (err) {
-        console.log(err);
-
         next(err);
     }
 };
@@ -59,10 +58,13 @@ module.exports.getAllEntries = async (req, res, next) => {
             attributes: {
                 exclude: ['updatedAt', 'createdAt', 'userId'],
             },
+            where: {
+              isValid: ENTRY_VALIDATION_STATUS.PENDING
+            },
             include: [
                 {
                     model: User,
-                    attributes: ['displayName', 'avatar', 'id']
+                    attributes: ['displayName', 'avatar', 'id', 'email']
                 },
                 {
                     model: Contests,
@@ -84,17 +86,20 @@ module.exports.getAllEntries = async (req, res, next) => {
 
 module.exports.updateEntryById = async (req, res, next) => {
     const { id } = req.params;
-    const { status } = req.body;
+    const { updateData } = req.body;
 
     try {
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.ENTRIES);
+
         let transaction = await sequelize.transaction();
 
         const [numberOfUpdatedRows, updateEntries] = await Entries.update({
-            isValid: status
+            isValid: updateData
         }, {
             where: { id },
             fields: ['isValid'],
             returning: true,
+            transaction
         });
 
         if(numberOfUpdatedRows !== 1){
@@ -103,9 +108,11 @@ module.exports.updateEntryById = async (req, res, next) => {
         }
 
         await transaction.commit();
-        return res.send(last(updateEntries));
+
+        req.body.updateEntries = last(updateEntries);
+        next();
+
     } catch (err) {
-        console.log(err)
         next(err);
     }
 };

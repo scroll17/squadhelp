@@ -151,7 +151,6 @@ export function* writeFormDataToStore({formData}) {
     try {
         let {contestReducer: {contestNow, contestFormData}} = yield select();
 
-        console.log('formData', formData);
 
         if(formData){
             const newContestFormData = _.cloneDeep(contestFormData);

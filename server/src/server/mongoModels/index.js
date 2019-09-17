@@ -14,7 +14,6 @@ const connection = mongoose.createConnection(config.mongoUrl,
         useNewUrlParser: true,
     }, error => {
         if (error) {
-            console.log(error);
             console.error('MongoDB have error');
             process.exit(1);
         } else {

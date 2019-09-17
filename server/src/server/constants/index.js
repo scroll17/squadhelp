@@ -10,9 +10,13 @@ const { URL } = require('./url') ;
 const { HTTP_CODE } = require("./http");
 const { SOCKET_EVENTS, USER_SOCKET_DATA } = require('./socket');
 const { ROLES, ROLE } = require('./role');
-const { CONTEST_PRICE, CONTEST_TYPE} = require('./contest');
+const { CONTEST_PRICE, CONTEST_TYPE, CONTEST_STATUS } = require('./contest');
 const { ABILITY } = require("./ability");
-const { ENTRIES_STATUS, ENTRY_VALIDATION_STATUS } = require("./entries");
+const {
+    ENTRIES_STATUS,
+    ENTRY_VALIDATION_STATUS ,
+    TYPE_UPDATE_ENTRY
+} = require("./entries");
 
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 8;
@@ -52,7 +56,9 @@ module.exports = {
 
     CONTEST_PRICE,
     CONTEST_TYPE,
+    CONTEST_STATUS,
 
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS,
+    TYPE_UPDATE_ENTRY,
 };

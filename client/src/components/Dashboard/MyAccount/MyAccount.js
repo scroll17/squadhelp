@@ -21,12 +21,9 @@ function MyAccount(props) {
     return (
             <div className={style.container} >
 
-{/*                <PrivateComponent requireRole={[ROLE.BUYER]}>
+                <PrivateComponent requireRole={[ROLE.BUYER]}>
                     <StatusOfContests count={size(myContests)}/>
-                </PrivateComponent>*/}
-
-                <StatusOfContests count={size(myContests)}/>
-
+                </PrivateComponent>
 
                 <div className={style.myProfile}>
 
@@ -38,9 +35,7 @@ function MyAccount(props) {
                         <MyEntries />
                     </PrivateComponent>
 
-                    <div>
-                        <Profile />
-                    </div>
+                    <Profile />
 
                 </div>
             </div>

@@ -46,6 +46,11 @@ module.exports = {
                 },
                 defaultValue: ENTRY_VALIDATION_STATUS.PENDING,
             },
+            liked: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue: false,
+            },
             text: {
                 type: Sequelize.TEXT,
                 allowNull: true,
