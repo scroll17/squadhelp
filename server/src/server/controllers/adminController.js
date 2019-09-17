@@ -1,5 +1,5 @@
 const error = require("../errors/errors");
-const { User, Entries, Contests } = require('../models');
+const { User, Entries, Contests, sequelize } = require('../models');
 
 const {
     ABILITY: { SUBJECT, ACTIONS },
@@ -84,24 +84,28 @@ module.exports.getAllEntries = async (req, res, next) => {
 
 module.exports.updateEntryById = async (req, res, next) => {
     const { id } = req.params;
-    const { isBanned, user } = req.body;
+    const { status } = req.body;
 
     try {
+        let transaction = await sequelize.transaction();
 
-
-        const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
+        const [numberOfUpdatedRows, updateEntries] = await Entries.update({
+            isValid: status
+        }, {
             where: { id },
-            fields: ['isBanned'],
+            fields: ['isValid'],
             returning: true,
-            plain: true,
         });
 
-        if(numberOfUpdatedRows <= 0){
-            return next(new error.NotFound());
+        if(numberOfUpdatedRows !== 1){
+            await transaction.rollback();
+            return next(new error.BadRequest());
         }
 
-        return res.send(updateUser);
+        await transaction.commit();
+        return res.send(last(updateEntries));
     } catch (err) {
+        console.log(err)
         next(err);
     }
 };

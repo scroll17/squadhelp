@@ -19,8 +19,6 @@ export function* banUserByIdSaga({userId, isBanned}) {
 
         const {data} = yield banUserById(userId, !isBanned);
 
-        console.log('daata', data)
-
         let {adminReducer: {users: prevUsers}} = yield select();
         const newUsers = _.concat([...prevUsers]);
 
@@ -46,16 +44,26 @@ export function* getAllEntriesSaga() {
 }
 
 export function* updateValidityEntrySaga({id, status}) {
+
     try {
 
-        const { data } = yield updateValidityStatusEntry(id, status);
+        const { data: updatedEntry } = yield updateValidityStatusEntry(id, status);
 
         const {adminReducer: {entries: prevEntries}} = yield select();
         const newEntries = _.cloneDeep(prevEntries);
 
-        const entryIndex = _.findIndex(newEntries, entry => data.id === entry.id);
+        const entryIndex = _.findIndex(newEntries, entry => _.isEqual(updatedEntry.id, entry.id));
         if (entryIndex >= 0) {
-            newEntries[entryIndex] = data;
+            const oldEntry = newEntries[entryIndex];
+
+            for( let field in updatedEntry ){
+                const oldFieldData = oldEntry[field];
+                const newFieldData = updatedEntry[field];
+
+                if(!_.isEqual(oldFieldData, newFieldData)){
+                    oldEntry[field] = newFieldData
+                }
+            }
         }
 
         yield put({type: ADMIN_ACTION.ALL_ENTRIES, entries: newEntries});

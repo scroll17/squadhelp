@@ -5,7 +5,6 @@ import connect from "react-redux/es/connect/connect";
 import style from './MyEntry.module.sass'
 
 import { URL, SEARCH } from "../../../../../api/baseURL";
-import { HEX_COLOR, ICON } from "../../../../../constants";
 
 import historyLocationSearch from "../../../../../utils/history/historyLocationSearch";
 import statusInIcon from "../../../../../utils/statusInIcon";
@@ -42,12 +41,8 @@ function MyEntry(props) {
 
                 <ul className={style.statusInfo}>
                     <li className={style.isValid}>
-                        {isValid ? ICON.CHECK : ICON.TIMES}
-
-                        validated:
-                        <span style={isValid ? {color: HEX_COLOR.GREEN} : {color: HEX_COLOR.ORANGE}}>
-                            {`${isValid}`}
-                        </span>
+                        {statusInIcon(isValid)}
+                        {`${isValid}`}
                     </li>
                     <li className={style.status}>
                         {statusInIcon(status)}

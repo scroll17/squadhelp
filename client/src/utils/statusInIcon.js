@@ -5,6 +5,7 @@ export default (status) => {
         EXPECTATION, REJECT, RESOLVE,
         PENDING, INVALID, VALID
     } = STATUS_OF_CONTEST_AND_ENTRY;
+
     switch (status) {
         case EXPECTATION:
         case PENDING:

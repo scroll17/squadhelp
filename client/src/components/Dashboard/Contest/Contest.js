@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './Contest.module.sass'
 
-import GetContestLink from "../../../Links/GetContestLink/GetContestLink";
+import GetContestLink from "../../Links/LinkToContestById/LinkToContestById";
 
 
 function Contest(props) {

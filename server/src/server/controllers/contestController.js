@@ -61,7 +61,7 @@ module.exports.getContestById = async (req, res, next) => {
                 {
                     model: Entries,
                     where: {
-                        isValid: ENTRY_VALIDATION_STATUS.PENDING
+                        isValid: ENTRY_VALIDATION_STATUS.VALID
                     },
                     required: false,
                     attributes: ['text', 'file', 'status', 'id'],

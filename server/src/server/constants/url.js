@@ -16,7 +16,7 @@ const URL = {
         USER_CONTESTS: '/contests',
         CONTEST_PRICE: '/price',
 
-        ENTRY_ID: '/entry:id',
+        ENTRY_ID: '/entry/:id',
         USER_ENTRIES: '/entries',
 
         PAYMENT: '/payment',

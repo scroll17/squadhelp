@@ -10,7 +10,7 @@ import Entry from "../../components/Dashboard/ContestInfo/Entry/Entry";
 
 import { getAllEntries, updateValidityEntry } from "../../actions/actionCreators/adminActionCreator";
 
-import GetContestLink from "../../Links/GetContestLink/GetContestLink";
+import LinkToContestById from "../../components/Links/LinkToContestById/LinkToContestById";
 
 import { URL } from "../../api/baseURL";
 import { STATUS_OF_CONTEST_AND_ENTRY } from "../../constants";
@@ -38,7 +38,7 @@ function ModerationPage(props){
                 return (
                     <div className={style.container} key={id}>
 
-                        <GetContestLink
+                        <LinkToContestById
                             id={contestId}
                             title={contestInfo.title}
                         />

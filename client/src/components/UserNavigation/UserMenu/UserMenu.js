@@ -15,8 +15,6 @@ import {closeOrOpenConnection} from "../../../actions/actionCreators/chatActionC
 import { useMissClick } from '../../Hooks/useMissClick'
 
 function UserNavigationSmartphone(props){
-    const { closeOrOpenConnection } = props;
-
     const toggleContainer = useRef(null);
     const [displayStyle, toOpenMenu] = useMissClick(toggleContainer);
 
@@ -51,7 +49,7 @@ function UserNavigationSmartphone(props){
                     <ul className={style.dropdownMenu} >
                         <Link to={URL.DASHBOARD}><li> View Dashboard </li></Link>
                         <Link to={URL.MY_ACCOUNT}><li> My Account </li></Link>
-                        <span onClick={() => closeOrOpenConnection(props.chatIsOpen)}>
+                        <span onClick={() => props.closeOrOpenConnection(props.chatIsOpen)}>
                             <li> Messages </li>
                         </span>
                         {adminLinks}
@@ -60,7 +58,7 @@ function UserNavigationSmartphone(props){
                 }
 
                 { props.view === VIEW.DESKTOP &&
-                    <span onClick={() => closeOrOpenConnection(props.chatIsOpen)}
+                    <span onClick={() => props.closeOrOpenConnection(props.chatIsOpen)}
                           className={style.message}
                     >
                              <i className="far fa-envelope" />
