@@ -31,7 +31,7 @@ import {
 } from './contestSaga'
 
 import {
-    closeOrOpenConnectionSaga,
+    closeOrOpenChatSaga,
     closeStageFindUsersSaga,
 
     openConversationSaga,
@@ -78,7 +78,7 @@ function* rootSaga() {
     yield takeLatest(ACTION.GET_PRICE_OF_CONTEST, priceOfContestToStore);
 
 
-    yield takeLatest(CHAT_ACTION.CLOSE_OR_OPEN_CONNECTION, closeOrOpenConnectionSaga);
+    yield takeLatest(CHAT_ACTION.CLOSE_OR_OPEN_CHAT, closeOrOpenChatSaga);
     yield takeLatest(CHAT_ACTION.TO_CLOSE_FIND_USERS_STAGE, closeStageFindUsersSaga);
 
     yield takeLatest(CHAT_ACTION.OPEN_CONVERSATION, openConversationSaga);

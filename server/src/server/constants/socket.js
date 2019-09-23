@@ -4,6 +4,7 @@ const SOCKET_EVENTS = {
         DISCONNECT: 'disconnect',
 
         USER_CONNECTED: 'user connected',
+        OPEN_CHAT: 'open chat',
 
         NEW_MESSAGE: 'new message',
 

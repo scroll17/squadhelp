@@ -1,4 +1,5 @@
 const findUsersEvent = require('./eventHandllers/findUsersEvent');
+const userOpenChatEvent = require('./eventHandllers/userOpenChatEvent');
 const userConnectedEvent = require('./eventHandllers/userConnectedEvent');
 const startConversationEvent = require('./eventHandllers/startConversationEvent');
 
@@ -17,7 +18,9 @@ module.exports = async io => {
     try{
         io.on(ON.CONNECTION,  (socket) => {
 
-            userConnectedEvent(io, socket);
+            userConnectedEvent(socket);
+
+            userOpenChatEvent(socket);
 
             findUsersEvent(socket);
 
@@ -36,6 +39,7 @@ module.exports = async io => {
                 USER_SOCKET_DATA.delete(socket.id);
                 console.info('user disconnect:', reason)
             })
+
         });
     }catch (e) {
         console.log(e)

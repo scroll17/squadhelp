@@ -24,11 +24,13 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
         conversationId,
     });
 
-    const messagePushToConversation = await Conversation.updateOne({ _id: conversationId }, {
+    await Conversation.updateOne({ _id: conversationId }, {
         $push: { messages: message }
     }, {
         timestamps: false
     });
+
+    console.log('conversationId', conversationId);
 
     socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
 });

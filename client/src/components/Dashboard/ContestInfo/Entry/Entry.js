@@ -8,7 +8,7 @@ import Avatar from "../../../Avatart/Avatar";
 import statusInIcon from "../../../../utils/statusInIcon";
 
 import {startConversation} from "../../../../api/socket/chatController";
-import {closeOrOpenConnection} from "../../../../actions/actionCreators/chatActionCreator";
+import { closeOrOpenChat } from "../../../../actions/actionCreators/chatActionCreator";
 import { updateEntryById, likeEntryById } from "../../../../actions/actionCreators/dashboardEntriesActionCreator";
 
 import createFilePathAndName from "../../../../utils/createFilePathAndName";
@@ -81,7 +81,7 @@ function Entry(props) {
                     {displayName}
                     <i className="far fa-comments"
                        onClick={() => {
-                           props.closeOrOpenConnection(false);
+                           props.closeOrOpenChat(false);
                            return startConversation(User)
                        }}
                     />
@@ -97,7 +97,7 @@ Entry.defaultProps = {
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = dispatch => ({
-    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    closeOrOpenChat: (chatIsOpen) => dispatch(closeOrOpenChat(chatIsOpen)),
     likeEntryById: (id, liked) => dispatch(likeEntryById(id, liked)),
     updateEntryById: (id, status) => dispatch(updateEntryById(id, status)),
 });

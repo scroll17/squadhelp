@@ -9,7 +9,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case CHAT_ACTION.CLOSE_OR_OPEN_CHAT: {
+        case CHAT_ACTION.STATUS_OF_CHAT: {
             return {
                 ...state,
                 isOpen: action.isOpen,

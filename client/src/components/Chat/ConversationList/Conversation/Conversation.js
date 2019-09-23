@@ -12,7 +12,7 @@ import LastMessage from "../LastMessage/LastMessage";
 import Avatar from "../../../Avatart/Avatar";
 
 let Conversation = (props) => {
-    const {title, _id, lastMessage, avatar } = props.conversation;
+    const {title, _id, lastMessage, avatar, participant } = props.conversation;
 
     const openConversation = (conversation) => {
         props.openConversation(conversation);
@@ -22,7 +22,7 @@ let Conversation = (props) => {
     return (
         <li className={style.conversation}
             key={_id}
-            onClick={() => openConversation({avatar, title, _id, participantId: lastMessage.ownerId})}
+            onClick={() => openConversation({avatar, title, _id, participantId: participant})}
         >
             <Avatar
                 size={45}

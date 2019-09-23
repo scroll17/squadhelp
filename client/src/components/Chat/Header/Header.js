@@ -11,7 +11,7 @@ import {
     startFindUsers,
     closeConversation,
     closeStageFindUsers,
-    closeOrOpenConnection
+    closeOrOpenChat
 } from "../../../actions/actionCreators/chatActionCreator";
 import { leaveTheRoom } from "../../../api/socket/chatController";
 import { STAGE_OF_CHAT } from "../../../constants/chat";
@@ -19,7 +19,7 @@ import { STAGE_OF_CHAT } from "../../../constants/chat";
 
 function Header(props){
     const { stageNow, openConversation, resetField } = props;
-    const { startFindUsers, closeConversation, closeStageFindUsers, closeOrOpenConnection } = props;
+    const { startFindUsers, closeConversation, closeStageFindUsers, closeOrOpenChat } = props;
 
     const toFindUsers = () => {
         if(isEqual(stageNow, STAGE_OF_CHAT.FIND_USERS)){
@@ -60,7 +60,7 @@ function Header(props){
                             </div>
                             <div className={style.tools}>
                                 <i className="fas fa-search" onClick={toFindUsers}/>
-                                <i className="fas fa-sign-out-alt" onClick={() => closeOrOpenConnection(true)}/>
+                                <i className="fas fa-sign-out-alt" onClick={() => closeOrOpenChat(true)}/>
                             </div>
                         </>
                 }
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     startFindUsers: () => dispatch(startFindUsers()),
     closeStageFindUsers: (nextStage) => dispatch(closeStageFindUsers(nextStage)),
-    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    closeOrOpenChat: (chatIsOpen) => dispatch(closeOrOpenChat(chatIsOpen)),
     closeConversation: (openConversation) => dispatch(closeConversation(openConversation)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

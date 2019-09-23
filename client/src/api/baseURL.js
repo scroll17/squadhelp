@@ -1,10 +1,5 @@
-const HOST= {
-  LOCALHOST: 'localhost',
-  MY_IP_105: '192.168.0.105',
-  MY_IP_107: '192.168.0.107'
-};
 
-export const baseURL = `http://${HOST.MY_IP_105 }:3000`;
+export const baseURL = `http://192.168.0.104:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;

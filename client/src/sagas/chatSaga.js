@@ -1,32 +1,28 @@
 import CHAT_ACTION from "../actions/actionTypes/chatActionsTypes";
-import { userConnected } from "../api/socket/chatController";
-
-import socket from "../api/socket/chatController";
 
 import { put, select } from 'redux-saga/effects';
-import { omit, cloneDeep, isEqual, last } from 'lodash'
+import { cloneDeep, isEqual, last } from 'lodash'
+
+import { toast } from 'react-toastify';
 
 import { STAGE_OF_CHAT } from '../constants/chat'
 
 import { joinToRoom } from "../api/socket/chatController";
+import { openChat } from "../api/socket/chatController";
 
-
-export function* closeOrOpenConnectionSaga({isOpen}) {
+export function* closeOrOpenChatSaga({isOpen}) {
     try {
-        if(isOpen){
-            socket.disconnect()
-        }else{
-            const {userReducer: { user }, chatConversationsReducer: { openConversation }} = yield select();
+        if(!isOpen){
+            openChat();
 
-            socket.connect();
-            userConnected(omit(user, ['email', 'isBanned']));
+            const {chatConversationsReducer: { openConversation }} = yield select();
 
             if(openConversation){
                 joinToRoom(openConversation._id)
             }
         }
 
-        yield put({type: CHAT_ACTION.CLOSE_OR_OPEN_CHAT, isOpen: !isOpen});
+        yield put({type: CHAT_ACTION.STATUS_OF_CHAT, isOpen: !isOpen});
     } catch (e) {
         yield put({type: CHAT_ACTION.CHAT_ERROR, error: e})
     }
@@ -87,8 +83,17 @@ export function* newMessageSaga({message}) {
     try {
         const {
             chatMessagesReducer: { messages: oldMessages },
-            chatConversationsReducer: { openConversation, conversations: oldConversation }
+            chatConversationsReducer: { openConversation, conversations: oldConversation },
+            chatReducer: { isOpen }
         } = yield select();
+
+        console.log('isOpen', isOpen)
+
+        if(!isOpen){
+            toast.info("New message !", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }
 
         if(openConversation){
             const newMessages = cloneDeep(oldMessages);
@@ -103,7 +108,6 @@ export function* newMessageSaga({message}) {
                 }
             });
 
-            //sortByDate(newConversations);
 
             yield put({type: CHAT_ACTION.SHOW_CONVERSATIONS, conversations: newConversations});
         }

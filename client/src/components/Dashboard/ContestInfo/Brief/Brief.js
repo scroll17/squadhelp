@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './Brief.module.sass'
 import Avatar from "../../../Avatart/Avatar";
-import {closeOrOpenConnection} from "../../../../actions/actionCreators/chatActionCreator";
+import {closeOrOpenChat} from "../../../../actions/actionCreators/chatActionCreator";
 import {startConversation} from "../../../../api/socket/chatController";
 import { ROLE } from "../../../../constants";
 import { isEqual, size } from 'lodash'
@@ -14,7 +14,7 @@ function ContestInfo(props) {
     const { userRole } = props;
 
     const clickToStartConversation = () => {
-        props.closeOrOpenConnection(false);
+        props.closeOrOpenChat(false);
         return startConversation({
             id: userId,
             ...User
@@ -59,6 +59,6 @@ const mapStateToProps = (state) => ({
     userRole: state.userReducer.user.role
 });
 const mapDispatchToProps = dispatch => ({
-    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    closeOrOpenChat: (chatIsOpen) => dispatch(closeOrOpenChat(chatIsOpen)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContestInfo);

@@ -14,6 +14,8 @@ export default socket;
 
 const SOCKET_EVENTS = {
     USER_CONNECTED: 'user connected',
+    OPEN_CHAT: 'open chat',
+
     SHOW_CONVERSATIONS: 'show conversations',
 
     FIND_USERS: 'find users',
@@ -32,9 +34,9 @@ const SOCKET_EVENTS = {
     USER_STOP_TYPING: 'user stop typing',
 };
 
-
-
 export const userConnected = (user) => socket.emit(SOCKET_EVENTS.USER_CONNECTED, user);
+export const openChat = () => socket.emit(SOCKET_EVENTS.OPEN_CHAT);
+
 socket.on(SOCKET_EVENTS.SHOW_CONVERSATIONS, conversations => STORE.dispatch({
     type: CHAT_ACTIONS.SHOW_CONVERSATIONS,
     conversations

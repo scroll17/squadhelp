@@ -10,7 +10,7 @@ import { userLogout } from "../../../actions/actionCreators/userActionCreator";
 
 import { URL } from '../../../api/baseURL'
 import { ROLE, DISPLAY, VIEW, HEX_COLOR } from '../../../constants'
-import {closeOrOpenConnection} from "../../../actions/actionCreators/chatActionCreator";
+import {closeOrOpenChat} from "../../../actions/actionCreators/chatActionCreator";
 
 import { useMissClick } from '../../Hooks/useMissClick'
 
@@ -48,7 +48,7 @@ function UserNavigationSmartphone(props){
                 {displayStyle === DISPLAY.BLOCK &&
                     <ul className={style.dropdownMenu} >
                         <Link to={`${URL.DASHBOARD}${URL.MY_ACCOUNT}`}><li> View Dashboard </li></Link>
-                        <span onClick={() => props.closeOrOpenConnection(props.chatIsOpen)}>
+                        <span onClick={() => props.closeOrOpenChat(props.chatIsOpen)}>
                             <li> Messages </li>
                         </span>
                         {adminLinks}
@@ -57,7 +57,7 @@ function UserNavigationSmartphone(props){
                 }
 
                 { props.view === VIEW.DESKTOP &&
-                    <span onClick={() => props.closeOrOpenConnection(props.chatIsOpen)}
+                    <span onClick={() => props.closeOrOpenChat(props.chatIsOpen)}
                           className={style.message}
                     >
                              <i className="far fa-envelope" />
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = dispatch => ({
     clickToLogout: () => dispatch(userLogout()),
-    closeOrOpenConnection: (chatIsOpen) => dispatch(closeOrOpenConnection(chatIsOpen)),
+    closeOrOpenChat: (chatIsOpen) => dispatch(closeOrOpenChat(chatIsOpen)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserNavigationSmartphone);
 

@@ -8,10 +8,4 @@ module.exports = (socket) => socket.on(ON.LEAVE_THE_ROOM, () => {
     }
     userData.delete('roomId')
 
-    // if(userData){
-    //     if(userData.has('newConversation')){
-    //         userData.delete('newConversation');
-    //     }
-    //     userData.delete('roomId')
-    // }
 });

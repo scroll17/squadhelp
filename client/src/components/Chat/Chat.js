@@ -21,8 +21,6 @@ import { addNewMessage } from "../../actions/actionCreators/chatActionCreator";
 
 
 let ChatPage = (props) => {
-    let typingTimer;
-
     const { handleSubmit, submitting, resetSection} = props;
     const { addNewMessage, stageNow, user } = props;
 
@@ -42,14 +40,10 @@ let ChatPage = (props) => {
         }
     };
 
-    const keyUp = () => {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(() => userStopTyping(user.id), 1500)
-    };
 
     const keyDown = () => {
         userStartsTyping(user.id);
-        clearTimeout(typingTimer);
+        setTimeout(() => userStopTyping(), 3000)
     };
 
     return (
@@ -74,12 +68,16 @@ let ChatPage = (props) => {
                                        component={'input'}
                                        type={'text'}
                                        placeholder="Write a message..."
+                                       autoComplete="off"
 
-                                       onKeyUp={keyUp}
                                        onKeyDown={keyDown}
                                 />
                             </div>
-                            <button type="submit" disabled={submitting} className={style.sendMessage}>
+                            <button
+                                type="submit"
+                                disabled={submitting}
+                                className={style.sendMessage}
+                            >
                                 <i className="fas fa-paper-plane" />
                             </button>
                         </form>

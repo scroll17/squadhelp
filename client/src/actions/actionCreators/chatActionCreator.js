@@ -1,7 +1,7 @@
 import CHAT_ACTION from '../actionTypes/chatActionsTypes';
 
-export const closeOrOpenConnection = (isOpen) => ({
-    type: CHAT_ACTION.CLOSE_OR_OPEN_CONNECTION,
+export const closeOrOpenChat = (isOpen) => ({
+    type: CHAT_ACTION.CLOSE_OR_OPEN_CHAT,
     isOpen
 });
 export const startFindUsers = () => ({
