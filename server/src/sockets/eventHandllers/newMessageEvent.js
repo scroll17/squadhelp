@@ -30,7 +30,5 @@ module.exports = (socket) => socket.on(ON.NEW_MESSAGE, async ({ownerId, content,
         timestamps: false
     });
 
-    console.log('conversationId', conversationId);
-
     socket.to(conversationId).emit(EMIT.NEW_MESSAGE, message);
 });

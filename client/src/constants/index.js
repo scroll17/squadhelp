@@ -35,6 +35,7 @@ const HEX_COLOR = {
     GRAY_20: '#333333',
     WHITE_SMOKE: "#f5f5f5",
     GREEN: '#008000',
+    SOFT_GREEN: '#28d2d0',
     ORANGE: '#ff7d28',
 };
 

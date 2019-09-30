@@ -20,6 +20,8 @@ function ChatPage(props){
         return () => socket.disconnect()
     }, []);
 
+    // CHAT TODO
+
     return(
        <div className={style.chatContainer}>
            {chatIsOpen && <Chat />}

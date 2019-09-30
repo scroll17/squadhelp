@@ -1,9 +1,11 @@
+import React from 'react'
 import CHAT_ACTION from "../actions/actionTypes/chatActionsTypes";
 
 import { put, select } from 'redux-saga/effects';
 import { cloneDeep, isEqual, last } from 'lodash'
 
 import { toast } from 'react-toastify';
+import ToastifyNewMessage from "../components/Toastify/ToastifyNewMessage";
 
 import { STAGE_OF_CHAT } from '../constants/chat'
 
@@ -87,10 +89,8 @@ export function* newMessageSaga({message}) {
             chatReducer: { isOpen }
         } = yield select();
 
-        console.log('isOpen', isOpen)
-
         if(!isOpen){
-            toast.info("New message !", {
+            toast.info(<ToastifyNewMessage />, {
                 position: toast.POSITION.TOP_RIGHT
             });
         }

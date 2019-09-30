@@ -10,6 +10,7 @@ import HowDoNameContestsWork from "../../components/MainHome/HowDoNameContestsWo
 import Footer from "../../components/Footer/Footer";
 
 class MainHomePage extends Component{
+
     render() {
         return (
             <>
