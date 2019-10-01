@@ -13,6 +13,7 @@ import { URL } from './api/baseURL'
 import { ROLE } from './constants'
 
 import WaitingComponent from "./components/Route/WaitingComponent";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const MainHomePage = lazy(() => import('./pages/MainHomePage/MainHomePage'));
 const LoginPages = lazy(() => import('./pages/LoginPages/LoginPages'));
@@ -22,6 +23,7 @@ const ContestPage = lazy(() => import('./pages/ContestPage/ContestPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
 const ModerationPage = lazy(() => import('./pages/ModerationPage/ModerationPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+
 
 
 history.listen( _ => {
@@ -39,50 +41,52 @@ class App extends Component{
     render(){
         return(
             <UserLoader>
-                <Router history={history}>
-                        <Switch>
-                            <Route exact
-                                   path={URL.HOME}
-                                   component={WaitingComponent(MainHomePage)}
-                            />
+                <ErrorBoundary >
+                    <Router history={history}>
+                            <Switch>
+                                <Route exact
+                                       path={URL.HOME}
+                                       component={WaitingComponent(MainHomePage)}
+                                />
 
-                            <Route path={URL.LOGIN}
-                                   component={this.IfUserIsLoggedIn(LoginPages)}/>
+                                <Route path={URL.LOGIN}
+                                       component={this.IfUserIsLoggedIn(LoginPages)}/>
 
-                            <Route path={URL.SIGN_UP}
-                                   component={this.IfUserIsLoggedIn(SignUpPage)}/>
+                                <Route path={URL.SIGN_UP}
+                                       component={this.IfUserIsLoggedIn(SignUpPage)}/>
 
-                            <Route path={URL.CONTEST_TYPE}
-                                   component={WaitingComponent(ContestPage)}
-                            />
-
-
-                            <PrivateRoute
-                                requireRole={Object.values(ROLE)}
-                                path={URL.DASHBOARD}
-                                render={props => <DashboardPage {...props}/>}
-                                redirectTo={URL.LOGIN}
-                            />
+                                <Route path={URL.CONTEST_TYPE}
+                                       component={WaitingComponent(ContestPage)}
+                                />
 
 
-                            <PrivateRoute
-                                requireRole={[ROLE.ADMIN]}
-                                path={URL.ADMIN_PANEL}
-                                component={WaitingComponent(AdminPage)}
-                                redirectTo={URL.NOT_FOUND}
-                            />
-                            <PrivateRoute
-                                requireRole={[ROLE.ADMIN]}
-                                path={URL.MODERATION}
-                                component={WaitingComponent(ModerationPage)}
-                                redirectTo={URL.NOT_FOUND}
-                            />
+                                <PrivateRoute
+                                    requireRole={Object.values(ROLE)}
+                                    path={URL.DASHBOARD}
+                                    render={props => <DashboardPage {...props}/>}
+                                    redirectTo={URL.LOGIN}
+                                />
 
-                            <Route component={WaitingComponent(NotFoundPage)} />
-                        </Switch>
-                </Router>
 
-                {this.props.user && <ChatPage />}
+                                <PrivateRoute
+                                    requireRole={[ROLE.ADMIN]}
+                                    path={URL.ADMIN_PANEL}
+                                    component={WaitingComponent(AdminPage)}
+                                    redirectTo={URL.NOT_FOUND}
+                                />
+                                <PrivateRoute
+                                    requireRole={[ROLE.ADMIN]}
+                                    path={URL.MODERATION}
+                                    component={WaitingComponent(ModerationPage)}
+                                    redirectTo={URL.NOT_FOUND}
+                                />
+
+                                <Route component={WaitingComponent(NotFoundPage)} />
+                            </Switch>
+                    </Router>
+
+                    {this.props.user && <ChatPage />}
+                </ErrorBoundary>
             </UserLoader>
         )
     }
