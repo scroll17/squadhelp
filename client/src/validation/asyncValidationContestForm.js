@@ -4,13 +4,13 @@ import {ContestNameForm as contestForm} from '../utils/textAndLinksForPages/text
 
 
 const validateA = (value) => {
-
     return value.match(/^.{10,}$/) ? undefined : 'AAAAAAAAAAAAAAAAAAAAA';
+};
 
-}
 const validateB = (value) => {
     return value.match(/^.{10,}$/) ? undefined : 'SBBBBBBBBBBB';
-}
+};
+
 const validateC = (value) => {
     return value.match(/^.{10,}$/) ? undefined : 'CCCCCCCCCCCCCCCCC';
 };

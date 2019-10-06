@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import style from './ConversationList.module.sass'
 
 import connect from "react-redux/es/connect/connect";
@@ -11,7 +11,7 @@ let ConversationList = (props) => {
     const { conversations } = props;
 
 
-    const showConversation = (conversations) => {
+    const showConversation = useMemo(() => {
         if(isEmpty(conversations)){
             return null
         }else{
@@ -22,11 +22,11 @@ let ConversationList = (props) => {
                 />
             ))
         }
-    };
+    }, [conversations]);
 
     return(
         <ul className={style.currentConversation}>
-            {showConversation(conversations)}
+            {showConversation}
         </ul>
     )
 };

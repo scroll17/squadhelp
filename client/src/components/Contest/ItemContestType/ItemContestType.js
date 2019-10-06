@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from './ItemContestType.module.sass';
@@ -8,17 +8,17 @@ import { addToContestQueue } from "../../../actions/actionCreators/contestAction
 import { HEX_COLOR } from "../../../constants";
 
 function ItemContestType(props){
-    const { contestTo } = props;
+    const { contestTo, src: images } = props;
 
     const uploadImage = (img) => ({ backgroundImage: `url(https://www.squadhelp.com/story_images/contest_types/${img}_blue.png)`});
 
-    const showBlockImage = ( images ) => images.map( image => {
+    const showBlockImage = useMemo(() => images.map( image => {
         return (
             <div key={image}
                  style={uploadImage(image)}
                  className={style.image}
             />)
-    });
+    }), [images]);
 
     return (
         <span
@@ -27,7 +27,7 @@ function ItemContestType(props){
             onClick={() => props.toNewContestQueue(contestTo)}
         >
             <div className={style.images}>
-                {showBlockImage(props.src)}
+                {showBlockImage}
             </div>
 
             <h5>{props.name}</h5>

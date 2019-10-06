@@ -8,7 +8,7 @@ import { reset } from 'redux-form';
 
 import { toast } from 'react-toastify';
 
-import { CONTEST } from "../constants";
+import { CONTEST, TYPE_FIELD } from "../constants";
 
 import * as _ from 'lodash';
 import {URL} from "../api/baseURL";
@@ -16,7 +16,6 @@ import {URL} from "../api/baseURL";
 export function* createContestSaga({formData}) {
     try {
         const { contestReducer: { contestNow, contestFormData, priceOfContest } } = yield select();
-
 
         if(_.isEmpty(formData)){
             return toast.error("Check bank card", {
@@ -30,7 +29,6 @@ export function* createContestSaga({formData}) {
             };
             yield payContests(dataOfPayContests);
         }
-
 
         const contestFormDataToSend = _.cloneDeep(contestFormData);
         const finalDataToSend = new FormData();
@@ -52,7 +50,7 @@ export function* createContestSaga({formData}) {
                 if(currentFormData.hasOwnProperty(field)){
                     const currentDataField = currentFormData[field];
 
-                    if(field === 'file'){
+                    if(field === TYPE_FIELD.INPUT_FILE){
                         const originalFileName = `${performance.now()}_${currentDataField.name}`;
 
                         convertedFormData[field] = originalFileName;
@@ -141,7 +139,6 @@ export function* toContestQueueSaga({stage}) {
         }
 
         yield put({type: ACTION.STAGE_CONTEST, contestNow: [...contest] ,contestQueue: [...newQueue] } );
-
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }

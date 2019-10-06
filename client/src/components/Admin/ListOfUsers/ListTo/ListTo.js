@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 import style from './ListTo.module.sass';
@@ -10,7 +10,7 @@ function ListTo(props){
     const { clickToItem, bannedUsers} = props;
 
 
-    const renderNames = () => {
+    const renderNames = useMemo(() => {
         if( _.size(bannedUsers) > 0 ) {
             return bannedUsers.map( user => {
                 const comma = (user === _.last(bannedUsers)) ? " " : ", ";
@@ -23,7 +23,7 @@ function ListTo(props){
         }else{
             return null
         }
-    };
+    }, [bannedUsers]);
 
     return (
         <div className={style.listTo}>
@@ -32,7 +32,7 @@ function ListTo(props){
                     To:
                 </div>
                 <div className={style.listName}>
-                    {renderNames()}
+                    {renderNames}
                 </div>
             </div>
             <Link to={URL.HOME} className={style.headerHome}>

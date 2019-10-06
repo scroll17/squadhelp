@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from './ProgressMain.module.sass';
@@ -11,7 +11,7 @@ function ProgressMain(props){
     const progressSteps = numberOfSteps >= 3 ? numberOfSteps : 3;
 
 
-    const showTheNumberOfSteps = (progressSteps) => {
+    const showTheNumberOfSteps = useMemo(() => {
         const allSteps = [];
         for (let step = 1; step <= progressSteps; step++) {
             if (step < size(contestNow)) {
@@ -50,14 +50,12 @@ function ProgressMain(props){
             }
         }
         return allSteps;
-    };
+    }, [progressSteps]);
 
     return (
         <div className={style.progressMain}>
             <div className={style.progressBarStep} >
-                {
-                    showTheNumberOfSteps(progressSteps)
-                }
+                {showTheNumberOfSteps}
             </div>
         </div>
     )

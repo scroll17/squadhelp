@@ -39,7 +39,6 @@ function UserNavigationSmartphone(props) {
 
                         </div>
 
-
                         {displayStyle === DISPLAY.BLOCK &&
                             <ul className={style.dropdownMenu} >
 
@@ -61,7 +60,6 @@ function UserNavigationSmartphone(props) {
                                 <li><Link to={URL.HOME}>Blog</Link></li>
                             </ul>
                         }
-
 
                     </div>
                 </div>

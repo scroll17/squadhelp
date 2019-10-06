@@ -1,7 +1,7 @@
 [
   {
     "header": "Name Ideas",
-    "item": [
+    "items": [
       "Beauty",
       "Consulting",
       "E-commerce",
@@ -17,7 +17,7 @@
   },
   {
     "header": "Contests",
-    "item": [
+    "items": [
       "How it Works",
       "Pricing",
       "Agency Services",
@@ -39,7 +39,7 @@
   },
   {
     "header": "Our Work",
-    "item": [
+    "items": [
       "Names",
       "Taglines",
       "Logos",
@@ -51,7 +51,7 @@
   },
   {
     "header": "Names For Sale",
-    "item": [
+    "items": [
       "Popular Names",
       "Short Names",
       "Intriguing Names",
@@ -65,7 +65,7 @@
   },
   {
     "header": "Blog",
-    "item": [
+    "items": [
       "Ultimate Naming Guide",
       "Poetic Devices in Business Naming",
       "Crowded Bar Theory",

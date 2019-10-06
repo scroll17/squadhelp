@@ -69,4 +69,4 @@ let ContestFields = ({funcForValidate, dataSelect, input, meta, ...props}) => {
             </div>
         )
 };
-export default ContestFields;
+export default React.memo(ContestFields);

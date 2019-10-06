@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import style from './СontestTypes.module.sass';
 
 import ItemContestType from '../ItemContestType/ItemContestType'
@@ -9,13 +9,13 @@ import { HEX_COLOR } from "../../../constants";
 function ContestTypes(props) {
     const {heading, itemsContestType} = props.textAndLinks;
 
-    const showItemsContestTypes = (contests) => {
-        return contests.map(contest => (
+    const showItemsContestTypes = useMemo(() => {
+        return itemsContestType.map(contest => (
             <li key={contest.name}>
                 <ItemContestType {...contest} bgColor={props.itemBgColor}/>
             </li>
         ))
-    };
+    },[itemsContestType]);
 
     return (
         <div className={style.contentType} style={{background: props.bgColor}}>
@@ -31,7 +31,7 @@ function ContestTypes(props) {
 
                     <div className={style.categories}>
                         <ul className={style.listContestType}>
-                            {showItemsContestTypes(itemsContestType)}
+                            {showItemsContestTypes}
                         </ul>
                     </div>
 

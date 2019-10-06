@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from './StartContestSteps.module.sass';
@@ -13,7 +13,9 @@ function StartContestSteps(props){
     const { contestNow } = props;
 
     const nowStage = last(contestNow);
-    const textForStage = textForStartContestSteps.find( item => item.page === nowStage);
+    const textForStage = useMemo( () => (
+        textForStartContestSteps.find( item => item.page === nowStage)
+    ), [nowStage]);
 
     return (
         <div className={style.startContestSteps}>

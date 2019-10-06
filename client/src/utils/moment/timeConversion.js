@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { STAGE_OF_CHAT } from "../../constants";
 
 const momentTime = (time) => moment( new Date(time), 'day months MM YYYY HH:mm:ss');
 
@@ -17,7 +18,7 @@ export default (time, aPlace) => {
     const daysPassed = newTime.format('DD MMM');
 
 
-    if(aPlace === 'conversation'){
+    if(aPlace === STAGE_OF_CHAT.CONVERSATION){
         return hoursToday
     }else if(diff === 0){
         return hoursToday

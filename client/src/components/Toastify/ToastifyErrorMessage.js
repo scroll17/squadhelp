@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import { isObject, isEqual } from 'lodash'
 
 const blockMessageStyle = {

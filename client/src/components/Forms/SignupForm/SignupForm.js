@@ -7,7 +7,7 @@ import style from './SignupForm.module.sass';
 import Input from './Input/Input'
 import JoinAs from './JoinAs/JoinAs'
 
-import { ROLE, FORM } from '../../../constants'
+import { ROLE, FORM, TYPE_FIELD } from '../../../constants'
 
 import { asyncValidationSignUpForm } from '../../../validation/asyncValidationSignUpForm'
 
@@ -51,7 +51,7 @@ class SignUpForm extends Component {
                     <JoinAs roles={ROLE.CREATIVE} />
 
                     <div className={style.button}>
-                        <button type="submit"
+                        <button type={TYPE_FIELD.SUBMIT}
                                 disabled={pristine || submitting}
                                 style={pristine ? this.styleButtonWithPristine : null}
                         >

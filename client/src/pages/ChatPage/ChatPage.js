@@ -7,20 +7,21 @@ import style from './ChatPage.module.sass';
 import Chat from '../../components/Chat/Chat'
 import OpenChatButton from '../../components/Chat/OpenChatButton/OpenChatButton'
 
+import { USER_DATA_FIELDS } from "../../constants";
 import socket, {userConnected} from "../../api/socket/chatController";
 import { omit } from 'lodash'
 
 function ChatPage(props){
     const { chatIsOpen, user } = props;
+    const { EMAIL, IS_BANNED } = USER_DATA_FIELDS;
 
     useEffect(() => {
         socket.connect();
-        userConnected(omit(user, ['email', 'isBanned']));
+        userConnected(omit(user, [EMAIL, IS_BANNED]));
 
         return () => socket.disconnect()
     }, []);
 
-    // CHAT TODO
 
     return(
        <div className={style.chatContainer}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import style from './FindUsers.module.sass'
 
 import connect from "react-redux/es/connect/connect";
@@ -18,7 +18,7 @@ function FindUsers(props){
         }
     };
 
-    const showFoundUsers = (foundUsers) => {
+    const showFoundUsers = useMemo(() => {
         return foundUsers.map( foundUser => (
             <User
                 {...foundUser}
@@ -26,7 +26,7 @@ function FindUsers(props){
                 clickToResetField={() => resetField(fieldName)}
             />
         ))
-    };
+    }, [foundUsers]);
 
     return(
             <div className={style.searchContainer}>
@@ -41,7 +41,7 @@ function FindUsers(props){
                 </div>
                 {foundUsers &&
                     <ul className={style.foundUsers}>
-                        {showFoundUsers(foundUsers)}
+                        {showFoundUsers}
                     </ul>
                 }
             </div>

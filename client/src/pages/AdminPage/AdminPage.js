@@ -14,7 +14,7 @@ import { isEmpty } from 'lodash';
 
 class AdminPage extends Component {
     clickToBan = (userId, isBanned) => {
-        this.props.banUserById(userId, isBanned);
+        return this.props.banUserById(userId, isBanned);
     };
 
     bannedUsers = (users) =>{

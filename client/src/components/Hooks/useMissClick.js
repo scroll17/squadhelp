@@ -6,7 +6,6 @@ export function useMissClick(props) {
 
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
 
-
     const toOpen = () => {
         const nextDisplayStyle = displayStyle === DISPLAY.NONE ? DISPLAY.BLOCK : DISPLAY.NONE;
         setDisplayStyle(nextDisplayStyle);

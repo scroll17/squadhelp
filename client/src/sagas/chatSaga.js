@@ -7,7 +7,7 @@ import { cloneDeep, isEqual, last } from 'lodash'
 import { toast } from 'react-toastify';
 import ToastifyNewMessage from "../components/Toastify/ToastifyNewMessage";
 
-import { STAGE_OF_CHAT } from '../constants/chat'
+import { STAGE_OF_CHAT, TYPE_OF_MESSAGE } from '../constants/chat'
 
 import { joinToRoom } from "../api/socket/chatController";
 import { openChat } from "../api/socket/chatController";
@@ -55,7 +55,7 @@ export function* closeConversationSaga({openConversation}) {
         const newConversations = cloneDeep(conversations);
         newConversations.forEach( conversation => {
             if(isEqual(conversation._id, openConversation._id)){
-                conversation['lastMessage'] = last(messages);
+                conversation[TYPE_OF_MESSAGE.LAST_MESSAGE] = last(messages);
             }
         });
 
@@ -104,7 +104,7 @@ export function* newMessageSaga({message}) {
             const newConversations = cloneDeep(oldConversation);
             newConversations.forEach( conversation => {
                 if(isEqual(conversation._id, message.conversationId)){
-                    conversation['lastMessage'] = { ...message, notRead: true};
+                    conversation[TYPE_OF_MESSAGE.LAST_MESSAGE] = { ...message, notRead: true};
                 }
             });
 

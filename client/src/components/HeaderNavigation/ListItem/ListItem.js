@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 import style from './ListItem.module.sass';
@@ -9,10 +9,10 @@ import { DISPLAY } from "../../../constants";
 import { isEqual } from 'lodash';
 
 function ListItem(props){
-    const {header, item} = props.list;
+    const { header, items } = props.list;
     const [drop, setDrop] = useState(DISPLAY.NONE);
 
-    const DropDownList = (items) => {
+    const DropDownList = useMemo(() => {
         return (
             <ul className={style.dropMenu} style={{display: drop}}>
                 {items.map( (item, id) => {
@@ -27,7 +27,7 @@ function ListItem(props){
                 })}
             </ul>
         );
-    };
+    },[items]);
 
     return (
         <div className={style.blockForList}
@@ -39,7 +39,7 @@ function ListItem(props){
                     <i className="fa fa-angle-down" />
                 </Link>
             </li>
-            { DropDownList(item) }
+            { DropDownList }
         </div>
     )
 }

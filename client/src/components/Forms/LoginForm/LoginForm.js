@@ -7,7 +7,7 @@ import style from './LoginForm.module.sass';
 import {getUserResponse} from "../../../actions/actionCreators/userActionCreator";
 import {isEqual} from 'lodash'
 
-import {ERROR, FORM} from "../../../constants";
+import {ERROR, FORM, TYPE_FIELD} from "../../../constants";
 
 
 const renderField = ({meta: {touched, error}, input, placeholder, type}) => {
@@ -78,7 +78,7 @@ let LoginForm = (props) => {
                     />
                 </div>
                 <div className={style.button}>
-                    <button type="submit" disabled={submitting}>login</button>
+                    <button type={TYPE_FIELD.SUBMIT} disabled={submitting}>login</button>
                 </div>
             </form>
         </div>

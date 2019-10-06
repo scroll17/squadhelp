@@ -1,4 +1,4 @@
-import React , { useRef } from 'react';
+import React , { useRef, useMemo } from 'react';
 import connect from "react-redux/es/connect/connect";
 import {Link} from "react-router-dom";
 
@@ -18,19 +18,21 @@ function UserNavigationSmartphone(props){
     const toggleContainer = useRef(null);
     const [displayStyle, toOpenMenu] = useMissClick(toggleContainer);
 
+    const adminLinks = useMemo(() => {
+        return props.user.role === ROLE.ADMIN ?
+            (
+                <>
+                    <Link to={URL.ADMIN_PANEL} style={{color: HEX_COLOR.BLUE}}>
+                        <li>Admin panel</li>
+                    </Link>
+                    <Link to={URL.MODERATION} style={{color: HEX_COLOR.BLUE}}>
+                        <li>Moderation</li>
+                    </Link>
+                </>
+            )
+            : null;
+    }, [props.user.role]);
 
-    const adminLinks = props.user.role === ROLE.ADMIN ?
-        (
-            <>
-                <Link to={URL.ADMIN_PANEL} style={{color: HEX_COLOR.BLUE}}>
-                    <li>Admin panel</li>
-                </Link>
-                <Link to={URL.MODERATION} style={{color: HEX_COLOR.BLUE}}>
-                    <li>Moderation</li>
-                </Link>
-            </>
-        )
-        : null;
 
     return (
         <div className={style.userMenu}>

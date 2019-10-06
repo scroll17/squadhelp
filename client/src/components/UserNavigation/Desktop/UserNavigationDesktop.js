@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from './UserNavigationDesktop.module.sass';
@@ -10,6 +10,7 @@ import UserMenu from '../UserMenu/UserMenu'
 import { VIEW } from "../../../constants";
 
 function UserNavigationDesktop(props) {
+
     return (
         <header className={style.header}>
             <div className={style.headerTop}>

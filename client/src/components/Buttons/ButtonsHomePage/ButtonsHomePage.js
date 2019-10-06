@@ -10,4 +10,4 @@ function ButtonsHomePage(props){
         </div>
     )
 }
-export default ButtonsHomePage;
+export default React.memo(ButtonsHomePage);

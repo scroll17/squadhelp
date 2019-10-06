@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import style from './BannerHome.module.sass';
 
 import ButtonsHomePage from '../../Buttons/ButtonsHomePage/ButtonsHomePage'
@@ -10,7 +10,7 @@ import { size } from 'lodash';
 function BannerHome() {
     const [sentence, setSentence] = useState(0);
 
-    const invites = [
+    const invites = useMemo( () => [
         ' a Company',
         " a Brand",
         " a Website",
@@ -19,7 +19,8 @@ function BannerHome() {
         " a Business",
         " an App",
         " a Product",
-        " a Startup"].map(i => <b>{i}<span/></b>);
+        " a Startup"].map(i => <b>{i}<span /></b>
+    ), []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -52,7 +53,9 @@ function BannerHome() {
 
                         <ul>
                             <li className={style.startContest}>
-                                <ButtonsHomePage link={URL.CONTEST_TYPE}>start a contest</ButtonsHomePage>
+                                <ButtonsHomePage link={URL.CONTEST_TYPE}>
+                                    start a contest
+                                </ButtonsHomePage>
                             </li>
                             <li className={style.liOr}>Or</li>
                             <li className={style.exploreNames}>

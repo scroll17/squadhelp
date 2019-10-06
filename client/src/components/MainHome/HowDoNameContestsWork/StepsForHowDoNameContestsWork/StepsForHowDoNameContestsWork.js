@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useMemo }  from 'react';
 import style from './StepsForHowDoNameContestsWork.module.sass';
 
 import { HEX_COLOR } from "../../../../constants";
@@ -10,7 +10,8 @@ function StepsForHowDoNameContestsWork(props ){
     let backgroundColor;
     let textPositionNearTheGif = positionOfGif ?
         `${style.blockWithInformation} ${style.informationReverse}`
-        : style.blockWithInformation;
+        :
+        style.blockWithInformation;
 
     if(positionOfGif === "right"){
         backgroundColor = {backgroundColor: bgColor, color: HEX_COLOR.WHITE};
@@ -18,12 +19,12 @@ function StepsForHowDoNameContestsWork(props ){
         backgroundColor = {backgroundColor: bgColor};
     }
 
-    const liItems = ( steps ) => {
-        return steps.map( step => (<li key={step}>
+    const liItems = useMemo(() => {
+        return dataForComponent.steps.map( step => (<li key={step}>
             <i className="fas fa-check" style={backgroundColor}/>
             <span>{step}</span>
         </li>));
-    };
+    }, [dataForComponent.steps]);
 
     return (
         <div className={style.StepsForHowDoNameContestsWork} style={backgroundColor}>
@@ -34,7 +35,7 @@ function StepsForHowDoNameContestsWork(props ){
                         <div className={style.box}>
                             <h4>{dataForComponent.title}</h4>
                             <ul>
-                                {liItems(dataForComponent.steps)}
+                                {liItems}
                             </ul>
                         </div>
                         <img className={style.gif} src={dataForComponent.src} alt={''}/>

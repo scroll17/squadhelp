@@ -53,7 +53,7 @@ export const asyncValidationSignUpForm = async (values) => {
         }
 
     }catch (e) {
-        return await Promise.reject(errors)
+        return await Promise.reject(e)
     }
 
 

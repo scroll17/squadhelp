@@ -1,7 +1,11 @@
 import config from '../boot/config';
 import { baseURL } from "../api/baseURL";
 
-import { CHAT_FIELDS, STAGE_OF_CHAT } from './chat'
+import {
+    CHAT_FIELDS,
+    STAGE_OF_CHAT,
+    TYPE_OF_MESSAGE
+} from './chat'
 import { CONTEST, FORM, TYPE_FIELD } from './form'
 import { ERROR, SUCCESS_CODE } from './http'
 import { DISPLAY, VIEW } from './viewAndDisplay'
@@ -11,7 +15,8 @@ import {
     ENTRY_USER_FILE,
     STATUS_OF_CONTEST_AND_ENTRY ,
     CONTEST_STATUS,
-    TYPE_UPDATE_ENTRY
+    TYPE_UPDATE_ENTRY,
+    CONTEST_REDUCER_VAL
 } from './dashboard'
 
 import { ICON } from './icon'
@@ -41,8 +46,11 @@ const HEX_COLOR = {
 
 const USER_AVATAR = `${baseURL}/images/user/avatar/`;
 
-const REACT_ROUTER_TYPE = {
-    LINK: 'Link'
+const SQUAD_HELP_LOGO = "https://www.squadhelp.com/images/squadhelp-logo-color.jpg";
+
+const USER_DATA_FIELDS = {
+  EMAIL: "email",
+  IS_BANNED: "isBanned"
 };
 
 export  {
@@ -61,10 +69,13 @@ export  {
     CHAT_FIELDS,
     STAGE_OF_CHAT,
     USER_AVATAR,
-    REACT_ROUTER_TYPE,
     CONTEST_USER_FILE,
     ENTRY_USER_FILE,
     STATUS_OF_CONTEST_AND_ENTRY,
     CONTEST_STATUS,
     TYPE_UPDATE_ENTRY,
+    TYPE_OF_MESSAGE,
+    USER_DATA_FIELDS,
+    SQUAD_HELP_LOGO,
+    CONTEST_REDUCER_VAL
 }

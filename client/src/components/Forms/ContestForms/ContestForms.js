@@ -18,10 +18,11 @@ import {
 
 import { last, isEmpty, omit } from 'lodash';
 
-import { CONTEST } from "../../../constants";
+import { CONTEST, TYPE_FIELD, CONTEST_REDUCER_VAL } from "../../../constants";
 
 function ContestForms(props){
     const { contestNow, contestQueue, contestFormData} = props;
+    const { CONTEST_FORM_DATA, CONTEST_NOW, CONTEST_QUEUE } = CONTEST_REDUCER_VAL;
 
     useEffect(() => {
         props.getPriceOfContests()
@@ -31,12 +32,12 @@ function ContestForms(props){
         const formDataToSave = omit(contestFormData, CONTEST.BANKS);
 
         Object.keys(formDataToSave).forEach( stage => {
-            formDataToSave[stage] = omit(formDataToSave[stage], 'file');
+            formDataToSave[stage] = omit(formDataToSave[stage], TYPE_FIELD.INPUT_FILE);
         });
-        sessionStorage.setItem('contestFormData', JSON.stringify(formDataToSave));
+        sessionStorage.setItem(CONTEST_FORM_DATA, JSON.stringify(formDataToSave));
 
-        sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
-        sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
+        sessionStorage.setItem(CONTEST_NOW, JSON.stringify(contestNow));
+        sessionStorage.setItem(CONTEST_QUEUE, JSON.stringify(contestQueue));
     });
 
 
@@ -102,7 +103,7 @@ function ContestForms(props){
                                 </div>
 
                                 <div className={style.stepsNavigation}>
-                                    <div onClick={() => backToPrevStage()} className={style.divBack}>
+                                    <div onClick={backToPrevStage} className={style.divBack}>
                                         Back
                                     </div>
                                     <RemoteSubmitButton />

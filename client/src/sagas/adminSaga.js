@@ -55,7 +55,6 @@ export function* updateValidityEntrySaga({id, status, userEmail}) {
         const entryIndex = _.findIndex(newEntries, entry => _.isEqual(id, entry.id));
         newEntries.splice(entryIndex, 1);
 
-
         yield put({type: ADMIN_ACTION.ALL_ENTRIES, entries: newEntries});
     } catch (e) {
         yield put({type: ADMIN_ACTION.ADMIN_ERROR, error: e});

@@ -1,12 +1,12 @@
-import React  from 'react';
+import React, {useMemo}  from 'react';
 import style from './MarketplaceDomainsHome.module.sass';
 
 import { textForMarketplaceDomainsHome } from '../../../utils/textAndLinksForPages/textAndLinksForPages'
 
 function MarketplaceDomainsHome(){
 
-        const MarketplaceDomains = ( arrayOfData ) => {
-            return arrayOfData.map( content => {
+        const marketplaceDomains = useMemo(() => {
+            return textForMarketplaceDomainsHome.map( content => {
                 const img = {backgroundImage: `url(${content.src})`};
                 return(
                     <div className={style.heroHighlightContainer} key={content.title}>
@@ -18,7 +18,7 @@ function MarketplaceDomainsHome(){
                     </div>
                 )
             });
-        };
+        }, [textForMarketplaceDomainsHome]);
 
         return (
             <div className={style.marketplaceDomainsHome}>
@@ -29,7 +29,7 @@ function MarketplaceDomainsHome(){
                     </div>
 
                     <div className={style.container}>
-                        {MarketplaceDomains(textForMarketplaceDomainsHome)}
+                        {marketplaceDomains}
                     </div>
                 </div>
             </div>

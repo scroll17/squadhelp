@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 import style from './HeaderNavigation.module.sass';
@@ -12,11 +12,12 @@ import { URL } from '../../api/baseURL'
 
 function HeaderNavigation() {
 
-    const dropDownMenu = (lists) => {
+    const dropDownMenu = useMemo(() => {
+        const lists = textForForHeaderNavigation;
         return lists.map(list => {
             return <ListItem list={list} key={list.header}/>
         })
-    };
+    }, [textForForHeaderNavigation]);
 
     return (
         <div className={style.header}>
@@ -28,11 +29,13 @@ function HeaderNavigation() {
 
                     <div className={style.list}>
                         <ul className={style.headerList}>
-                            {dropDownMenu(textForForHeaderNavigation)}
+                            {dropDownMenu}
                         </ul>
                     </div>
 
-                    <ButtonsHomePage link={URL.CONTEST_TYPE}>start contest</ButtonsHomePage>
+                    <ButtonsHomePage link={URL.CONTEST_TYPE}>s
+                        tart contest
+                    </ButtonsHomePage>
                 </div>
             </div>
         </div>

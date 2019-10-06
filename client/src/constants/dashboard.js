@@ -9,6 +9,12 @@ export const CONTEST_STATUS = {
     AWAITING: 'awaiting'
 };
 
+export const CONTEST_REDUCER_VAL = {
+    CONTEST_FORM_DATA: "contestFormData",
+    CONTEST_NOW: "contestNow",
+    CONTEST_QUEUE: "contestQueue"
+};
+
 export const TYPE_UPDATE_ENTRY = {
     STATUS: 'status',
     LIKED: 'liked',

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef }  from 'react';
+import React, { useLayoutEffect, useRef, useMemo }  from 'react';
 import style from './CurrentConversation.module.sass'
 
 import connect from "react-redux/es/connect/connect";
@@ -11,12 +11,11 @@ function ConversationList(props){
     const { messages, participantTyping, openConversation } = props;
     const messageContainer = useRef(null);
 
-    useEffect( () => {
+    useLayoutEffect( () => {
         messageContainer.current.scrollTop =  messageContainer.current.scrollHeight
     });
 
-
-    const participantStartTyping = () => {
+    const participantStartTyping = useMemo(() => {
         if(participantTyping && isEqual(openConversation.participantId, participantTyping)){
             return(
                 <div className={style.isTyping}>
@@ -24,7 +23,11 @@ function ConversationList(props){
                 </div>
             )
         }
-    };
+    }, [participantTyping]);
+
+    const messagesInConversation = useMemo(() => {
+        return messages.map( message => <Conversation message={message} key={message.time}/>)
+    }, [messages]);
 
     return(
         <div className={style.messages} ref={messageContainer}>
@@ -33,9 +36,9 @@ function ConversationList(props){
                     No messages here yet...
                 </div>
                 :
-                messages.map( message => <Conversation message={message} key={message.time}/>)
+                messagesInConversation
             }
-            {participantStartTyping()}
+            {participantStartTyping}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import connect from "react-redux/es/connect/connect";
 import { SubmissionError } from 'redux-form';
 
@@ -37,6 +37,7 @@ function LoginPage(props){
 
         return props.toLoginUser(values)
     };
+
 
     return (
         <main className={style.userSignUpFlow}>

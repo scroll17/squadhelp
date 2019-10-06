@@ -19,4 +19,4 @@ function HeaderLoginAndSignUp(props) {
         </div>
     )
 }
-export default HeaderLoginAndSignUp;
+export default React.memo(HeaderLoginAndSignUp);

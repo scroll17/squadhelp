@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import {isNull, omit, startCase, isEqual} from 'lodash';
 
 import { CONTEST_USER_FILE } from "../constants";

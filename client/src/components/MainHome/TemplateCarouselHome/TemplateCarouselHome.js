@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from 'react';
+import React, {useState, useEffect, useMemo}  from 'react';
 import style from './TemplateCarouselHome.module.sass';
 
 import { Carousel } from 'react-bootstrap';
@@ -11,7 +11,7 @@ function TemplateCarouselHome(props){
     useEffect(() => {
         window.addEventListener('resize', widthResizeChange);
         return () => window.removeEventListener('resize', widthResizeChange);
-    }, [false]);
+    }, []);
 
     const widthResizeChange = () =>{
         const newWidth = resizeWidth();
@@ -34,7 +34,9 @@ function TemplateCarouselHome(props){
 
 
     let arrayOfImages = cloneDeep(props.images);
-    const carouselItem  = (items) => {
+    const carouselItem = useMemo(() => {
+
+        const items = arrayOfImages;
         const image = (img) => ({backgroundImage: `url(${img})`});
 
         let newItems;
@@ -79,17 +81,17 @@ function TemplateCarouselHome(props){
                 <div className={style.carousel}>
                     {
                         item.src.map( img => (
-                                <div
-                                    className={style.item}
-                                    style={image(img)}
-                                    key={img}
-                                />
-                            ))
+                            <div
+                                className={style.item}
+                                style={image(img)}
+                                key={img}
+                            />
+                        ))
                     }
                 </div>
             </Carousel.Item>
         ))
-    };
+    }, [props.images, width]);
 
     return (
         <>
@@ -102,7 +104,7 @@ function TemplateCarouselHome(props){
                     nextIcon={nextIcon}
                     prevIcon={prevIcon}
                 >
-                    {carouselItem(arrayOfImages)}
+                    {carouselItem}
                 </Carousel>
             </div>
         </>

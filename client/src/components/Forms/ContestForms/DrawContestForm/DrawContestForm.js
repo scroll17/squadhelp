@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import {Field, reduxForm} from 'redux-form';
@@ -28,7 +28,7 @@ const validation = (value) => {
 
 let DrawContestForm = (props) => {
     const { handleSubmit, contestStageNow } = props;
-
+    const fields = dataForTheContestForm['fields'];
 
     const renderField = (fieldData) => {
         return <Field
@@ -42,7 +42,7 @@ let DrawContestForm = (props) => {
                       component={ContestFields}/>
     };
 
-    const renderFields = (fields) => {
+    const renderFields = useMemo(() => {
         const fieldsShown = [];
 
         fields.forEach(fieldData => {
@@ -54,13 +54,12 @@ let DrawContestForm = (props) => {
         });
 
         return fieldsShown
-    };
+    }, [fields]);
+
     return (
         <div className={style.clearFix}>
             <form onSubmit={handleSubmit}>
-                {
-                    renderFields(dataForTheContestForm['fields'])
-                }
+                {renderFields}
             </form>
         </div>
     )

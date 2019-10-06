@@ -9,7 +9,8 @@ export const TYPE_FIELD = {
     SELECT: "select",
     TEXTAREA: "textarea",
     INPUT: "input",
-    INPUT_FILE: "file"
+    INPUT_FILE: "file",
+    SUBMIT: "submit"
 };
 
 export const CONTEST = {
