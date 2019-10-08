@@ -52,10 +52,9 @@ class SwitchRouters extends Component{
                 <PrivateRoute
                     requireRole={Object.values(ROLE)}
                     path={URL.DASHBOARD}
-                    render={props => <DashboardPage {...props}/>}
+                    component={WaitingComponent(DashboardPage)}
                     redirectTo={URL.LOGIN}
                 />
-
 
                 <PrivateRoute
                     requireRole={[ROLE.ADMIN]}
@@ -63,6 +62,7 @@ class SwitchRouters extends Component{
                     component={WaitingComponent(AdminPage)}
                     redirectTo={URL.NOT_FOUND}
                 />
+
                 <PrivateRoute
                     requireRole={[ROLE.ADMIN]}
                     path={URL.MODERATION}

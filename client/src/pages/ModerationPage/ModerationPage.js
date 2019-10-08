@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useCallback } from 'react';
 
 import connect from "react-redux/es/connect/connect";
 import { Link } from "react-router-dom";
@@ -26,39 +26,39 @@ function ModerationPage(props){
         props.getAllEntries()
     }, []);
 
-    const showEntries = useMemo(() => {
-        entries.map( entry => {
-            const {id, contestId, contestInfo, User: { email } } = entry;
+    const showEntries = useCallback(() => entries.map( entry => {
+        const {id, contestId, contestInfo, User: { email } } = entry;
 
-            return (
-                <div className={style.container} key={id}>
+        return (
+            <div className={style.container} key={id}>
 
-                    <LinkToContestById
-                        id={contestId}
-                        title={contestInfo.title}
-                    />
+                <LinkToContestById
+                    id={contestId}
+                    title={contestInfo.title}
+                />
 
-                    <Entry
-                        {...entry}
-                        isModerationPage={true}
-                    />
+                <Entry
+                    {...entry}
+                    isModerationPage={true}
+                />
 
-                    <div className={style.validation}>
-                        <div className={style.valid}
-                             onClick={() => updateValidityEntry(id, VALID, email)}
-                        >
-                            {VALID}
-                        </div>
-                        <div className={style.noValid}
-                             onClick={() => updateValidityEntry(id, INVALID, email)}
-                        >
-                            {INVALID}
-                        </div>
+                <div className={style.validation}>
+                    <div
+                        className={style.valid}
+                        onClick={() => updateValidityEntry(id, VALID, email)}
+                    >
+                        {VALID}
+                    </div>
+                    <div
+                        className={style.noValid}
+                        onClick={() => updateValidityEntry(id, INVALID, email)}
+                    >
+                        {INVALID}
                     </div>
                 </div>
-            )
-        })
-    }, [entries]);
+            </div>
+        )
+    }), [entries]);
 
     return(
         <div className={style.listEntries}>
@@ -67,7 +67,7 @@ function ModerationPage(props){
                     Home
                 </Link>
             </div>
-            {showEntries}
+            {showEntries()}
         </div>
     )
 }

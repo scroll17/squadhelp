@@ -33,7 +33,7 @@ module.exports.paymentOfContests = async (req, res, next) => {
                     ]
                 },
                 transaction,
-                fields: ['balance'],
+                fields: ['balance']
             }
         );
 

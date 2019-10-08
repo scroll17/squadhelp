@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
                 isIn: Object.keys(CONTEST_TYPE)
             },
         },
+        // priority: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        // },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -102,6 +106,10 @@ module.exports = (sequelize, DataTypes) => {
         Contests.hasMany(models.Entries, {foreignKey: 'contestId', targetKey: 'id'});
         Contests.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'})
     };
+
+    // User.beforeCreate( async (user, options) => {
+    //     return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+    // });
 
     return Contests;
 };

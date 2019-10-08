@@ -1,5 +1,8 @@
 const { ROLES } = require('../constants/index');
 
+const { SALT_ROUNDS } = require("../constants");
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -71,6 +74,10 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Entries, {foreignKey: 'userId', targetKey: 'id', as: 'entries'});
   };
 
+
+  User.beforeCreate( async (user, options) => {
+    return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+  });
 
   return User;
 };

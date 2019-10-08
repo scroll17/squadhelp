@@ -6,7 +6,6 @@ const findUserByEmail  = require('../middlewares/user/findUserByEmail');
 const findUserById  = require('../middlewares/user/findUserById');
 
 const comparePassword = require('../middlewares/password/comparePassword');
-const toHashPassword = require('../middlewares/password/toHashPassword');
 
 const checkUserForBan  = require('../middlewares/verification/checkUserForBan');
 const checkCountOfTokens = require("../middlewares/token/checkCountOfTokens");
@@ -41,7 +40,6 @@ router.delete(API.LOGOUT,
 );
 
 router.post(API.SIGNUP,
-    toHashPassword,
     createUser,
     createTokens
 );

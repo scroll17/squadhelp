@@ -1,9 +1,10 @@
 const nodemailer = require('nodemailer');
-const { BadRequest } = require('../../errors/errors');
 
+const { BadRequest } = require('../../errors/errors');
 const { HTTP_CODE : { SUCCESS } } = require('../../constants/index');
 
 const isEmpty = require('lodash/isEmpty');
+
 
 module.exports =  async (req, res, next) => {
     const { userData, updateEntries } = req.body;
@@ -26,13 +27,23 @@ module.exports =  async (req, res, next) => {
         };
 
 
-        const messageInfo = await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions);
+        return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`);
 
-        if(isEmpty(messageInfo.rejected)){
-            return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`)
-        }else{
-            return next(BadRequest())
-        }
+
+            // .then((info) => {
+            //     console.log("send : ", Date.now());
+            //     return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`)
+            // })
+            // .catch((err) => {
+            //     return next(BadRequest())
+            // });
+
+        // if(isEmpty(messageInfo.rejected)){
+        //     return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`)
+        // }else{
+        //     return next(BadRequest())
+        // }
 
     }catch (e) {
         next(e)

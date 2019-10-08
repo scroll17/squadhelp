@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 import ACTION from '../actions/actionTypes/actionsTypes';
 import CHAT_ACTION from '../actions/actionTypes/chatActionsTypes';
@@ -63,7 +63,7 @@ function* rootSaga() {
     yield takeLatest(ADMIN_ACTION.GET_ALL_USER, getAllUserSaga);
     yield takeLatest(ADMIN_ACTION.BAN_USER_BY_ID, banUserByIdSaga);
     yield takeLatest(ADMIN_ACTION.GET_ALL_ENTRIES, getAllEntriesSaga);
-    yield takeEvery(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
+    yield takeLatest(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);

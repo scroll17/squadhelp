@@ -27,6 +27,9 @@ export function* createContestSaga({formData}) {
                 number: formData.number.replace(/\s+/g, ''),
                 contests: Object.keys(priceOfContest)
             };
+
+            console.log("dataOfPayContests", dataOfPayContests);
+
             yield payContests(dataOfPayContests);
         }
 

@@ -10,6 +10,12 @@ const CONTEST_STATUS = {
   AWAITING: 'awaiting'
 };
 
+const CONTEST_PRIORITY = new Map([
+    [CONTEST_TYPE.NAME, 1],
+    [CONTEST_TYPE.TAGLINE, 2],
+    [CONTEST_TYPE.LOGO, 3],
+]);
+
 const CONTEST_PRICE = new Map([
     [CONTEST_TYPE.NAME, 33],
     [CONTEST_TYPE.LOGO, 33],
@@ -19,5 +25,6 @@ const CONTEST_PRICE = new Map([
 module.exports = {
     CONTEST_TYPE,
     CONTEST_PRICE,
-    CONTEST_STATUS
+    CONTEST_STATUS,
+    CONTEST_PRIORITY
 };

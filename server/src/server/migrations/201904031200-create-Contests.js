@@ -33,6 +33,10 @@ module.exports = {
                     isIn: Object.keys(CONTEST_TYPE)
                 },
             },
+            // priority: {
+            //     type: Sequelize.INTEGER,
+            //     allowNull: false,
+            // },
             title: {
                 type: Sequelize.STRING,
                 allowNull: false,

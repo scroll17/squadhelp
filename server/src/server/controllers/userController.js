@@ -23,7 +23,7 @@ module.exports.createUser = async (req, res, next) => {
                 email: body.email,
                 role: body.role,
                 avatar: body.avatar,
-                password: body.hashPassword
+                password: body.password
             },
         });
 
