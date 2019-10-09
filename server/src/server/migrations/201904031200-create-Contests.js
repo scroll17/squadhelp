@@ -30,13 +30,13 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
-                    isIn: Object.keys(CONTEST_TYPE)
+                    isIn: Object.values(CONTEST_TYPE)
                 },
             },
-            // priority: {
-            //     type: Sequelize.INTEGER,
-            //     allowNull: false,
-            // },
+            priority: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+            },
             title: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -55,7 +55,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
-                    isIn: Object.keys(CONTEST_STATUS)
+                    isIn: Object.values(CONTEST_STATUS)
                 },
             },
             price: {

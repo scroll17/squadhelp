@@ -10,6 +10,9 @@ const {
 } = require('../controllers/contestController');
 
 
+const addStatusToContest = require("../middlewares/contest/addStatusToContest");
+const addContestExtraContent = require("../middlewares/contest/addContestExtraContent");
+
 const compareThePriceOfContests = require('../middlewares/contest/compareThePriceOfContests');
 const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
@@ -24,6 +27,7 @@ const router = express.Router();
 router.post(API.CREATE,
     upload.array('file', 3),
     compareThePriceOfContests,
+    addStatusToContest,
     createContest
 );
 
@@ -32,6 +36,7 @@ router.get(API.CONTEST_PRICE,
 );
 
 router.get(`${API.CONTESTS}/:id`,
+    addContestExtraContent,
     getContestById,
 );
 

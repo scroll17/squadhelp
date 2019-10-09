@@ -7,6 +7,7 @@ module.exports = {
                 contestId: '0d915310-ca6b-11e9-a468-93978114f0f1',
                 userId: 3,
                 contestType: 'name',
+                priority: 1,
                 title: "Test contest name",
                 name: "Test contest name",
                 status: "open",
@@ -22,6 +23,7 @@ module.exports = {
             {
                 contestId: '0d915310-ca6b-11e9-a468-93978114f0f1',
                 userId: 3,
+                priority: 3,
                 contestType: 'logo',
                 title: "Test contest name",
                 name: "Test contest name",

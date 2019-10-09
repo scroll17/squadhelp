@@ -7,12 +7,16 @@ const {
     updateEntryById
 } = require('../controllers/entriesController');
 
+const updateStatusOfContest = require("../middlewares/contest/updateStatusOfContest");
+
 
 const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
 const { URL: { API } } = require('../constants');
 
-const upload = multer({storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/tmp/entryFiles')});
+const upload = multer({
+    storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/tmp/entryFiles')
+});
 
 
 const router = express.Router();
@@ -23,8 +27,10 @@ router.post(API.CREATE,
     createEntry
 );
 
+
 router.put(API.ENTRY_ID,
     updateEntryById,
+    updateStatusOfContest,
 );
 
 

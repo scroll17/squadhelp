@@ -50,7 +50,7 @@ function ProgressMain(props){
             }
         }
         return allSteps;
-    }, [progressSteps]);
+    }, [progressSteps, contestNow]);
 
     return (
         <div className={style.progressMain}>

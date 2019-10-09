@@ -18,22 +18,23 @@ export function* updateEntryByIdSaga({id, status}) {
         const updateType = TYPE_UPDATE_ENTRY.STATUS;
         let {dashboardContestsReducer: { openContest: oldOpenContest }} = yield select();
 
-        if(isEqual(status, STATUS_OF_CONTEST_AND_ENTRY.REJECT)){
-            yield updateEntryById(id, status, updateType);
+        const newOpenContest = cloneDeep(oldOpenContest);
+        const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
 
-            const newOpenContest = cloneDeep(oldOpenContest);
-            const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
+        if(isEqual(status, STATUS_OF_CONTEST_AND_ENTRY.REJECT)){
+
+            yield updateEntryById(id, { status }, updateType);
 
             newOpenContest.Entries.splice(entryIndex, 1);
 
             yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
         }else{
-            yield updateEntryById(id, status, updateType);
 
-            const newOpenContest = cloneDeep(oldOpenContest);
-            const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
+            yield updateEntryById(id, { status }, updateType, oldOpenContest.contestId);
 
-            newOpenContest.Entries[entryIndex].status = STATUS_OF_CONTEST_AND_ENTRY.RESOLVE;
+            const newEntry = newOpenContest.Entries[entryIndex];
+            newEntry.status = STATUS_OF_CONTEST_AND_ENTRY.RESOLVE;
+            newOpenContest.Entries = [newEntry];
 
             yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
         }
@@ -52,9 +53,12 @@ export function* likeEntryByIdSaga({id, liked}) {
 
         const newOpenContest = cloneDeep(oldOpenContest);
         const entryIndex = findIndex(newOpenContest.Entries, entry => entry.id === id);
-        newOpenContest.Entries[entryIndex].liked = !liked;
 
-        yield updateEntryById(id, !liked, updateType);
+        yield updateEntryById(id, {
+            liked: !liked
+        }, updateType);
+
+        newOpenContest.Entries[entryIndex].liked = !liked;
 
         yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
     } catch (e) {

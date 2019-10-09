@@ -4,7 +4,12 @@ const { User, RefreshToken, Contests, Entries } = require('../models');
 const {
     TOKEN,
     HTTP_CODE: { SUCCESS },
-    ABILITY: { ACTIONS, SUBJECT }
+    ABILITY: {
+        ACTIONS, SUBJECT
+    },
+    TYPE_OF_SCOPE: {
+        CONTEST
+    }
 } = require("../constants");
 
 const { verifyToken } = require('../middlewares/token/checkJwtTokens');
@@ -119,15 +124,10 @@ module.exports.getUserEntries = async (req,res,next) => {
 module.exports.getUserContests = async (req,res,next) => {
     try{
         const decoded = await verifyToken(req.token, TOKEN.ACCESS);
-        const contests = await Contests.findAll({
+        const contests = await Contests.scope(CONTEST.CLEAN_SEARCH).findAll({
             where: {
                 userId: decoded.id
-            },
-            attributes: {
-                exclude: ['updatedAt', 'createdAt']
-            },
-            raw: true,
-            order: [['id', 'DESC']]
+            }
         });
 
         return res.send(contests);

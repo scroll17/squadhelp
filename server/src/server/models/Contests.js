@@ -1,4 +1,10 @@
-const { CONTEST_TYPE, CONTEST_STATUS } = require('../constants');
+const {
+    CONTEST_TYPE,
+    CONTEST_STATUS,
+    TYPE_OF_SCOPE: {
+        CONTEST
+    }
+} = require('../constants');
 
 module.exports = (sequelize, DataTypes) => {
     const Contests = sequelize.define('Contests', {
@@ -25,13 +31,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isIn: Object.keys(CONTEST_TYPE)
+                isIn: [[...Object.values(CONTEST_TYPE)]]
             },
         },
-        // priority: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        // },
+        priority: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -50,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isIn: Object.keys(CONTEST_STATUS)
+                isIn: [[...Object.values(CONTEST_STATUS)]]
             }
         },
         price: {
@@ -107,9 +113,14 @@ module.exports = (sequelize, DataTypes) => {
         Contests.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'})
     };
 
-    // User.beforeCreate( async (user, options) => {
-    //     return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-    // });
+
+    Contests.addScope(CONTEST.CLEAN_SEARCH, {
+        attributes: {
+            exclude: ['updatedAt', 'createdAt']
+        },
+        raw: true,
+        order: [['id', 'DESC']]
+    });
 
     return Contests;
 };

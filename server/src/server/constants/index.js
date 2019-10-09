@@ -8,9 +8,17 @@ const {
 
 const { URL } = require('./url') ;
 const { HTTP_CODE } = require("./http");
-const { SOCKET_EVENTS, USER_SOCKET_DATA } = require('./socket');
+const {
+    SOCKET_EVENTS,
+    USER_SOCKET_DATA
+} = require('./socket');
 const { ROLES, ROLE } = require('./role');
-const { CONTEST_PRICE, CONTEST_TYPE, CONTEST_STATUS } = require('./contest');
+const {
+    CONTEST_PRICE,
+    CONTEST_TYPE,
+    CONTEST_STATUS,
+    CONTEST_PRIORITY
+} = require('./contest');
 const { ABILITY } = require("./ability");
 const {
     ENTRIES_STATUS,
@@ -31,6 +39,12 @@ const ERROR_MESSAGE = {
     YOUR_BANNED: 'Your banned !'
 };
 
+
+const TYPE_OF_SCOPE = {
+    CONTEST: {
+        CLEAN_SEARCH: "cleanSearch"
+    }
+};
 
 module.exports = {
     PORT,
@@ -57,8 +71,11 @@ module.exports = {
     CONTEST_PRICE,
     CONTEST_TYPE,
     CONTEST_STATUS,
+    CONTEST_PRIORITY,
 
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS,
     TYPE_UPDATE_ENTRY,
+
+    TYPE_OF_SCOPE
 };
