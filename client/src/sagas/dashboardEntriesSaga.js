@@ -30,7 +30,11 @@ export function* updateEntryByIdSaga({id, status}) {
             yield put({type: DASHBOARD_ACTION.CONTEST_BY_ID, openContest: newOpenContest});
         }else{
 
-            yield updateEntryById(id, { status }, updateType, oldOpenContest.contestId);
+            yield updateEntryById(id, {
+                status,
+                contestUuid: oldOpenContest.contestId,
+                contestId: oldOpenContest.id
+            }, updateType);
 
             const newEntry = newOpenContest.Entries[entryIndex];
             newEntry.status = STATUS_OF_CONTEST_AND_ENTRY.RESOLVE;

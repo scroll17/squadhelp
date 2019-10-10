@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
             const decoded = await verifyToken(req.token, TOKEN.ACCESS);
 
             req.ability =  abilyti.defineAbilitiesFor(decoded.role, decoded);
-            req.accessToken = decoded;
+            req.accessTokenPayload = decoded;
         }else{
             req.ability = abilyti.defineAbilitiesFor(null)
         }

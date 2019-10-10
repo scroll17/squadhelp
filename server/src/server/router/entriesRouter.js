@@ -4,11 +4,13 @@ const multer = require('multer');
 
 const {
     createEntry,
-    updateEntryById
+    updateEntryById,
+    updateEntryToResolve
 } = require('../controllers/entriesController');
 
-const updateStatusOfContest = require("../middlewares/contest/updateStatusOfContest");
 
+const addUpdateEntryOptions = require("../middlewares/entries/addUpdateEntryOptions");
+const updateStatusOfContest = require("../middlewares/contest/updateStatusOfContest");
 
 const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
@@ -29,7 +31,12 @@ router.post(API.CREATE,
 
 
 router.put(API.ENTRY_ID,
+    addUpdateEntryOptions,
     updateEntryById,
+);
+
+router.put(API.ENTRY_ID,
+    updateEntryToResolve,
     updateStatusOfContest,
 );
 

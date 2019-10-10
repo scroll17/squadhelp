@@ -2,11 +2,15 @@ const express = require('express');
 
 const getTheAmountOfContests = require("../middlewares/contest/getTheAmountOfContests");
 
+const findUserById = require("../middlewares/user/findUserById");
+const checkUserBalance = require("../middlewares/payment/checkUserBalance");
+
 const {
     paymentOfContests,
+    paymentOfEntry
 } = require('../controllers/paymentController');
 
-const { URL: { API }, ROLE } = require('../constants');
+const { URL: { API }, SOURCE_ID } = require('../constants');
 
 const router = express.Router();
 
@@ -15,5 +19,10 @@ router.post(API.CONTEST,
     paymentOfContests
 );
 
+router.post(API.ENTRY,
+    findUserById(SOURCE_ID.PAYLOAD),
+    checkUserBalance,
+    paymentOfEntry
+);
 
 module.exports = router;

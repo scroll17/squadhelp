@@ -20,7 +20,7 @@ const {
     getUserEntries
 } = require('../controllers/userController');
 
-const { URL: { API } } = require('../constants');
+const { URL: { API }, SOURCE_ID } = require('../constants');
 
 
 const router = express.Router();
@@ -46,7 +46,7 @@ router.post(API.SIGNUP,
 
 router.post(API.REFRESH,
     checkRefreshToken,
-    findUserById('decoded'),
+    findUserById(SOURCE_ID.DECODED),
     createTokens
 );
 

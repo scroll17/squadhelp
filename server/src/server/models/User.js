@@ -55,6 +55,14 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [[...ROLES]],
       },
     },
+    balance: {
+      type: DataTypes.REAL,
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+      },
+    },
     avatar: {
       type: DataTypes.STRING,
       defaultValue: "default.jpg",

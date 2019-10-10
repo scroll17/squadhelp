@@ -1,48 +1,76 @@
 const error = require("../errors/errors");
 const { Bank, sequelize } = require('../models');
 
-const db = require('../models');
+const {
+    SQUAD_HELP_BANK_CARD,
+    HTTP_CODE: {
+        SUCCESS
+    }
+} = require('../constants');
 
-const { SQUAD_HELP_BANK_CARD, HTTP_CODE: { SUCCESS } } = require('../constants');
+const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
+
+const omit = require("lodash/omit");
 
 module.exports.paymentOfContests = async (req, res, next) => {
-    const { paymentData } = req.body;
+    const {
+        paymentData
+    } = req.body;
+
     const targetNumber = SQUAD_HELP_BANK_CARD.number;
+
+    const { sum } = paymentData;
+    const bankData = omit(paymentData, ["sum"]);
 
     try {
         let transaction = await sequelize.transaction();
 
-        const updatedRows = await Bank.update(
-            {
-                balance: db.sequelize.literal(`CASE WHEN "number"='${targetNumber}' THEN "balance"+${paymentData.sum} ELSE "balance"-${paymentData.sum} END`)
-            },
-            {
-                where: {
-                    $or: [
-                        {
-                            number: targetNumber
-                        },
-                        {
-                            number: paymentData.number,
-                            expiry: paymentData.expiry,
-                            cvc: paymentData.cvc,
-                            balance: {
-                                $gte: paymentData.sum
-                            }
-                        }
-                    ]
-                },
-                transaction,
-                fields: ['balance']
-            }
+        const updateFields = Bank.createUpdateFields(targetNumber, sum);
+        const updateOptions = Bank.createUpdateOptions(targetNumber, sum, bankData);
+
+        const [ updatedRows ] = await Bank.update(
+            updateFields,
+            updateOptions
         );
 
-        if(updatedRows[0] === 2){
+        if(updatedRows === 2){
             await transaction.commit();
-            res.status(SUCCESS.ACCEPTED.CODE).send('Paid')
+            res.status(SUCCESS.ACCEPTED.CODE).send(updateOptions)
         }else{
-            await transaction.rollback();
-            return next(new error.BadRequest())
+            return await transactionRollAndSendBadReq(transaction, next);
+        }
+
+    }catch (e) {
+        next(e)
+    }
+};
+
+module.exports.paymentOfEntry = async (req, res, next) => {
+    const {
+        paymentData
+    } = req.body;
+
+    const  = SQUAD_HELP_BANK_CARD.number;
+
+    const { sum } = paymentData;
+    const bankData = omit(paymentData, ["sum"]);
+
+    try {
+        let transaction = await sequelize.transaction();
+
+        const updateFields = Bank.createUpdateFields(targetNumber, sum);
+        const updateOptions = Bank.createUpdateOptions(targetNumber, sum, SQUAD_HELP_BANK_CARD);
+
+        const [ updatedRows ] = await Bank.update(
+            updateFields,
+            updateOptions
+        );
+
+        if(updatedRows === 2){
+            await transaction.commit();
+            res.status(SUCCESS.ACCEPTED.CODE).send(updateOptions)
+        }else{
+            return await transactionRollAndSendBadReq(transaction, next);
         }
 
     }catch (e) {

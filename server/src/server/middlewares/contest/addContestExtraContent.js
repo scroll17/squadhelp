@@ -11,7 +11,7 @@ const {
 } = require("../../models");
 
 module.exports = (req, res, next) => {
-    const { accessToken } = req;
+    const { accessTokenPayload } = req;
 
     req.options = {
         attributes: {
@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
         ]
     };
 
-    if(accessToken.role === ROLE.BUYER){
+    if(accessTokenPayload.role === ROLE.BUYER){
         req.options.include.push({
             model: Entries,
             where: {

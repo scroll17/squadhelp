@@ -80,9 +80,10 @@ module.exports.logoutUser = async (req,res,next) => {
 
 module.exports.giveAccessUser = async (req,res,next) => {
     try{
-        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const { accessTokenPayload } = req;
+
         const user = await User.findOne({
-            where: {email: decoded.email},
+            where: {email: accessTokenPayload.email},
             attributes: {
                 exclude: ['password','updatedAt', 'createdAt']
             }
@@ -99,10 +100,10 @@ module.exports.giveAccessUser = async (req,res,next) => {
 
 module.exports.getUserEntries = async (req,res,next) => {
     try{
-        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const { accessTokenPayload } = req;
         const entries = await Entries.findAll({
             where: {
-                userId: decoded.id
+                userId: accessTokenPayload.id
             },
             attributes: {
                 exclude: ['updatedAt', 'createdAt']
@@ -123,10 +124,10 @@ module.exports.getUserEntries = async (req,res,next) => {
 
 module.exports.getUserContests = async (req,res,next) => {
     try{
-        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        const { accessTokenPayload } = req;
         const contests = await Contests.scope(CONTEST.CLEAN_SEARCH).findAll({
             where: {
-                userId: decoded.id
+                userId: accessTokenPayload.id
             }
         });
 

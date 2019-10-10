@@ -1,14 +1,18 @@
 const { Entries, sequelize } = require('../models');
 
-const error = require('../errors/errors');
 const {
-    HTTP_CODE: { SUCCESS },
-    ABILITY: {ACTIONS, SUBJECT},
-    TYPE_UPDATE_ENTRY,
-    ENTRIES_STATUS
+    HTTP_CODE: {
+        SUCCESS
+    },
+    ABILITY: {
+        ACTIONS, SUBJECT
+    },
+    ENTRIES_STATUS,
+    TYPE_UPDATE_ENTRY
 } = require('../constants');
 
-const values = require("lodash/values");
+const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
+
 
 module.exports.createEntry = async (req, res, next) => {
     const contentOfEntry = JSON.parse(req.body.contentOfEntry);
@@ -26,44 +30,97 @@ module.exports.createEntry = async (req, res, next) => {
 };
 
 module.exports.updateEntryById = async (req, res, next) => {
-    const { id } = req.params;
-    const { type } = req.query;
-    const { updateField } = req.body;
 
+    const { updateFields, options } = req;
+    const { type } = req.query;
+    const { LIKED } = TYPE_UPDATE_ENTRY;
 
     let transaction = await sequelize.transaction();
+    options.transaction = transaction;
 
     try {
         req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.ENTRIES);
 
-        const [numberOfUpdatedRows, updatedRows] = await Entries.update(
-            updateField,
-            {
-                where: { id },
-                fields: [type],
-                returning: true,
-                raw: true,
-                transaction
-            }
+        const [numberOfUpdatedRows] = await Entries.update(
+            updateFields,
+            options
         );
 
         if(numberOfUpdatedRows !== 1){
-            await transaction.rollback();
-            return next(new error.BadRequest());
+            return  await transactionRollAndSendBadReq(transaction, next);
         }
 
-        if(type === TYPE_UPDATE_ENTRY.STATUS && updateField.status === ENTRIES_STATUS.RESOLVE){
-            req.transaction = transaction;
-
-            req.body.entryRefContestId = updatedRows[0].contestId;
-            return next()
+        let sendData;
+        if(type === LIKED){
+            sendData = updateFields.liked ? `Entry ${type}` : `Entry un-${type}`;
         }else{
-
-            await transaction.commit();
-            return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${type}: ${values(updateField)}`)
+            sendData = `Entry ${updateFields.status}`
         }
+
+        await transaction.commit();
+        return res.status(SUCCESS.ACCEPTED.CODE).send(sendData)
 
     } catch (err) {
         next(err);
     }
 };
+module.exports.updateEntryToResolve = async (req, res, next) => {
+    const { id } = req.params;
+    const { updateData } = req.body;
+
+    const { contestId, contestUuid } = updateData;
+    const { RESOLVE, REJECT } = ENTRIES_STATUS;
+
+    let transaction = await sequelize.transaction();
+
+    const [, numberOfUpdateRows] = await sequelize.query(`
+                UPDATE "Entries" 
+                SET status =
+                    CASE
+                        WHEN "id"=:id THEN :resolve
+                        ELSE :reject
+                    END,
+                    liked =
+                    CASE 
+                        WHEN "id" <> :id THEN false
+                        ELSE "liked"
+                    END
+                WHERE "contestId" = :contestId
+            `,
+        {
+            replacements: {
+                id: id,
+                resolve: RESOLVE,
+                reject: REJECT,
+                contestId: contestId,
+            },
+            transaction,
+            model: Entries,
+            type: sequelize.QueryTypes.UPDATE
+        });
+
+    if(numberOfUpdateRows === 0){
+        return await transactionRollAndSendBadReq(transaction, next);
+    }else {
+
+        req.transaction = transaction;
+        req.body.contestUuid = contestUuid;
+        next()
+    }
+};
+
+// updatedRows.reduce((prevUpdateRows, currentUpdateRows) => {
+//     const { id: rowId, contestId, status } = currentUpdateRows;
+//
+//     if(prevUpdateRows.contestId !== contestId){
+//         return next(new BadRequest())
+//     }
+//
+//     if(`${rowId}` === id && status !== "x"){
+//         return next(new BadRequest())
+//     }
+//
+//     return currentUpdateRows;
+// }, {
+//     contestId
+// });

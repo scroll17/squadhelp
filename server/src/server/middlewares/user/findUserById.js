@@ -1,13 +1,29 @@
-const { NotFound } = require("../../errors/errors");
+const { NotFound, BadRequest } = require("../../errors/errors");
 const { User } = require('../../models');
 
-module.exports = (idSource) => async (req,res,next) => {
+const { SOURCE_ID } = require('../../constants');
+const isNull = require("lodash/isNull");
 
+module.exports = (idSource) => async (req,res,next) => {
+    const { DECODED, PARAMS, PAYLOAD } = SOURCE_ID;
     let id;
-    if(idSource === 'decoded'){
-        id = req.decoded.userId;
-    }else if(idSource === 'params'){
-        id = req.params.id;
+
+    switch (idSource) {
+        case DECODED:
+            id = req.decoded.userId;
+            break;
+        case PARAMS:
+            id = req.params.id;
+            break;
+        case PAYLOAD:
+            id = 2; // req.accessTokenPayload.id; TODO
+            break;
+        default:
+            id = null;
+    }
+
+    if(isNull(id)){
+        return next(new BadRequest())
     }
 
 
@@ -19,9 +35,9 @@ module.exports = (idSource) => async (req,res,next) => {
         });
 
         if(req.body.user){
-            next();
+            return next();
         }else{
-            next(new NotFound())
+            return next(new NotFound())
         }
     }catch (err) {
         next(err)

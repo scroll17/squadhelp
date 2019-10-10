@@ -39,6 +39,11 @@ const ERROR_MESSAGE = {
     YOUR_BANNED: 'Your banned !'
 };
 
+const SOURCE_ID = {
+    DECODED: 'decoded',
+    PARAMS: 'params',
+    PAYLOAD: 'payload'
+};
 
 const TYPE_OF_SCOPE = {
     CONTEST: {
@@ -51,6 +56,7 @@ module.exports = {
     SALT_ROUNDS,
     ERROR_MESSAGE,
     SQUAD_HELP_BANK_CARD,
+
 
     ACCESS_SECRET,
     EXPIRES_IN_ACCESS,
@@ -77,5 +83,6 @@ module.exports = {
     ENTRY_VALIDATION_STATUS,
     TYPE_UPDATE_ENTRY,
 
-    TYPE_OF_SCOPE
+    TYPE_OF_SCOPE,
+    SOURCE_ID,
 };

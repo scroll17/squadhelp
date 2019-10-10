@@ -46,6 +46,14 @@ module.exports = {
                     isIn: [[...ROLES]],
                 }
             },
+            balance: {
+                type: Sequelize.REAL,
+                allowNull: false,
+                defaultValue: 0,
+                validate: {
+                    min: 0,
+                }
+            },
             avatar: {
                 type: Sequelize.STRING,
                 defaultValue: "default.jpg",

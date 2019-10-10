@@ -18,6 +18,7 @@ function MyContests(props) {
         return contests.map(contest => <Contest {...contest} key={contest.id}/>)
     };
 
+
     return (
         <div className={style.myContests}>
             <div className={style.title}>my contests</div>
