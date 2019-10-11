@@ -17,7 +17,8 @@ const {
     loginUser,
     logoutUser,
     getUserContests,
-    getUserEntries
+    getUserEntries,
+    updateUserInformation
 } = require('../controllers/userController');
 
 const { URL: { API }, SOURCE_ID } = require('../constants');
@@ -48,6 +49,10 @@ router.post(API.REFRESH,
     checkRefreshToken,
     findUserById(SOURCE_ID.DECODED),
     createTokens
+);
+
+router.put(API.UPDATE,
+    updateUserInformation,
 );
 
 router.get(API.AUTHORIZE,

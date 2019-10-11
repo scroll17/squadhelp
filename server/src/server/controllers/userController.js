@@ -43,19 +43,24 @@ module.exports.createUser = async (req, res, next) => {
 };
 
 module.exports.updateUserInformation = async (req, res, next) => {
-    const { newInformation } = req.body;
+    const { updateFields } = req.body;
     const {
         accessTokenPayload: {
             id
         }
     } = req;
+
+    console.log("updateFields", updateFields);
+
     try{
         //req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);
 
         const [numberOfUpdatedRows, updateUser] = await User.update(
-            {newInformation},
+            {updateFields},
             {
-                where: { id },
+                where: {
+                    id: 2 // TODO
+                },
                 fields: USER_FIELDS_TO_UPDATE,
                 returning: true,
             });

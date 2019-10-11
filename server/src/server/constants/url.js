@@ -21,7 +21,9 @@ const URL = {
         USER_ENTRIES: '/entries',
 
         PAYMENT: '/payment',
-        CREATE: '/create'
+        CREATE: '/create',
+
+        UPDATE: '/update'
     },
 };
 module.exports = {
