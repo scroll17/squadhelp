@@ -32,7 +32,7 @@ module.exports = async (req, res, next) => {
             return next("route");
 
         }else{
-            options.fields.push('liked');
+            options.fields.push(TYPE_UPDATE_ENTRY.LIKED);
 
             req.updateFields = {
                 status,

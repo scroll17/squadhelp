@@ -33,9 +33,9 @@ module.exports = {
             status: {
                 type: Sequelize.STRING,
                 allowNull: false,
-                // validate: {
-                //     isIn:  [[...Object.values(ENTRIES_STATUS)]]
-                // },
+                validate: {
+                    isIn:  [[...Object.values(ENTRIES_STATUS)]]
+                },
                 defaultValue: ENTRIES_STATUS.EXPECTATION,
             },
             isValid: {

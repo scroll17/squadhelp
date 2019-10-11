@@ -13,8 +13,8 @@ import { isEqual, cloneDeep, findIndex } from 'lodash'
 
 import { TYPE_UPDATE_ENTRY } from "../constants";
 
-export function* updateEntryByIdSaga({id, status}) {
-    try {
+export function* updateEntryByIdSaga({id, status, userId}) {
+   try {
         const updateType = TYPE_UPDATE_ENTRY.STATUS;
         let {dashboardContestsReducer: { openContest: oldOpenContest }} = yield select();
 
@@ -32,6 +32,7 @@ export function* updateEntryByIdSaga({id, status}) {
 
             yield updateEntryById(id, {
                 status,
+                userId,
                 contestUuid: oldOpenContest.contestId,
                 contestId: oldOpenContest.id
             }, updateType);

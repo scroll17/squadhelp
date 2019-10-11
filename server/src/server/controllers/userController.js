@@ -2,17 +2,16 @@ const error = require("../errors/errors");
 const { User, RefreshToken, Contests, Entries } = require('../models');
 
 const {
-    TOKEN,
     HTTP_CODE: { SUCCESS },
     ABILITY: {
         ACTIONS, SUBJECT
     },
     TYPE_OF_SCOPE: {
-        CONTEST
-    }
+        CLEAN_SEARCH
+    },
+    USER_FIELDS_TO_UPDATE
 } = require("../constants");
 
-const { verifyToken } = require('../middlewares/token/checkJwtTokens');
 
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
@@ -38,6 +37,37 @@ module.exports.createUser = async (req, res, next) => {
 
         req.body.user = user;
         next()
+    }catch (err){
+        next(err)
+    }
+};
+
+module.exports.updateUserInformation = async (req, res, next) => {
+    const { newInformation } = req.body;
+    const {
+        accessTokenPayload: {
+            id
+        }
+    } = req;
+    try{
+        //req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);
+
+        const [numberOfUpdatedRows, updateUser] = await User.update(
+            {newInformation},
+            {
+                where: { id },
+                fields: USER_FIELDS_TO_UPDATE,
+                returning: true,
+            });
+
+        if(numberOfUpdatedRows <= 0){
+            return next(new error.BadRequest());
+        }
+
+        res.send({
+            numberOfUpdatedRows,
+            updateUser
+        })
     }catch (err){
         next(err)
     }
@@ -125,7 +155,7 @@ module.exports.getUserEntries = async (req,res,next) => {
 module.exports.getUserContests = async (req,res,next) => {
     try{
         const { accessTokenPayload } = req;
-        const contests = await Contests.scope(CONTEST.CLEAN_SEARCH).findAll({
+        const contests = await Contests.scope(CLEAN_SEARCH).findAll({
             where: {
                 userId: accessTokenPayload.id
             }
@@ -136,3 +166,4 @@ module.exports.getUserContests = async (req,res,next) => {
         next(err)
     }
 };
+

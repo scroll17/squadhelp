@@ -1,5 +1,4 @@
 const express = require('express');
-
 const multer = require('multer');
 
 const {
@@ -8,6 +7,7 @@ const {
     updateEntryToResolve
 } = require('../controllers/entriesController');
 
+const { increaseUserBalance } = require("../controllers/paymentController");
 
 const addUpdateEntryOptions = require("../middlewares/entries/addUpdateEntryOptions");
 const updateStatusOfContest = require("../middlewares/contest/updateStatusOfContest");
@@ -38,6 +38,7 @@ router.put(API.ENTRY_ID,
 router.put(API.ENTRY_ID,
     updateEntryToResolve,
     updateStatusOfContest,
+    increaseUserBalance
 );
 
 

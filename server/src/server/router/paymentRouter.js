@@ -7,8 +7,10 @@ const checkUserBalance = require("../middlewares/payment/checkUserBalance");
 
 const {
     paymentOfContests,
-    paymentOfEntry
+    getPaymentOfEntries,
+    cashOutUserBalance
 } = require('../controllers/paymentController');
+
 
 const { URL: { API }, SOURCE_ID } = require('../constants');
 
@@ -22,7 +24,8 @@ router.post(API.CONTEST,
 router.post(API.ENTRY,
     findUserById(SOURCE_ID.PAYLOAD),
     checkUserBalance,
-    paymentOfEntry
+    cashOutUserBalance,
+    getPaymentOfEntries
 );
 
 module.exports = router;

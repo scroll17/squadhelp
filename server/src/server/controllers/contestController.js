@@ -14,13 +14,13 @@ const convertMapToObject = require('../utils/convertMapToObject');
 
 
 module.exports.createContest = async (req, res, next) => {
-    const { accessToken } = req;
+    const { accessTokenPayload: { id } } = req;
     const { contests } = req.body;
     const uuid = uuidv1();
 
     contests.forEach( contest => {
         contest.contestId = uuid;
-        contest.userId = accessToken.id;
+        contest.userId = id;
     });
 
     try{

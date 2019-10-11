@@ -10,10 +10,11 @@ export const createEntry = formData => ({
     formData
 });
 
-export const updateEntryById = (id, status) => ({
+export const updateEntryById = (id, status, userId) => ({
     type: DASHBOARD_ACTION.UPDATE_ENTRY_BY_ID,
     id,
-    status
+    status,
+    userId
 });
 
 export const likeEntryById = (id, liked) => ({

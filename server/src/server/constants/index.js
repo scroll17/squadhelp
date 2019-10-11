@@ -6,25 +6,34 @@ const {
     TOKEN
 }= require('./tokens');
 
-const { URL } = require('./url') ;
-const { HTTP_CODE } = require("./http");
-const {
-    SOCKET_EVENTS,
-    USER_SOCKET_DATA
-} = require('./socket');
-const { ROLES, ROLE } = require('./role');
 const {
     CONTEST_PRICE,
     CONTEST_TYPE,
     CONTEST_STATUS,
     CONTEST_PRIORITY
 } = require('./contest');
-const { ABILITY } = require("./ability");
+
 const {
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS ,
     TYPE_UPDATE_ENTRY
 } = require("./entries");
+
+const {
+    SOCKET_EVENTS,
+    USER_SOCKET_DATA
+} = require('./socket');
+
+const {
+    TYPE_OF_UPDATE_BALANCE_FOR_USER,
+    USER_FIELDS_TO_UPDATE,
+    USER_FIELDS
+} = require("./user");
+
+const { URL } = require('./url') ;
+const { HTTP_CODE } = require("./http");
+const { ABILITY } = require("./ability");
+const { ROLES, ROLE } = require('./role');
 
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 8;
@@ -46,9 +55,13 @@ const SOURCE_ID = {
 };
 
 const TYPE_OF_SCOPE = {
-    CONTEST: {
-        CLEAN_SEARCH: "cleanSearch"
-    }
+    CLEAN_SEARCH: "cleanSearch"
+};
+
+const DEFAULT_MODEL_FIELDS = {
+  ID: 'id',
+  CREATED_AT: "createdAt",
+  UPDATE_AT: "updatedAt"
 };
 
 module.exports = {
@@ -56,7 +69,7 @@ module.exports = {
     SALT_ROUNDS,
     ERROR_MESSAGE,
     SQUAD_HELP_BANK_CARD,
-
+    DEFAULT_MODEL_FIELDS,
 
     ACCESS_SECRET,
     EXPIRES_IN_ACCESS,
@@ -85,4 +98,7 @@ module.exports = {
 
     TYPE_OF_SCOPE,
     SOURCE_ID,
+    TYPE_OF_UPDATE_BALANCE_FOR_USER,
+    USER_FIELDS_TO_UPDATE,
+    USER_FIELDS
 };

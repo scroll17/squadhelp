@@ -1,6 +1,6 @@
 const { ROLES } = require('../constants/index');
 
-const { SALT_ROUNDS } = require("../constants");
+const { SALT_ROUNDS, TYPE_OF_UPDATE_BALANCE_FOR_USER } = require("../constants");
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
@@ -44,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validation: {
+        min: 5,
         notEmpty: true,
       },
     },
@@ -86,6 +87,24 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeCreate( async (user, options) => {
     return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   });
+
+  User.createUpdateBalanceOptions= (type, userId, sum, transaction) => {
+    const { CASH_OUT } = TYPE_OF_UPDATE_BALANCE_FOR_USER;
+    const typeUpdateBalance = type === CASH_OUT ? "-" : "+";
+
+    return [
+      {
+        balance: sequelize.literal(`"balance" ${typeUpdateBalance} ${sum}`)
+      },
+      {
+        where: {
+          id: userId
+        },
+        fields: ['balance'],
+        transaction
+      }
+    ]
+  };
 
   return User;
 };

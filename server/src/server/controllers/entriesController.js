@@ -66,9 +66,12 @@ module.exports.updateEntryById = async (req, res, next) => {
 };
 module.exports.updateEntryToResolve = async (req, res, next) => {
     const { id } = req.params;
-    const { updateData } = req.body;
+    const {
+        updateData: {
+            contestId
+        }
+    } = req.body;
 
-    const { contestId, contestUuid } = updateData;
     const { RESOLVE, REJECT } = ENTRIES_STATUS;
 
     let transaction = await sequelize.transaction();
@@ -104,7 +107,6 @@ module.exports.updateEntryToResolve = async (req, res, next) => {
     }else {
 
         req.transaction = transaction;
-        req.body.contestUuid = contestUuid;
         next()
     }
 };

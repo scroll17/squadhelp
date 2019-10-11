@@ -18,18 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    Bank.createUpdateFields = (targetNumber, sum) => {
-      return {
-          balance: sequelize.literal(`CASE WHEN "number"='${targetNumber}' THEN "balance"+${sum} ELSE "balance"-${sum} END`)
-      }
-    };
 
     Bank.createUpdateOptions = (targetNumber, sum, bankDataObject, transaction) => {
         bankDataObject.balance = {
             $gte: sum
         };
 
-        return  {
+        const updateOptions = {
             where: {
                 $or: [
                     {
@@ -38,9 +33,15 @@ module.exports = (sequelize, DataTypes) => {
                     bankDataObject
                 ]
             },
-            //transaction,
+            transaction,
             fields: ['balance']
-        }
+        };
+
+        const updateFields = {
+            balance: sequelize.literal(`CASE WHEN "number"='${targetNumber}' THEN "balance"+${sum} ELSE "balance"-${sum} END`)
+        };
+
+        return [updateOptions, updateFields]
     };
 
     return Bank;

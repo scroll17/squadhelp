@@ -22,7 +22,7 @@ import { isEqual } from 'lodash'
 
 function Entry(props) {
     const {User, text, file, status, id, isValid, isModerationPage, liked} = props;
-    const {displayName, avatar} = User;
+    const {displayName, avatar, id: userId} = User;
 
     const styleForModerationPage = {
         display: "flex",
@@ -63,7 +63,7 @@ function Entry(props) {
 
                         {isEqual(status, STATUS_OF_CONTEST_AND_ENTRY.EXPECTATION) &&
                             <div>
-                                <span onClick={() => props.updateEntryById(id, STATUS_OF_CONTEST_AND_ENTRY.RESOLVE)}>
+                                <span onClick={() => props.updateEntryById(id, STATUS_OF_CONTEST_AND_ENTRY.RESOLVE, userId)}>
                                     {STATUS_OF_CONTEST_AND_ENTRY.RESOLVE}
                                 </span>
                                 <span onClick={() => props.updateEntryById(id, STATUS_OF_CONTEST_AND_ENTRY.REJECT)}>
@@ -99,7 +99,7 @@ const mapStateToProps = (state) => ({});
 const mapDispatchToProps = dispatch => ({
     closeOrOpenChat: (chatIsOpen) => dispatch(closeOrOpenChat(chatIsOpen)),
     likeEntryById: (id, liked) => dispatch(likeEntryById(id, liked)),
-    updateEntryById: (id, status) => dispatch(updateEntryById(id, status)),
+    updateEntryById: (id, status, userId) => dispatch(updateEntryById(id, status, userId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Entry);
 

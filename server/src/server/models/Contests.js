@@ -2,7 +2,7 @@ const {
     CONTEST_TYPE,
     CONTEST_STATUS,
     TYPE_OF_SCOPE: {
-        CONTEST
+        CLEAN_SEARCH
     }
 } = require('../constants');
 
@@ -114,7 +114,7 @@ module.exports = (sequelize, DataTypes) => {
     };
 
 
-    Contests.addScope(CONTEST.CLEAN_SEARCH, {
+    Contests.addScope(CLEAN_SEARCH, {
         attributes: {
             exclude: ['updatedAt', 'createdAt']
         },
