@@ -7,11 +7,25 @@ const {
         ACTIONS, SUBJECT
     },
     TYPE_OF_SCOPE: {
-        CLEAN_SEARCH
+        CLEAN_SEARCH,
+        UPDATE
     },
-    USER_FIELDS_TO_UPDATE
+    USER_FIELDS_TO_UPDATE,
+    DEFAULT_MODEL_FIELDS:{
+        CREATED_AT,
+        UPDATE_AT,
+        ID
+    },
+    USER_FIELDS:{
+        PASSWORD
+    },
+    CONTEST_FIELDS: {
+        TITLE,
+        CONTEST_TYPE
+    }
 } = require("../constants");
 
+const omit = require("lodash/omit");
 
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
@@ -43,36 +57,32 @@ module.exports.createUser = async (req, res, next) => {
 };
 
 module.exports.updateUserInformation = async (req, res, next) => {
-    const { updateFields } = req.body;
     const {
-        accessTokenPayload: {
-            id
+        accessTokenPayload,
+        body:{
+            updateFields
         }
     } = req;
 
-    console.log("updateFields", updateFields);
-
     try{
-        //req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.USER);
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.USER);
 
-        const [numberOfUpdatedRows, updateUser] = await User.update(
-            {updateFields},
+        const [numberOfUpdatedRows, [updateUser] ] = await User.scope(UPDATE).update(
+            updateFields,
             {
                 where: {
-                    id: 2 // TODO
+                    id: accessTokenPayload.id
                 },
                 fields: USER_FIELDS_TO_UPDATE,
-                returning: true,
             });
 
         if(numberOfUpdatedRows <= 0){
             return next(new error.BadRequest());
         }
 
-        res.send({
-            numberOfUpdatedRows,
-            updateUser
-        })
+        res.send(
+            omit(updateUser, [CREATED_AT, UPDATE_AT, USER_FIELDS.PASSWORD])
+        )
     }catch (err){
         next(err)
     }
@@ -120,7 +130,7 @@ module.exports.giveAccessUser = async (req,res,next) => {
         const user = await User.findOne({
             where: {email: accessTokenPayload.email},
             attributes: {
-                exclude: ['password','updatedAt', 'createdAt']
+                exclude: [PASSWORD,CREATED_AT,UPDATE_AT]
             }
         });
 
@@ -134,21 +144,24 @@ module.exports.giveAccessUser = async (req,res,next) => {
 
 
 module.exports.getUserEntries = async (req,res,next) => {
+    const { accessTokenPayload } = req;
+
     try{
-        const { accessTokenPayload } = req;
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ENTRIES);
+
         const entries = await Entries.findAll({
             where: {
                 userId: accessTokenPayload.id
             },
             attributes: {
-                exclude: ['updatedAt', 'createdAt']
+                exclude: [CREATED_AT,UPDATE_AT]
             },
             include: [{
                 model: Contests,
                 as: 'contestInfo',
-                attributes: ['title', 'contestType'],
+                attributes: [TITLE, CONTEST_TYPE],
             }],
-            order: [['id', 'DESC']]
+            order: [[ID, 'DESC']]
         });
 
         return res.send(entries);
@@ -158,8 +171,11 @@ module.exports.getUserEntries = async (req,res,next) => {
 };
 
 module.exports.getUserContests = async (req,res,next) => {
+    const { accessTokenPayload } = req;
+
     try{
-        const { accessTokenPayload } = req;
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+
         const contests = await Contests.scope(CLEAN_SEARCH).findAll({
             where: {
                 userId: accessTokenPayload.id

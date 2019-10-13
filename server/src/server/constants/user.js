@@ -10,6 +10,7 @@ const USER_FIELDS = {
   AVATAR: "avatar",
   EMAIL: "email",
   PASSWORD: "password",
+  BALANCE: "balance"
 };
 
 const USER_FIELDS_TO_UPDATE = [

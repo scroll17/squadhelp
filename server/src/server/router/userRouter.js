@@ -21,6 +21,11 @@ const {
     updateUserInformation
 } = require('../controllers/userController');
 
+const {
+    validateDataOnCreateUser,
+    validateDataOnUpdateUser,
+} = require('../middlewares/user/validateUser');
+
 const { URL: { API }, SOURCE_ID } = require('../constants');
 
 
@@ -41,6 +46,7 @@ router.delete(API.LOGOUT,
 );
 
 router.post(API.SIGNUP,
+    validateDataOnCreateUser,
     createUser,
     createTokens
 );
@@ -52,6 +58,7 @@ router.post(API.REFRESH,
 );
 
 router.put(API.UPDATE,
+    validateDataOnUpdateUser,
     updateUserInformation,
 );
 

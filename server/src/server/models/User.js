@@ -1,6 +1,15 @@
-const { ROLES } = require('../constants/index');
+const {
+  ROLES,
+  USER_FIELDS
+} = require('../constants/index');
 
-const { SALT_ROUNDS, TYPE_OF_UPDATE_BALANCE_FOR_USER } = require("../constants");
+const {
+  SALT_ROUNDS,
+  TYPE_OF_UPDATE_BALANCE_FOR_USER ,
+  TYPE_OF_SCOPE: {
+      UPDATE
+    }
+} = require("../constants");
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
@@ -83,9 +92,21 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Entries, {foreignKey: 'userId', targetKey: 'id', as: 'entries'});
   };
 
+  User.addScope(UPDATE, {
+    returning: true,
+    raw: true
+  });
 
   User.beforeCreate( async (user, options) => {
     return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+  });
+
+  User.beforeBulkUpdate( async (user) => {
+    const { password } = user.attributes;
+
+    if(password){
+      return user.attributes.password = await bcrypt.hash(password, SALT_ROUNDS);
+    }
   });
 
   User.createUpdateBalanceOptions= (type, userId, sum, transaction) => {
@@ -100,7 +121,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           id: userId
         },
-        fields: ['balance'],
+        fields: [USER_FIELDS.BALANCE],
         transaction
       }
     ]

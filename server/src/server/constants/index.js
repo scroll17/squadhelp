@@ -10,7 +10,8 @@ const {
     CONTEST_PRICE,
     CONTEST_TYPE,
     CONTEST_STATUS,
-    CONTEST_PRIORITY
+    CONTEST_PRIORITY,
+    CONTEST_FIELDS
 } = require('./contest');
 
 const {
@@ -55,7 +56,10 @@ const SOURCE_ID = {
 };
 
 const TYPE_OF_SCOPE = {
-    CLEAN_SEARCH: "cleanSearch"
+    CLEAN_SEARCH: "cleanSearch",
+    CLEAN_UPDATE: "cleanUpdate",
+
+    UPDATE: "update",
 };
 
 const DEFAULT_MODEL_FIELDS = {
@@ -91,6 +95,7 @@ module.exports = {
     CONTEST_TYPE,
     CONTEST_STATUS,
     CONTEST_PRIORITY,
+    CONTEST_FIELDS,
 
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS,

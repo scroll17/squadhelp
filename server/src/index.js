@@ -6,6 +6,7 @@ const errorHandlerCasl  = require("./server/errorHandlers/errorHandlerCasl");
 const errorHandlerSequelize  = require("./server/errorHandlers/errorHandlerSequelize");
 const errorHandlerBcrypt  = require("./server/errorHandlers/errorHandlerBcrypt");
 const errorHandlerMulter  = require("./server/errorHandlers/errorHandlerMulter");
+const errorHandlerYup = require("./server/errorHandlers/errorHandlerYup");
 
 const router = require("./server/router/index");
 const { PORT } = require("./server/constants");
@@ -21,6 +22,7 @@ app.use(router);
 
 app.use(
     errorHandlerJWT,
+    errorHandlerYup,
     errorHandlerBcrypt,
     errorHandlerSequelize,
     errorHandlerCasl,

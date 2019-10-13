@@ -12,7 +12,12 @@ const {
 } = require('../controllers/paymentController');
 
 
-const { URL: { API }, SOURCE_ID } = require('../constants');
+const {
+    URL: {
+        API
+    },
+    SOURCE_ID
+} = require('../constants');
 
 const router = express.Router();
 

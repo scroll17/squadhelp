@@ -22,9 +22,26 @@ const CONTEST_PRICE = new Map([
     [CONTEST_TYPE.TAGLINE, 33],
 ]);
 
+const CONTEST_FIELDS = {
+    CONTEST_ID: "contestId",
+    USER_ID: 'userId',
+    CONTEST_TYPE: "contestType",
+    PRIORITY: "priority",
+    TITLE: 'title',
+    NAME: 'name',
+    STATUS: 'status',
+    PRICE: 'price',
+    TYPE: 'type',
+    WHAT_VENTURE_DOES: 'whatVentureDoes',
+    TARGET_CUSTOMERS: "targetCustomers",
+    STYLE: 'style',
+    FILE: 'file'
+};
+
 module.exports = {
     CONTEST_TYPE,
     CONTEST_PRICE,
     CONTEST_STATUS,
-    CONTEST_PRIORITY
+    CONTEST_PRIORITY,
+    CONTEST_FIELDS
 };

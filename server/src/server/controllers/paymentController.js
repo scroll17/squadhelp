@@ -1,8 +1,11 @@
-const error = require("../errors/errors");
 const { Bank, User, sequelize } = require('../models');
 
 const {
     SQUAD_HELP_BANK_CARD,
+    ABILITY: {
+        ACTIONS,
+        SUBJECT
+    },
     HTTP_CODE: {
         SUCCESS
     },
@@ -24,6 +27,8 @@ module.exports.paymentOfContests = async (req, res, next) => {
     const bankData = omit(paymentData, ["sum"]);
 
     try {
+        req.ability.throwUnlessCan(ACTIONS.PAY, SUBJECT.BANKS);
+
         let transaction = await sequelize.transaction();
 
         const [updateOptions, updateFields] = Bank.createUpdateOptions(targetNumber, sum, bankData, transaction);
@@ -77,6 +82,8 @@ module.exports.cashOutUserBalance = async (req,res,next) => {
     const { paymentData, user } = req.body;
 
     try{
+
+        req.ability.throwUnlessCan(ACTIONS.CASH_OUT, SUBJECT.BANKS);
 
         let transaction = await sequelize.transaction();
 
