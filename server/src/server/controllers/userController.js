@@ -2,7 +2,6 @@ const error = require("../errors/errors");
 const { User, RefreshToken, Contests, Entries } = require('../models');
 
 const {
-    HTTP_CODE: { SUCCESS },
     ABILITY: {
         ACTIONS, SUBJECT
     },
@@ -26,6 +25,8 @@ const {
 } = require("../constants");
 
 const omit = require("lodash/omit");
+
+const HttpStatus = require('http-status-codes');
 
 module.exports.createUser = async (req, res, next) => {
     const { body } = req;
@@ -65,7 +66,7 @@ module.exports.updateUserInformation = async (req, res, next) => {
     } = req;
 
     try{
-        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.USER);
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.USER);
 
         const [numberOfUpdatedRows, [updateUser] ] = await User.scope(UPDATE).update(
             updateFields,
@@ -81,7 +82,7 @@ module.exports.updateUserInformation = async (req, res, next) => {
         }
 
         res.send(
-            omit(updateUser, [CREATED_AT, UPDATE_AT, USER_FIELDS.PASSWORD])
+            omit(updateUser, [CREATED_AT, UPDATE_AT, PASSWORD])
         )
     }catch (err){
         next(err)
@@ -115,7 +116,7 @@ module.exports.logoutUser = async (req,res,next) => {
             }
         });
 
-        res.status(SUCCESS.OK.CODE).send('Your logout !');
+        res.status(HttpStatus.OK).send('Your logout !');
     }catch (err) {
         next(err);
     }

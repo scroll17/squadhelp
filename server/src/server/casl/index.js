@@ -5,7 +5,6 @@ const {
     ABILITY: {
         SUBJECT,
         ACTIONS,
-        FIELD_TO_UPDATE
     }
 } = require('../constants');
 
@@ -26,10 +25,13 @@ module.exports.defineAbilitiesFor = (role, user) => {
             can(ACTIONS.CREATE, SUBJECT.CONTEST);
 
             can(ACTIONS.READ, SUBJECT.USER);
+            can(ACTIONS.READ, SUBJECT.CONTEST);
+            can(ACTIONS.READ, SUBJECT.ENTRIES);
             cannot(ACTIONS.READ, SUBJECT.USER, { isBanned: true }).because('You have bun !');
 
             can(ACTIONS.UPDATE, SUBJECT.CONTEST);
             can(ACTIONS.UPDATE, SUBJECT.ENTRIES);
+            can(ACTIONS.UPDATE, SUBJECT.USER);
 
             can(ACTIONS.PAY, SUBJECT.BANKS);
             break;
@@ -38,9 +40,12 @@ module.exports.defineAbilitiesFor = (role, user) => {
             can(ACTIONS.CREATE, SUBJECT.ENTRIES);
 
             can(ACTIONS.READ, SUBJECT.USER);
+            can(ACTIONS.READ, SUBJECT.CONTEST);
+            can(ACTIONS.READ, SUBJECT.ENTRIES);
             cannot(ACTIONS.READ, SUBJECT.USER,  { isBanned: true }).because('You have bun !');
 
             can(ACTIONS.UPDATE, SUBJECT.ENTRIES);
+            can(ACTIONS.UPDATE, SUBJECT.USER);
 
             can(ACTIONS.CASH_OUT, SUBJECT.BANKS);
             break;
@@ -49,11 +54,6 @@ module.exports.defineAbilitiesFor = (role, user) => {
         default:
             can(ACTIONS.CREATE, SUBJECT.USER);
 
-            cannot(ACTIONS.READ, SUBJECT.USER);
-            cannot(ACTIONS.READ, SUBJECT.CONTEST);
-            cannot(ACTIONS.READ, SUBJECT.ENTRIES);
-
-            cannot(ACTIONS.UPDATE, SUBJECT.USER);
     }
 
 
