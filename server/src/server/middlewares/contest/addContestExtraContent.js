@@ -1,7 +1,17 @@
 const {
     ENTRY_VALIDATION_STATUS,
     CONTEST_STATUS,
-    ROLE
+    ROLE,
+    DEFAULT_MODEL_FIELDS:{
+      UPDATE_AT, CREATED_AT, ID
+    },
+    USER_FIELDS: {
+        DISPLAY_NAME, AVATAR
+    },
+    CONTEST_FIELDS: {
+        PRIORITY
+    },
+    ENT
 } = require("../../constants");
 
 const {
@@ -15,13 +25,13 @@ module.exports = (req, res, next) => {
 
     req.options = {
         attributes: {
-            exclude: ['updatedAt', 'createdAt', 'priority'],
+            exclude: [UPDATE_AT, CREATED_AT, PRIORITY],
         },
-        order: [['id', 'DESC']],
+        order: [[ID, 'DESC']],
         include: [
             {
                 model: User,
-                attributes: ['displayName', 'avatar'],
+                attributes: [DISPLAY_NAME, AVATAR],
             },
         ]
     };
@@ -39,7 +49,7 @@ module.exports = (req, res, next) => {
 
             include: [{
                 model: User,
-                attributes: ['displayName', 'avatar', 'id'],
+                attributes: [DISPLAY_NAME, AVATAR, ID],
             }]
         })
     }

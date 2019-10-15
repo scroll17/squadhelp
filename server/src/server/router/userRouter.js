@@ -24,7 +24,7 @@ const {
 const {
     validateDataOnCreateUser,
     validateDataOnUpdateUser,
-} = require('../middlewares/user/validateUser');
+} = require('../middlewares/validate/validateUser');
 
 const { URL: { API }, SOURCE_ID } = require('../constants');
 

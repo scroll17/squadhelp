@@ -2,8 +2,7 @@ const { BadRequest } = require('../../errors/errors');
 const { CONTEST_PRICE } = require('../../constants');
 
 module.exports = (req, res, next) => {
-    const { formFields } = req.body;
-    const contests = JSON.parse(formFields);
+    const { contests } = req.body;
 
     contests.forEach( form => {
         const priceClient = form.price;
@@ -14,6 +13,5 @@ module.exports = (req, res, next) => {
         }
     });
 
-    req.body.contests = contests;
     next();
 };

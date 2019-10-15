@@ -7,7 +7,7 @@ import style from './BankForm.module.sass'
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/lib/styles.scss';
 
-import { tail } from 'lodash';
+import { size } from 'lodash';
 
 import { CONTEST } from '../../../constants'
 
@@ -19,8 +19,8 @@ import {
 
 
 let BankForm = (props) => {
-    const {handleSubmit, priceOfContest , fields, number, expiry, cvc } = props;
-    const contestForms = tail(props.contestNow);
+    const {handleSubmit, priceOfContest , fields, number, expiry, cvc, contestNow} = props;
+    const contestForms = contestNow.slice(1, size(contestNow)-1);
 
     const focused = (fields) => {
         let focusOnField;

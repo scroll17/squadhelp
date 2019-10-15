@@ -95,10 +95,7 @@ module.exports = {
             },
             style: {
                 type:  Sequelize.ARRAY(Sequelize.STRING),
-                allowNull: false,
-                validate: {
-                    notEmpty: true,
-                },
+                allowNull: true
             },
             file: {
                 type: Sequelize.STRING,

@@ -17,6 +17,7 @@ export function* createContestSaga({formData}) {
     try {
         const { contestReducer: { contestNow, contestFormData, priceOfContest } } = yield select();
 
+        const contests = contestNow.slice(1, _.size(contestNow)-1);
         if(_.isEmpty(formData)){
             return toast.error("Check bank card", {
                 position: toast.POSITION.TOP_RIGHT
@@ -24,11 +25,9 @@ export function* createContestSaga({formData}) {
         }else{
             const dataOfPayContests = {
                 ...formData,
+                contests,
                 number: formData.number.replace(/\s+/g, ''),
-                contests: Object.keys(priceOfContest)
             };
-
-            console.log("dataOfPayContests", dataOfPayContests);
 
             yield payContests(dataOfPayContests);
         }
@@ -79,8 +78,7 @@ export function* createContestSaga({formData}) {
 
         yield createContest(finalDataToSend);
 
-
-        for (let formIndex = 1; formIndex <= _.size(contestNow); formIndex++) {
+        for (let formIndex = 1; formIndex < _.size(contestNow); formIndex++) {
             yield put(reset(contestNow[formIndex]))
         }
         sessionStorage.clear();

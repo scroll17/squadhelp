@@ -66,7 +66,7 @@ module.exports.updateUserInformation = async (req, res, next) => {
     } = req;
 
     try{
-        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.USER);
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.USER);
 
         const [numberOfUpdatedRows, [updateUser] ] = await User.scope(UPDATE).update(
             updateFields,

@@ -1,17 +1,27 @@
 const uuidv1 = require('uuid/v1');
+const { Contests, sequelize } = require('../models');
 
 const error = require("../errors/errors");
+
 const {
-    HTTP_CODE : { SUCCESS },
     ABILITY: { SUBJECT, ACTIONS },
     CONTEST_PRICE,
+    CONTEST_FIELDS_TO_UPDATE,
+    TYPE_OF_SCOPE: {
+        UPDATE
+    }
 } = require('../constants');
 
-const { Contests } = require('../models');
-
+const {
+    CREATED,
+    ACCEPTED
+} = require('http-status-codes');
 
 const convertMapToObject = require('../utils/convertMapToObject');
 
+const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
+
+const isUndefined = require("lodash/isUndefined");
 
 module.exports.createContest = async (req, res, next) => {
     const { accessTokenPayload: { id } } = req;
@@ -26,8 +36,11 @@ module.exports.createContest = async (req, res, next) => {
     try{
         await Contests.bulkCreate(contests);
 
-        res.status(SUCCESS.CREATED.CODE).send("Contest created!")
+        res.status(CREATED).send("Contest created!")
     }catch (err) {
+
+        console.log(err);
+
         next(new error.BadRequest(err.name))
     }
 };
@@ -61,3 +74,53 @@ module.exports.getContestById = async (req, res, next) => {
         next(err);
     }
 };
+
+module.exports.updateContest = async (req, res, next) => {
+    const {
+        accessTokenPayload,
+        body: {
+            updateFields
+        },
+        query: {
+            id
+        }
+    } = req;
+
+    try{
+        if(isUndefined(accessTokenPayload)){
+            return next(new error.BadRequest());
+        }
+
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.CONTEST);
+
+        let transaction = await sequelize.transaction();
+
+        const [numberOfUpdatedRows, [updateContest] ] = await Contests.scope(UPDATE).update(
+            updateFields,
+            {
+                where: {
+                    id
+                },
+                fields: CONTEST_FIELDS_TO_UPDATE,
+                transaction
+            });
+
+        if(numberOfUpdatedRows <= 0){
+            return await transactionRollAndSendBadReq(transaction, next);
+        }
+
+
+        if(updateContest.userId !== accessTokenPayload.id){
+            return await transactionRollAndSendBadReq(transaction, next)
+        }else{
+            await transaction.commit();
+            return res.send(
+                updateContest
+            )
+        }
+
+    }catch (err){
+        next(err)
+    }
+};
+

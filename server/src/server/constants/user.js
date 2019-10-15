@@ -10,7 +10,8 @@ const USER_FIELDS = {
   AVATAR: "avatar",
   EMAIL: "email",
   PASSWORD: "password",
-  BALANCE: "balance"
+  BALANCE: "balance",
+  IS_BANNED: 'isBanned',
 };
 
 const USER_FIELDS_TO_UPDATE = [

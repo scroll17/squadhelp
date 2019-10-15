@@ -1,42 +1,37 @@
 const yup = require('yup');
-const {
-    ROLE: {
-        BUYER, CREATIVE
-    }
-} = require("../../constants");
 
 const number = yup
     .string()
     .required();
 
-const sum = yup
-    .number()
-    .positive()
-    .min(1);
-
-const csv = yup
-    .string()
-    .length(3)
-
-const createUserSchema = yup.object({
-    email: email.required(),
-    firstName: firstName.required(),
-    lastName: lastName.required(),
-    displayName: displayName.required(),
-    password: password.required(),
-    role
+const paymentContestSchema = yup.object({
+    number,
+    expiry: yup
+        .string()
+        .length(5)
+        .required(),
+    cvc: yup
+        .string()
+        .length(3)
+        .required(),
+    contests: yup
+        .array().of(
+            yup.string()
+        )
+        .required()
 });
 
 
-const updateUserSchema = yup.object({
-    email: email.notRequired(),
-    firstName: firstName.notRequired(),
-    lastName: lastName.notRequired(),
-    displayName: displayName.notRequired(),
-    password: password.notRequired()
+const paymentEntrySchema = yup.object({
+    number,
+    sum: yup
+        .number()
+        .positive()
+        .min(1)
+        .required(),
 });
 
 module.exports = {
-    createUserSchema,
-    updateUserSchema
+    paymentContestSchema,
+    paymentEntrySchema
 };

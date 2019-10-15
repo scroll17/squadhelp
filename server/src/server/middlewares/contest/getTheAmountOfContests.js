@@ -10,6 +10,6 @@ module.exports = (req, res, next) => {
     }, 0);
     delete paymentData["contests"];
 
-    return next()
+    next()
 
 };

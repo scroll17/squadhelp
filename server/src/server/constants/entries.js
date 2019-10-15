@@ -10,13 +10,19 @@ const ENTRY_VALIDATION_STATUS = {
     PENDING: 'pending',
 };
 
-const TYPE_UPDATE_ENTRY = {
-    STATUS: 'status',
+
+const ENTRY_FIELDS = {
+    USER_ID: "userId",
+    CONTEST_ID: 'contestId',
+    STATUS: "status",
+    IS_VALID: 'isValid',
     LIKED: 'liked',
+    TEXT: 'text',
+    FILE: 'file'
 };
 
 module.exports = {
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS,
-    TYPE_UPDATE_ENTRY
+    ENTRY_FIELDS
 };

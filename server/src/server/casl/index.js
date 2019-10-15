@@ -18,6 +18,7 @@ module.exports.defineAbilitiesFor = (role, user) => {
             can(ACTIONS.READ, SUBJECT.ALL);
 
             can(ACTIONS.UPDATE, SUBJECT.ENTRIES);
+
             cannot(ACTIONS.UPDATE, SUBJECT.USER, { role: ROLE.ADMIN }).because('Dont give');
             break;
         }
@@ -27,6 +28,7 @@ module.exports.defineAbilitiesFor = (role, user) => {
             can(ACTIONS.READ, SUBJECT.USER);
             can(ACTIONS.READ, SUBJECT.CONTEST);
             can(ACTIONS.READ, SUBJECT.ENTRIES);
+
             cannot(ACTIONS.READ, SUBJECT.USER, { isBanned: true }).because('You have bun !');
 
             can(ACTIONS.UPDATE, SUBJECT.CONTEST);
@@ -42,9 +44,9 @@ module.exports.defineAbilitiesFor = (role, user) => {
             can(ACTIONS.READ, SUBJECT.USER);
             can(ACTIONS.READ, SUBJECT.CONTEST);
             can(ACTIONS.READ, SUBJECT.ENTRIES);
+
             cannot(ACTIONS.READ, SUBJECT.USER,  { isBanned: true }).because('You have bun !');
 
-            can(ACTIONS.UPDATE, SUBJECT.ENTRIES);
             can(ACTIONS.UPDATE, SUBJECT.USER);
 
             can(ACTIONS.CASH_OUT, SUBJECT.BANKS);

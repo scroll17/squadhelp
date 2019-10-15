@@ -1,28 +1,35 @@
 const { Entries, sequelize } = require('../models');
+const {
+    CREATED,
+    ACCEPTED
+} = require('http-status-codes');
 
 const {
-    HTTP_CODE: {
-        SUCCESS
-    },
     ABILITY: {
-        ACTIONS, SUBJECT
+        ACTIONS,
+        SUBJECT
     },
-    ENTRIES_STATUS,
-    TYPE_UPDATE_ENTRY
+    ENTRIES_STATUS: {
+        REJECT,
+        RESOLVE
+    },
+    ENTRY_FIELDS: {
+        LIKED
+    }
 } = require('../constants');
 
 const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
 
 
 module.exports.createEntry = async (req, res, next) => {
-    const contentOfEntry = JSON.parse(req.body.contentOfEntry);
+    const { contentOfEntry } = req.body;
 
     try{
         req.ability.throwUnlessCan(ACTIONS.CREATE, SUBJECT.ENTRIES);
 
         await Entries.create(contentOfEntry);
 
-        res.status(SUCCESS.CREATED.CODE).send("Entry created!")
+        res.status(CREATED).send("Entry created!")
 
     }catch (err){
         next(err)
@@ -30,16 +37,14 @@ module.exports.createEntry = async (req, res, next) => {
 };
 
 module.exports.updateEntryById = async (req, res, next) => {
-
     const { updateFields, options } = req;
     const { type } = req.query;
-    const { LIKED } = TYPE_UPDATE_ENTRY;
-
-    let transaction = await sequelize.transaction();
-    options.transaction = transaction;
 
     try {
         req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.ENTRIES);
+
+        let transaction = await sequelize.transaction();
+        options.transaction = transaction;
 
         const [numberOfUpdatedRows] = await Entries.update(
             updateFields,
@@ -58,7 +63,7 @@ module.exports.updateEntryById = async (req, res, next) => {
         }
 
         await transaction.commit();
-        return res.status(SUCCESS.ACCEPTED.CODE).send(sendData)
+        return res.status(ACCEPTED).send(sendData)
 
     } catch (err) {
         next(err);
@@ -72,11 +77,12 @@ module.exports.updateEntryToResolve = async (req, res, next) => {
         }
     } = req.body;
 
-    const { RESOLVE, REJECT } = ENTRIES_STATUS;
+    try{
+        req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.ENTRIES);
 
-    let transaction = await sequelize.transaction();
+        let transaction = await sequelize.transaction();
 
-    const [, numberOfUpdateRows] = await sequelize.query(`
+        const [, numberOfUpdateRows] = await sequelize.query(`
                 UPDATE "Entries" 
                 SET status =
                     CASE
@@ -90,24 +96,28 @@ module.exports.updateEntryToResolve = async (req, res, next) => {
                     END
                 WHERE "contestId" = :contestId
             `,
-        {
-            replacements: {
-                id: id,
-                resolve: RESOLVE,
-                reject: REJECT,
-                contestId: contestId,
-            },
-            transaction,
-            model: Entries,
-            type: sequelize.QueryTypes.UPDATE
-        });
+            {
+                replacements: {
+                    id: id,
+                    resolve: RESOLVE,
+                    reject: REJECT,
+                    contestId: contestId,
+                },
+                transaction,
+                model: Entries,
+                type: sequelize.QueryTypes.UPDATE
+            });
 
-    if(numberOfUpdateRows === 0){
-        return await transactionRollAndSendBadReq(transaction, next);
-    }else {
+        if(numberOfUpdateRows === 0){
+            return await transactionRollAndSendBadReq(transaction, next);
+        }else {
 
-        req.transaction = transaction;
-        next()
+            req.transaction = transaction;
+            next()
+        }
+
+    }catch (err) {
+        next(err)
     }
 };
 

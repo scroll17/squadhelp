@@ -2,8 +2,13 @@ const error = require("../errors/errors");
 const { User, Entries, Contests, sequelize } = require('../models');
 
 const {
-    ABILITY: { SUBJECT, ACTIONS },
-    ENTRY_VALIDATION_STATUS
+    ABILITY: {
+        SUBJECT, ACTIONS
+    },
+    ENTRY_VALIDATION_STATUS,
+    TYPE_OF_SCOPE: {
+        CLEAN_SEARCH
+    },
 } = require("../constants");
 
 const last = require('lodash/last');
@@ -12,12 +17,9 @@ module.exports.getAllUsers = async (req, res, next) => {
     try{
         req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.ALL);
 
-        const users = await User.findAll({
+        const users = await User.scope(CLEAN_SEARCH).findAll({
             rejectOnEmpty: true,
-            attributes: {
-                exclude: ['password','updatedAt', 'createdAt']
-            },
-            order: [['email', 'ASC'], ['id', 'ASC']]
+            order: [["email", 'ASC'], ['id', 'ASC']]
         });
 
         res.send(users);
@@ -35,9 +37,8 @@ module.exports.updateUserById = async (req, res, next) => {
 
         const [numberOfUpdatedRows, updateUser] = await User.update({ isBanned }, {
             where: { id },
-            fields: ['isBanned'],
+            fields: ["isBanned"],
             returning: true,
-            //nest : true
         });
 
         if(numberOfUpdatedRows <= 0){

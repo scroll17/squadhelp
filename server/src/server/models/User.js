@@ -7,7 +7,15 @@ const {
   SALT_ROUNDS,
   TYPE_OF_UPDATE_BALANCE_FOR_USER ,
   TYPE_OF_SCOPE: {
-      UPDATE
+      UPDATE,
+      CLEAN_SEARCH
+    },
+    USER_FIELDS: {
+      PASSWORD
+    },
+    DEFAULT_MODEL_FIELDS: {
+      CREATED_AT,
+      UPDATE_AT
     }
 } = require("../constants");
 const bcrypt = require('bcrypt');
@@ -97,6 +105,13 @@ module.exports = (sequelize, DataTypes) => {
     raw: true
   });
 
+  User.addScope(CLEAN_SEARCH, {
+    attributes: {
+      exclude: [PASSWORD, CREATED_AT, UPDATE_AT]
+    },
+  });
+
+
   User.beforeCreate( async (user, options) => {
     return user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   });
@@ -108,6 +123,7 @@ module.exports = (sequelize, DataTypes) => {
       return user.attributes.password = await bcrypt.hash(password, SALT_ROUNDS);
     }
   });
+
 
   User.createUpdateBalanceOptions= (type, userId, sum, transaction) => {
     const { CASH_OUT } = TYPE_OF_UPDATE_BALANCE_FOR_USER;

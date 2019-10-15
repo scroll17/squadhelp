@@ -2,7 +2,8 @@ const {
     CONTEST_TYPE,
     CONTEST_STATUS,
     TYPE_OF_SCOPE: {
-        CLEAN_SEARCH
+        CLEAN_SEARCH,
+        UPDATE
     }
 } = require('../constants');
 
@@ -96,10 +97,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         style: {
             type:  DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            },
+            allowNull: true
         },
         file: {
             type: DataTypes.STRING,
@@ -121,6 +119,12 @@ module.exports = (sequelize, DataTypes) => {
         raw: true,
         order: [['id', 'DESC']]
     });
+
+    Contests.addScope(UPDATE, {
+        returning: true,
+        raw: true
+    });
+
 
     return Contests;
 };

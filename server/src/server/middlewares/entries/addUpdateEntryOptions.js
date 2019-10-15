@@ -1,5 +1,8 @@
 const {
-    TYPE_UPDATE_ENTRY,
+    ENTRY_FIELDS: {
+        LIKED,
+        STATUS
+    },
     ENTRIES_STATUS
 } = require('../../constants');
 
@@ -19,20 +22,20 @@ module.exports = async (req, res, next) => {
         fields: [type]
     };
 
-    if(TYPE_UPDATE_ENTRY.LIKED === type){
+    if(LIKED === type){
 
         const { liked } = updateData;
         req.updateFields = {
             liked
         }
-    }else if(TYPE_UPDATE_ENTRY.STATUS === type){
+    }else if(STATUS === type){
         const { status } = updateData;
 
         if(status === ENTRIES_STATUS.RESOLVE){
             return next("route");
 
         }else{
-            options.fields.push(TYPE_UPDATE_ENTRY.LIKED);
+            options.fields.push(LIKED);
 
             req.updateFields = {
                 status,

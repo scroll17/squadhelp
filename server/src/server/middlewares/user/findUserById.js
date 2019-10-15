@@ -16,7 +16,7 @@ module.exports = (idSource) => async (req,res,next) => {
             id = req.params.id;
             break;
         case PAYLOAD:
-            id = 2 //req.accessTokenPayload.id; TODO
+            id = req.accessTokenPayload.id;
             break;
         default:
             id = null;

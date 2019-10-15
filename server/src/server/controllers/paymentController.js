@@ -6,11 +6,13 @@ const {
         ACTIONS,
         SUBJECT
     },
-    HTTP_CODE: {
-        SUCCESS
-    },
     TYPE_OF_UPDATE_BALANCE_FOR_USER
 } = require('../constants');
+
+const {
+    CREATED,
+    ACCEPTED
+} = require('http-status-codes');
 
 const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
 
@@ -40,7 +42,7 @@ module.exports.paymentOfContests = async (req, res, next) => {
 
         if(updatedRows === 2){
             await transaction.commit();
-            res.status(SUCCESS.ACCEPTED.CODE).send("Paid !")
+            res.status(ACCEPTED).send("Paid !")
         }else{
             return await transactionRollAndSendBadReq(transaction, next);
         }
@@ -52,14 +54,14 @@ module.exports.paymentOfContests = async (req, res, next) => {
 
 module.exports.getPaymentOfEntries = async (req, res, next) => {
     const { paymentData: {
-        sum, targetNumber
+        sum, number
     }} = req.body;
 
     const { transaction } = req;
 
     try {
 
-        const [updateOptions, updateFields] = Bank.createUpdateOptions(targetNumber, sum, SQUAD_HELP_BANK_CARD, transaction);
+        const [updateOptions, updateFields] = Bank.createUpdateOptions(number, sum, SQUAD_HELP_BANK_CARD, transaction);
 
         const [ updatedRows ] = await Bank.update(
             updateFields,
@@ -68,7 +70,7 @@ module.exports.getPaymentOfEntries = async (req, res, next) => {
 
         if(updatedRows === 2){
             await transaction.commit();
-            res.status(SUCCESS.ACCEPTED.CODE).send(`Cash out ${sum}$!`)
+            res.status(ACCEPTED).send(`Cash out ${sum}$!`)
         }else{
             return await transactionRollAndSendBadReq(transaction, next);
         }
@@ -142,7 +144,7 @@ module.exports.increaseUserBalance = async (req,res,next) => {
         }
 
         await transaction.commit();
-        res.status(SUCCESS.CREATED.CODE).send("Contest closed!")
+        res.status(CREATED).send("Contest closed!")
 
     }catch (err) {
         next(err)

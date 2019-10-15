@@ -11,13 +11,14 @@ const {
     CONTEST_TYPE,
     CONTEST_STATUS,
     CONTEST_PRIORITY,
-    CONTEST_FIELDS
+    CONTEST_FIELDS,
+    CONTEST_FIELDS_TO_UPDATE
 } = require('./contest');
 
 const {
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS ,
-    TYPE_UPDATE_ENTRY
+    ENTRY_FIELDS
 } = require("./entries");
 
 const {
@@ -31,6 +32,7 @@ const {
     USER_FIELDS
 } = require("./user");
 
+const { TYPE_OF_PAYMENT } = require('./payment');
 const { URL } = require('./url') ;
 const { HTTP_CODE } = require("./http");
 const { ABILITY } = require("./ability");
@@ -96,14 +98,17 @@ module.exports = {
     CONTEST_STATUS,
     CONTEST_PRIORITY,
     CONTEST_FIELDS,
+    CONTEST_FIELDS_TO_UPDATE,
 
     ENTRIES_STATUS,
     ENTRY_VALIDATION_STATUS,
-    TYPE_UPDATE_ENTRY,
+    ENTRY_FIELDS,
 
     TYPE_OF_SCOPE,
     SOURCE_ID,
     TYPE_OF_UPDATE_BALANCE_FOR_USER,
     USER_FIELDS_TO_UPDATE,
-    USER_FIELDS
+    USER_FIELDS,
+
+    TYPE_OF_PAYMENT
 };

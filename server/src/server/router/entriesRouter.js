@@ -7,6 +7,11 @@ const {
     updateEntryToResolve
 } = require('../controllers/entriesController');
 
+const {
+    validateDataOnUpdateEntry,
+    validateDataOnCreateEntry
+} = require("../middlewares/validate/validateEntry");
+
 const { increaseUserBalance } = require("../controllers/paymentController");
 
 const addUpdateEntryOptions = require("../middlewares/entries/addUpdateEntryOptions");
@@ -26,11 +31,13 @@ const router = express.Router();
 
 router.post(API.CREATE,
     upload.array('file', 1),
+    validateDataOnCreateEntry,
     createEntry
 );
 
 
 router.put(API.ENTRY_ID,
+    validateDataOnUpdateEntry,
     addUpdateEntryOptions,
     updateEntryById,
 );
