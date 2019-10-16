@@ -1,6 +1,7 @@
 import {
     createContestSchema,
-    updateContestSchema
+    updateContestSchema,
+    findContestsSchema
 } from '../../utils/yupSchemas/contestSchemas';
 
 
@@ -26,8 +27,19 @@ const validateDataOnUpdateContest = async (req, res, next) => {
     }
 };
 
+const validateDataOnGetContest = async (req, res, next) => {
+    const searchParams = req.query;
+    try {
+        req.body.searchParams = await findContestsSchema.validate(searchParams, {stripUnknown: true});
+        next();
+
+    } catch (e) {
+        next(e);
+    }
+};
 
 module.exports = {
     validateDataOnCreateContest,
-    validateDataOnUpdateContest
+    validateDataOnUpdateContest,
+    validateDataOnGetContest
 };

@@ -1,5 +1,6 @@
 const {
-    updateEntrySchema
+    updateEntrySchema,
+    createEntrySchema
 } = require( '../../utils/yupSchemas/entrySchema');
 
 
@@ -17,7 +18,7 @@ const validateDataOnUpdateEntry = async (req, res, next) => {
 const validateDataOnCreateEntry = async (req, res, next) => {
     const contentOfEntry = JSON.parse(req.body.contentOfEntry);
     try {
-        req.body.contentOfEntry = await updateEntrySchema.validate(contentOfEntry, {stripUnknown: true});
+        req.body.contentOfEntry = await createEntrySchema.validate(contentOfEntry, {stripUnknown: true});
         next()
 
     } catch (e) {

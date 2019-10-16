@@ -11,7 +11,9 @@ const {
     CONTEST_FIELDS: {
         PRIORITY
     },
-    ENT
+    ENTRY_VALIDATION_STATUS: {
+        VALID
+    }
 } = require("../../constants");
 
 const {
@@ -25,18 +27,25 @@ module.exports = (req, res, next) => {
 
     req.options = {
         attributes: {
+            include: [
+                [sequelize.literal(`
+                        (SELECT COUNT("Entries"."id") 
+                         FROM "Entries" 
+                         WHERE "Entries"."contestId" = "Contests"."id" AND "Entries"."isValid" = '${VALID}')
+                    `), 'numberOfEntry']
+            ],
             exclude: [UPDATE_AT, CREATED_AT, PRIORITY],
         },
-        order: [[ID, 'DESC']],
         include: [
             {
                 model: User,
                 attributes: [DISPLAY_NAME, AVATAR],
             },
-        ]
+        ],
     };
 
     if(accessTokenPayload.role === ROLE.BUYER){
+
         req.options.include.push({
             model: Entries,
             where: {
@@ -50,7 +59,17 @@ module.exports = (req, res, next) => {
             include: [{
                 model: User,
                 attributes: [DISPLAY_NAME, AVATAR, ID],
-            }]
+            }],
+        });
+
+        req.options.order = [
+            [Entries, "liked", "DESC"]
+        ];
+    }else if(accessTokenPayload.role === ROLE.CREATIVE){
+
+        req.options.include.push({
+            model: Entries,
+            attributes: []
         })
     }
 

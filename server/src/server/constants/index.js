@@ -70,6 +70,8 @@ const DEFAULT_MODEL_FIELDS = {
   UPDATE_AT: "updatedAt"
 };
 
+const UPDATE_INFORMATION = "Information";
+
 module.exports = {
     PORT,
     SALT_ROUNDS,
@@ -110,5 +112,7 @@ module.exports = {
     USER_FIELDS_TO_UPDATE,
     USER_FIELDS,
 
-    TYPE_OF_PAYMENT
+    TYPE_OF_PAYMENT,
+
+    UPDATE_INFORMATION,
 };

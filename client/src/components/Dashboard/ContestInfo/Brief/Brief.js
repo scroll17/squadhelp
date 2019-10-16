@@ -10,7 +10,7 @@ import { ROLE } from "../../../../constants";
 import { isEqual, size } from 'lodash'
 
 function ContestInfo(props) {
-    const { price, userId, User, Entries } = props.contestInfo;
+    const { price, userId, User, numberOfEntry } = props.contestInfo;
     const { userRole } = props;
 
     const clickToStartConversation = () => {
@@ -30,7 +30,7 @@ function ContestInfo(props) {
                 </h1>
                 <div className={style.entries}>
                     <span>
-                        <i className="fa fa-user" /> {size(Entries)}
+                        <i className="fa fa-user" /> {numberOfEntry}
                     </span>
                     <p>Entries</p>
                 </div>

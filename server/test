@@ -1,6 +1,8 @@
-"SELECT "Contests"."id", "Contests"."contestId", "Contests"."userId", "Contests"."contestType", "Contests"."title", "Contests"."name", "Contests"."price", "Contests"."type", "Contests"."typeOfVenture", "Contests"."whatVentureDoes", "Contests"."targetCustomers", "Contests"."style", "Contests"."file", "User"."id" AS "User.id", "User"."displayName" AS "User.displayName", "User"."avatar" AS "User.avatar", "Entries"."text" AS "Entries.text", "Entries"."file" AS "Entries.file", "Entries"."status" AS "Entries.status", "Entries"."id" AS "Entries.id", "Entries->User"."displayName" AS "Entries.User.displayName", "Entries->User"."avatar" AS "Entries.User.avatar", "Entries->User"."id" AS "Entries.User.id"
-FROM "Contests" AS "Contests"
-LEFT OUTER JOIN "Users" AS "User" ON "Contests"."userId" = "User"."id"
-LEFT OUTER JOIN "Entries" AS "Entries" ON "Contests"."id" = "Entries"."contestId" AND "Entries"."isValid" = 'valid' AND CASE WHEN "Contests".id = 2 THEN 'resolve' ELSE 'expectation' END
-LEFT OUTER JOIN "Users" AS "Entries->User" ON "Entries"."userId" = "Entries->User"."id" WHERE "Contests"."id" = '2' ORDER BY "Contests"."id" DESC;"
-LEFT OUTER JOIN "Users" AS "Entries->User" ON "Entries"."userId" = "Entries->User"."id" WHERE "Contests"."id" = '2' ORDER BY "Contests"."id" DESC;"
+SELECT "Contests"."id", "Contests"."contestId", "Contests"."userId", "Contests"."contestType", "Contests"."title",
+"Contests"."name", "Contests"."status", "Contests"."price", "Contests"."type", "Contests"."typeOfVenture",
+"Contests"."whatVentureDoes", "Contests"."targetCustomers", "Contests"."style", "Contests"."file",
+ COUNT("Entries"."id") AS "numberOfEntry", "User"."id" AS "User.id", "User"."displayName" AS "User.displayName",
+ "User"."avatar" AS "User.avatar", "Entries"."id" AS "Entries.id" FROM "Contests" AS "Contests"
+ LEFT OUTER JOIN "Users" AS "User" ON "Contests"."userId" = "User"."id"
+ LEFT OUTER JOIN "Entries" AS "Entries" ON "Contests"."id" = "Entries"."contestId" WHERE "Contests"."id" = '54'
+ GROUP BY "Contest"."id", "User"."id", "Entries"."id"

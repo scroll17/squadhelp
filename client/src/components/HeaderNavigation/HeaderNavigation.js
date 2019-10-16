@@ -33,8 +33,8 @@ function HeaderNavigation() {
                         </ul>
                     </div>
 
-                    <ButtonsHomePage link={URL.CONTEST_TYPE}>s
-                        tart contest
+                    <ButtonsHomePage link={URL.CONTEST_TYPE}>
+                        start contest
                     </ButtonsHomePage>
                 </div>
             </div>

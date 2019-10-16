@@ -13,6 +13,8 @@ const URL = {
 
         CONTEST: '/contest',
         CONTESTS: '/contests',
+        ALL_CONTESTS: '/all-contests',
+
         USER_CONTESTS: '/contests',
         CONTEST_PRICE: '/price',
 
@@ -23,7 +25,7 @@ const URL = {
         PAYMENT: '/payment',
         CREATE: '/create',
 
-        UPDATE: '/update'
+        UPDATE: '/update',
     },
 };
 module.exports = {

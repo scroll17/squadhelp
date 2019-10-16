@@ -6,13 +6,19 @@ const {
     createContest,
     getPriceToContests,
     getContestById,
-    updateContest
+    updateContest,
+    getContestsByParams
 } = require('../controllers/contestController');
 
 const {
     validateDataOnCreateContest,
-    validateDataOnUpdateContest
+    validateDataOnUpdateContest,
+    validateDataOnGetContest
 } = require("../middlewares/validate/vaalidateContest");
+
+const pickContestFilter = require("../middlewares/contest/pickContestFilter");
+
+const addFindOptionsToContest = require("../middlewares/contest/addFindOptionsToContest");
 
 const addStatusToContest = require("../middlewares/contest/addStatusToContest");
 const addContestExtraContent = require("../middlewares/contest/addContestExtraContent");
@@ -52,6 +58,13 @@ router.get(API.CONTEST_PRICE,
 router.get(`${API.CONTESTS}/:id`,
     addContestExtraContent,
     getContestById,
+);
+
+router.get(`${API.ALL_CONTESTS}`,
+    validateDataOnGetContest,
+    pickContestFilter,
+    addFindOptionsToContest,
+    getContestsByParams
 );
 
 module.exports = router;

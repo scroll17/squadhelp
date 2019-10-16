@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+
 
 const createTokens = require('../middlewares/token/createTokens');
 
@@ -11,14 +13,17 @@ const checkUserForBan  = require('../middlewares/verification/checkUserForBan');
 const checkCountOfTokens = require("../middlewares/token/checkCountOfTokens");
 const checkRefreshToken = require('../middlewares/token/checkRefreshToken');
 
+const addUserUpdateOptions = require("../middlewares/user/addUserUpdateOptions");
+
+const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
+
 const {
     giveAccessUser,
     createUser,
-    loginUser,
     logoutUser,
     getUserContests,
     getUserEntries,
-    updateUserInformation
+    updateUser
 } = require('../controllers/userController');
 
 const {
@@ -26,8 +31,18 @@ const {
     validateDataOnUpdateUser,
 } = require('../middlewares/validate/validateUser');
 
-const { URL: { API }, SOURCE_ID } = require('../constants');
+const {
+    URL: {
+        API
+    },
+    USER_FIELDS: {
+        AVATAR
+    },
+    UPDATE_INFORMATION,
+    SOURCE_ID
+} = require('../constants');
 
+const upload = multer({storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/user/avatar')});
 
 const router = express.Router();
 
@@ -37,7 +52,6 @@ router.post(API.LOGIN,
     comparePassword,
     checkCountOfTokens,
     createTokens,
-    loginUser,
 );
 
 router.delete(API.LOGOUT,
@@ -59,7 +73,14 @@ router.post(API.REFRESH,
 
 router.put(API.UPDATE,
     validateDataOnUpdateUser,
-    updateUserInformation,
+    addUserUpdateOptions(UPDATE_INFORMATION),
+    updateUser,
+);
+
+router.put(`${API.UPDATE}${AVATAR}`,
+    upload.array('file', 1),
+    addUserUpdateOptions(AVATAR),
+    updateUser,
 );
 
 router.get(API.AUTHORIZE,

@@ -9,7 +9,6 @@ const {
         CLEAN_SEARCH,
         UPDATE
     },
-    USER_FIELDS_TO_UPDATE,
     DEFAULT_MODEL_FIELDS:{
         CREATED_AT,
         UPDATE_AT,
@@ -57,25 +56,16 @@ module.exports.createUser = async (req, res, next) => {
     }
 };
 
-module.exports.updateUserInformation = async (req, res, next) => {
-    const {
-        accessTokenPayload,
-        body:{
-            updateFields
-        }
-    } = req;
+module.exports.updateUser = async (req, res, next) => {
+    const { updateFields, updateOptions } = req.body;
 
     try{
         req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.USER);
 
         const [numberOfUpdatedRows, [updateUser] ] = await User.scope(UPDATE).update(
             updateFields,
-            {
-                where: {
-                    id: accessTokenPayload.id
-                },
-                fields: USER_FIELDS_TO_UPDATE,
-            });
+            updateOptions
+        );
 
         if(numberOfUpdatedRows <= 0){
             return next(new error.BadRequest());
@@ -89,23 +79,6 @@ module.exports.updateUserInformation = async (req, res, next) => {
     }
 };
 
-module.exports.loginUser = async (req,res,next) => {
-    const { user, tokenPair } = req.body;
-
-    try{
-        await RefreshToken.create({
-            userId: user.id,
-            tokenString: tokenPair.refreshToken
-        });
-
-        return res.send({
-            user,
-            tokenPair,
-        });
-    }catch (err) {
-        next(err);
-    }
-};
 
 module.exports.logoutUser = async (req,res,next) => {
     const { refreshToken } = req.body;

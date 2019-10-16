@@ -75,6 +75,23 @@ module.exports.getContestById = async (req, res, next) => {
     }
 };
 
+module.exports.getContestsByParams = async (req, res, next) => {
+    const { findOptions } = req.body;
+
+    try {
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+
+        const result = await Contests.findAll(findOptions);
+
+        res.send({
+            result
+        })
+
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports.updateContest = async (req, res, next) => {
     const {
         accessTokenPayload,
