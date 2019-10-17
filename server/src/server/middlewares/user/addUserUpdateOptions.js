@@ -26,7 +26,7 @@ module.exports = (typeUpdate) => (req, res, next) => {
 
     if(typeUpdate === AVATAR){
         options.fields = [AVATAR];
-        req.body.updateFields = "newAvatar";
+        req.body.updateFields = "newAvatar"; // TODO
 
     }else{
         options.fields = USER_FIELDS_TO_UPDATE

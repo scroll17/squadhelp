@@ -45,8 +45,9 @@ module.exports.createUser = async (req, res, next) => {
             },
         });
 
+
         if (!created){
-            return next(new error.BadRequest());
+            return next(new error.BadRequest("User already exist"));
         }
 
         req.body.user = user;
@@ -102,15 +103,22 @@ module.exports.giveAccessUser = async (req,res,next) => {
         const { accessTokenPayload } = req;
 
         const user = await User.findOne({
-            where: {email: accessTokenPayload.email},
+            where: {
+                email: accessTokenPayload.email
+            },
             attributes: {
                 exclude: [PASSWORD,CREATED_AT,UPDATE_AT]
             }
         });
 
-        req.ability.throwUnlessCan(ACTIONS.READ, user);
+        if(user.isBanned){
+            return res.status(HttpStatus.FORBIDDEN).send({
+                isBanned: true
+            });
+        }else{
+            return res.send(user);
+        }
 
-        return res.send(user);
     }catch (err) {
         next(err)
     }

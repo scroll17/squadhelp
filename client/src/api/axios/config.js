@@ -9,6 +9,9 @@ import toastifyErrorMessage from '../../components/Toastify/ToastifyErrorMessage
 import { refreshToken } from '../rest/userContoller'
 
 import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../constants';
+import { URL } from "../baseURL";
+
+import history from "../../boot/browserHistory";
 
 const responseHandler = (response) => {
     STORE.dispatch({type: ACTION.USERS_RESPONSE});
@@ -63,6 +66,12 @@ const errorHandler = async (error) => {
                 toast.error(toastifyErrorMessage(statusText, data), {
                     position: toast.POSITION.TOP_RIGHT
                 });
+
+                if(data.isBanned){
+                    localStorage.clear();
+                    history.push(URL.HOME);
+                }
+
                 return await Promise.reject(error);
         }
     } catch (err) {

@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import {getUser} from "../../actions/actionCreators/userActionCreator";
 
-import {TOKEN} from '../../constants'
+import { TOKEN } from '../../constants'
 
 function UserLoader(props) {
     useEffect(() => {

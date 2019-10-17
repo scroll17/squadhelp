@@ -18,13 +18,26 @@ import historyLocationPath from "../../utils/history/historyLocationPath";
 
 
 function DashboardPage(props) {
-    const styleForOpenMenu = props.sideMenuIsOpen ? {marginLeft: "250px"} : null;
+    const { sideMenuIsOpen } = props;
+
+    const styleForOpenMenu = sideMenuIsOpen ? {marginLeft: "250px"} : null;
+
+    const closeSideMenu = () => {
+        if(sideMenuIsOpen){
+            props.closeOrOpenSideMenu(sideMenuIsOpen);
+        }
+    };
+
     return (
         <div className={style.dashboard}>
 
             <SideMenu/>
 
-            <div className={style.content} style={styleForOpenMenu}>
+            <div
+                className={style.content}
+                style={styleForOpenMenu}
+                onClick={closeSideMenu}
+            >
                 <Header/>
 
                     <Switch>
