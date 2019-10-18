@@ -61,6 +61,8 @@ const TYPE_OF_SCOPE = {
     CLEAN_SEARCH: "cleanSearch",
     CLEAN_UPDATE: "cleanUpdate",
 
+    NUMBER_OF_ENTRY: 'numberOfEntry',
+
     UPDATE: "update",
 };
 

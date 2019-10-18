@@ -6,7 +6,6 @@ const {
         ACTIONS, SUBJECT
     },
     TYPE_OF_SCOPE: {
-        CLEAN_SEARCH,
         UPDATE
     },
     DEFAULT_MODEL_FIELDS:{
@@ -153,16 +152,21 @@ module.exports.getUserEntries = async (req,res,next) => {
 };
 
 module.exports.getUserContests = async (req,res,next) => {
-    const { accessTokenPayload } = req;
+    const {
+        accessTokenPayload,
+        body: {
+            findOptions
+        }
+    } = req;
 
     try{
         req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
 
-        const contests = await Contests.scope(CLEAN_SEARCH).findAll({
-            where: {
-                userId: accessTokenPayload.id
-            }
-        });
+        findOptions.where = {
+            userId: accessTokenPayload.id
+        };
+
+        const contests = await Contests.findAll(findOptions);
 
         return res.send(contests);
     }catch (err) {

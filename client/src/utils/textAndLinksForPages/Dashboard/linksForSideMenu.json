@@ -5,13 +5,19 @@
     "to": "/contests"
   },
   {
-    "title": " My Entries ",
+    "title": " My Dashboard ",
     "class": "fas fa-copy",
-    "to": "/entries"
+    "to": "/my-dashboard"
   },
   {
     "title": " My Account ",
     "class": "fas fa-briefcase",
     "to": "/my-account"
+  },
+  {
+    "title": " My Balance ",
+    "class": "fas fa-balance-scale-left",
+    "to": "/my-balance",
+    "whoSees": ["creative"]
   }
 ]

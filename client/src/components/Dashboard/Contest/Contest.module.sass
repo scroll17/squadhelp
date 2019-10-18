@@ -6,6 +6,37 @@
   color: #666
   display: flex
   justify-content: space-between
+  align-items: center
+
+  .entries
+    display: flex
+    flex-direction: row
+    justify-content: space-evenly
+    box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.1)
+    margin: 15px 10px
+
+    min-width: 240px
+    height: 60px
+
+    .left
+      border-left: 2px solid #eaecf2
+      margin: 10px 0
+
+    li
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+
+      p
+        color: #8c8e92
+
+      span
+        color: #3a6d99
+        font-size: 18px
+
+        i
+          padding-right: 5px
 
   .contestInfo
     display: flex
@@ -18,12 +49,15 @@
       display: flex
       flex-wrap: wrap
       flex-direction: row
-      justify-content: space-between
+      justify-content: flex-start
       .price
         i
           color: gray
       .status
         text-transform: capitalize
+
+      li:not(:first-of-type)
+        padding-left: 200px
 
       li
         font-size: 16px

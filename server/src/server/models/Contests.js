@@ -2,10 +2,10 @@ const {
     CONTEST_TYPE,
     CONTEST_STATUS,
     TYPE_OF_SCOPE: {
-        CLEAN_SEARCH,
-        UPDATE
-    }
+        UPDATE,
+    },
 } = require('../constants');
+
 
 module.exports = (sequelize, DataTypes) => {
     const Contests = sequelize.define('Contests', {
@@ -111,14 +111,6 @@ module.exports = (sequelize, DataTypes) => {
         Contests.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'})
     };
 
-
-    Contests.addScope(CLEAN_SEARCH, {
-        attributes: {
-            exclude: ['updatedAt', 'createdAt']
-        },
-        raw: true,
-        order: [['id', 'DESC']]
-    });
 
     Contests.addScope(UPDATE, {
         returning: true,

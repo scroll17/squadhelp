@@ -8,7 +8,8 @@ const {
     CONTEST_PRICE,
     CONTEST_FIELDS_TO_UPDATE,
     TYPE_OF_SCOPE: {
-        UPDATE
+        UPDATE,
+        NUMBER_OF_ENTRY
     }
 } = require('../constants');
 
@@ -76,10 +77,15 @@ module.exports.getContestById = async (req, res, next) => {
 };
 
 module.exports.getContestsByParams = async (req, res, next) => {
-    const { findOptions } = req.body;
+    const {
+        searchParams,
+        findOptions
+    } = req.body;
 
     try {
-        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+        //req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+
+        findOptions.where = searchParams;
 
         const result = await Contests.findAll(findOptions);
 

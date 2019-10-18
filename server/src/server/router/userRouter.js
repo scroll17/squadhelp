@@ -15,6 +15,8 @@ const checkRefreshToken = require('../middlewares/token/checkRefreshToken');
 
 const addUserUpdateOptions = require("../middlewares/user/addUserUpdateOptions");
 
+const addFindOptionsToContest = require("../middlewares/contest/addFindOptionsToContest");
+
 const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
 
 const {
@@ -88,6 +90,7 @@ router.get(API.AUTHORIZE,
 );
 
 router.get(API.USER_CONTESTS,
+    addFindOptionsToContest,
     getUserContests
 );
 

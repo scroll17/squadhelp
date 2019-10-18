@@ -1,4 +1,5 @@
-export const baseURL = `http://localhost:3000`;
+const IP = "10.2.1.61";
+export const baseURL = `http://${IP}:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;
@@ -30,7 +31,6 @@ export const URL = {
 
   // CONTEST
   CONTESTS: '/contests',
-  MY_CONTESTS: "/my-contests",
   CONTEST_TYPE: "/contest-type",
   NAME_IDEAS: "/Name-Ideas",
 
@@ -42,8 +42,14 @@ export const URL = {
   NOT_FOUND: "/notfound",
   ADMIN_PANEL: "/adminpanel",
   MODERATION: '/moderation',
+
+  // DASHBOARD
   DASHBOARD: "/dashboard",
+
+  MY_DASHBOARD: "/my-dashboard",
   MY_ACCOUNT: "/my-account",
+  MY_CONTESTS: "/my-contests",
+  MY_BALANCE: '/my-balance'
 };
 
 export const SEARCH = {

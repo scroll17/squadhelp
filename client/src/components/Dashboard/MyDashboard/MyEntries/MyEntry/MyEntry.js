@@ -9,8 +9,6 @@ function MyEntry(props) {
     const { contestId, status, isValid, text, file, liked } = props;
     const { title, contestType } = props.contestInfo;
 
-    console.log("props", props)
-
     return (
         <div className={style.contest}>
             <div className={style.entryInfo}>

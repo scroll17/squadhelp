@@ -7,10 +7,16 @@ import LinkToContestById from "../../Links/LinkToContestById/LinkToContestById";
 
 import statusInIcon from "../../../utils/statusInIcon";
 
+import daysLeft from "../../../utils/moment/daysLeft";
+
+import { CONTEST_STATUS } from "../../../constants";
+
+
 function Contest(props) {
     const { id, title } = props;
-    const { contestType, type, whatVentureDoes, status } = props;
+    const { contestType, type, whatVentureDoes, status, numberOfEntry, updatedAt } = props;
     const { price } = props;
+
 
     return (
         <div className={style.contest}>
@@ -37,6 +43,25 @@ function Contest(props) {
                     </li>
                 </ul>
             </div>
+
+            <ul className={style.entries}>
+                <li>
+                    <span>
+                        <i className="fa fa-user" />
+                        {numberOfEntry}
+                    </span>
+                    <p>Entries</p>
+                </li>
+                { status === CONTEST_STATUS.OPEN &&
+                    <>
+                        <li className={style.left}/>
+                        <li>
+                            <span>{daysLeft(updatedAt)}</span>
+                            <p>Left</p>
+                        </li>
+                    </>
+                }
+            </ul>
         </div>
     )
 }

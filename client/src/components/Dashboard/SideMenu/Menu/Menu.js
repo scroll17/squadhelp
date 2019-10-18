@@ -5,14 +5,20 @@ import { Link } from "react-router-dom";
 import style from './Menu.module.sass'
 
 import { URL } from "../../../../api/baseURL";
+import { ROLE } from "../../../../constants";
 
 import historyLocationPath from "../../../../utils/history/historyLocationPath";
 
 function Menu(props) {
-    const { sideMenuIsOpen, links} = props;
+    const { sideMenuIsOpen, links, userRole} = props;
 
     return links.map( link => {
         let content;
+
+
+        if(link.whoSees && !link.whoSees.includes(userRole)){
+            return
+        }
 
         if(sideMenuIsOpen){
             content = (
@@ -33,6 +39,7 @@ function Menu(props) {
     })
 }
 const mapStateToProps = (state) => ({
+    userRole: state.userReducer.user.role,
     sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
 });
 export default connect(mapStateToProps)(Menu);

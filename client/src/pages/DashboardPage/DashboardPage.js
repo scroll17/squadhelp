@@ -7,14 +7,17 @@ import style from './DashboardPage.module.sass'
 import Header from "../../components/Dashboard/Header/Header";
 import SideMenu from "../../components/Dashboard/SideMenu/SideMenu";
 
-import MyAccount  from '../../components/Dashboard/MyAccount/MyAccount'
+import MyDashboard  from '../../components/Dashboard/MyDashboard/MyDashboard'
 import ContestInfo from "../../components/Dashboard/ContestInfo/ContestInfo";
 
+import Profile from "../../components/Dashboard/Profile/Profile";
 
 import {closeOrOpenSideMenu} from "../../actions/actionCreators/dashboardContestsActionCreator";
 import { URL } from "../../api/baseURL";
 
 import historyLocationPath from "../../utils/history/historyLocationPath";
+import PrivateRoute from "../../components/Route/PrivateRoute";
+import {ROLE} from "../../constants";
 
 
 function DashboardPage(props) {
@@ -48,10 +51,21 @@ function DashboardPage(props) {
                         />
 
                         <Route
-                            path={historyLocationPath([URL.MY_ACCOUNT], URL.DASHBOARD)}
-                            render={props => <MyAccount {...props}/>}
+                            path={historyLocationPath([URL.MY_DASHBOARD], URL.DASHBOARD)}
+                            render={props => <MyDashboard {...props}/>}
                         />
 
+                        <Route
+                            path={historyLocationPath([URL.MY_ACCOUNT], URL.DASHBOARD)}
+                            render={props => <Profile {...props}/>}
+                        />
+
+{/*                        <PrivateRoute
+                            requireRole={Object.values(ROLE)}
+                            path={URL.DASHBOARD}
+                            component={WaitingComponent(DashboardPage)}
+                            redirectTo={URL.LOGIN}
+                        />*/}
 
                     </Switch>
             </div>
