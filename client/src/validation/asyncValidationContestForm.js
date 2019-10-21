@@ -26,9 +26,10 @@ const contestFormFieldValidateMap = new Map([
 export const asyncValidationContestForm = async (values) => {
     const errors = {};
     const fields = Object.keys(values);
+
     fields.forEach(fieldName => {
         const validate = contestFormFieldValidateMap.get(fieldName);
-        errors[fieldName] = validate? validate(values[fieldName]): undefined;
+        errors[fieldName] = validate ? validate(values[fieldName]): undefined;
     });
     if (Object.keys(errors).length === 0) {
         return Promise.resolve()

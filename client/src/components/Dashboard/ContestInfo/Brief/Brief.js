@@ -7,7 +7,7 @@ import Avatar from "../../../Avatart/Avatar";
 import {closeOrOpenChat} from "../../../../actions/actionCreators/chatActionCreator";
 import {startConversation} from "../../../../api/socket/chatController";
 import { ROLE } from "../../../../constants";
-import { isEqual, size } from 'lodash'
+import { isEqual } from 'lodash'
 
 function ContestInfo(props) {
     const { price, userId, User, numberOfEntry } = props.contestInfo;
