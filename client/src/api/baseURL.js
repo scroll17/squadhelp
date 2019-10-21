@@ -1,9 +1,5 @@
 const IP = "10.2.1.61";
-const MY_IP = "192.168.0.105";
-
-const LOCALHOST = "localhost";
-
-export const baseURL = `http://${MY_IP}:3000`;
+export const baseURL = `http://${IP}:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;
@@ -21,6 +17,7 @@ export const URL = {
 
   ALL_USER: "/alluser",
   ALL_ENTRIES: '/all-entries',
+  ALL_CONTESTS: '/all-contests',
 
   SIGN_UP: "/signup",
   REFRESH: "/refresh",
@@ -53,7 +50,8 @@ export const URL = {
   MY_DASHBOARD: "/my-dashboard",
   MY_ACCOUNT: "/my-account",
   MY_CONTESTS: "/my-contests",
-  MY_BALANCE: '/my-balance'
+  MY_BALANCE: '/my-balance',
+  ACTIVE_CONTESTS: '/active-contests'
 };
 
 export const SEARCH = {

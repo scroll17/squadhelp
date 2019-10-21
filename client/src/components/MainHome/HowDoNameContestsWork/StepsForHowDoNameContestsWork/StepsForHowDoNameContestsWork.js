@@ -20,10 +20,12 @@ function StepsForHowDoNameContestsWork(props ){
     }
 
     const liItems = useMemo(() => {
-        return dataForComponent.steps.map( step => (<li key={step}>
-            <i className="fas fa-check" style={backgroundColor}/>
-            <span>{step}</span>
-        </li>));
+        return dataForComponent.steps.map( step => (
+            <li key={step}>
+                <i className="fas fa-check" style={backgroundColor}/>
+                <span>{step}</span>
+            </li>
+        ));
     }, [dataForComponent.steps]);
 
     return (

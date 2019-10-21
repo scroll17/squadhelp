@@ -14,6 +14,7 @@ const SideMenu = props => {
     const { sideMenuIsOpen } = props;
 
     const classForSideMenu = sideMenuIsOpen ? style.sideMenuOpen : style.sideMenu;
+
     const companyImage = sideMenuIsOpen ?
         "https://www.squadhelp.com/img/logo.png"
         :

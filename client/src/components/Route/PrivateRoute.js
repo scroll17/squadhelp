@@ -11,7 +11,7 @@ class PrivateRoute extends Component{
     renderPage(){
         const { user, isFetching, requireRole, redirectTo, ...props} = this.props;
 
-        if ((!requireRole.includes(user.role)) && isFetching === false){
+        if (!requireRole.includes(user.role) && isFetching === false){
             return <Redirect to={redirectTo} />;
         }
         return( <Route {...props}/> )

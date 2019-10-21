@@ -1,8 +1,8 @@
 [
   {
-    "title": " Contests ",
+    "title": " Active Contests ",
     "class": "fas fa-dice-six",
-    "to": "/contests"
+    "to": "/active-contests"
   },
   {
     "title": " My Dashboard ",

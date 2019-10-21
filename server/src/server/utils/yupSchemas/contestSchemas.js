@@ -71,7 +71,8 @@ const findContestsSchema = yup.object({
         .of(
             yup.string().oneOf(Object.values(CONTEST_STATUS))
         )
-        .notRequired()
+        .notRequired(),
+    type: type
 });
 
 module.exports = {

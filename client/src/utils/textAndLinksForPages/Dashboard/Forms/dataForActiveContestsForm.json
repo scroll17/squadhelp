@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "Filter Results": [
+      {
+        "name":"id",
+        "type":"number",
+        "min":"0",
+        "label": "By Contest ID"
+      },
+      {
+        "name":"typeOfVenture",
+        "type":"select",
+        "dataType":"typeOfVenture"
+      },
+      {
+        "name":"type",
+        "type":"select",
+        "dataType":"type",
+        "isMulti": true
+      }
+    ],
+    "By Status": [
+      {
+        "name":"status",
+        "type":"select",
+        "dataType":"status",
+        "isMulti": true
+      }
+    ],
+    "By Award Amount": [
+      {
+        "name":"price",
+        "type":"number",
+        "min":"0"
+      }
+    ]
+  },
+
+
+  "select":{
+    "typeOfVenture":[
+      {"value":"Select Type of Name","label":"Select Type of Name"},
+      {"value":"a Business Name","label":"a Business Name"},
+      {"value":"a Brand Name","label":"a Brand Name"},
+      {"value":"a Product Name","label":"a Product Name"},
+      {"value":"a Website Name","label":"a Website Name"},
+      {"value":"a Book Title","label":"a Book Title"},
+      {"value":"an App Name","label":"an App Name"},
+      {
+        "value":"a Movie or Documentary Title",
+        "label":"a Movie or Documentary Title"
+      }
+    ],
+    "type":[
+      {"value":"Company","label":"Company"},
+      {"value":"Product","label":"Product"},
+      {"value":"Project","label":"Project"}
+    ],
+    "status":[
+      {"value":"Active","label":"Active"},
+      {"value":"Closed","label":"Closed"},
+      {"value":"Pending","label":"Pending"}
+    ]
+  }
+}

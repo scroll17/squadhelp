@@ -8,3 +8,5 @@ export const payContests = (data) => axios.post(`${paymentURL}${URL.CONTEST}`, {
 
 export const getContestById = (id) => axios.get(`${contestURL}${URL.CONTESTS}/${id}`);
 
+export const findContestsPyParams = (queryParams) => axios.get(`${contestURL}${URL.ALL_CONTESTS}${queryParams}`);
+

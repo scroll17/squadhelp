@@ -89,9 +89,7 @@ module.exports.getContestsByParams = async (req, res, next) => {
 
         const result = await Contests.findAll(findOptions);
 
-        res.send({
-            result
-        })
+        res.send(result)
 
     } catch (err) {
         next(err);

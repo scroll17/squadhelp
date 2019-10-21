@@ -17,6 +17,7 @@ function TemplateCarouselHome(props){
         const newWidth = resizeWidth();
         setWidth(newWidth);
     };
+
     const resizeWidth = () =>{
         const width = document.body.clientWidth;
 
@@ -34,6 +35,7 @@ function TemplateCarouselHome(props){
 
 
     let arrayOfImages = cloneDeep(props.images);
+
     const carouselItem = useMemo(() => {
 
         const items = arrayOfImages;

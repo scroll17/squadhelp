@@ -44,7 +44,8 @@ import {
 
 import {
     getUserContestsSaga,
-    getContestByIdSaga
+    getContestByIdSaga,
+    findContestsByParamsSaga
 } from './dashboardContestSaga'
 
 import {
@@ -96,6 +97,8 @@ function* rootSaga() {
 
     yield takeLatest(DASHBOARD_ACTION.UPDATE_ENTRY_BY_ID, updateEntryByIdSaga);
     yield takeLatest(DASHBOARD_ACTION.LIKE_ENTRY_BY_ID, likeEntryByIdSaga);
+
+    yield takeLatest(DASHBOARD_ACTION.FIND_CONTESTS_BY_PARAMS, findContestsByParamsSaga);
 
 }
 

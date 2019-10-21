@@ -15,6 +15,13 @@ export default function (state = initialState, action) {
                 error: null
             }
         }
+        case DASHBOARD_ACTION.FOUND_CONTESTS: {
+            return {
+                ...state,
+                contests: action.contests,
+                error: null
+            }
+        }
         case DASHBOARD_ACTION.CONTEST_BY_ID: {
             return {
                 ...state,

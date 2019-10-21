@@ -3,6 +3,7 @@ export const FORM = {
     LOGIN: 'login',
     CHAT: 'chat',
     ENTRIES: 'entries',
+    ACTIVE_CONTESTS: 'activeContests'
 };
 
 export const TYPE_FIELD = {
@@ -10,7 +11,9 @@ export const TYPE_FIELD = {
     TEXTAREA: "textarea",
     INPUT: "input",
     INPUT_FILE: "file",
-    SUBMIT: "submit"
+    SUBMIT: "submit",
+    TEXT: "text",
+    NUMBER: 'number',
 };
 
 export const CONTEST = {

@@ -12,6 +12,8 @@ import textForForHeaderNavigation from './Navigation/textForForHeaderNavigation'
 
 import dataForTheContestForm from './Contest/Forms/dataForTheContestForm.json'
 
+import dataForActiveContestsForm from './Dashboard/Forms/dataForActiveContestsForm'
+
 import linksForSideMenu from './Dashboard/linksForSideMenu'
 
 export {
@@ -27,6 +29,7 @@ export {
     ContestBundlePackages,
 
     dataForTheContestForm,
+    dataForActiveContestsForm,
 
     linksForSideMenu,
 };

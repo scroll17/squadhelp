@@ -19,8 +19,8 @@ function BannerHome() {
         " a Business",
         " an App",
         " a Product",
-        " a Startup"].map(i => <b>{i}<span /></b>
-    ), []);
+        " a Startup"].map(i => <b>{i}<span /></b>)
+        , []);
 
     useEffect(() => {
         const interval = setInterval(() => {

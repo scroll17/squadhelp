@@ -40,7 +40,7 @@ let LoginForm = (props) => {
             }
         }
         return () => {
-            props.getUserResponse(); // обнулить все ошибки в сторе
+            props.getUserResponse();
         };
     });
 

@@ -25,7 +25,8 @@ function ContestTypes(props) {
                     <Heading
                         color={props.headingColor}
                         borderColor={props.borderColor}
-                        {...heading}>
+                        {...heading}
+                    >
                         {heading.text}
                     </Heading>
 

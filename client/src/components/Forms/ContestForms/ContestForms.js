@@ -21,7 +21,7 @@ import { last, isEmpty, omit } from 'lodash';
 import { CONTEST, TYPE_FIELD, CONTEST_REDUCER_VAL } from "../../../constants";
 
 function ContestForms(props){
-    const { contestNow, contestQueue, contestFormData} = props;
+    const { contestNow, contestQueue, contestFormData } = props;
     const { CONTEST_FORM_DATA, CONTEST_NOW, CONTEST_QUEUE } = CONTEST_REDUCER_VAL;
 
     useEffect(() => {
@@ -42,7 +42,7 @@ function ContestForms(props){
 
 
     const nowFormContest = last(contestNow);
-    const styleForBankFor = nowFormContest === CONTEST.BANKS ? {margin: "0 auto", width: "100%"} : {};
+    const styleForBank = nowFormContest === CONTEST.BANKS ? {margin: "0 auto", width: "100%"} : {};
 
     const createNewContest = (values) => {
         if(isEmpty(props.contestQueue)){
@@ -61,9 +61,9 @@ function ContestForms(props){
                 {!props.user && nowFormContest === CONTEST.BANKS && <ReactModal />}
 
                 <div className={style.stepsForm}>
-                    <div className={style.container} style={styleForBankFor}>
+                    <div className={style.container} style={styleForBank}>
                         <div className={style.row}>
-                            <div className={style.blockFields} style={styleForBankFor}>
+                            <div className={style.blockFields} style={styleForBank}>
 
 
                                 {nowFormContest === CONTEST.NAME && (

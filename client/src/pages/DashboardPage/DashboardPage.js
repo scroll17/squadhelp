@@ -12,6 +12,8 @@ import ContestInfo from "../../components/Dashboard/ContestInfo/ContestInfo";
 
 import Profile from "../../components/Dashboard/Profile/Profile";
 
+import ActiveContests from "../../components/Dashboard/ActiveContests/ActiveContests";
+
 import {closeOrOpenSideMenu} from "../../actions/actionCreators/dashboardContestsActionCreator";
 import { URL } from "../../api/baseURL";
 
@@ -58,6 +60,12 @@ function DashboardPage(props) {
                         <Route
                             path={historyLocationPath([URL.MY_ACCOUNT], URL.DASHBOARD)}
                             render={props => <Profile {...props}/>}
+                        />
+
+
+                        <Route
+                            path={historyLocationPath([URL.ACTIVE_CONTESTS], URL.DASHBOARD)}
+                            render={props => <ActiveContests {...props}/>}
                         />
 
 {/*                        <PrivateRoute

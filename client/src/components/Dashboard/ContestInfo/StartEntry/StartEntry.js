@@ -14,7 +14,6 @@ import { isEqual } from 'lodash'
 
 
 let ContestInfo = (props) => {
-    const [ showFields, setShowFields ] = useState(false);
 
     const { typeOfContest, contestId, createEntry, user } = props;
 
@@ -31,7 +30,6 @@ let ContestInfo = (props) => {
     return (
         <div className={style.startEntry}>
 
-            { showFields ?
                 <form onSubmit={handleSubmit(submit)} className={style.resultsForm}>
                     <div className={style.title} style={isEqual(typeOfContest, CONTEST.LOGO) ? {flexGrow: 0} : null}>
                         {isEqual(typeOfContest, CONTEST.LOGO) ?
@@ -55,11 +53,7 @@ let ContestInfo = (props) => {
                         submit
                     </button>
                 </form>
-                :
-                <div className={style.button} onClick={() => setShowFields(true)}>
-                    start entry
-                </div>
-            }
+
 
         </div>
     )
