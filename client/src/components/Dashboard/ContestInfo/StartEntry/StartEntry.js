@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import { Field, reduxForm } from 'redux-form';

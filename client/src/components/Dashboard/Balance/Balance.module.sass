@@ -1,0 +1,65 @@
+.balance
+  font-family: Arial, "sans-serif"
+
+
+  form
+    margin-top: 10px
+    background: #F2F2F2
+    max-width: 800px
+    height: max-content
+    padding: 20px
+
+    .button
+      margin-top: 20px
+      width: 100%
+      height: 40px
+      background: linear-gradient(135deg, #8f75da 0, #727cf5 60%)
+      color: #fff
+      font-size: 18px
+      font-weight: 600
+      border: none
+      text-transform: capitalize
+      cursor: pointer
+
+
+    .fields
+      div
+        padding: 10px 0
+
+        display: flex
+        justify-content: space-between
+
+        span
+          font-size: 24px
+          font-weight: bold
+
+        input
+          flex-grow: 1
+          max-width: 300px
+
+          padding: 6px 12px
+          height: 34px
+          font-size: 22px
+          color: #555
+          background-color: #fff
+          border: 1px solid #ccc
+          border-radius: 4px
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+          &:focus
+            border-color: #66afe9
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+
+
+  .title
+    color: #000000
+    font-weight: bold
+    font-size: 36px
+
+    span
+      padding-left: 20px
+      font-size: 36px
+
+      background: linear-gradient(135deg, #8f75da 0, #727cf5 60%)
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent

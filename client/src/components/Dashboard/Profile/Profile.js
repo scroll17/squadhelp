@@ -10,8 +10,11 @@ import {getContestById} from "../../../actions/actionCreators/dashboardContestsA
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
 import Avatar from "../../Avatart/Avatar";
 
+import { USER_DATA_FIELDS } from "../../../constants";
+
 function ContestInfo(props) {
     const {user} = props;
+    const { IS_BANNED, AVATAR, BALANCE } = USER_DATA_FIELDS;
 
     return (
         <div className={style.profile}>
@@ -20,7 +23,7 @@ function ContestInfo(props) {
             <Avatar size={120} customStyle={{margin: "0 auto"}}/>
 
             <div className={style.info}>
-                {conversionObjectInformation(user, ['avatar', 'isBanned'])}
+                {conversionObjectInformation(user, [IS_BANNED, AVATAR, BALANCE])}
             </div>
         </div>
     )

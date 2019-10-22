@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo }  from 'react';
+import React, { useMemo }  from 'react';
 import connect from "react-redux/es/connect/connect";
 
 import style from "./ActiveContests.module.sass"
@@ -8,14 +8,9 @@ import ActiveContestsForm from "../../Forms/ActiveContestsForm/ActiveContestsFor
 
 import { size } from "lodash";
 
-import { findContestsPyParams } from "../../../actions/actionCreators/dashboardContestsActionCreator";
 
 function ActiveContests(props){
     const { contests } = props;
-
-    useEffect(() => {
-        props.findContestsPyParams()
-    }, []);
 
     const showFoundContests = useMemo(() => {
 
@@ -30,21 +25,19 @@ function ActiveContests(props){
 
     return (
         <div className={style.activeContests}>
-
             <div className={style.header} >
                 <h4>ACTIVE CONTESTS</h4>
             </div>
 
             <div className={style.container} >
-
-                <ActiveContestsForm />
-
-                <div>
-                    {showFoundContests}
+                <div className={style.activeContestForm}>
+                    <ActiveContestsForm />
                 </div>
 
+                <div className={style.contestList}>
+                    {showFoundContests}
+                </div>
             </div>
-
         </div>
     );
 }
@@ -53,7 +46,4 @@ function ActiveContests(props){
 const mapStateToProps = (state) => ({
     contests: state.dashboardContestsReducer.contests
 });
-const mapDispatchToProps = dispatch => ({
-    findContestsPyParams: params => dispatch(findContestsPyParams(params)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveContests);
+export default connect(mapStateToProps)(ActiveContests);

@@ -25,7 +25,7 @@ let ChatPage = (props) => {
     const { addNewMessage, stageNow, user } = props;
 
 
-    const submit = (values) =>{
+    const submit = (values) => {
         if(values.message){
             const message = {
                 time: Date.now(),

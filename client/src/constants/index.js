@@ -6,7 +6,14 @@ import {
     STAGE_OF_CHAT,
     TYPE_OF_MESSAGE
 } from './chat'
-import { CONTEST, FORM, TYPE_FIELD } from './form'
+
+import {
+    CONTEST,
+    FORM,
+    TYPE_FIELD,
+    ACTIVE_CONTEST_FORM_FIELDS
+} from './form'
+
 import { ERROR, SUCCESS_CODE } from './http'
 import { DISPLAY, VIEW } from './viewAndDisplay'
 
@@ -49,8 +56,10 @@ const USER_AVATAR = `${baseURL}/images/user/avatar/`;
 const SQUAD_HELP_LOGO = "https://www.squadhelp.com/images/squadhelp-logo-color.jpg";
 
 const USER_DATA_FIELDS = {
-  EMAIL: "email",
-  IS_BANNED: "isBanned"
+    EMAIL: "email",
+    IS_BANNED: "isBanned",
+    AVATAR: "avatar",
+    BALANCE: "balance"
 };
 
 export  {
@@ -77,5 +86,6 @@ export  {
     TYPE_OF_MESSAGE,
     USER_DATA_FIELDS,
     SQUAD_HELP_LOGO,
-    CONTEST_REDUCER_VAL
+    CONTEST_REDUCER_VAL,
+    ACTIVE_CONTEST_FORM_FIELDS
 }

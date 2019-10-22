@@ -11,7 +11,7 @@ import ACTION from "../actions/actionTypes/actionsTypes";
 
 import { isEqual, cloneDeep, findIndex } from 'lodash'
 
-import { TYPE_UPDATE_ENTRY } from "../constants";
+import { TYPE_UPDATE_ENTRY, TYPE_FIELD } from "../constants";
 
 export function* updateEntryByIdSaga({id, status, userId}) {
    try {
@@ -92,20 +92,21 @@ export function* createEntrySaga({formData}) {
             userId: formData.userId,
         };
 
-        if(formData['file']){
+        if(formData[TYPE_FIELD.INPUT_FILE]){
             const originalFileName = `${performance.now()}_${formData.file.name}`;
-            dataToSend['file'] = originalFileName;
+            dataToSend[TYPE_FIELD.INPUT_FILE] = originalFileName;
 
-            finalDataToSend.append("file", formData.file, originalFileName);
+            finalDataToSend.append(TYPE_FIELD.INPUT_FILE, formData.file, originalFileName);
         }else{
-            dataToSend['text'] = formData.text;
+            dataToSend[TYPE_FIELD.TEXT] = formData.text;
         }
+
         finalDataToSend.append("contentOfEntry", JSON.stringify(dataToSend));
 
 
         yield createEntries(finalDataToSend);
 
-        history.push(`${URL.DASHBOARD}${URL.MY_ACCOUNT}`)
+        history.push(`${URL.DASHBOARD}${URL.MY_DASHBOARD}`)
     } catch (e) {
         yield put({type: DASHBOARD_ACTION.DASHBOARD_ERROR, error: e})
     }

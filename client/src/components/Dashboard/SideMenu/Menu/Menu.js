@@ -5,19 +5,26 @@ import { Link } from "react-router-dom";
 import style from './Menu.module.sass'
 
 import { URL } from "../../../../api/baseURL";
-import { ROLE } from "../../../../constants";
 
 import historyLocationPath from "../../../../utils/history/historyLocationPath";
 
+import { closeOrOpenSideMenu } from "../../../../actions/actionCreators/dashboardContestsActionCreator";
+
 function Menu(props) {
     const { sideMenuIsOpen, links, userRole} = props;
+
+    const closeSideMenu = () => {
+      if(sideMenuIsOpen){
+        props.closeOrOpenSideMenu()
+      }
+    };
 
     return links.map( link => {
         let content;
 
 
         if(link.whoSees && !link.whoSees.includes(userRole)){
-            return
+            return null
         }
 
         if(sideMenuIsOpen){
@@ -32,7 +39,11 @@ function Menu(props) {
         }
 
         return(
-            <Link to={historyLocationPath([link.to], URL.DASHBOARD)} className={style.link} key={link.to}>
+            <Link
+                onClick={closeSideMenu}
+                to={historyLocationPath([link.to], URL.DASHBOARD)}
+                className={style.link}
+                key={link.to}>
                 {content}
             </Link>
         )
@@ -42,4 +53,7 @@ const mapStateToProps = (state) => ({
     userRole: state.userReducer.user.role,
     sideMenuIsOpen: state.dashboardReducer.sideMenuIsOpen,
 });
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = dispatch => ({
+    closeOrOpenSideMenu: () => dispatch(closeOrOpenSideMenu(true)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -3,7 +3,8 @@ export const FORM = {
     LOGIN: 'login',
     CHAT: 'chat',
     ENTRIES: 'entries',
-    ACTIVE_CONTESTS: 'activeContests'
+    ACTIVE_CONTESTS: 'activeContests',
+    CASH_OUT: "cashOut"
 };
 
 export const TYPE_FIELD = {
@@ -14,6 +15,7 @@ export const TYPE_FIELD = {
     SUBMIT: "submit",
     TEXT: "text",
     NUMBER: 'number',
+    BUTTON: "button"
 };
 
 export const CONTEST = {
@@ -22,4 +24,12 @@ export const CONTEST = {
     TAGLINE: "tagline",
     LOGO: "logo",
     BANKS: "banks",
+};
+
+export const ACTIVE_CONTEST_FORM_FIELDS = {
+    ID: "id",
+    PRICE: "price",
+    TYPE_OF_VENTURE: "typeOfVenture",
+    STATUS: "status",
+    CONTEST_TYPE: "contestType"
 };

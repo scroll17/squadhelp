@@ -1,5 +1,5 @@
 import axios from "../axios/config";
-import {userURL, URL} from "../baseURL";
+import {userURL, URL, paymentURL} from "../baseURL";
 import {TOKEN} from "../../constants";
 
 export const loginUser = ( user ) => axios.post(`${userURL}${URL.LOGIN}`,  user );
@@ -11,3 +11,6 @@ export const refreshToken = () =>  axios.post(`${userURL}${URL.REFRESH}`, {refre
 
 export const getUserContests = () => axios.get(`${userURL}${URL.USER_CONTESTS}`);
 export const getUserEntries = () => axios.get(`${userURL}${URL.USER_ENTRIES}`);
+
+export const cashOutUserBalance = (paymentData) => axios.post(`${paymentURL}${URL.ENTRY}`, { paymentData });
+

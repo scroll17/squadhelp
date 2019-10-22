@@ -1,5 +1,5 @@
 import ACTION from "../actions/actionTypes/actionsTypes";
-import { put, call } from 'redux-saga/effects';
+import { put, call, select } from 'redux-saga/effects';
 
 import history from "../boot/browserHistory";
 
@@ -9,6 +9,7 @@ import {
     createUser,
     userLogout,
     getUser,
+    cashOutUserBalance
 } from '../api/rest/userContoller';
 
 
@@ -17,6 +18,7 @@ import {URL} from "../api/baseURL";
 
 import historyPushOrBack from '../utils/history/historyPushOrBack';
 
+import { cloneDeep } from "lodash"
 
 export function* loginUserSaga({user}) {
     try {
@@ -62,6 +64,29 @@ export function* getUserSaga() {
     try {
         const { data } = yield getUser();
         yield put({type: ACTION.USERS_RESPONSE, user: data});
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+
+export function* cashOutUserBalanceSaga({formData}) {
+    try {
+
+        const formDataToSend = {
+            ...formData,
+            number: formData.number.replace(/\s+/g, ''),
+        };
+
+        yield cashOutUserBalance(formDataToSend);
+
+        const { userReducer: { user } } = yield select();
+
+        const newUser = cloneDeep(user);
+        newUser.balance -= formData.sum;
+
+       yield put({type: ACTION.USERS_RESPONSE, user: newUser});
+
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }

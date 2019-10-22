@@ -11,6 +11,7 @@ import MyDashboard  from '../../components/Dashboard/MyDashboard/MyDashboard'
 import ContestInfo from "../../components/Dashboard/ContestInfo/ContestInfo";
 
 import Profile from "../../components/Dashboard/Profile/Profile";
+import Balance from "../../components/Dashboard/Balance/Balance";
 
 import ActiveContests from "../../components/Dashboard/ActiveContests/ActiveContests";
 
@@ -25,8 +26,6 @@ import {ROLE} from "../../constants";
 function DashboardPage(props) {
     const { sideMenuIsOpen } = props;
 
-    const styleForOpenMenu = sideMenuIsOpen ? {marginLeft: "250px"} : null;
-
     const closeSideMenu = () => {
         if(sideMenuIsOpen){
             props.closeOrOpenSideMenu(sideMenuIsOpen);
@@ -39,8 +38,7 @@ function DashboardPage(props) {
             <SideMenu/>
 
             <div
-                className={style.content}
-                style={styleForOpenMenu}
+                className={sideMenuIsOpen ? `${style.openContest} ${style.content}` : style.content}
                 onClick={closeSideMenu}
             >
                 <Header/>
@@ -68,12 +66,12 @@ function DashboardPage(props) {
                             render={props => <ActiveContests {...props}/>}
                         />
 
-{/*                        <PrivateRoute
-                            requireRole={Object.values(ROLE)}
-                            path={URL.DASHBOARD}
-                            component={WaitingComponent(DashboardPage)}
-                            redirectTo={URL.LOGIN}
-                        />*/}
+                        <PrivateRoute
+                            requireRole={ROLE.CREATIVE}
+                            path={historyLocationPath([URL.MY_BALANCE], URL.DASHBOARD)}
+                            component={Balance}
+                            redirectTo={URL.MY_DASHBOARD}
+                        />
 
                     </Switch>
             </div>

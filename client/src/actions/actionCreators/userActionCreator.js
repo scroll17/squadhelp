@@ -18,3 +18,8 @@ export const getUser = () => ({
 export const getUserResponse = () => ({
     type: ACTION.USERS_RESPONSE
 });
+
+export const cashOutUserBalance = formData => ({
+    type: ACTION.CASH_OUT_USER_BALANCE,
+    formData
+});

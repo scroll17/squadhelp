@@ -7,7 +7,7 @@ import style from './ActiveContestsFields.module.sass';
 
 import {TYPE_FIELD} from "../../../../constants";
 
-import { isEqual } from "lodash";
+import { isEqual, omit } from "lodash";
 
 import { dataForActiveContestsForm } from "../../../../utils/textAndLinksForPages/textAndLinksForPages"
 
@@ -24,12 +24,21 @@ let ContestFields = ({dataSelect, input, ...props}) => {
             onBlur={() => input.onBlur()}
             options={dataSelect[dataType]}
             isMulti={props.isMulti}
+            {...props}
         />
+    }else if(props.label){
+        fieldInput = (<>
+            <label>{props.label}</label>
+            <input
+                className={style.input}
+                {...omit(props, 'meta')}
+                {...input}
+            />
+        </>)
     }else{
         fieldInput = <input
             className={style.input}
-            type={props.type}
-            min={props.min}
+            {...omit(props, 'meta')}
             {...input}
         />
     }

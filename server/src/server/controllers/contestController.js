@@ -83,7 +83,7 @@ module.exports.getContestsByParams = async (req, res, next) => {
     } = req.body;
 
     try {
-        //req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
+        req.ability.throwUnlessCan(ACTIONS.READ, SUBJECT.CONTEST);
 
         findOptions.where = searchParams;
 

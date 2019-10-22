@@ -60,7 +60,6 @@ module.exports.getPaymentOfEntries = async (req, res, next) => {
     const { transaction } = req;
 
     try {
-
         const [updateOptions, updateFields] = Bank.createUpdateOptions(number, sum, SQUAD_HELP_BANK_CARD, transaction);
 
         const [ updatedRows ] = await Bank.update(

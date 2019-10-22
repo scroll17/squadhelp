@@ -10,13 +10,16 @@
       {
         "name":"typeOfVenture",
         "type":"select",
-        "dataType":"typeOfVenture"
+        "dataType":"typeOfVenture",
+        "isClearable": true,
+        "isSearchable": true
       },
       {
-        "name":"type",
+        "name":"contestType",
         "type":"select",
-        "dataType":"type",
-        "isMulti": true
+        "dataType":"contestType",
+        "isMulti": true,
+        "isSearchable": false
       }
     ],
     "By Status": [
@@ -24,7 +27,8 @@
         "name":"status",
         "type":"select",
         "dataType":"status",
-        "isMulti": true
+        "isMulti": true,
+        "isSearchable": false
       }
     ],
     "By Award Amount": [
@@ -39,7 +43,6 @@
 
   "select":{
     "typeOfVenture":[
-      {"value":"Select Type of Name","label":"Select Type of Name"},
       {"value":"a Business Name","label":"a Business Name"},
       {"value":"a Brand Name","label":"a Brand Name"},
       {"value":"a Product Name","label":"a Product Name"},
@@ -51,15 +54,15 @@
         "label":"a Movie or Documentary Title"
       }
     ],
-    "type":[
-      {"value":"Company","label":"Company"},
-      {"value":"Product","label":"Product"},
-      {"value":"Project","label":"Project"}
+    "contestType":[
+      {"value":"name","label":"Name"},
+      {"value":"tagline","label":"Tagline"},
+      {"value":"logo","label":"Logo"}
     ],
     "status":[
-      {"value":"Active","label":"Active"},
-      {"value":"Closed","label":"Closed"},
-      {"value":"Pending","label":"Pending"}
+      {"value":"open","label":"Open"},
+      {"value":"closed","label":"Closed"},
+      {"value":"awaiting","label":"Awaiting"}
     ]
   }
 }

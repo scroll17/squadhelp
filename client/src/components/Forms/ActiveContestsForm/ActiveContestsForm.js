@@ -14,9 +14,9 @@ import { reduxForm, formValueSelector } from 'redux-form'
 
 import { findContestsPyParams } from "../../../actions/actionCreators/dashboardContestsActionCreator";
 
-import { FORM } from "../../../constants";
+import { FORM, ACTIVE_CONTEST_FORM_FIELDS, TYPE_FIELD } from "../../../constants";
 
-import { values, omit } from "lodash";
+import transformSelectInputToNormalObject from "../../../utils/transformSelectInputToNormalObject";
 
 let ActiveContests = (props) => {
 
@@ -25,12 +25,12 @@ let ActiveContests = (props) => {
     const { formValue } = props;
     const { handleSubmit, pristine, reset, submitting } = props;
 
-    console.log(values(omit(formValue.typeOfVenture, 'label')))
-
     const debouncedSearchTerm = useDebounce(formValue, 500);
 
     useEffect(() => {
-        const queryParams = `?${queryString.stringify(formValue,  {arrayFormat: 'bracket'})}`;
+
+        const queryObject = transformSelectInputToNormalObject(formValue);
+        const queryParams = `?${queryString.stringify(queryObject,  {arrayFormat: 'bracket'})}`;
 
         history.replace({
             search: queryParams
@@ -41,15 +41,19 @@ let ActiveContests = (props) => {
     }, [debouncedSearchTerm]);
 
 
-
     return (
         <div className={style.activeContestsForm}>
             <form onSubmit={handleSubmit}>
-                <div className={style.boxFilters}>
+                <div>
                     <ActiveContestsFields />
                 </div>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
+                <button
+                    type={TYPE_FIELD.BUTTON}
+                    disabled={pristine || submitting}
+                    onClick={reset}
+                    className={style.button}
+                >
+                    reset
                 </button>
             </form>
         </div>
@@ -57,17 +61,18 @@ let ActiveContests = (props) => {
 };
 
 ActiveContests = reduxForm({
-    form: FORM.ACTIVE_CONTESTS
+    form: FORM.ACTIVE_CONTESTS,
+    destroyOnUnmount: false
 })(ActiveContests);
 
 const selector = formValueSelector(FORM.ACTIVE_CONTESTS);
 const mapStateToProps = state => ({
     formValue: {
-        id: selector(state, 'id'),
-        price: selector(state, 'price'),
-        typeOfVenture: selector(state, 'typeOfVenture'),
-        type: selector(state, 'type'),
-        status: selector(state, 'status'),
+        id: selector(state, ACTIVE_CONTEST_FORM_FIELDS.ID),
+        price: selector(state, ACTIVE_CONTEST_FORM_FIELDS.PRICE),
+        typeOfVenture: selector(state, ACTIVE_CONTEST_FORM_FIELDS.TYPE_OF_VENTURE),
+        status: selector(state, ACTIVE_CONTEST_FORM_FIELDS.STATUS),
+        contestType: selector(state, ACTIVE_CONTEST_FORM_FIELDS.CONTEST_TYPE),
     }
 });
 

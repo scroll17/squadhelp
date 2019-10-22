@@ -57,3 +57,14 @@ export function formatExpirationDate(value) {
 
     return clearValue
 }
+
+export const formatSum = (min, max) => (value, prevValue) => {
+
+    if(value > max){
+        return prevValue
+    }else if(value < min){
+        return min
+    }
+
+    return value
+};

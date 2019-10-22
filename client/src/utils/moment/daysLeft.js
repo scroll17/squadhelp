@@ -2,8 +2,11 @@ import moment from 'moment'
 
 export default (date) => {
 
-    const eventDate = moment(date);
+    const eventDate = moment(date, "YYYY-MM-DD HH:mm:ss");
     const todayDate = moment();
 
-    return moment(todayDate - eventDate).format('D[d,] HH[h]')
+    const diff = moment.duration(todayDate.diff(eventDate));
+    const { days, hours } = diff._data;
+
+    return `${days}d, ${hours}h`
 };
