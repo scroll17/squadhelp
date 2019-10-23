@@ -62,6 +62,10 @@ const USER_DATA_FIELDS = {
     BALANCE: "balance"
 };
 
+const USER_FIELDS = {
+    AVATAR: "avatar"
+};
+
 export  {
     STORE,
     SUCCESS_CODE,
@@ -87,5 +91,6 @@ export  {
     USER_DATA_FIELDS,
     SQUAD_HELP_LOGO,
     CONTEST_REDUCER_VAL,
-    ACTIVE_CONTEST_FORM_FIELDS
+    ACTIVE_CONTEST_FORM_FIELDS,
+    USER_FIELDS
 }

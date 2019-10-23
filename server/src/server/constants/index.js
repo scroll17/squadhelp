@@ -29,7 +29,8 @@ const {
 const {
     TYPE_OF_UPDATE_BALANCE_FOR_USER,
     USER_FIELDS_TO_UPDATE,
-    USER_FIELDS
+    USER_FIELDS,
+    MIME_TYPE_USER_AVATAR
 } = require("./user");
 
 const { TYPE_OF_PAYMENT } = require('./payment');
@@ -113,6 +114,7 @@ module.exports = {
     TYPE_OF_UPDATE_BALANCE_FOR_USER,
     USER_FIELDS_TO_UPDATE,
     USER_FIELDS,
+    MIME_TYPE_USER_AVATAR,
 
     TYPE_OF_PAYMENT,
 

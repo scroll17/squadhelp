@@ -27,7 +27,9 @@ function Avatar(props){
                 ...imageSizeStyle,
                 ...customStyle
             }}
-        />
+        >
+            {props.children}
+        </div>
     )
 }
 Avatar.defaultProps = {

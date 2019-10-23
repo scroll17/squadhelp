@@ -4,6 +4,12 @@ export const createUser = user => ({
     type: ACTION.CREATE_USER,
     user
 });
+
+export const updateUserAvatar = (avatar) => ({
+    type: ACTION.UPDATE_USER_AVATAR,
+    avatar
+});
+
 export const loginUser = user => ({
     type: ACTION.LOGIN_USER,
     user

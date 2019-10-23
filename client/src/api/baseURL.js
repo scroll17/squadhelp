@@ -51,7 +51,9 @@ export const URL = {
   MY_ACCOUNT: "/my-account",
   MY_CONTESTS: "/my-contests",
   MY_BALANCE: '/my-balance',
-  ACTIVE_CONTESTS: '/active-contests'
+  ACTIVE_CONTESTS: '/active-contests',
+
+  UPDATE: '/update'
 };
 
 export const SEARCH = {

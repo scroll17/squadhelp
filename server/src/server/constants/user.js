@@ -22,8 +22,15 @@ const USER_FIELDS_TO_UPDATE = [
     USER_FIELDS.PASSWORD
 ];
 
+const MIME_TYPE_USER_AVATAR = {
+    'image/png': 'png',
+    'image/jpeg': 'jpg',
+    'image/jpg': 'jpg'
+};
+
 module.exports = {
     TYPE_OF_UPDATE_BALANCE_FOR_USER,
     USER_FIELDS_TO_UPDATE,
-    USER_FIELDS
+    USER_FIELDS,
+    MIME_TYPE_USER_AVATAR
 };

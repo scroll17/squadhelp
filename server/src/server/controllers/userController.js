@@ -62,7 +62,7 @@ module.exports.updateUser = async (req, res, next) => {
     try{
         req.ability.throwUnlessCan(ACTIONS.UPDATE, SUBJECT.USER);
 
-        const [numberOfUpdatedRows, [updateUser] ] = await User.scope(UPDATE).update(
+        const [numberOfUpdatedRows, [ updateUser ] ] = await User.scope(UPDATE).update(
             updateFields,
             updateOptions
         );

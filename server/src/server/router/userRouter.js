@@ -18,6 +18,7 @@ const addUserUpdateOptions = require("../middlewares/user/addUserUpdateOptions")
 const addFindOptionsToContest = require("../middlewares/contest/addFindOptionsToContest");
 
 const createDiskStorageConfig = require('../middlewares/multer/createDiskStorageConfig');
+const fileFilter = require("../middlewares/multer/fileFilter");
 
 const {
     giveAccessUser,
@@ -37,14 +38,17 @@ const {
     URL: {
         API
     },
+    UPDATE_INFORMATION,
+    SOURCE_ID,
     USER_FIELDS: {
         AVATAR
     },
-    UPDATE_INFORMATION,
-    SOURCE_ID
 } = require('../constants');
 
-const upload = multer({storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/user/avatar')});
+const upload = multer({
+    storage: createDiskStorageConfig(multer, __dirname, '../../../public/images/user/avatar'),
+    fileFilter: fileFilter
+});
 
 const router = express.Router();
 
@@ -79,8 +83,8 @@ router.put(API.UPDATE,
     updateUser,
 );
 
-router.put(`${API.UPDATE}${AVATAR}`,
-    upload.array('file', 1),
+router.put(`${API.UPDATE}/${AVATAR}`,
+    upload.single('file'),
     addUserUpdateOptions(AVATAR),
     updateUser,
 );

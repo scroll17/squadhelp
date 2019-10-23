@@ -9,11 +9,12 @@ import {
     createUser,
     userLogout,
     getUser,
-    cashOutUserBalance
+    cashOutUserBalance,
+    newUserAvatar
 } from '../api/rest/userContoller';
 
 
-import {TOKEN} from "../constants";
+import {TOKEN, TYPE_FIELD, USER_FIELDS} from "../constants";
 import {URL} from "../api/baseURL";
 
 import historyPushOrBack from '../utils/history/historyPushOrBack';
@@ -86,6 +87,26 @@ export function* cashOutUserBalanceSaga({formData}) {
         newUser.balance -= formData.sum;
 
        yield put({type: ACTION.USERS_RESPONSE, user: newUser});
+
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+export function* updateUserAvatarSaga({avatar}) {
+    try {
+
+        const finalDataToSend = new FormData();
+        const originalFileName = `${performance.now()}_${avatar.name}`;
+
+        finalDataToSend.append(TYPE_FIELD.INPUT_FILE, avatar, originalFileName);
+        finalDataToSend.append(USER_FIELDS.AVATAR, originalFileName);
+
+        const { data } = yield newUserAvatar(finalDataToSend);
+
+        console.log("data", data)
+
+        yield put({type: ACTION.USERS_RESPONSE, user: data});
 
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
