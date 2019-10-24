@@ -12,7 +12,7 @@ import { isEqual, omit } from "lodash";
 import { dataForActiveContestsForm } from "../../../../utils/textAndLinksForPages/textAndLinksForPages"
 
 
-let ContestFields = ({dataSelect, input, ...props}) => {
+let Fields = ({dataSelect, input, ...props}) => {
     let fieldInput;
 
     const { type, dataType } = props;
@@ -60,7 +60,7 @@ let ActiveContestFields = () => {
             {...fieldData}
             key={fieldData.name}
             dataSelect={dataForActiveContestsForm[TYPE_FIELD.SELECT]}
-            component={ContestFields}
+            component={Fields}
         />
     };
 

@@ -10,6 +10,11 @@ export const updateUserAvatar = (avatar) => ({
     avatar
 });
 
+export const updateUserInformation = (information) => ({
+    type: ACTION.UPDATE_USER_INFORMATION,
+    information
+});
+
 export const loginUser = user => ({
     type: ACTION.LOGIN_USER,
     user

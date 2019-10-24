@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import schema from "./yupShema";
+import { userRequired as schema } from "./yupShema";
 
 
 import isEmpty from 'lodash/isEmpty';

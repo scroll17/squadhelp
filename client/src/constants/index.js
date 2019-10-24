@@ -23,7 +23,8 @@ import {
     STATUS_OF_CONTEST_AND_ENTRY ,
     CONTEST_STATUS,
     TYPE_UPDATE_ENTRY,
-    CONTEST_REDUCER_VAL
+    CONTEST_REDUCER_VAL,
+    CONTEST_FIELDS
 } from './dashboard'
 
 import { ICON } from './icon'
@@ -63,7 +64,14 @@ const USER_DATA_FIELDS = {
 };
 
 const USER_FIELDS = {
-    AVATAR: "avatar"
+    FIRST_NAME: "firstName",
+    LAST_NAME: "lastName",
+    DISPLAY_NAME: "displayName",
+    AVATAR: "avatar",
+    EMAIL: "email",
+    PASSWORD: "password",
+    BALANCE: "balance",
+    IS_BANNED: 'isBanned',
 };
 
 export  {
@@ -92,5 +100,6 @@ export  {
     SQUAD_HELP_LOGO,
     CONTEST_REDUCER_VAL,
     ACTIVE_CONTEST_FORM_FIELDS,
-    USER_FIELDS
+    USER_FIELDS,
+    CONTEST_FIELDS
 }

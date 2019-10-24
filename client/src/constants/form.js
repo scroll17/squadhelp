@@ -4,7 +4,8 @@ export const FORM = {
     CHAT: 'chat',
     ENTRIES: 'entries',
     ACTIVE_CONTESTS: 'activeContests',
-    CASH_OUT: "cashOut"
+    CASH_OUT: "cashOut",
+    UPDATE_USER: "updateUser"
 };
 
 export const TYPE_FIELD = {

@@ -10,7 +10,8 @@ import {
     userLogout,
     getUser,
     cashOutUserBalance,
-    newUserAvatar
+    newUserAvatar,
+    newUserInformation
 } from '../api/rest/userContoller';
 
 
@@ -104,7 +105,17 @@ export function* updateUserAvatarSaga({avatar}) {
 
         const { data } = yield newUserAvatar(finalDataToSend);
 
-        console.log("data", data)
+        yield put({type: ACTION.USERS_RESPONSE, user: data});
+
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+export function* updateUserInformationSaga({information}) {
+    try {
+
+        const { data } = yield newUserInformation(information);
 
         yield put({type: ACTION.USERS_RESPONSE, user: data});
 

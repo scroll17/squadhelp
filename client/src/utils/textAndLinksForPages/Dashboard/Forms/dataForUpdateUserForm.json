@@ -1,0 +1,32 @@
+[
+  {
+    "name": "email",
+    "label": "Email",
+    "type": "email"
+  },
+  {
+    "name": "firstName",
+    "label": "First name",
+    "type": "text"
+  },
+  {
+    "name": "lastName",
+    "label": "Last name",
+    "type": "text"
+  },
+  {
+    "name": "displayName",
+    "label": "Display name",
+    "type": "text"
+  },
+  {
+    "name": "password",
+    "label": "Password",
+    "type": "password"
+  },
+  {
+    "name": "passwordRepeat",
+    "label": "Password repeat",
+    "type": "password"
+  }
+]

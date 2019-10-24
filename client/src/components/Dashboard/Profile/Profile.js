@@ -7,13 +7,17 @@ import {getContestById} from "../../../actions/actionCreators/dashboardContestsA
 import { updateUserAvatar } from "../../../actions/actionCreators/userActionCreator";
 
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
+
 import Avatar from "../../Avatart/Avatar";
+import UpdateUserForm from "../../Forms/UpdateUserForm/UpdateUserForm";
 
 import { USER_DATA_FIELDS } from "../../../constants";
 
 function ContestInfo(props) {
     const { user } = props;
     const { IS_BANNED, AVATAR, BALANCE } = USER_DATA_FIELDS;
+
+    const [ editing, setEditing] = useState(false);
 
     const refInput = useRef(null);
 
@@ -25,21 +29,32 @@ function ContestInfo(props) {
         <div className={style.profile}>
             <div className={style.header}>
                 <h1>Profile</h1>
-                <i className="fas fa-pencil-alt" />
-            </div>
-
-            <Avatar size={120} customStyle={{margin: "0 auto"}}>
-                <input
-                    ref={refInput}
-                    type={"file"}
-                    accept="image/*"
-                    onChange={updateUserAvatar}
+                <i
+                    onClick={() => setEditing(editing => !editing)}
+                    className="fas fa-pencil-alt"
                 />
-            </Avatar>
-
-            <div className={style.info}>
-                {conversionObjectInformation(user, [IS_BANNED, AVATAR, BALANCE])}
             </div>
+
+            { editing ?
+                <UpdateUserForm
+                    closeEditing={() => setEditing(false)}
+                />
+                :
+                <>
+                    <Avatar size={120} customStyle={{margin: "0 auto"}}>
+                        <input
+                            ref={refInput}
+                            type={"file"}
+                            accept="image/*"
+                            onChange={updateUserAvatar}
+                        />
+                    </Avatar>
+
+                    <div className={style.info}>
+                        {conversionObjectInformation(user, [IS_BANNED, AVATAR, BALANCE])}
+                    </div>
+                </>
+            }
         </div>
     )
 }

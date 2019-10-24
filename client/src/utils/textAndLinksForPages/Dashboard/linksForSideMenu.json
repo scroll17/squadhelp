@@ -7,7 +7,8 @@
   {
     "title": " My Dashboard ",
     "class": "fas fa-copy",
-    "to": "/my-dashboard"
+    "to": "/my-dashboard",
+    "whoSees": ["creative", "buyer"]
   },
   {
     "title": " My Account ",

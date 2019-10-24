@@ -11,7 +11,8 @@ import {
     userLogoutSaga,
     getUserSaga,
     cashOutUserBalanceSaga,
-    updateUserAvatarSaga
+    updateUserAvatarSaga,
+    updateUserInformationSaga
 } from './userSaga';
 
 import {
@@ -69,7 +70,9 @@ function* rootSaga() {
     yield takeLatest(ADMIN_ACTION.UPDATE_VALIDITY_OF_ENTRY, updateValidityEntrySaga);
 
     yield takeLatest(ACTION.CASH_OUT_USER_BALANCE, cashOutUserBalanceSaga);
+
     yield takeLatest(ACTION.UPDATE_USER_AVATAR, updateUserAvatarSaga);
+    yield takeLatest(ACTION.UPDATE_USER_INFORMATION, updateUserInformationSaga);
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);

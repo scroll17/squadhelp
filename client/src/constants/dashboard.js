@@ -15,6 +15,16 @@ export const CONTEST_REDUCER_VAL = {
     CONTEST_QUEUE: "contestQueue"
 };
 
+export const CONTEST_FIELDS = {
+    CONTEST_ID: 'contestId',
+    USER_ID: 'userId',
+    PRICE: 'price',
+    STATUS: "status",
+    USER: "User",
+    ENTRIES: 'Entries',
+    NUMBER_OF_ENTRY: "numberOfEntry"
+};
+
 export const TYPE_UPDATE_ENTRY = {
     STATUS: 'status',
     LIKED: 'liked',

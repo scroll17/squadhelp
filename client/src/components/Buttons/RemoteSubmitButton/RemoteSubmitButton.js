@@ -6,6 +6,7 @@ import { isEmpty , last } from 'lodash';
 
 
 const SubmitButton = (props) => {
+
     const { dispatch, contestQueue, contestNow } = props;
     const formNow = last(contestNow);
 

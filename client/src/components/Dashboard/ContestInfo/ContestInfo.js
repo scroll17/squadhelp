@@ -17,10 +17,11 @@ import { getContestById } from "../../../actions/actionCreators/dashboardContest
 import { isEqual } from 'lodash'
 
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
-import {ROLE, CONTEST_STATUS} from "../../../constants";
+import { ROLE, CONTEST_STATUS, CONTEST_FIELDS } from "../../../constants";
 
 function ContestInfo(props) {
     const { openContest } = props;
+    const { STATUS, PRICE, CONTEST_ID, ENTRIES, NUMBER_OF_ENTRY, USER, USER_ID } = CONTEST_FIELDS;
 
     useEffect(() => {
         const { id } = parse(history.location.search);
@@ -51,7 +52,7 @@ function ContestInfo(props) {
                                 <div className={style.content}>
                                     {conversionObjectInformation(
                                         openContest,
-                                        ['contestId', 'userId', 'price', 'User', 'Entries', 'status']
+                                        [STATUS, PRICE, CONTEST_ID, ENTRIES, NUMBER_OF_ENTRY, USER, USER_ID]
                                     )}
                                 </div>
                             </div>

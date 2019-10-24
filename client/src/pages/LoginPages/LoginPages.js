@@ -5,7 +5,7 @@ import { SubmissionError } from 'redux-form';
 import style from "./LoginPages.module.sass";
 
 import * as yup from 'yup';
-import schema from '../../validation/yupShema';
+import { userRequired as schema} from '../../validation/yupShema';
 
 import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
 import LoginForm from "../../components/Forms/LoginForm/LoginForm";

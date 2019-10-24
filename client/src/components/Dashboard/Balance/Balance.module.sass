@@ -1,7 +1,6 @@
 .balance
   font-family: Arial, "sans-serif"
 
-
   form
     margin-top: 10px
     background: #F2F2F2
@@ -63,3 +62,32 @@
       background: linear-gradient(135deg, #8f75da 0, #727cf5 60%)
       -webkit-background-clip: text
       -webkit-text-fill-color: transparent
+
+
+@media only screen and (max-width: 570px)
+  .balance
+
+    .title
+      transition: font-size .5s ease-in
+      font-size: 22px
+
+      span
+        padding-left: 10px
+
+        transition: font-size .5s ease-in
+        font-size: 24px
+
+    form
+      .button
+        padding: 10px 0
+        font-size: 16px
+
+      .fields
+        div
+          flex-direction: column
+
+          span
+            transition: font-size .5s ease-in
+            font-size: 16px
+          input
+            max-width: 100%

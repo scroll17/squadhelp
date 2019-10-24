@@ -15,4 +15,5 @@ export const getUserEntries = () => axios.get(`${userURL}${URL.USER_ENTRIES}`);
 export const cashOutUserBalance = (paymentData) => axios.post(`${paymentURL}${URL.ENTRY}`, { paymentData });
 
 export const newUserAvatar = ( newAvatar ) => axios.put(`${userURL}${URL.UPDATE}/${USER_FIELDS.AVATAR}`, newAvatar);
+export const newUserInformation = ( newData ) => axios.put(`${userURL}${URL.UPDATE}`, { updateFields: newData});
 

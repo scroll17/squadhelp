@@ -22,6 +22,18 @@ function ChatPage(props){
         return () => socket.disconnect()
     }, []);
 
+    useEffect(() => {
+        const bodyPosition = document.body.style.position;
+
+        if(chatIsOpen && document.body.clientWidth <= 795){
+            document.body.style.position = "fixed";
+        }
+
+        if (!chatIsOpen && bodyPosition === "fixed"){
+            document.body.style.position = "initial"
+        }
+
+    }, [chatIsOpen]);
 
     return(
        <div className={style.chatContainer}>
