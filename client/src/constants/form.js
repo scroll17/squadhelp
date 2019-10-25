@@ -27,6 +27,7 @@ export const CONTEST = {
     BANKS: "banks",
 };
 
+
 export const ACTIVE_CONTEST_FORM_FIELDS = {
     ID: "id",
     PRICE: "price",

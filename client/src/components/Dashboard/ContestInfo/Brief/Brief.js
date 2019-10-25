@@ -9,11 +9,11 @@ import {startConversation} from "../../../../api/socket/chatController";
 import {CONTEST_STATUS, ROLE} from "../../../../constants";
 import { isEqual } from 'lodash'
 
-import RemoteSubmitButton from "../../../Buttons/RemoteSubmitButton/RemoteSubmitButton";
+import RemoteUpdateButton from "../../../Buttons/RemoteUpdateContestsButton/RemoteUpdateContestsButton";
 import PrivateComponent from "../../../PrivateComponent/PrivateComponent";
 
 function ContestInfo(props) {
-    const { price, userId, User, numberOfEntry, status } = props.contestInfo;
+    const { price, userId, User, numberOfEntry, status, contestType } = props.contestInfo;
     const { userRole, updateContest } = props;
 
 
@@ -61,7 +61,7 @@ function ContestInfo(props) {
                 desiredOptions={status !== CONTEST_STATUS.CLOSED && updateContest}
             >
                 <div className={style.updateContest}>
-                    <RemoteSubmitButton />
+                    <RemoteUpdateButton formName={`update_${contestType}`} />
                 </div>
             </PrivateComponent>
         </div>

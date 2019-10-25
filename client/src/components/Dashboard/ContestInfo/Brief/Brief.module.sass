@@ -14,7 +14,9 @@
       border: none
       box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.2)
 
-      height: 50px
+      height: 100%
+      min-height: 50px
+
       width: 100%
 
   .contestStatus
@@ -64,3 +66,30 @@
 
 
 
+@media only screen and (max-width: 850px)
+  .statusStatusContainer
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    margin: 0
+
+    .contestStatus
+      .entries
+        margin: 30px 10px 10px
+
+    & > div
+      flex-grow: 1.5
+
+    & > div:not(:first-of-type)
+      flex-grow: 1
+      margin-top: 0
+      margin-left: 20px
+
+
+@media only screen and (max-width: 650px)
+  .statusStatusContainer
+    flex-direction: column
+
+    & > div:not(:first-of-type)
+      margin-left: 0
+      margin-top: 20px

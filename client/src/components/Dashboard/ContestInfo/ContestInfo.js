@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import connect from "react-redux/es/connect/connect";
 
+import { toast } from 'react-toastify';
+
 import { parse } from 'query-string'
 
 import style from './ContestInfo.module.sass'
@@ -13,15 +15,18 @@ import Entry from "./Entry/Entry";
 
 import history from "../../../boot/browserHistory";
 
-import { getContestById } from "../../../actions/actionCreators/dashboardContestsActionCreator";
-import { isEqual, pick } from 'lodash'
+import { getContestById, updateContest } from "../../../actions/actionCreators/dashboardContestsActionCreator";
+import { isEqual, isEqualWith, pick, isNull, isUndefined } from 'lodash'
 
 import conversionObjectInformation from "../../../utils/conversionObjectInformation";
-import {ROLE, CONTEST_STATUS, CONTEST_FIELDS} from "../../../constants";
+import {ROLE, CONTEST_STATUS, CONTEST_FIELDS, CONTEST_FIELDS_TO_UPDATE} from "../../../constants";
 import DrawContestForm from "../../Forms/ContestForms/DrawContestForm/DrawContestForm";
+import convertSelectInputToNormalObject from "../../../utils/forms/convertSelectInputToNormalObject";
+
+
 
 function ContestInfo(props) {
-    const { openContest } = props;
+    const { openContest, userId } = props;
     const {
         STATUS,
         PRICE,
@@ -29,18 +34,11 @@ function ContestInfo(props) {
         ENTRIES,
         NUMBER_OF_ENTRY,
         USER,
-        USER_ID,
-        TITLE,
-        TYPE_OF_VENTURE,
-        WHAT_VENTURE_DOES,
-        TARGET_CUSTOMERS,
-        FILE,
-        TYPE,
-        NAME,
-        STYLE
+        USER_ID
     } = CONTEST_FIELDS;
 
     const [updateContest, setUpdateContest] = useState(false);
+
 
     useEffect(() => {
         const { id } = parse(history.location.search);
@@ -50,6 +48,28 @@ function ContestInfo(props) {
             props.getContestById(contestId)
         }
     }, []);
+
+    const updateContests = (value) => {
+        const newValue = convertSelectInputToNormalObject(value);
+        const oldValue = pick(openContest, CONTEST_FIELDS_TO_UPDATE);
+
+        console.log("newValue", newValue);
+
+        // const customizer = (valueOne, valueTwo) => {
+        //     if (isNull(valueOne) && isUndefined(valueTwo)) {
+        //         return true;
+        //     }
+        // };
+        //
+        // if(isEqualWith(oldValue, newValue, customizer)){
+        //     toast.info("Nothing to update", {
+        //         position: toast.POSITION.TOP_RIGHT
+        //     });
+        // }else{
+        //     props.updateContest(newValue, openContest.id);
+        //     return setUpdateContest(false);
+        // }
+    };
 
     return (
         <div className={style.contestInfo}>
@@ -69,7 +89,11 @@ function ContestInfo(props) {
                                     </p>
                                     <PrivateComponent
                                         requireRole={[ROLE.BUYER]}
-                                        desiredOptions={openContest.status !== CONTEST_STATUS.CLOSED}  /*TODO === CONTEST_STATUS.AWAITING*/
+                                        desiredOptions={
+                                            openContest.userId === userId
+                                            &&
+                                            openContest.status === CONTEST_STATUS.AWAITING
+                                        }
                                     >
                                         <i
                                             className="fas fa-edit"
@@ -82,12 +106,10 @@ function ContestInfo(props) {
                                 {updateContest ?
                                     <div className={style.updateContests}>
                                         <DrawContestForm
+                                            onSubmit={updateContests}
                                             contestStageNow={openContest.contestType}
-                                            form={openContest.contestType}
-                                            initialValues={pick(openContest, [
-                                                TITLE, TYPE_OF_VENTURE, WHAT_VENTURE_DOES,
-                                                TARGET_CUSTOMERS, FILE, TYPE, NAME, STYLE
-                                            ])}
+                                            form={`update_${openContest.contestType}`}
+                                            initialValues={pick(openContest, CONTEST_FIELDS_TO_UPDATE)}
                                         />
                                     </div>
                                     :
@@ -101,7 +123,7 @@ function ContestInfo(props) {
                             </div>
                         </div>
 
-                        <PrivateComponent requireRole={[ROLE.BUYER]} desiredOptions={!updateContest}>
+                        <PrivateComponent requireRole={[ROLE.BUYER]} desiredOptions={!updateContest && openContest.userId === userId}>
                             <div className={style.entries}>
                                 <div className={style.title}>Entries</div>
                                 <div className={style.list}>
@@ -133,8 +155,10 @@ function ContestInfo(props) {
 }
 const mapStateToProps = (state) => ({
     openContest: state.dashboardContestsReducer.openContest,
+    userId: state.userReducer.user.id,
 });
 const mapDispatchToProps = dispatch => ({
     getContestById: (id) => dispatch(getContestById(id)),
+    updateContest: (fieldsData, contestId) => dispatch(updateContest(fieldsData, contestId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContestInfo);

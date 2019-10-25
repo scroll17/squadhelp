@@ -46,7 +46,7 @@ router.post(API.CREATE,
 );
 
 router.put(API.UPDATE,
-    //upload.array('file', 1),
+    upload.array('file', 1),
     validateDataOnUpdateContest,
     updateContest,
 );

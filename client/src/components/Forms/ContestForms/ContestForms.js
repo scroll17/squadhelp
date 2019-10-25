@@ -6,7 +6,7 @@ import style from './ContestForms.module.sass';
 import ReactModal from '../../ReactModal/ReactModal'
 
 import DrawContestForm from './DrawContestForm/DrawContestForm'
-import RemoteSubmitButton from '../../Buttons/RemoteSubmitButton/RemoteSubmitButton'
+import RemoteSubmitButton from '../../Buttons/RemoteSubmitContestsButton/RemoteSubmitContestsButton'
 import BankForm from '../BankForm/BankForm'
 
 import {

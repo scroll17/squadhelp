@@ -19,3 +19,8 @@ export const findContestsPyParams = (queryParams = "?") => ({
     queryParams
 });
 
+export const updateContest = (newInformation, contestId) => ({
+    type: DASHBOARD_ACTION.UPDATE_CONTEST,
+    newInformation,
+    contestId
+});

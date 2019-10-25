@@ -9,13 +9,18 @@ const {
     CONTEST_FIELDS_TO_UPDATE,
     TYPE_OF_SCOPE: {
         UPDATE,
-        NUMBER_OF_ENTRY
+    },
+    CONTEST_FIELDS: {
+        PRIORITY
+    },
+    DEFAULT_MODEL_FIELDS: {
+        UPDATE_AT,
+        CREATED_AT
     }
 } = require('../constants');
 
 const {
     CREATED,
-    ACCEPTED
 } = require('http-status-codes');
 
 const convertMapToObject = require('../utils/convertMapToObject');
@@ -23,6 +28,7 @@ const convertMapToObject = require('../utils/convertMapToObject');
 const transactionRollAndSendBadReq = require("../utils/transactionRollAndSendBadReq");
 
 const isUndefined = require("lodash/isUndefined");
+const omit = require("lodash/omit");
 
 module.exports.createContest = async (req, res, next) => {
     const { accessTokenPayload: { id } } = req;
@@ -123,7 +129,7 @@ module.exports.updateContest = async (req, res, next) => {
                     id
                 },
                 fields: CONTEST_FIELDS_TO_UPDATE,
-                transaction
+                transaction,
             });
 
         if(numberOfUpdatedRows <= 0){
@@ -135,9 +141,8 @@ module.exports.updateContest = async (req, res, next) => {
             return await transactionRollAndSendBadReq(transaction, next)
         }else{
             await transaction.commit();
-            return res.send(
-                updateContest
-            )
+
+            return res.send(omit(updateContest, [UPDATE_AT, CREATED_AT, PRIORITY]));
         }
 
     }catch (err){

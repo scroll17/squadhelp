@@ -17,9 +17,10 @@ const validateDataOnCreateContest = async (req, res, next) =>  {
 };
 
 const validateDataOnUpdateContest = async (req, res, next) => {
-    const { updateFields } = req.body;
+    const contests = JSON.parse(req.body.updateFields);
+
     try {
-        req.body.updateFields = await updateContestSchema.validate(updateFields, {stripUnknown: true});
+        req.body.updateFields = await updateContestSchema.validate(contests, {stripUnknown: true});
         next()
 
     } catch (e) {

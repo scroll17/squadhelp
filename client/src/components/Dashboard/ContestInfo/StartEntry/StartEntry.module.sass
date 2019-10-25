@@ -22,7 +22,6 @@
       flex-direction: row
       align-items: center
 
-
       margin: 15px 0
 
       p
@@ -57,3 +56,25 @@
     &:hover
       color: white
       background-color: #28d2d0
+
+
+@media only screen and (max-width: 1220px)
+  .startEntry
+    .resultsForm
+      .title
+        flex-direction: column
+        p
+          margin-bottom: 10px
+
+
+@media only screen and (max-width: 750px)
+  .startEntry
+    .resultsForm
+      flex-direction: column
+      .title
+        width: 100%
+
+        input
+          width: 100%
+    .button
+      width: 100%
