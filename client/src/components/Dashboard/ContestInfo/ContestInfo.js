@@ -24,7 +24,6 @@ import DrawContestForm from "../../Forms/ContestForms/DrawContestForm/DrawContes
 import convertSelectInputToNormalObject from "../../../utils/forms/convertSelectInputToNormalObject";
 
 
-
 function ContestInfo(props) {
     const { openContest, userId } = props;
     const {
@@ -53,22 +52,20 @@ function ContestInfo(props) {
         const newValue = convertSelectInputToNormalObject(value);
         const oldValue = pick(openContest, CONTEST_FIELDS_TO_UPDATE);
 
-        console.log("newValue", newValue);
+        const customizer = (valueOne, valueTwo) => {
+            if (isNull(valueOne) && isUndefined(valueTwo)) {
+                return true;
+            }
+        };
 
-        // const customizer = (valueOne, valueTwo) => {
-        //     if (isNull(valueOne) && isUndefined(valueTwo)) {
-        //         return true;
-        //     }
-        // };
-        //
-        // if(isEqualWith(oldValue, newValue, customizer)){
-        //     toast.info("Nothing to update", {
-        //         position: toast.POSITION.TOP_RIGHT
-        //     });
-        // }else{
-        //     props.updateContest(newValue, openContest.id);
-        //     return setUpdateContest(false);
-        // }
+        if(isEqualWith(oldValue, newValue, customizer)){
+            toast.info("Nothing to update", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }else{
+            props.updateContest(newValue, openContest.id);
+            return setUpdateContest(false);
+        }
     };
 
     return (

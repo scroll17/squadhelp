@@ -3,6 +3,7 @@ import { cloneDeep, isObject, isArray, isNull } from "lodash";
 export default (obj) => {
     const newObject = cloneDeep(obj);
 
+
     for (let field in newObject){
         let fieldValue = newObject[field];
 
@@ -11,9 +12,15 @@ export default (obj) => {
             newObject[field] = fieldValue.map( obj => {
                 return obj.value;
             })
+
+        }else if(fieldValue instanceof Blob){
+
+            newObject[field] = fieldValue
+
         }else if(isObject(fieldValue)){
 
             newObject[field] = fieldValue.value
+
         }else if(isNull(fieldValue)){
 
             newObject[field] = undefined
