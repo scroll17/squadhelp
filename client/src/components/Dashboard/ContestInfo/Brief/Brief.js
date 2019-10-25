@@ -6,12 +6,16 @@ import style from './Brief.module.sass'
 import Avatar from "../../../Avatart/Avatar";
 import {closeOrOpenChat} from "../../../../actions/actionCreators/chatActionCreator";
 import {startConversation} from "../../../../api/socket/chatController";
-import { ROLE } from "../../../../constants";
+import {CONTEST_STATUS, ROLE} from "../../../../constants";
 import { isEqual } from 'lodash'
 
+import RemoteSubmitButton from "../../../Buttons/RemoteSubmitButton/RemoteSubmitButton";
+import PrivateComponent from "../../../PrivateComponent/PrivateComponent";
+
 function ContestInfo(props) {
-    const { price, userId, User, numberOfEntry } = props.contestInfo;
-    const { userRole } = props;
+    const { price, userId, User, numberOfEntry, status } = props.contestInfo;
+    const { userRole, updateContest } = props;
+
 
     const clickToStartConversation = () => {
         props.closeOrOpenChat(false);
@@ -51,6 +55,15 @@ function ContestInfo(props) {
                     </span>
                 </div>
             </div>
+
+            <PrivateComponent
+                requireRole={[ROLE.BUYER]}
+                desiredOptions={status !== CONTEST_STATUS.CLOSED && updateContest}
+            >
+                <div className={style.updateContest}>
+                    <RemoteSubmitButton />
+                </div>
+            </PrivateComponent>
         </div>
     )
 }

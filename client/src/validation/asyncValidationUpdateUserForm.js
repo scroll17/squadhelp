@@ -25,23 +25,22 @@ export const asyncValidationUpdateUserForm = async (values) => {
 
 
 
-        if(values.firstName && !firstName) {
+        if(!firstName) {
             errors.firstName = 'Cannot be empty'
         }
-        if(values.lastName && !lastName) {
+        if(!lastName) {
             errors.lastName = 'Cannot be empty'
         }
-        if(values.displayName && !displayName) {
+        if(!displayName) {
             errors.displayName = 'Should be more than 4 characters'
         }
-        if(values.email && !email) {
+        if(!email) {
             errors.email = 'Check the format '
         }
+
         if(values.password && !password){
             errors.password = 'Should be more than 8 characters'
         }
-
-
         if(values.password && password){
             if(values.password !== values.passwordRepeat){
                 errors.passwordRepeat = 'Password confirmation needs to match original password';

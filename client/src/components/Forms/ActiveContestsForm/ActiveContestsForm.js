@@ -16,7 +16,7 @@ import { findContestsPyParams } from "../../../actions/actionCreators/dashboardC
 
 import { FORM, ACTIVE_CONTEST_FORM_FIELDS, TYPE_FIELD } from "../../../constants";
 
-import transformSelectInputToNormalObject from "../../../utils/transformSelectInputToNormalObject";
+import transformSelectInputToNormalObject from "../../../utils/forms/convertSelectInputToNormalObject";
 
 let ActiveContests = (props) => {
 

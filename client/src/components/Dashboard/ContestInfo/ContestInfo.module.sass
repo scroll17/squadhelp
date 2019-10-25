@@ -39,6 +39,11 @@
       .container
         box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.1)
 
+        .updateContests
+          max-width: 1170px
+          margin: 0 auto 0 auto
+          padding: 0 30px 30px 30px
+
         .content
           padding: 20px
           h2
@@ -55,13 +60,24 @@
 
         .aboutContest
           display: flex
-          align-items: center
+          justify-content: space-between
+
           padding: 18px 30px
           background-color: #f3f3f3
           font-size: 18px
 
-          .image
-            width: 30px
-            height: 30px
-            margin-right: 20px
+          i
+            font-size: 24px
+            cursor: pointer
+            &:hover
+              color: #8179E8
+
+          p
+            display: flex
+            align-items: center
+
+            .image
+              width: 30px
+              height: 30px
+              margin-right: 20px
 

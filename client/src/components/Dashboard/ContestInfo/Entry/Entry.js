@@ -77,15 +77,17 @@ function Entry(props) {
 
             <div className={style.creativeInfo}>
                 <Avatar size={50} customAvatar={avatar}/>
-                <span>
-                    {displayName}
+                <div className={style.creative}>
                     <i className="far fa-comments"
                        onClick={() => {
                            props.closeOrOpenChat(false);
                            return startConversation(User)
                        }}
                     />
-                </span>
+                    <span>
+                        {displayName}
+                    </span>
+                </div>
             </div>
         </div>
     )

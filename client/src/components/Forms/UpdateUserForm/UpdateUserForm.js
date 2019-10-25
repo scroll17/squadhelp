@@ -17,8 +17,6 @@ import { updateUserInformation } from "../../../actions/actionCreators/userActio
 
 let UpdateUserForm = (props) => {
 
-    console.log("props", props);
-
   const renderFields = () => {
         const doubleFields = [];
 
@@ -75,11 +73,23 @@ let UpdateUserForm = (props) => {
 UpdateUserForm = reduxForm({
     form: FORM.UPDATE_USER,
     asyncValidate: asyncValidationUpdateUserForm,
-    destroyOnUnmount: false
+    destroyOnUnmount: false,
+    enableReinitialize: true,
 })(UpdateUserForm);
 
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+    const { firstName, lastName, displayName, email } = state.userReducer.user;
+
+    return {
+        initialValues: {
+            firstName,
+            lastName,
+            displayName,
+            email
+        }
+    }
+};
 const mapDispatchToProps = dispatch => ({
     updateUserInformation: (info) => dispatch(updateUserInformation(info))
 });

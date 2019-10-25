@@ -7,7 +7,8 @@ import { toast } from 'react-toastify';
 
 import { size, last } from 'lodash';
 
-const DropZone = ({ input }) => {
+const DropZone = ({ input, ...props }) => {
+
     const onDrop = useCallback(acceptedFiles => {
         input.onChange(last(acceptedFiles));
     }, []);
@@ -52,7 +53,7 @@ const DropZone = ({ input }) => {
                 }
             </div>
 
-            <input {...getInputProps()} />
+            <input initial={props.meta.initial} {...getInputProps()}/>
 
         </div>
     )

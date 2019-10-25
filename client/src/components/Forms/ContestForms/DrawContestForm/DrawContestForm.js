@@ -6,25 +6,15 @@ import {Field, reduxForm} from 'redux-form';
 import style from './DrawContestForm.module.sass';
 
 import ContestFields from '../ContestFields/ContestFields'
+import validation from "../../../../validation/contestFormValidation"
 
 import { dataForTheContestForm } from '../../../../utils/textAndLinksForPages/textAndLinksForPages'
 
+import { TYPE_FIELD, CONTEST_FIELDS } from "../../../../constants";
 
-import { TYPE_FIELD } from "../../../../constants";
+import { last } from 'lodash'
 
-import { last, isObject } from 'lodash'
-
-const validation = (value) => {
-    if(!value){
-        return "Please fill this field"
-    }else if(value && !isObject(value)){
-        const str = value.replace(/\s+/g, '');
-        if(str.length === 0){
-            return "Please fill this field"
-        }
-    }
-};
-
+import convertNormalObjectToSelectInput from "../../../../utils/forms/convertNormalObjectToSelectInput";
 
 let DrawContestForm = (props) => {
     const { handleSubmit, contestStageNow } = props;
@@ -70,13 +60,15 @@ DrawContestForm = reduxForm({
     forceUnregisterOnUnmount: true,
 })(DrawContestForm);
 
-export default DrawContestForm = connect(state => {
+export default DrawContestForm = connect( (state, props) => {
     const { contestFormData, contestNow } = state.contestReducer;
     const contestStageNow = last(contestNow);
 
+    const initialValues = convertNormalObjectToSelectInput(props.initialValues, [CONTEST_FIELDS.TYPE_OF_VENTURE]);
+
     return ({
-        contestStageNow: contestStageNow,
-        initialValues: contestFormData[contestStageNow],
+        contestStageNow: props.contestStageNow || contestStageNow,
+        initialValues: initialValues || contestFormData[contestStageNow],
     })
 })(DrawContestForm)
 

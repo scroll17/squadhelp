@@ -16,6 +16,16 @@ export const CONTEST_REDUCER_VAL = {
 };
 
 export const CONTEST_FIELDS = {
+    CONTEST_TYPE: "contestType",
+    PRIORITY: "priority",
+    NAME: 'name',
+    TYPE: 'type',
+    WHAT_VENTURE_DOES: 'whatVentureDoes',
+    TARGET_CUSTOMERS: "targetCustomers",
+    STYLE: 'style',
+    FILE: 'file',
+    TITLE: "title",
+    TYPE_OF_VENTURE: "typeOfVenture",
     CONTEST_ID: 'contestId',
     USER_ID: 'userId',
     PRICE: 'price',
