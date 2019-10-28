@@ -5,6 +5,7 @@ module.exports = {
                 number: '0000000000000001',
                 expiry: '01/25',
                 cvc: '120',
+                balance: 1000,
             },
             {
                 number: '0000000000000002',

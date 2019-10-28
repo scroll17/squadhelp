@@ -1,5 +1,5 @@
-//const IP = "10.2.1.61";
-export const baseURL = `http://192.168.0.105:3000`;
+const IP = "10.2.1.61";
+export const baseURL = `http://${IP}:3000`;
 
 export const userURL = `${baseURL}/user`;
 export const adminURL = `${baseURL}/admin`;

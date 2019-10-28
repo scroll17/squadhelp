@@ -49,7 +49,8 @@ module.exports.createUser = async (req, res, next) => {
             return next(new error.BadRequest("User already exist"));
         }
 
-        req.body.user = omit(user, [CREATED_AT, UPDATE_AT, PASSWORD]);
+
+        req.body.user = omit(user.dataValues, [CREATED_AT, UPDATE_AT, PASSWORD]);
         next()
     }catch (err){
         next(err)

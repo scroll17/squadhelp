@@ -17,7 +17,7 @@ module.exports = {
             },
             balance: {
                 type: Sequelize.FLOAT,
-                defaultValue: 750.00,
+                defaultValue: 0,
             },
             createdAt: {
                 type: Sequelize.DATE,

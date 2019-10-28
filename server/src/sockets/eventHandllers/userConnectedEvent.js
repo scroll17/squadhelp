@@ -9,14 +9,18 @@ module.exports = (socket) => socket.on( ON.USER_CONNECTED, async user => {
     ]));
 
     const foundConversation = await Conversation.aggregate([
-        {$match: {
+        {
+            $match: {
                 $expr: {
-                    $in: [ user.id, "$participants" ],
+                    $in: [user.id, "$participants"],
                 }
-            }},
-        {$project: {
+            }
+        },
+        {
+            $project: {
                 _id: 1
-            }},
+            }
+        },
     ]);
 
     foundConversation.forEach( conversation => {

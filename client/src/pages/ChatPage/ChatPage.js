@@ -15,6 +15,7 @@ function ChatPage(props){
     const { chatIsOpen, user } = props;
     const { EMAIL, IS_BANNED } = USER_DATA_FIELDS;
 
+
     useEffect(() => {
         socket.connect();
         userConnected(omit(user, [EMAIL, IS_BANNED]));
@@ -25,7 +26,7 @@ function ChatPage(props){
     useEffect(() => {
         const bodyPosition = document.body.style.position;
 
-        if(chatIsOpen && document.body.clientWidth <= 795){
+        if(chatIsOpen && document.body.clientWidth <= 775){
             document.body.style.position = "fixed";
         }
 
