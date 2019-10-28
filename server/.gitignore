@@ -1,4 +1,3 @@
 .idea/
-node_modules/
-public/images/tmp/contestFiles
-public/images/tmp/entryFiles
+/node_modules
+/public
