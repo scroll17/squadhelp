@@ -7,7 +7,8 @@ import style from './BankForm.module.sass'
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/lib/styles.scss';
 
-import { size } from 'lodash';
+import calculateThePriceForContests from "../../../utils/calculateThePriceForContests";
+import { size, isUndefined } from 'lodash';
 
 import { CONTEST } from '../../../constants'
 
@@ -20,7 +21,7 @@ import {
 
 let BankForm = (props) => {
     const {handleSubmit, priceOfContest , fields, number, expiry, cvc, contestNow} = props;
-    const contestForms = contestNow.slice(1, size(contestNow)-1);
+    const contestForms = contestNow.slice(1, size(contestNow) - 1);
 
     const focused = (fields) => {
         let focusOnField;
@@ -38,8 +39,14 @@ let BankForm = (props) => {
         let total = 0;
         const theCostOfEachContest = [];
 
+        let price = calculateThePriceForContests(priceOfContest, contestForms);
+
         contestForms.forEach( form => {
-            const price = priceOfContest[form];
+
+            if(isUndefined(price)){
+                price = priceOfContest[form];
+            }
+
             if(price){
                 total += price;
                 theCostOfEachContest.push(

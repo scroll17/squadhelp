@@ -18,6 +18,7 @@ const {
       UPDATE_AT
     }
 } = require("../constants");
+
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {

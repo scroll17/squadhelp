@@ -1,6 +1,8 @@
 import ACTION from "../actions/actionTypes/actionsTypes";
 import {createContest, getPriceOfContests, payContests} from "../api/rest/contestController";
 
+import calculateThePriceForContests from "../utils/calculateThePriceForContests";
+
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
@@ -43,7 +45,7 @@ export function* createContestSaga({formData}) {
             const currentFormData = contestFormData[form];
 
             const convertedFormData = {
-                price: priceOfContest[form],
+                price: calculateThePriceForContests(priceOfContest, contests) || priceOfContest[form],
                 contestType: form
             };
 
