@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isEmpty';
+
 
 import {ContestNameForm as contestForm} from '../utils/textAndLinksForPages/textAndLinksForPages'
 

@@ -60,7 +60,7 @@ export const asyncValidationSignUpForm = async (values) => {
     if (Object.keys(errors).length === 0) {
         return await Promise.resolve()
     }else {
-        return await Promise.reject(errors)
+        return Promise.reject(errors)
     }
 
 };

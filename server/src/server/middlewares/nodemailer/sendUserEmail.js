@@ -31,20 +31,6 @@ module.exports =  async (req, res, next) => {
         return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`);
 
 
-            // .then((info) => {
-            //     console.log("send : ", Date.now());
-            //     return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`)
-            // })
-            // .catch((err) => {
-            //     return next(BadRequest())
-            // });
-
-        // if(isEmpty(messageInfo.rejected)){
-        //     return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`)
-        // }else{
-        //     return next(BadRequest())
-        // }
-
     }catch (e) {
         next(e)
     }

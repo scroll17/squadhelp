@@ -49,7 +49,8 @@ function UserNavigationSmartphone(props){
 
                 {displayStyle === DISPLAY.BLOCK &&
                     <ul className={style.dropdownMenu} >
-                        <Link to={`${URL.DASHBOARD}${URL.MY_ACCOUNT}`}><li> View Dashboard </li></Link>
+                        <Link to={`${URL.DASHBOARD}${URL.ACTIVE_CONTESTS}`}><li> View Dashboard </li></Link>
+                        <Link to={`${URL.DASHBOARD}${URL.MY_ACCOUNT}`}><li> My Account </li></Link>
                         <span onClick={() => props.closeOrOpenChat(props.chatIsOpen)}>
                             <li> Messages </li>
                         </span>

@@ -46,8 +46,6 @@ module.exports.createContest = async (req, res, next) => {
         res.status(CREATED).send("Contest created!")
     }catch (err) {
 
-        console.log(err);
-
         next(new error.BadRequest(err.name))
     }
 };

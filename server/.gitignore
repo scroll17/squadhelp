@@ -1,5 +1,7 @@
 .idea/
 /node_modules
 
-public/images/tmp/contestFiles
-public/images/tmp/entryFiles
+public/images/tmp/contestFiles/
+public/images/tmp/entryFiles/
+
+mongodb/

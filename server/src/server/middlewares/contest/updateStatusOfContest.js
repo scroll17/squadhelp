@@ -52,29 +52,3 @@ module.exports = async (req, res, next) => {
 };
 
 
-// const contestClosedIndex = findIndex(contests, (contest) => contest.contestId === contestUuid);
-// if(contestClosedIndex < 0){
-//     return await transactionRollAndSendBadReq(transaction, next)
-// }
-//
-// contests[contestClosedIndex].status = CONTEST_STATUS.CLOSED;
-// await contests[contestClosedIndex].save();
-//
-// if (contests.length > 1) {
-//     const contestOpenIndex = contestClosedIndex + 1;
-//
-//     console.log("contestOpenIndex", contestOpenIndex);
-//
-//     contests[contestOpenIndex].status = CONTEST_STATUS.OPEN;
-//     await contests[contestOpenIndex].save();
-// }
-//
-//
-// console.log("contests", contests);
-// console.log("contestClosedIndex", contestClosedIndex);
-//
-//
-// req.body.contestPrice = contests[contestClosedIndex].price;
-// next()
-
-
