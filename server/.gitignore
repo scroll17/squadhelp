@@ -1,3 +1,5 @@
 .idea/
 node_modules/
-/server/tmp
+
+public/images/tmp/contestFiles/
+public/images/tmp/entryFiles/
