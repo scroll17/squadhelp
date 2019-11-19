@@ -120,19 +120,3 @@ module.exports.updateEntryToResolve = async (req, res, next) => {
         next(err)
     }
 };
-
-// updatedRows.reduce((prevUpdateRows, currentUpdateRows) => {
-//     const { id: rowId, contestId, status } = currentUpdateRows;
-//
-//     if(prevUpdateRows.contestId !== contestId){
-//         return next(new BadRequest())
-//     }
-//
-//     if(`${rowId}` === id && status !== "x"){
-//         return next(new BadRequest())
-//     }
-//
-//     return currentUpdateRows;
-// }, {
-//     contestId
-// });

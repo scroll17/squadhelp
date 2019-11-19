@@ -11,7 +11,7 @@ const ABILITY = {
         READ: "read",
         UPDATE: "update",
         DELETE: "delete",
-        MANAGE: "manage", // управлять
+        MANAGE: "manage",
         CRUD: "crud",
 
         PAY: 'pay',

@@ -59,5 +59,3 @@ module.exports = (socket) => socket.on( ON.OPEN_CHAT, async () => {
     socket.emit( EMIT.SHOW_CONVERSATION, foundConversation);
 });
 
-// {$cond: { lastMessageId:  { $exists: true, $not: {$size: 0} } }
-// lastMessageId: { $arrayElemAt: [ "$participants", -1 ] },

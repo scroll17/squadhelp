@@ -27,7 +27,7 @@ module.exports =  async (req, res, next) => {
         };
 
 
-        transporter.sendMail(mailOptions);
+        process.nextTick(() => transporter.sendMail(mailOptions));
         return res.status(SUCCESS.ACCEPTED.CODE).send(`Entry ${updateEntries.isValid}`);
 
 

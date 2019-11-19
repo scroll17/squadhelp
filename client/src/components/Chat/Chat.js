@@ -26,11 +26,11 @@ let ChatPage = (props) => {
 
 
     const submit = (values) => {
-        if(values.message){
+        if(values.message && values.message.trim()){
             const message = {
                 time: Date.now(),
                 ownerId: user.id,
-                content: values.message
+                content: values.message.trim()
             };
 
             sendMessage(message);
