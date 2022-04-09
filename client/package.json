@@ -11,7 +11,7 @@
     "history": "^4.9.0",
     "lodash": "^4.17.15",
     "mdbreact": "^4.19.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.11.0",
     "payment": "^2.3.0",
     "query-string": "^6.8.3",
