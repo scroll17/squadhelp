@@ -41,7 +41,7 @@
     "less-middleware": "^3.1.0",
     "lodash": "^4.17.15",
     "merge-graphql-schemas": "^1.5.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.6.11",
     "morgan": "~1.9.0",
     "multer": "^1.4.2",
